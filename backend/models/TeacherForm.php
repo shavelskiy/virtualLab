@@ -25,7 +25,7 @@ class TeacherForm extends Model
             [['email'], 'email', 'message' => 'Введите корректный email'],
             [['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот логин уже занят'],
             [['email'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким email уже существует'],
-            [['password'], 'string', 'min' => 6, 'message' => 'Это retзательно для заполнения'],
+            [['password'], 'string', 'min' => 6, 'tooShort' => 'Пароль должен быть больше 6 символов'],
         ];
     }
 
