@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -28,7 +29,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['teacher'],
                     ],
                 ],
             ],
@@ -70,17 +71,24 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $errorAccess = false;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->can('viewAdminPage')) {
+                return $this->goBack();
+            } else {
+                $errorAccess = true;
+                Yii::$app->user->logout();
+            }
         } else {
             $model->password = '';
 
             return $this->render('login', [
+                'errorAccess' => $errorAccess,
                 'model' => $model,
             ]);
         }
