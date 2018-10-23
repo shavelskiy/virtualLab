@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\base\Model;
+use common\models\User;
 
 class TeacherForm extends Model
 {
@@ -16,7 +17,8 @@ class TeacherForm extends Model
     public $middleName;
     public $pulpit;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['id', 'name', 'lastName', 'username', 'password'], 'required'],
             [['name', 'lastName', 'middleName', 'pulpit'], 'string', 'max' => 255],
@@ -26,7 +28,8 @@ class TeacherForm extends Model
         ];
     }
 
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'username' => 'Логин',
             'email' => 'Почта',
@@ -39,41 +42,20 @@ class TeacherForm extends Model
     }
 
     /**
-     * @param $id
-     * @return TeacherFull
-     * @throws NotFoundHttpException
-     */
-    public static function findTeacherById($id) {
-        if (($teacher = Teacher::findOne($id)) !== null) {
-            $teacherFull = new TeacherFull();
-            $teacherFull->setAttributes(
-                [
-                    'id' => $teacher->id,
-                    'username' => $teacher->user->username,
-                    'email' => $teacher->user->email,
-                    'name' => $teacher->name,
-                    'lastName' => $teacher->last_name,
-                    'middleName' => $teacher->middle_name,
-                    'pulpit' => $teacher->pulpit
-                ]
-            );
-            return $teacherFull;
-        }
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
      *
      */
-    public function save() {
-        $user = new User();
+    public function save()
+    {
+        $signUpForm = new SignupForm();
+        $signUpForm->setAttributes(
+            [
+                'username' => $this->username,
+                'email' => $this->email,
+                'password' => $this->password
+            ]
+        );
 
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-
-        $user->save();
+        $user = $signUpForm->signup();
 
         $teacher = new Teacher();
         $teacher->setAttributes(
@@ -87,12 +69,17 @@ class TeacherForm extends Model
         );
         $teacher->save();
         $this->id = $teacher->id;
+
+        $auth = Yii::$app->authManager;
+        $teacher = $auth->getRole('teacher');
+        $auth->assign($teacher, $user->id);
     }
 
     /**
      *
      */
-    public function update() {
+    public function update()
+    {
         $teacher = Teacher::findOne($this->id);
         $teacher->setAttributes(
             [
@@ -109,17 +96,5 @@ class TeacherForm extends Model
         $user->email = $this->email;
 
         $user->save();
-    }
-
-    /**
-     * @param $id
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
-     */
-    public static function delete($id) {
-        $teacher = Teacher::findOne($id);
-        $user = User::findOne($teacher->user_id);
-        $teacher->delete();
-        $user->delete();
     }
 }

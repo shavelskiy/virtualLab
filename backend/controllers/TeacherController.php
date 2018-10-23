@@ -3,8 +3,9 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Teacher;
-use common\models\TeacherForm;
+use backend\models\Teacher;
+use backend\models\TeacherForm;
+use common\models\SignupForm;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -100,7 +101,8 @@ class TeacherController extends Controller
      */
     public function actionDelete($id)
     {
-        TeacherFull::delete($id);
+        $teacher = Teacher::findOne($id);
+        $teacher->delete();
         return $this->redirect(['index']);
     }
 }

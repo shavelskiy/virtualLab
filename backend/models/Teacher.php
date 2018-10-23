@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use common\models\User;
 
 /**
  * This is the model class for table "teachers".
@@ -60,5 +61,15 @@ class Teacher extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function afterDelete()
+    {
+        $user = User::findOne($this->user_id);
+        $user->delete();
+
+        $auth = Yii::$app->authManager;
+        $teacher = $auth->getRole('teacher');
+        $auth->revoke($teacher, $user->id);
     }
 }
