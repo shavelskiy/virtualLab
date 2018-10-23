@@ -5,7 +5,6 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Teacher;
 use backend\models\TeacherForm;
-use common\models\SignupForm;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -66,8 +65,10 @@ class TeacherController extends Controller
         $model = new TeacherForm();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->validate()) {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -82,15 +83,15 @@ class TeacherController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = TeacherFull::findTeacherById($id);
-        if ($model->load(Yii::$app->request->post())) {
-            $model->update();
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+//        $model = TeacherFull::findTeacherById($id);
+//        if ($model->load(Yii::$app->request->post())) {
+//            $model->update();
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
+//
+//        return $this->render('update', [
+//            'model' => $model,
+//        ]);
     }
 
     /**

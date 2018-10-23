@@ -20,11 +20,12 @@ class TeacherForm extends Model
     public function rules()
     {
         return [
-            [['id', 'name', 'lastName', 'username', 'password'], 'required'],
+            [['name', 'lastName', 'middleName', 'username', 'password', 'email', 'pulpit'], 'required', 'message' => 'Это поле обязательно для заполнения'],
             [['name', 'lastName', 'middleName', 'pulpit'], 'string', 'max' => 255],
-            [['email'], 'email'],
-            [['username'], 'unique', 'targetClass' => '\common\models\User'],
-            [['password'], 'string', 'min' => 6],
+            [['email'], 'email', 'message' => 'Введите корректный email'],
+            [['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот логин уже занят'],
+            [['email'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким email уже существует'],
+            [['password'], 'string', 'min' => 6, 'message' => 'Это retзательно для заполнения'],
         ];
     }
 
@@ -42,7 +43,7 @@ class TeacherForm extends Model
     }
 
     /**
-     *
+     * @throws \Exception
      */
     public function save()
     {

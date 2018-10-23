@@ -14,9 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-<!--    --><?php //if ($errorAccess): ?>
-<!--        <div class="alert alert-danger">У вас нет доступа к админке</div>-->
-<!--    --><?php //endif; ?>
+    <?php if ($errorAccess): ?>
+        <div class="alert alert-danger">У вас нет доступа к админке</div>
+    <?php endif; ?>
     <p>Пожалуйста, заполните следующие поля:</p>
 
     <div class="row">
