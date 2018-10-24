@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  *
- * @property Students[] $students
+ * @property Student[] $students
  */
 class Groups extends \yii\db\ActiveRecord
 {
@@ -28,8 +28,9 @@ class Groups extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['name'], 'required', 'message' => 'Введите группу'],
+            [['name'], 'unique', 'targetClass' => '\backend\models\Groups', 'message' => 'Такая группа уже существует'],
+            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
         ];
     }
 
@@ -40,7 +41,7 @@ class Groups extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Группа',
         ];
     }
 

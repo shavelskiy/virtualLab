@@ -62,8 +62,11 @@ class GroupController extends Controller
     {
         $model = new Groups();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -78,10 +81,10 @@ class GroupController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findGroup($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -98,7 +101,7 @@ class GroupController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findGroup($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -108,7 +111,7 @@ class GroupController extends Controller
      * @return Groups|null
      * @throws NotFoundHttpException
      */
-    protected function findModel($id)
+    protected function findGroup($id)
     {
         if (($model = Groups::findOne($id)) !== null) {
             return $model;
