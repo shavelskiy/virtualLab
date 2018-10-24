@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Teacher */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $password boolean */
 ?>
 
 <div class="teacher-form">

@@ -98,4 +98,18 @@ class TeacherForm extends Model
 
         $user->save();
     }
+
+    /**
+     * @param  Teacher $teacher
+     */
+    public function loadTeacher($teacher)
+    {
+        $this->id = $teacher->id;
+        $this->username = $teacher->user->username;
+        $this->email = $teacher->user->email;
+        $this->name = $teacher->name;
+        $this->lastName = $teacher->last_name;
+        $this->middleName = $teacher->middle_name;
+        $this->pulpit = $teacher->pulpit;
+    }
 }

@@ -65,6 +65,7 @@ class TeacherController extends Controller
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionCreate()
     {
@@ -84,20 +85,21 @@ class TeacherController extends Controller
 
     /**
      * @param $id
-     * @return string|\yii\web\Response
-     * @throws \yii\web\NotFoundHttpException
      */
     public function actionUpdate($id)
     {
-//        $model = TeacherFull::findTeacherById($id);
-//        if ($model->load(Yii::$app->request->post())) {
-//            $model->update();
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('update', [
-//            'model' => $model,
-//        ]);
+        $teacher = Teacher::findOne($id);
+        $model = new TeacherForm();
+        $model->loadTeacher($teacher);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->update();
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

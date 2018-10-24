@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Teacher */
+/* @var $model backend\models\Teacher */
 
 $this->title = 'Изменить: ' . $model->lastName . ' ' . $model->name . ' ' . $model->middleName;
 $this->params['breadcrumbs'][] = ['label' => 'Преподаватели', 'url' => ['index']];
