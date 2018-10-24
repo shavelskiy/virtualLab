@@ -82,4 +82,11 @@ class Student extends \yii\db\ActiveRecord
         $student = $auth->getRole('student');
         $auth->revoke($student, $user->id);
     }
+
+    public static function getGroupStudents($groupId)
+    {
+        return Student::find()
+            ->andWhere(['group_id' => $groupId])
+            ->all();
+    }
 }

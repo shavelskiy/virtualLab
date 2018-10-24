@@ -3,11 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Groups;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
+use backend\models\Groups;
+use backend\models\Student;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -107,6 +108,10 @@ class GroupController extends Controller
      */
     public function actionDelete($id)
     {
+        $students = Student::getGroupStudents($id);
+        foreach ($students as $student) {
+            $student->delete();
+        }
         $this->findGroup($id)->delete();
 
         return $this->redirect(['index']);
