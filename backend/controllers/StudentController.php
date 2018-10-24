@@ -91,16 +91,19 @@ class StudentController extends Controller
 
     public function actionUpdate($id)
     {
-//        $model = StudentFull::getStudentById($id);
-//        if ($model->load(Yii::$app->request->post())) {
-//            $model->update();
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('update', [
-//            'model' => $model,
-//            'group' => Groups::findOne($model->groupId)
-//        ]);
+        $student = $this->findStudent($id);
+        $model = new StudentForm();
+        $model->loadTeacher($student);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->update();
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'group' => Groups::findOne($model->groupId)
+        ]);
     }
 
     public function actionDelete($id)

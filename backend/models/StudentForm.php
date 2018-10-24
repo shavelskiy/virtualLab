@@ -78,31 +78,35 @@ class StudentForm extends Model
 
     public function update()
     {
-//        $student = Student::findOne($this->id);
-//        $student->setAttributes(
-//            [
-//                'name' => $this->name,
-//                'last_name' => $this->lastName,
-//                'middle_name' => $this->middleName,
-//                'email' => 'email'
-//            ]
-//        );
-//        $student->save();
-//
-//        $user = User::findOne($student->user_id);
-//        $user->username = $this->username;
-//        $user->email = $this->email;
-//
-//        $user->save();
+        $student = Student::findOne($this->id);
+        $student->setAttributes(
+            [
+                'name' => $this->name,
+                'last_name' => $this->lastName,
+                'middle_name' => $this->middleName,
+                'email' => 'email'
+            ]
+        );
+        $student->save();
+
+        $user = User::findOne($student->user_id);
+        $user->username = $this->username;
+        $user->email = $this->email;
+
+        $user->save();
     }
 
-    public static function delete($id)
+    /**
+     * @param Student $student
+     */
+    public function loadTeacher($student)
     {
-//        $student = Student::findOne($id);
-//        $groupId = $student->group_id;
-//        $user = User::findOne($student->user_id);
-//        $student->delete();
-//        $user->delete();
-//        return $groupId;
+        $this->id = $student->id;
+        $this->username = $student->user->username;
+        $this->email = $student->user->email;
+        $this->name = $student->name;
+        $this->lastName = $student->last_name;
+        $this->middleName = $student->middle_name;
+        $this->groupId = $student->group_id;
     }
 }

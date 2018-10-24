@@ -56,6 +56,7 @@ class TeacherController extends Controller
     /**
      * @param $id
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -86,6 +87,8 @@ class TeacherController extends Controller
 
     /**
      * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
