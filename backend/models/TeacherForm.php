@@ -20,7 +20,7 @@ class TeacherForm extends Model
     public function rules()
     {
         return [
-            [['name', 'lastName', 'middleName', 'username', 'password', 'email', 'pulpit'], 'required', 'message' => 'Это поле обязательно для заполнения'],
+            [['name', 'lastName', 'username', 'password', 'email', 'pulpit'], 'required', 'message' => 'Это поле обязательно для заполнения'],
             [['name', 'lastName', 'middleName', 'pulpit'], 'string', 'max' => 255],
             [['email'], 'email', 'message' => 'Введите корректный email'],
             [['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот логин уже занят'],
@@ -72,8 +72,8 @@ class TeacherForm extends Model
         $this->id = $teacher->id;
 
         $auth = Yii::$app->authManager;
-        $teacher = $auth->getRole('teacher');
-        $auth->assign($teacher, $user->id);
+        $teacherRole = $auth->getRole('teacher');
+        $auth->assign($teacherRole, $user->id);
     }
 
     /**

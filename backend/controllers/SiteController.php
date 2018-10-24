@@ -84,14 +84,13 @@ class SiteController extends Controller
                 $errorAccess = true;
                 Yii::$app->user->logout();
             }
-        } else {
-            $model->password = '';
-
-            return $this->render('login', [
-                'errorAccess' => $errorAccess,
-                'model' => $model,
-            ]);
         }
+        $model->password = '';
+
+        return $this->render('login', [
+            'errorAccess' => $errorAccess,
+            'model' => $model,
+        ]);
     }
 
     /**

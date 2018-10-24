@@ -5,8 +5,10 @@ use yii\widgets\DetailView;
 use common\models\Groups;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Student */
-$this->title = $model->lastName . ' ' . $model->name . ' ' . $model->middleName;
+/* @var $model backend\models\Student */
+/* @var $group backend\models\Groups */
+
+$this->title = $model->last_name . ' ' . $model->name . ' ' . $model->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];
 $this->params['breadcrumbs'][] = ['label' => $group->name, 'url' => ['student/index', 'groupId' => $group->id]];
 $this->params['breadcrumbs'][] = ['label' => $this->title];?>
@@ -29,10 +31,11 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-
             'name',
-            'lastName',
-            'middleName'
+            'last_name',
+            'middle_name',
+            'user.username',
+            'user.email'
         ],
     ]) ?>
 
