@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Groups;
+use backend\models\Groups;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -72,11 +72,9 @@ class GroupController extends Controller
     }
 
     /**
-     * Updates an existing Group model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {

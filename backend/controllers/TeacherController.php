@@ -7,6 +7,7 @@ use backend\models\Teacher;
 use backend\models\TeacherForm;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
 /**
@@ -59,7 +60,7 @@ class TeacherController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => Teacher::findOne($id),
+            'model' => $this->findTeacher($id),
         ]);
     }
 
@@ -88,7 +89,7 @@ class TeacherController extends Controller
      */
     public function actionUpdate($id)
     {
-        $teacher = Teacher::findOne($id);
+        $teacher = $this->findTeacher($id);
         $model = new TeacherForm();
         $model->loadTeacher($teacher);
 
@@ -110,8 +111,21 @@ class TeacherController extends Controller
      */
     public function actionDelete($id)
     {
-        $teacher = Teacher::findOne($id);
+        $teacher = $this->findTeacher($id);
         $teacher->delete();
         return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return Teacher|null
+     * @throws NotFoundHttpException
+     */
+    protected function findTeacher($id)
+    {
+        if (($model = Teacher::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('Такой страницы не существует');
     }
 }
