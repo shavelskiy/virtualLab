@@ -9,6 +9,15 @@ use yii\grid\GridView;
 $this->title = 'Группы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+    if (Yii::$app->user->can('deleteGroup')) {
+        $buttonTemplate = '{view} {update} {delete}';
+    } else {
+        $buttonTemplate = '{view} {update}';
+    }
+?>
+
 <div class="group-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -24,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],
         ],
     ]); ?>
 </div>

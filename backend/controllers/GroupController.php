@@ -24,9 +24,15 @@ class GroupController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index', 'view', 'create', 'update'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
                 ],
             ],
         ];

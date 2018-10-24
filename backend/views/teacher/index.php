@@ -13,13 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->user->can('updateTeacher')): ?>
+    <?php if (Yii::$app->user->can('updateTeacher')) {
+        $canCreate = true;
+        $buttonTemplate = '{view} {update} {delete}';
+    } else {
+        $canCreate = false;
+        $buttonTemplate = '{view}';
+    } ?>
+
+    <?php if ($canCreate): ?>
         <p>
             <?= Html::a('Добавить преподавателя', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?php $buttonTemplate = '{view} {update} {delete}'?>
-    <?php else: ?>
-        <?php $buttonTemplate = '{view}'?>
     <?php endif; ?>
 
     <?= GridView::widget(
