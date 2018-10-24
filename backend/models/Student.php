@@ -72,4 +72,14 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function afterDelete()
+    {
+        $user = User::findOne($this->user_id);
+        $user->delete();
+
+        $auth = Yii::$app->authManager;
+        $student = $auth->getRole('student');
+        $auth->revoke($student, $user->id);
+    }
 }

@@ -11,7 +11,7 @@ use common\models\Groups;
 $this->title = $model->last_name . ' ' . $model->name . ' ' . $model->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];
 $this->params['breadcrumbs'][] = ['label' => $group->name, 'url' => ['student/index', 'groupId' => $group->id]];
-$this->params['breadcrumbs'][] = ['label' => $this->title];?>
+$this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
 
 <div class="student-view">
 
@@ -19,13 +19,15 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];?>
 
     <p>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->can('deleteStudent')): ?>
+            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php endif; ?>
     </p>
 
     <?= DetailView::widget([

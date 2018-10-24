@@ -11,6 +11,15 @@ $this->title = 'Cтуденты группы: ' . $group->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];
 $this->params['breadcrumbs'][] = ['label' => $group->name];
 ?>
+
+<?php
+if (Yii::$app->user->can('deleteStudent')) {
+    $buttonsTemplate = '{view} {update} {delete}';
+} else {
+    $buttonsTemplate = '{view} {update}';
+}
+?>
+
 <div class="student-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -28,7 +37,7 @@ $this->params['breadcrumbs'][] = ['label' => $group->name];
             'last_name',
             'middle_name',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => $buttonsTemplate],
         ],
     ]); ?>
 </div>

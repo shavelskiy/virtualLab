@@ -35,7 +35,7 @@ if (Yii::$app->user->can('deleteGroup')) {
             [
                 'attribute' => 'name',
                 'format' => 'raw',
-                'value'=>function ($data) {
+                'value' => function ($data) {
                     return Html::a(Html::encode($data->name), Url::toRoute(['student/index', 'groupId' => $data->id]));
                 },
             ],

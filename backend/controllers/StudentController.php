@@ -6,7 +6,6 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use backend\models\Student;
 use backend\models\Groups;
 use backend\models\StudentForm;
@@ -106,8 +105,9 @@ class StudentController extends Controller
 
     public function actionDelete($id)
     {
-//        $groupId = StudentFull::delete($id);
-//        return $this->redirect(['index', 'groupId' => $groupId]);
+        $student = $this->findStudent($id);
+        $student->delete();
+        return $this->redirect(['index', 'groupId' => $student->group_id]);
     }
 
     /**
