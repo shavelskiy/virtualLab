@@ -17,6 +17,10 @@ class RbacController extends Controller
         $student = $auth->createRole('student');
         $admin = $auth->createRole('admin');
 
+//        $teacher->description('Преподаватель');
+//        $student->description('Студент');
+//        $admin->description('Администратор');
+
         $auth->add($teacher);
         $auth->add($student);
         $auth->add($admin);
@@ -24,6 +28,9 @@ class RbacController extends Controller
         // Создаем разрешения
         $updateTeacher = $auth->createPermission('updateTeacher');
         $updateTeacher->description = 'Работа с преподавателями';
+
+        $deleteGroup = $auth->createPermission('deleteGroup');
+        $deleteGroup->description = 'Удаление групп';
 
         $viewAdminPage = $auth->createPermission('viewAdminPage');
         $viewAdminPage->description = 'Просмотр админки';
@@ -33,6 +40,7 @@ class RbacController extends Controller
 
         // Запишем эти разрешения в БД
         $auth->add($updateTeacher);
+        $auth->add($deleteGroup);
         $auth->add($viewAdminPage);
         $auth->add($makeLabs);
 
@@ -42,6 +50,7 @@ class RbacController extends Controller
         $auth->addChild($teacher, $student);
 
         $auth->addChild($admin, $updateTeacher);
+        $auth->addChild($admin, $deleteGroup);
         $auth->addChild($admin, $teacher);
     }
 }
