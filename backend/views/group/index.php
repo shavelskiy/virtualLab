@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -11,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php
-    if (Yii::$app->user->can('deleteGroup')) {
-        $buttonTemplate = '{view} {update} {delete}';
-    } else {
-        $buttonTemplate = '{view} {update}';
-    }
+if (Yii::$app->user->can('deleteGroup')) {
+    $buttonTemplate = '{update} {delete}';
+} else {
+    $buttonTemplate = '{update}';
+}
 ?>
 
 <div class="group-index">
@@ -31,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value'=>function ($data) {
+                    return Html::a(Html::encode($data->name), Url::toRoute(['student/index', 'groupId' => $data->id]));
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],
         ],
