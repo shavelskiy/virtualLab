@@ -32,6 +32,9 @@ class RbacController extends Controller
         $deleteGroup = $auth->createPermission('deleteGroup');
         $deleteGroup->description = 'Удаление групп';
 
+        $deleteStudent = $auth->createPermission('deleteStudent');
+        $deleteStudent->description = 'Удалить студента';
+
         $viewAdminPage = $auth->createPermission('viewAdminPage');
         $viewAdminPage->description = 'Просмотр админки';
 
@@ -41,16 +44,18 @@ class RbacController extends Controller
         // Запишем эти разрешения в БД
         $auth->add($updateTeacher);
         $auth->add($deleteGroup);
+        $auth->add($deleteStudent);
         $auth->add($viewAdminPage);
         $auth->add($makeLabs);
 
         $auth->addChild($student, $makeLabs);
 
-        $auth->addChild($teacher,$viewAdminPage);
+        $auth->addChild($teacher, $viewAdminPage);
         $auth->addChild($teacher, $student);
 
         $auth->addChild($admin, $updateTeacher);
         $auth->addChild($admin, $deleteGroup);
+        $auth->addChild($admin, $deleteStudent);
         $auth->addChild($admin, $teacher);
     }
 }
