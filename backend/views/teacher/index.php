@@ -13,26 +13,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Добавить преподавателя', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if (Yii::$app->user->can('updateTeacher')): ?>
+        <p>
+            <?= Html::a('Добавить преподавателя', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+        <?php $buttonTemplate = '{view} {update} {delete}'?>
+    <?php else: ?>
+        <?php $buttonTemplate = '{view}'?>
+    <?php endif; ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <?= GridView::widget(
+        [
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'name',
-            'last_name',
-            'middle_name',
-            'pulpit',
-            [
-                'label' => 'Почта',
-                'attribute' => 'user.email'
-            ],
+                'name',
+                'last_name',
+                'middle_name',
+                'pulpit',
+                [
+                    'label' => 'Почта',
+                    'attribute' => 'user.email'
+                ],
 
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],
+            ]
+        ]
+    ); ?>
 </div>

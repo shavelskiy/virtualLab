@@ -24,9 +24,15 @@ class TeacherController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index', 'view'],
                         'allow' => true,
-                        'roles' => ['teacher']
+                        'roles' => ['admin', 'teacher']
                     ],
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
                 ],
             ],
         ];
