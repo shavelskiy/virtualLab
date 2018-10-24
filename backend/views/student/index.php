@@ -26,6 +26,15 @@ if (Yii::$app->user->can('deleteStudent')) {
 
     <p>
         <?= Html::a('Добавить студента', ['create', 'groupId' => $group->id], ['class' => 'btn btn-success']) ?>
+        <?php if (Yii::$app->user->can('deleteGroup')): ?>
+            <?= Html::a('Удалить группу', ['group/delete', 'id' => $group->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите удалить группу и всех студентов в ней?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php endif; ?>
     </p>
 
     <?= GridView::widget([
