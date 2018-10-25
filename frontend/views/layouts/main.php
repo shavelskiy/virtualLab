@@ -23,6 +23,7 @@ AppAsset::register($this);
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/lab/init.js"></script>
     <script src="/js/lab/oscilloscope.js"></script>
+    <script src="/js/lab/schemes/elements.js"></script>
     <script src="/js/lab/schemes/lab1/v1.js"></script>
 
     <meta charset="<?= Yii::$app->charset ?>">
