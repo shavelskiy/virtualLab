@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mt-3">
                 <div class="col-8">
-                    <canvas id="canvas" width="704" height="404"></canvas>
+                    <canvas id="canvas" width="700" height="400"></canvas>
                 </div>
                 <div class="col-4 p-5">
                     <div class="panel panel-default">
