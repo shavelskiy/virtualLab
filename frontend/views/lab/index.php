@@ -1,9 +1,9 @@
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="container-fluid">
-            <div class="row mt-3">
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
                 <div class="col-8">
-                    <canvas id="canvas" width="700" height="400"></canvas>
+                    <canvas id="oscilloscope" width="700" height="400"></canvas>
                 </div>
                 <div class="col-4 p-5">
                     <div class="panel panel-default">
@@ -39,6 +39,15 @@
                             <input type="range" id="offsetY" min="-300" max="300"/>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-12">
+                    <canvas id="scheme" width="700" height="400"></canvas>
                 </div>
             </div>
         </div>
