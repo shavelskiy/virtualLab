@@ -13,7 +13,7 @@ var phase = 0;
 
 var voltDiv = 5; // сколько вольт в одной клетке
 var secondsDiv = 1; // сколько секунд в одной клетке
-var offsetX = -10;
+var offsetX = 0;
 var offsetY = 0;
 
 function draw() {
