@@ -71,7 +71,7 @@ function draw() {
     }
 
     function drawSin() {
-        var step = 1;
+        var step = 0.01;
 
         var xStart = border + offsetX;
         var yStart = height / 2 - offsetY;
