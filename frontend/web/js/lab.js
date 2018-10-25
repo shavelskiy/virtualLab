@@ -7,12 +7,12 @@ var border = 2;
 var gridSpacingMain = 100;
 var gridSpacingSecond = 20;
 
-var amplimude = 200;
+var amplitude = 200;
 var freq = 10;
 var phase = 0;
 
 var voltDiv = 5; // сколько вольт в одной клетке
-var secondsDiv = 1; // сколько секунд в одной клетке
+var timeDiv = 1; // сколько милисекунд в одной клетке
 var offsetX = 0;
 var offsetY = 0;
 
@@ -82,7 +82,7 @@ function draw() {
         var yMin = border + 1 - yStart;
 
         ctx.moveTo(xStart + getX(0), yStart + getY(0));
-        for (var t = 1; t < width / step ; t++) {
+        for (var t = 1; t < width / step; t++) {
             ctx.lineTo(xStart + getX(t), yStart + getY(t));
         }
 
@@ -98,7 +98,7 @@ function draw() {
         }
 
         function getY(t) {
-            var y = amplimude / voltDiv * Math.sin(10 * step * t / 180 * Math.PI * secondsDiv + phase);
+            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 * Math.PI * timeDiv + phase);
             if (y > yMax) {
                 y = yMax;
             }
@@ -113,6 +113,12 @@ function draw() {
 
 function changeVoltDiv(value) {
     voltDiv = Number(value);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw();
+}
+
+function changeTimeDiv(value) {
+    timeDiv = Number(value);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 }
@@ -135,6 +141,10 @@ $(document).ready(function () {
         ctx = canvas.getContext('2d');
         draw();
     }
+
+    $('#timeDiv').change(function () {
+        changeTimeDiv($(this).val());
+    });
 
     $('#voltsDiv').change(function () {
         changeVoltDiv($(this).val());
