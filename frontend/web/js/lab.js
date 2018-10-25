@@ -98,7 +98,7 @@ function draw() {
         }
 
         function getY(t) {
-            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 * Math.PI * timeDiv + phase);
+            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 / timeDiv * Math.PI + phase);
             if (y > yMax) {
                 y = yMax;
             }
