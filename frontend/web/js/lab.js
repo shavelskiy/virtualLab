@@ -73,6 +73,10 @@ function draw() {
     function drawSin() {
         var step = 0.01;
 
+        var x = getX(0);
+        var y = getY(0);
+        var skip = false;
+
         var xStart = border + offsetX;
         var yStart = height / 2 - offsetY;
 
@@ -81,35 +85,40 @@ function draw() {
         var yMax = height - yStart + border / 2;
         var yMin = border + 1 - yStart;
 
-        ctx.moveTo(xStart + getX(0), yStart + getY(0));
+        ctx.moveTo(xStart + x, yStart + y);
         for (var t = 1; t < width / step; t++) {
-            ctx.lineTo(xStart + getX(t), yStart + getY(t));
+            x = getX(t);
+            y = getY(t);
+
+            if ((y == false) || (x == false)) {
+                skip = true;
+            } else {
+                if (skip == true) {
+                    ctx.moveTo(xStart + x, yStart + y);
+                    skip = false;
+                } else {
+                    ctx.lineTo(xStart + x, yStart + y);
+                }
+            }
         }
 
         function getX(t) {
             var x = step * t;
-            if (x > xMax) {
-                x = xMax;
-            }
-            if (x < xMin) {
-                x = xMin;
+            if ((x > xMax) || (x < xMin)) {
+                return false;
             }
             return x;
         }
 
         function getY(t) {
-            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 / timeDiv * Math.PI + phase);
-            if (y > yMax) {
-                y = yMax;
-            }
-            if (y < yMin) {
-                y = yMin;
+            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 * timeDiv * Math.PI + phase);
+            if ((y > yMax) || (y < yMin)) {
+                return false;
             }
             return y;
         }
     }
 }
-
 
 function changeVoltDiv(value) {
     voltDiv = Number(value);
