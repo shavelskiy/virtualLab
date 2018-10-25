@@ -8,7 +8,7 @@ var gridSpacingMain = 100;
 var gridSpacingSecond = 20;
 
 var amplitude = 5;
-var freq = 10;
+var freq = 1000;
 var phase = 0;
 
 var voltDiv = 5; // сколько вольт в одной клетке
@@ -78,7 +78,7 @@ function draw() {
         var x = getX(0);
         var y = getY(0);
         var skip = false;
-        var k = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
+        var voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
 
         var xStart = border + offsetX;
         var yStart = height / 2 - offsetY + border;
@@ -114,7 +114,7 @@ function draw() {
         }
 
         function getY(t) {
-            var y = amplitude / voltDiv * k * Math.sin(freq * step * t / 180 * timeDiv * Math.PI + phase);
+            var y = amplitude / voltDiv * voltK * Math.sin(freq / 2 / Math.PI * step * t * timeDiv / 5065 + phase);
             if ((y > yMax) || (y < yMin)) {
                 return false;
             }
