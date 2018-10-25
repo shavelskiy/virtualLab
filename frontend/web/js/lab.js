@@ -17,9 +17,11 @@ var offsetX = 0;
 var offsetY = 0;
 
 function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     drawMainGrid();
 
-    ctx.strokeStyle = "olive";
+    ctx.strokeStyle = 'rgb(134, 222, 200)';
     ctx.beginPath();
     drawSin();
     ctx.lineWidth = 2;
@@ -36,7 +38,7 @@ function draw() {
         ctx.strokeRect(1, 1, width + border, height + border);
 
         // вспомогательная сетка
-        ctx.strokeStyle = 'rgb(128, 128, 128)';
+        ctx.strokeStyle = 'rgb(111, 152, 142)';
         ctx.beginPath();
         drawVerticalLines(ctx, gridSpacingSecond);
         drawHorizontalLines(ctx, gridSpacingSecond);
@@ -44,7 +46,7 @@ function draw() {
         ctx.closePath();
 
         // основная сетка
-        ctx.strokeStyle = 'rgb(24, 86, 76)';
+        ctx.strokeStyle = 'rgb(68, 116, 107)';
         ctx.beginPath();
         drawVerticalLines(ctx, gridSpacingMain);
         drawHorizontalLines(ctx, gridSpacingMain);
@@ -122,25 +124,21 @@ function draw() {
 
 function changeVoltDiv(value) {
     voltDiv = Number(value);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 }
 
 function changeTimeDiv(value) {
     timeDiv = Number(value);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 }
 
 function changeOffsetX(value) {
     offsetX = Number(value);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 }
 
 function changeOffsetY(value) {
     offsetY = Number(value);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw();
 }
 
@@ -148,6 +146,7 @@ $(document).ready(function () {
     canvas = document.getElementById('canvas');
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
+        draw();
         draw();
     }
 
