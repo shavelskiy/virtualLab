@@ -31,6 +31,10 @@ function drawScheme() {
     // drawCoil(50, 200, true);
 
     // источник эдс
-    drawVoltageSource(50, 200, true, true);
+    // drawVoltageSource(50, 200, true, true);
     // drawVoltageSource(200, 50, false, false);
+
+    // источник тока
+    drawCurrentSource(50, 200, true, true);
+    drawCurrentSource(200, 50, false, false);
 }
