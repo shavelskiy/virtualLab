@@ -95,7 +95,7 @@ function draw() {
         }
 
         function getY(t) {
-            var y = (-1) * amplitude / voltDiv * voltK * Math.sin(2 * Math.PI * freq * t * step * timeK * timeDiv);
+            var y = (-1) * amplitude / voltDiv * voltK * Math.sin(2 * Math.PI * freq * t * step * timeK * timeDiv + phase / 180 * Math.PI);
             if (y < yMin) {
                 y = yMin;
             }
