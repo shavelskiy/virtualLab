@@ -18,7 +18,8 @@ AppAsset::register($this);
 <head>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
-<!--    <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">-->
+    <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
+
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/lab.js"></script>
     <meta charset="<?= Yii::$app->charset ?>">
