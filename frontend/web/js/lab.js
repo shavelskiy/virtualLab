@@ -7,7 +7,7 @@ var border = 2;
 var gridSpacingMain = 100;
 var gridSpacingSecond = 20;
 
-var amplitude = 200;
+var amplitude = 5;
 var freq = 10;
 var phase = 0;
 
@@ -78,9 +78,10 @@ function draw() {
         var x = getX(0);
         var y = getY(0);
         var skip = false;
+        var k = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
 
         var xStart = border + offsetX;
-        var yStart = height / 2 - offsetY;
+        var yStart = height / 2 - offsetY + border;
 
         var xMax = width - xStart + border / 2;
         var xMin = border + 1 - xStart;
@@ -113,7 +114,7 @@ function draw() {
         }
 
         function getY(t) {
-            var y = amplitude / voltDiv * Math.sin(freq * step * t / 180 * timeDiv * Math.PI + phase);
+            var y = amplitude / voltDiv * k * Math.sin(freq * step * t / 180 * timeDiv * Math.PI + phase);
             if ((y > yMax) || (y < yMin)) {
                 return false;
             }

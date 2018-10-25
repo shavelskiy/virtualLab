@@ -28,6 +28,7 @@
                                     <option value="2">2 V</option>
                                     <option value="5" selected>5 V</option>
                                     <option value="10">10 V</option>
+                                    <option value="25">25 V</option>
                                 </select>
                             </div>
 
