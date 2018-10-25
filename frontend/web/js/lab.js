@@ -82,7 +82,7 @@ function draw() {
         var yMin = border + 1 - yStart;
 
         ctx.moveTo(xStart + getX(0), yStart + getY(0));
-        for (var t = 1; t < width / step + 10; t++) {
+        for (var t = 1; t < width / step ; t++) {
             ctx.lineTo(xStart + getX(t), yStart + getY(t));
         }
 
