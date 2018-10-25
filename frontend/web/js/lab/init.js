@@ -2,7 +2,7 @@ var osciCanvas;
 var osciContext;
 
 var labCanvas;
-var labcontext;
+var labContext;
 
 $(document).ready(function () {
     osciCanvas = document.getElementById('oscilloscope');
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     labCanvas = document.getElementById('scheme');
     if (labCanvas.getContext) {
-        labcontext = labCanvas.getContext('2d');
+        labContext = labCanvas.getContext('2d');
         drawScheme();
     }
 });
