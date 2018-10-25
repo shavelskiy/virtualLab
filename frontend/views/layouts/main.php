@@ -16,12 +16,6 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-
-    <script language="javascript" type="text/javascript" src="/js/jquery.js"></script>
-    <script language="javascript" type="text/javascript" src="/js/jquery.flot.js"></script>
-    <script language="javascript" type="text/javascript" src="/js/jquery.flot.stack.js"></script>
-    <script language="javascript" type="text/javascript" src="/js/jquery.flot.selection.js"></script>
-
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
