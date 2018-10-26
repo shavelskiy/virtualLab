@@ -50,12 +50,63 @@
                     <canvas id="data" width="180" height="400"></canvas>
                 </div>
                 <div class="col-7">
-                    <canvas id="scheme" width="600" height="400"></canvas>
+                    <canvas id="scheme" width="640" height="400"></canvas>
                 </div>
                 <div class="col-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Выберете сигналы</h4>
+                        </div>
+                        <div class="panel-body p-0">
+                            <div class="container-fluid p-0">
+                                <div class="row m-0 p-0">
 
+                                    <div class="col m-0 pl-2 pr-1 pt-2">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <label for="osci_1_1"></label>
+                                                    <select class="form-control" id="osci_1_1">
+                                                        <?php for ($i = 0; $i < 15; $i++): ?>
+                                                            <option value="<?= $i ?>" selected><?= $i ?></option>
+                                                        <?php endfor; ?>
+                                                    </select>
+                                                    <label for="osci_1_2"></label>
+                                                    <select class="form-control" id="osci_1_2">
+                                                        <?php for ($i = 0; $i < 15; $i++): ?>
+                                                            <option value="<?= $i ?>" selected><?= $i ?></option>
+                                                        <?php endfor; ?>
+                                                    </select>
+                                                    <!--                                                    <button type="button" class="btn btn-success">Success</button>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col m-0 pl-1 pr-2 pt-2">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <label for="osci_1_1"></label>
+                                                    <select class="form-control" id="osci_1_1">
+                                                        <?php for ($i = 0; $i < 15; $i++): ?>
+                                                            <option value="<?= $i ?>" selected><?= $i ?></option>
+                                                        <?php endfor; ?>
+                                                    </select>
+                                                    <label for="osci_1_2"></label>
+                                                    <select class="form-control" id="osci_1_2">
+                                                        <?php for ($i = 0; $i < 15; $i++): ?>
+                                                            <option value="<?= $i ?>" selected><?= $i ?></option>
+                                                        <?php endfor; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

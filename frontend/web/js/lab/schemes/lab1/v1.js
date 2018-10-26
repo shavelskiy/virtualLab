@@ -2,7 +2,7 @@ var kolData = 0;
 var currentPoint = 0;
 
 /**
- * Рисует в lanCanvas схему
+ * Рисует в labCanvas схему
  */
 function drawScheme() {
     // основной контур
@@ -34,16 +34,6 @@ function drawScheme() {
 
     // источник тока
     drawCurrentSource(50, 150, true, true, 'J1', 10, 'мА', true);
-
-    // проставляем узлы
-    // drawPoint(50, 50, true, false, false);
-    // drawPoint(350, 50, true, true, false);
-    // drawPoint(350, 350, true, true, true);
-    // drawPoint(50, 350, true, false, true);
-    // drawPoint(150, 50, false, null, false);
-    // drawPoint(350, 150, false, true, null);
-    // drawPoint(300, 350, false, null, true);
-    // drawPoint(50, 250, false, false, null);
 }
 
 /**
