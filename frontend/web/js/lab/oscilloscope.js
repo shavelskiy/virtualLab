@@ -43,7 +43,7 @@ function draw() {
         drawSin(channel1, settings1);
     }
     if (settings2.active) {
-        osciContext.strokeStyle = 'rgb(134, 222, 200)';
+        osciContext.strokeStyle = 'rgb(234, 222, 200)';
         drawSin(channel2, settings2);
     }
 
