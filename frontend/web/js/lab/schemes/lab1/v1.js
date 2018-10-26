@@ -1,4 +1,5 @@
 var kolData = 0;
+var currentPoint = 0;
 
 /**
  * Рисует в lanCanvas схему
@@ -16,24 +17,33 @@ function drawScheme() {
     labContext.closePath();
 
     // резисторы
-    drawResistor(200, 50, false, 'R1', 100, 'Ом');
-    drawResistor(350, 100, true, 'R2', 200, 'Ом');
+    drawResistor(120, 50, false, 'R1', 100, 'Ом', true);
+    drawResistor(350, 110, true, 'R2', 200, 'Ом', true);
 
     // конденсатор
-    drawCapacitor(350, 200, true, 'C1', 50, 'нФ');
-    drawCapacitor(100, 350, false, 'C2', 140, 'мкФ');
+    drawCapacitor(350, 200, true, 'C1', 50, 'нФ', true);
+    drawCapacitor(120, 350, false, 'C2', 140, 'мкФ', true);
 
     // катушка
-    drawCoil(200, 350, false, 'L1', 340, 'мГн');
-    drawCoil(350, 300, true, 'L2', 120, 'мГн');
+    drawCoil(250, 350, false, 'L1', 340, 'мГн', true);
+    drawCoil(350, 290, true, 'L2', 120, 'мГн', true);
 
     // источник эдс
-    drawVoltageSource(50, 200, true, true, 'E1', 35, 'В');
-    drawVoltageSource(300, 50, false, false, 'E2', 10, 'В');
+    drawVoltageSource(50, 250, true, true, 'E1', 35, 'В', true);
+    drawVoltageSource(280, 50, false, false, 'E2', 10, 'В', true);
 
     // источник тока
-    drawCurrentSource(50, 100, true, true, 'J1', 10, 'мА');
-    drawCurrentSource(100, 50, false, false, 'J2', 25, 'мА');
+    drawCurrentSource(50, 150, true, true, 'J1', 10, 'мА', true);
+
+    // проставляем узлы
+    // drawPoint(50, 50, true, false, false);
+    // drawPoint(350, 50, true, true, false);
+    // drawPoint(350, 350, true, true, true);
+    // drawPoint(50, 350, true, false, true);
+    // drawPoint(150, 50, false, null, false);
+    // drawPoint(350, 150, false, true, null);
+    // drawPoint(300, 350, false, null, true);
+    // drawPoint(50, 250, false, false, null);
 }
 
 /**
@@ -43,6 +53,7 @@ function drawScheme() {
  * @param units
  */
 function drawData(name, value, units) {
+    dataContext.font = 'bold 16px sans-serif';
     dataContext.fillText(name + ' = ' + value + ' ' + units, 30, kolData * 25 + 50);
     kolData++;
 }

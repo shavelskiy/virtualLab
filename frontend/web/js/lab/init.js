@@ -38,7 +38,6 @@ $(document).ready(function () {
         // внешняя рамка
         dataContext.strokeStyle = 'rgb(223, 223, 223)';
         dataContext.strokeRect(0, 0, dataCanvas.width, dataCanvas.height);
-        dataContext.font = 'bold 16px sans-serif';
     }
 
     labCanvas = document.getElementById('scheme');

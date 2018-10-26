@@ -9,8 +9,15 @@ var height;
  * @param name
  * @param value
  * @param units
+ * @param drawPoints
  */
-function drawResistor(x, y, vertical, name, value, units) {
+function drawResistor(x, y, vertical, name, value, units, drawPoints) {
+    drawData(name, value, units);
+
+    if (drawPoints) {
+        drawPointsAroundElement(x, y, vertical, 'long');
+    }
+
     if (vertical) {
         width = 20;
         height = 50;
@@ -23,7 +30,6 @@ function drawResistor(x, y, vertical, name, value, units) {
 
     labContext.clearRect(x - width / 2, y - height / 2, width, height);
     labContext.strokeRect(x - width / 2, y - height / 2, width, height);
-    drawData(name, value, units);
 }
 
 /**
@@ -34,13 +40,19 @@ function drawResistor(x, y, vertical, name, value, units) {
  * @param name
  * @param value
  * @param units
+ * @param drawPoints
  */
-function drawCapacitor(x, y, vertical, name, value, units) {
+function drawCapacitor(x, y, vertical, name, value, units, drawPoints) {
+    drawData(name, value, units);
+
+    if (drawPoints) {
+        drawPointsAroundElement(x, y, vertical, 'short');
+    }
+
     if (vertical) {
         width = 50;
         height = 10;
         labContext.fillText(name, x + 28, y + 6);
-
     } else {
         width = 10;
         height = 50;
@@ -62,7 +74,6 @@ function drawCapacitor(x, y, vertical, name, value, units) {
     }
     labContext.stroke();
     labContext.closePath();
-    drawData(name, value, units);
 }
 
 /**
@@ -73,8 +84,15 @@ function drawCapacitor(x, y, vertical, name, value, units) {
  * @param name
  * @param value
  * @param units
+ * @param drawPoints
  */
-function drawCoil(x, y, vertical, name, value, units) {
+function drawCoil(x, y, vertical, name, value, units, drawPoints) {
+    drawData(name, value, units);
+
+    if (drawPoints) {
+        drawPointsAroundElement(x, y, vertical, 'long');
+    }
+
     if (vertical) {
         width = 20;
         height = 60;
@@ -110,7 +128,6 @@ function drawCoil(x, y, vertical, name, value, units) {
     }
     labContext.stroke();
     labContext.closePath();
-    drawData(name, value, units);
 }
 
 /**
@@ -122,8 +139,15 @@ function drawCoil(x, y, vertical, name, value, units) {
  * @param name
  * @param value
  * @param units
+ * @param drawPoints
  */
-function drawVoltageSource(x, y, vertical, direction, name, value, units) {
+function drawVoltageSource(x, y, vertical, direction, name, value, units, drawPoints) {
+    drawData(name, value, units);
+
+    if (drawPoints) {
+        drawPointsAroundElement(x, y, vertical, 'middle');
+    }
+
     labContext.beginPath();
     labContext.arc(x, y, 20, 0, 2 * Math.PI, true);
     labContext.stroke();
@@ -156,7 +180,6 @@ function drawVoltageSource(x, y, vertical, direction, name, value, units) {
 
     labContext.fill();
     labContext.closePath();
-    drawData(name, value, units);
 }
 
 /**
@@ -168,8 +191,15 @@ function drawVoltageSource(x, y, vertical, direction, name, value, units) {
  * @param name
  * @param value
  * @param units
+ * @param drawPoints
  */
-function drawCurrentSource(x, y, vertical, direction, name, value, units) {
+function drawCurrentSource(x, y, vertical, direction, name, value, units, drawPoints) {
+    drawData(name, value, units);
+
+    if (drawPoints) {
+        drawPointsAroundElement(x, y, vertical, 'middle');
+    }
+
     labContext.clearRect(x - 20, y - 20, 40, 40);
     labContext.beginPath();
     labContext.arc(x, y, 20, 0, 2 * Math.PI, true);
@@ -231,5 +261,95 @@ function drawCurrentSource(x, y, vertical, direction, name, value, units) {
 
     labContext.stroke();
     labContext.closePath();
-    drawData(name, value, units);
+}
+
+/**
+ * Рисует точку (узел)
+ * @param x
+ * @param y
+ * @param offset смещать надпись по диагонали?
+ * @param left
+ * для offset = false - писать слева от ветви? null - если есть top
+ * для offset = true - смещать по диагонали налево?
+ * @param top
+ * по аналогии с параметром left
+ */
+function drawPoint(x, y, offset, left, top) {
+    var k = 1;
+    var kOff = 1;
+    if (currentPoint > 9) {
+        k = 1.5;
+        kOff = 2;
+    }
+
+    labContext.beginPath();
+    labContext.clearRect(x - 3, y - 3, 6, 6);
+    labContext.arc(x, y, 4, 0, 2 * Math.PI, true);
+    labContext.stroke();
+    labContext.closePath();
+
+    labContext.font = 'bold 10px sans-serif';
+    if (offset) {
+        if (top) {
+            if (left) {
+                labContext.fillText(currentPoint, x - (12 * k), y - 6);
+            } else {
+                labContext.fillText(currentPoint, x + 6, y - 6);
+            }
+        } else {
+            if (left) {
+                labContext.fillText(currentPoint, x - (12 * k), y + 12);
+            } else {
+                labContext.fillText(currentPoint, x + 6, y + 12);
+            }
+        }
+    } else {
+        if (top != null) {
+            if (top) {
+                labContext.fillText(currentPoint, x - (3 * kOff), y - 6);
+            } else {
+                labContext.fillText(currentPoint, x - (3 * kOff), y + 15);
+            }
+        } else {
+            if (left) {
+                labContext.fillText(currentPoint, x - 10 - (4 * kOff), y + 3);
+            } else {
+                labContext.fillText(currentPoint, x + 6, y + 3);
+            }
+        }
+    }
+
+    currentPoint++;
+    labContext.font = 'bold 16px sans-serif';
+}
+
+/**
+ * Нарисовать два узла вокруг элемента
+ * @param x
+ * @param y
+ * @param vertical
+ * @param size
+ */
+function drawPointsAroundElement(x, y, vertical, size) {
+    var radius = 45;
+
+    switch (size) {
+        case 'short':
+            radius = 20;
+            break;
+        case 'middle':
+            radius = 35;
+            break;
+        case 'long':
+            radius = 45;
+            break;
+    }
+
+    if (vertical) {
+        drawPoint(x, y - radius, false, true, null);
+        drawPoint(x, y + radius, false, true, null);
+    } else {
+        drawPoint(x - radius, y, false, null, false);
+        drawPoint(x + radius, y, false, null, false);
+    }
 }
