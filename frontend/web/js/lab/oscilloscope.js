@@ -1,15 +1,34 @@
-var gridSpacingMain = 100;
-var gridSpacingSecond = 20;
+var gridSpacingMain = 100,
+    gridSpacingSecond = 20;
 
-var curVolt = 0;
-var amplitude = 5;
-var freq = 2000;
-var phase = 0;
+var channel1 = {
+        'curVolt': 0,
+        'amplitude': 5,
+        'freq': 2000,
+        'phase': 0
+    },
+    channel2 = {
+        'curVolt': 2,
+        'amplitude': 5,
+        'freq': 2000,
+        'phase': 0
+    };
 
-var voltDiv = 5; // сколько вольт в одной клетке
-var timeDiv = 1; // сколько милисекунд в одной клетке
-var offsetX = 0;
-var offsetY = 0;
+var settings1 = {
+        'active': false,
+        'voltDiv': 5,
+        'timeDiv': 1,
+        'offsetX': 0,
+        'offsetY': 0
+    },
+    settings2 = {
+        'active': false,
+        'voltDiv': 5,
+        'timeDiv': 1,
+        'offsetX': 0,
+        'offsetY': 0
+    };
+
 
 /**
  * Рисует осцилограф
@@ -19,17 +38,22 @@ function draw() {
 
     drawMainGrid();
 
-    osciContext.strokeStyle = 'rgb(134, 222, 200)';
-    osciContext.beginPath();
-    drawSin();
-    osciContext.lineWidth = 2;
-    osciContext.stroke();
-    osciContext.closePath();
+    if (settings1.active) {
+        osciContext.strokeStyle = 'rgb(134, 222, 200)';
+        drawSin(channel1, settings1);
+    }
+    if (settings2.active) {
+        osciContext.strokeStyle = 'rgb(134, 222, 200)';
+        drawSin(channel2, settings2);
+    }
 
     // внешняя рамка
     osciContext.strokeStyle = 'rgb(223, 223, 223)';
     osciContext.strokeRect(0, 0, osciCanvas.width, osciCanvas.height);
 
+    /**
+     * Рисует основную сетку
+     */
     function drawMainGrid() {
         // основной прямоугольник
         osciContext.fillStyle = 'rgb(93, 177, 162)';
@@ -70,14 +94,21 @@ function draw() {
         }
     }
 
-    function drawSin() {
+    /**
+     * Рисует синус
+     * @param channel
+     * @param settings
+     */
+    function drawSin(channel, settings) {
+        osciContext.beginPath();
+
         var step = 0.01;
 
         var voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
         var timeK = 0.000005; // коэфициент для времени
 
-        var xStart = offsetX;
-        var yStart = osciCanvas.height / 2 - offsetY;
+        var xStart = settings.offsetX;
+        var yStart = osciCanvas.height / 2 - settings.offsetY;
 
         var xMax = osciCanvas.width - xStart;
         var xMin = xStart;
@@ -89,12 +120,21 @@ function draw() {
             osciContext.lineTo(xStart + getX(t), yStart + getY(t));
         }
 
+        osciContext.lineWidth = 2;
+        osciContext.stroke();
+        osciContext.closePath();
+
         function getX(t) {
             return step * t;
         }
 
         function getY(t) {
-            var y = (-1) * (curVolt + amplitude * Math.sin(2 * Math.PI * freq * t * step * timeK * timeDiv + phase / 180 * Math.PI)) / voltDiv * voltK;
+            var y = (-1) * (
+                channel.curVolt +
+                channel.amplitude *
+                Math.sin(
+                    2 * Math.PI * channel.freq * t * step * timeK * settings.timeDiv + channel.phase / 180 * Math.PI
+                )) / settings.voltDiv * voltK;
             if (y < yMin) {
                 y = yMin;
             }
@@ -110,8 +150,12 @@ function draw() {
  * Изменения вольт на деление
  * @param value
  */
-function changeVoltDiv(value) {
-    voltDiv = Number(value);
+function changeVoltDiv(value, settingsId) {
+    if (settingsId == 1) {
+        settings1.voltDiv = Number(value);
+    } else {
+        settings2.voltDiv = Number(value);
+    }
     draw();
 }
 
@@ -119,8 +163,12 @@ function changeVoltDiv(value) {
  * Изменение секунд на деление
  * @param value
  */
-function changeTimeDiv(value) {
-    timeDiv = Number(value);
+function changeTimeDiv(value, settingsId) {
+    if (settingsId == 1) {
+        settings1.timeDiv = Number(value);
+    } else {
+        settings2.timeDiv = Number(value);
+    }
     draw();
 }
 
@@ -128,8 +176,12 @@ function changeTimeDiv(value) {
  * Изменение сдвига по горизонтали
  * @param value
  */
-function changeOffsetX(value) {
-    offsetX = Number(value);
+function changeOffsetX(value, settingsId) {
+    if (settingsId == 1) {
+        settings1.offsetX = Number(value);
+    } else {
+        settings2.offsetX = Number(value);
+    }
     draw();
 }
 
@@ -137,7 +189,25 @@ function changeOffsetX(value) {
  * Изменение сдвига по вертикали
  * @param value
  */
-function changeOffsetY(value) {
-    offsetY = Number(value);
+function changeOffsetY(value, settingsId) {
+    if (settingsId == 1) {
+        settings1.offsetY = Number(value);
+    } else {
+        settings2.offsetY = Number(value);
+    }
+    draw();
+}
+
+/**
+ * Включить/выключить канал
+ * @param value
+ * @param settingsId
+ */
+function changeActive(value, settingsId) {
+    if (settingsId == 1) {
+        settings1.active = value;
+    } else {
+        settings2.active = value;
+    }
     draw();
 }

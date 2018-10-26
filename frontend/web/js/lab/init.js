@@ -12,23 +12,31 @@ $(document).ready(function () {
     if (osciCanvas.getContext) {
         osciContext = osciCanvas.getContext('2d');
         draw();
-        draw();
     }
 
-    $('#timeDiv').change(function () {
-        changeTimeDiv($(this).val());
+    $('#settings #timeDiv').each(function (index) {
+        $(this).change(function () {
+            changeTimeDiv($(this).val(), $(this).parent().attr('id'));
+        });
     });
 
-    $('#voltsDiv').change(function () {
-        changeVoltDiv($(this).val());
+    $('#settings #voltsDiv').each(function (index) {
+        $(this).change(function () {
+            changeVoltDiv($(this).val(), $(this).parent().attr('id'));        });
     });
 
     $(document).on('input', '#offsetX', function () {
-        changeOffsetX($(this).val());
+        changeOffsetX($(this).val(), $(this).parent().attr('id'));
     }).change();
 
     $(document).on('input', '#offsetY', function () {
-        changeOffsetY($(this).val());
+        changeOffsetY($(this).val(), $(this).parent().attr('id'));
+    });
+
+    $('#settings #active').each(function (index) {
+        $(this).change(function () {
+            changeActive($(this).is(':checked'), $(this).parent().attr('id'));
+        });
     });
 
     dataCanvas = document.getElementById('data');
