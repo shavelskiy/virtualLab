@@ -46,8 +46,14 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-12">
-                    <canvas id="scheme" width="700" height="400"></canvas>
+                <div class="col-2">
+                    <canvas id="data" width="180" height="400"></canvas>
+                </div>
+                <div class="col-7">
+                    <canvas id="scheme" width="600" height="400"></canvas>
+                </div>
+                <div class="col-3">
+
                 </div>
             </div>
         </div>
