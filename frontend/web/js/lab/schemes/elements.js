@@ -2,13 +2,15 @@ var width;
 var height;
 
 // резистор
-function drawResistor(x, y, vertical) {
+function drawResistor(x, y, vertical, name) {
     if (vertical) {
         width = 20;
         height = 50;
+        labContext.fillText(name, x + 15, y + 8);
     } else {
         width = 50;
         height = 20;
+        labContext.fillText(name, x - 8, y - 15);
     }
 
     labContext.clearRect(x - width / 2, y - height / 2, width, height);
@@ -16,13 +18,16 @@ function drawResistor(x, y, vertical) {
 }
 
 // конденсатор
-function drawCapacitor(x, y, vertical) {
+function drawCapacitor(x, y, vertical, name) {
     if (vertical) {
         width = 50;
         height = 10;
+        labContext.fillText(name, x + 28, y + 6);
+
     } else {
         width = 10;
         height = 50;
+        labContext.fillText(name, x - 9, y - 30);
     }
 
     labContext.clearRect(x - width / 2, y - height / 2, width, height);
@@ -43,13 +48,15 @@ function drawCapacitor(x, y, vertical) {
 }
 
 // катушка
-function drawCoil(x, y, vertical) {
+function drawCoil(x, y, vertical, name) {
     if (vertical) {
         width = 20;
         height = 60;
+        labContext.fillText(name, x + 9, y + 7);
     } else {
         width = 60;
         height = 20;
+        labContext.fillText(name, x - 9, y - 20);
     }
 
     labContext.clearRect(x - width / 2, y - height / 2, width, height);
@@ -80,7 +87,7 @@ function drawCoil(x, y, vertical) {
 }
 
 // источник ЭДС
-function drawVoltageSource(x, y, vertical, dirrection) {
+function drawVoltageSource(x, y, vertical, dirrection, name) {
     labContext.beginPath();
     labContext.arc(x, y, 20, 0, 2 * Math.PI, true);
     labContext.stroke();
@@ -97,6 +104,7 @@ function drawVoltageSource(x, y, vertical, dirrection) {
             labContext.lineTo(x + 5, y + 5);
             labContext.lineTo(x - 5, y + 5);
         }
+        labContext.fillText(name, x + 25, y + 6);
     } else {
         if (dirrection) {
             labContext.moveTo(x + 20, y);
@@ -107,6 +115,7 @@ function drawVoltageSource(x, y, vertical, dirrection) {
             labContext.lineTo(x - 5, y - 5);
             labContext.lineTo(x - 5, y + 5);
         }
+        labContext.fillText(name, x - 10, y - 25);
     }
 
     labContext.fill();
@@ -114,7 +123,7 @@ function drawVoltageSource(x, y, vertical, dirrection) {
 }
 
 // источник тока
-function drawCurrentSource(x, y, vertical, dirrection) {
+function drawCurrentSource(x, y, vertical, dirrection, name) {
     labContext.clearRect(x - 20, y - 20, 40, 40);
     labContext.beginPath();
     labContext.arc(x, y, 20, 0, 2 * Math.PI, true);
@@ -146,6 +155,7 @@ function drawCurrentSource(x, y, vertical, dirrection) {
             labContext.lineTo(x, y + 10);
             labContext.lineTo(x + 10, y);
         }
+        labContext.fillText(name, x + 25, y + 6);
     } else {
         if (dirrection) {
             labContext.moveTo(x + 20, y);
@@ -159,7 +169,7 @@ function drawCurrentSource(x, y, vertical, dirrection) {
             labContext.lineTo(x, y);
             labContext.lineTo(x - 10, y + 10);
         } else {
-            labContext.moveTo(x + 20 , y);
+            labContext.moveTo(x + 20, y);
             labContext.lineTo(x, y);
             labContext.moveTo(x - 20, y);
             labContext.lineTo(x - 10, y);
@@ -170,6 +180,7 @@ function drawCurrentSource(x, y, vertical, dirrection) {
             labContext.lineTo(x, y);
             labContext.lineTo(x + 10, y + 10);
         }
+        labContext.fillText(name, x - 10, y - 25);
     }
 
     labContext.stroke();
