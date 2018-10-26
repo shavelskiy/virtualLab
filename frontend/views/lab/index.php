@@ -60,7 +60,6 @@
                         <div class="panel-body p-0">
                             <div class="container-fluid p-0">
                                 <div class="row m-0 p-0">
-
                                     <div class="col m-0 pl-2 pr-1 pt-2">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
@@ -110,3 +109,4 @@
             </div>
         </div>
     </div>
+</div>
