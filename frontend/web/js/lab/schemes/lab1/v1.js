@@ -44,6 +44,6 @@ function drawScheme() {
  */
 function drawData(name, value, units) {
     dataContext.font = 'bold 16px sans-serif';
-    dataContext.fillText(name + ' = ' + value + ' ' + units, 30, kolData * 25 + 50);
+    dataContext.fillText(name + ' = ' + value + ' ' + units, 0, kolData * 25 + 20);
     kolData++;
 }

@@ -60,11 +60,11 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="panel panel-default" style="margin-bottom: 0px !important;">
+                <div class="panel panel-default" style="margin-bottom: 0px !important; height: 100%;">
                     <div class="panel-heading">
                         <h4>Выберете сигналы</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body p-3">
                         <div class="container-fluid p-0">
                             <?php for ($j = 1; $j <= 2; $j++): ?>
                                 <div class="row m-0 p-0">
