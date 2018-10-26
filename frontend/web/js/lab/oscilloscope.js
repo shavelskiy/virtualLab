@@ -11,6 +11,9 @@ var timeDiv = 1; // сколько милисекунд в одной клетк
 var offsetX = 0;
 var offsetY = 0;
 
+/**
+ * Рисует осцилограф
+ */
 function draw() {
     osciContext.clearRect(0, 0, osciCanvas.width, osciCanvas.height);
 
@@ -103,21 +106,37 @@ function draw() {
     }
 }
 
+/**
+ * Изменения вольт на деление
+ * @param value
+ */
 function changeVoltDiv(value) {
     voltDiv = Number(value);
     draw();
 }
 
+/**
+ * Изменение секунд на деление
+ * @param value
+ */
 function changeTimeDiv(value) {
     timeDiv = Number(value);
     draw();
 }
 
+/**
+ * Изменение сдвига по горизонтали
+ * @param value
+ */
 function changeOffsetX(value) {
     offsetX = Number(value);
     draw();
 }
 
+/**
+ * Изменение сдвига по вертикали
+ * @param value
+ */
 function changeOffsetY(value) {
     offsetY = Number(value);
     draw();

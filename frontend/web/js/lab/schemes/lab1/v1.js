@@ -37,7 +37,7 @@ function drawScheme() {
 }
 
 /**
- * ЗДобавляет значения элементов
+ * Добавляет значения элементов
  * @param name
  * @param value
  * @param units

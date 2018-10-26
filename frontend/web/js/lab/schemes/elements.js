@@ -1,7 +1,15 @@
 var width;
 var height;
 
-// резистор
+/**
+ * Нарисовать резистор
+ * @param x
+ * @param y
+ * @param vertical
+ * @param name
+ * @param value
+ * @param units
+ */
 function drawResistor(x, y, vertical, name, value, units) {
     if (vertical) {
         width = 20;
@@ -18,7 +26,15 @@ function drawResistor(x, y, vertical, name, value, units) {
     drawData(name, value, units);
 }
 
-// конденсатор
+/**
+ * Нарисовать конденсатор
+ * @param x
+ * @param y
+ * @param vertical
+ * @param name
+ * @param value
+ * @param units
+ */
 function drawCapacitor(x, y, vertical, name, value, units) {
     if (vertical) {
         width = 50;
@@ -49,7 +65,15 @@ function drawCapacitor(x, y, vertical, name, value, units) {
     drawData(name, value, units);
 }
 
-// катушка
+/**
+ * Нарисовать катушку индуктивности
+ * @param x
+ * @param y
+ * @param vertical
+ * @param name
+ * @param value
+ * @param units
+ */
 function drawCoil(x, y, vertical, name, value, units) {
     if (vertical) {
         width = 20;
@@ -89,7 +113,16 @@ function drawCoil(x, y, vertical, name, value, units) {
     drawData(name, value, units);
 }
 
-// источник ЭДС
+/**
+ * Нарисовать источник ЭДС
+ * @param x
+ * @param y
+ * @param vertical
+ * @param direction
+ * @param name
+ * @param value
+ * @param units
+ */
 function drawVoltageSource(x, y, vertical, direction, name, value, units) {
     labContext.beginPath();
     labContext.arc(x, y, 20, 0, 2 * Math.PI, true);
@@ -126,7 +159,16 @@ function drawVoltageSource(x, y, vertical, direction, name, value, units) {
     drawData(name, value, units);
 }
 
-// источник тока
+/**
+ * Нарисвоать источник тока
+ * @param x
+ * @param y
+ * @param vertical
+ * @param direction
+ * @param name
+ * @param value
+ * @param units
+ */
 function drawCurrentSource(x, y, vertical, direction, name, value, units) {
     labContext.clearRect(x - 20, y - 20, 40, 40);
     labContext.beginPath();
