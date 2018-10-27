@@ -3,13 +3,13 @@ var gridSpacingMain = 100,
 
 var channel1 = {
         'curVolt': 0,
-        'amplitude': 5,
+        'amplitude': 0,
         'freq': 2000,
         'phase': 0
     },
     channel2 = {
-        'curVolt': 2,
-        'amplitude': 5,
+        'curVolt': 0,
+        'amplitude': 0,
         'freq': 2000,
         'phase': 0
     };
@@ -100,6 +100,8 @@ function draw() {
      * @param settings
      */
     function drawSin(channel, settings) {
+        console.log(channel1);
+        console.log(channel2);
         osciContext.beginPath();
 
         var step = 0.01;
@@ -198,6 +200,18 @@ function changeOffsetY(value, settingsId) {
     draw();
 }
 
+function changeChannel(channel, points) {
+    var sin = getSetting(points);
+    if (channel == 1) {
+        channel1.amplitude = sin.amplitude;
+        channel1.phase = sin.phase;
+    } else {
+        channel2.amplitude = sin.amplitude;
+        channel2.phase = sin.phase;
+    }
+    draw();
+}
+
 /**
  * Включить/выключить канал
  * @param value
@@ -212,6 +226,30 @@ function changeActive(value, settingsId) {
     draw();
 }
 
-function getPoint(point1, point2) {
+function getSetting(points) {
+    point1 = getPoint(Number(points[0]));
+    point2 = getPoint(Number(points[1]));
 
+    var volt = {
+        'Re': point2.Re - point1.Re,
+        'Im': point2.Im - point1.Im
+    }
+
+    var amplitude = Math.sqrt(volt.Re * volt.Re + volt.Im * volt.Im);
+    var phase = 0;
+
+    if (volt.Re == 0) {
+        if (volt.Im > 0) {
+            phase = 90;
+        } else if (volt.Im < 0) {
+            phase = -90;
+        }
+    } else {
+        phase = Math.atan(volt.Im / volt.Re);
+    }
+
+    return {
+        'amplitude': amplitude,
+        'phase': phase
+    }
 }

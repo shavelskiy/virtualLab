@@ -35,7 +35,7 @@ $(document).ready(function () {
         changeOffsetY($(this).val(), $(this).parent().attr('id'));
     });
 
-    $('#settings #active').each(function (data) {
+    $('#settings [id ^=active]').each(function (data) {
         $(this).change(function () {
             changeActive($(this).is(':checked'), $(this).parent().attr('id'));
         });
@@ -49,7 +49,7 @@ $(document).ready(function () {
             $('#choose #points').find('[channel=' + channel + ']').each(function (data) {
                 points.push($(this).val());
             });
-            console.log(points);
+            changeChannel(channel, points);
         });
     });
 

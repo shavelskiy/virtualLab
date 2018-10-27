@@ -36,33 +36,29 @@ function getPoint(number) {
     };
 
     switch (number) {
-        case 1:
-            point.Re = 0;
-            point.Im = 0;
-            breake;
-        case 2:
-            point.Re = 0;
-            point.Im = 0;
-            breake;
-        case 3:
-            point.Re = 0;
-            point.Im = 0;
-            breake;
-        case 4:
-            point.Re = 0;
-            point.Im = 0;
-            breake;
-        case 5:
-            point.Re = 0;
-            point.Im = 0;
-            breake;
+        case 0:
         case 6:
             point.Re = 0;
             point.Im = 0;
-            breake;
+            break;
+        case 1:
+        case 2:
+            point.Re = -0.06;
+            point.Im = 0.53;
+            break;
+
+            break;
+        case 3:
+        case 5:
+            point.Re = -5;
+            point.Im = 0.01;
+            break;
+        case 4:
         case 7:
-            point.Re = 0;
+            point.Re = 5;
             point.Im = 0;
-            breake;
+            break;
     }
+
+    return point;
 }
