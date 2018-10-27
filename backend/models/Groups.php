@@ -9,7 +9,12 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- *
+ * @property boolean$ lab1
+ * @property boolean$ lab2
+ * @property boolean$ lab3
+ * @property boolean$ lab4
+ * @property boolean$ lab5
+ * @property boolean$ lab6
  * @property Student[] $students
  */
 class Groups extends \yii\db\ActiveRecord
@@ -30,8 +35,19 @@ class Groups extends \yii\db\ActiveRecord
         return [
             [['name'], 'required', 'message' => 'Введите группу'],
             [['name'], 'unique', 'targetClass' => '\backend\models\Groups', 'message' => 'Такая группа уже существует'],
-            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
+            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу']
         ];
+    }
+
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+        $this->lab1 = false;
+        $this->lab2 = false;
+        $this->lab3 = false;
+        $this->lab4 = false;
+        $this->lab5 = false;
+        $this->lab6 = false;
     }
 
     /**
@@ -42,6 +58,13 @@ class Groups extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Группа',
+            'lab1' => 'Лабораторная работа №1',
+            'lab2' => 'Лабораторная работа №1',
+            'lab3' => 'Лабораторная работа №1',
+            'lab4' => 'Лабораторная работа №1',
+            'lab5' => 'Лабораторная работа №1',
+            'lab6' => 'Лабораторная работа №1',
+
         ];
     }
 
