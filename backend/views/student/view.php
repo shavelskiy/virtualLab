@@ -41,4 +41,58 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         ],
     ]) ?>
 
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            [
+                'label' => 'Работа №1',
+                'attribute' => 'lab1.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab1.createdAt'
+            ],
+            [
+                'label' => 'Работа №2',
+                'attribute' => 'lab2.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab2.createdAt'
+            ],
+            [
+                'label' => 'Работа №3',
+                'attribute' => 'lab3.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab3.createdAt'
+            ],
+            [
+                'label' => 'Работа №4',
+                'attribute' => 'lab4.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab4.createdAt'
+            ],
+            [
+                'label' => 'Работа №5',
+                'attribute' => 'lab5.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab5.createdAt'
+            ],
+            [
+                'label' => 'Работа №6',
+                'attribute' => 'lab6.balls'
+            ],
+            [
+                'label' => 'Время прохождения',
+                'attribute' => 'lab6.createdAt'
+            ],
+        ],
+    ]) ?>
+
 </div>
