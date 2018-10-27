@@ -24,12 +24,12 @@ class m181023_202545_create_students_table extends Migration
             'last_name' => $this->string()->notNull(),
             'middle_name' => $this->string(),
             'variant' => $this->string()->notNull(),
-            'lab1' => $this->integer(),
-            'lab2' => $this->integer(),
-            'lab3' => $this->integer(),
-            'lab4' => $this->integer(),
-            'lab5' => $this->integer(),
-            'lab6' => $this->integer(),
+            'lab1_id' => $this->integer(),
+            'lab2_id' => $this->integer(),
+            'lab3_id' => $this->integer(),
+            'lab4_id' => $this->integer(),
+            'lab5_id' => $this->integer(),
+            'lab6_id' => $this->integer(),
             'group_id' => $this->integer()->notNull()
         ], $tableOptions);
 

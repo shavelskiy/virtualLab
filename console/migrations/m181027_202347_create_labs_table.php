@@ -24,54 +24,54 @@ class m181027_202347_create_labs_table extends Migration
         ], $tableOptions);
 
         $this->addForeignKey(
-            'fk-students-lab1',
+            'fk-students-lab1_id',
             'students',
-            'lab1',
+            'lab1_id',
             'labs',
             'id',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-students-lab2',
+            'fk-students-lab2_id',
             'students',
-            'lab2',
+            'lab2_id',
             'labs',
             'id',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-students-lab3',
+            'fk-students-lab3_id',
             'students',
-            'lab3',
+            'lab3_id',
             'labs',
             'id',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-students-lab4',
+            'fk-students-lab4_id',
             'students',
-            'lab4',
+            'lab4_id',
             'labs',
             'id',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-students-lab5',
+            'fk-students-lab5_id',
             'students',
-            'lab5',
+            'lab5_id',
             'labs',
             'id',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-students-lab6',
+            'fk-students-lab6_id',
             'students',
-            'lab6',
+            'lab6_id',
             'labs',
             'id',
             'CASCADE'
@@ -86,32 +86,32 @@ class m181027_202347_create_labs_table extends Migration
         $this->dropTable('lab');
 
         $this->dropForeignKey(
-            'fk-students-lab1',
+            'fk-students-lab1_id',
             'students'
         );
 
         $this->dropForeignKey(
-            'fk-students-lab2',
+            'fk-students-lab2_id',
             'students'
         );
 
         $this->dropForeignKey(
-            'fk-students-lab3',
+            'fk-students-lab3_id',
             'students'
         );
 
         $this->dropForeignKey(
-            'fk-students-lab4',
+            'fk-students-lab4_id',
             'students'
         );
 
         $this->dropForeignKey(
-            'fk-students-lab5',
+            'fk-students-lab5_id',
             'students'
         );
 
         $this->dropForeignKey(
-            'fk-students-lab6',
+            'fk-students-lab6_id',
             'students'
         );
     }
