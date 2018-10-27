@@ -14,15 +14,17 @@ $(document).ready(function () {
         draw();
     }
 
-    $('#settings #timeDiv').each(function (index) {
+    // настройки осцилографа
+    $('#settings #timeDiv').each(function (data) {
         $(this).change(function () {
             changeTimeDiv($(this).val(), $(this).parent().attr('id'));
         });
     });
 
-    $('#settings #voltsDiv').each(function (index) {
+    $('#settings #voltsDiv').each(function (data) {
         $(this).change(function () {
-            changeVoltDiv($(this).val(), $(this).parent().attr('id'));        });
+            changeVoltDiv($(this).val(), $(this).parent().attr('id'));
+        });
     });
 
     $(document).on('input', '#offsetX', function () {
@@ -33,9 +35,21 @@ $(document).ready(function () {
         changeOffsetY($(this).val(), $(this).parent().attr('id'));
     });
 
-    $('#settings #active').each(function (index) {
+    $('#settings #active').each(function (data) {
         $(this).change(function () {
             changeActive($(this).is(':checked'), $(this).parent().attr('id'));
+        });
+    });
+
+    // выбор точек
+    $('#choose #draw_osci').each(function (data) {
+        $(this).click(function () {
+            var channel = $(this).attr('channel');
+            var points = [];
+            $('#choose #points').find('[channel=' + channel + ']').each(function (data) {
+                points.push($(this).val());
+            });
+            console.log(points);
         });
     });
 
@@ -52,4 +66,5 @@ $(document).ready(function () {
         labContext.font = 'bold 16px sans-serif';
         drawScheme();
     }
-});
+})
+;

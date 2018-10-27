@@ -66,7 +66,7 @@
                     <div class="panel-heading">
                         <h4>Выберете сигналы</h4>
                     </div>
-                    <div class="panel-body p-3">
+                    <div class="panel-body p-3" id="choose">
                         <?php for ($i = 1; $i <= 2; $i++): ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -74,16 +74,16 @@
                                 </div>
                                 <div class="panel-body p-0">
                                     <div class="container-fluid p-0">
-                                        <div class="row p-0 m-0">
+                                        <div class="row p-0 m-0" id="points" channel="<?= $i ?>">
                                             <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
-                                                <select class="form-control" id="osci_<?= $i ?>_1">
+                                                <select class="form-control" id="point" channel="<?= $i ?>" point="1">
                                                     <?php for ($j = 0; $j < 15; $j++): ?>
                                                         <option value="<?= $j ?>"><?= $j ?></option>
                                                     <?php endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
-                                                <select class="form-control" id="osci_<?= $i ?>_2">
+                                                <select class="form-control" id="point" channel="<?= $i ?>" point="2">
                                                     <?php for ($j = 0; $j < 15; $j++): ?>
                                                         <option value="<?= $j ?>"><?= $j ?></option>
                                                     <?php endfor; ?>
@@ -93,7 +93,7 @@
                                         <div class="row p-0 m-0">
                                             <div class="col p-2 text-center">
                                                 <button type="button" class="btn btn-default"
-                                                        id="draw_osci_<?= $i ?>">
+                                                        id="draw_osci" channel="<?= $i ?>">
                                                     Построить
                                                 </button>
                                             </div>
