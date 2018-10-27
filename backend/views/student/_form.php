@@ -26,6 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'middleName')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'variant')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

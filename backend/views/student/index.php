@@ -41,10 +41,35 @@ if (Yii::$app->user->can('deleteStudent')) {
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            'variant',
             'name',
             'last_name',
             'middle_name',
+
+            [
+                'attribute' => 'lab1.balls',
+                'label' => 'Лаб. №1'
+            ],
+            [
+                'attribute' => 'lab2.balls',
+                'label' => 'Лаб. №2'
+            ],
+            [
+                'attribute' => 'lab3.balls',
+                'label' => 'Лаб. №3'
+            ],
+            [
+                'attribute' => 'lab4.balls',
+                'label' => 'Лаб. №4'
+            ],
+            [
+                'attribute' => 'lab5.balls',
+                'label' => 'Лаб. №5'
+            ],
+            [
+                'attribute' => 'lab6.balls',
+                'label' => 'Лаб. №6'
+            ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => $buttonsTemplate],
         ],

@@ -15,12 +15,13 @@ class StudentForm extends Model
     public $name;
     public $lastName;
     public $middleName;
+    public $variant;
     public $groupId;
 
     public function rules()
     {
         return [
-            [['name', 'lastName', 'username', 'password', 'email'], 'required', 'message' => 'Это поле обязательно для заполнения'],
+            [['name', 'lastName', 'username', 'password', 'email', 'variant'], 'required', 'message' => 'Это поле обязательно для заполнения'],
             [['name', 'lastName', 'middleName'], 'string', 'max' => 255],
             [['email'], 'email', 'message' => 'Введите корректный email'],
             [['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот логин уже занят'],
@@ -38,6 +39,7 @@ class StudentForm extends Model
             'name' => 'Имя',
             'lastName' => 'Фамилия',
             'middleName' => 'Отчество',
+            'variant' => 'Вариант'
         ];
     }
 
@@ -65,6 +67,7 @@ class StudentForm extends Model
                 'name' => $this->name,
                 'last_name' => $this->lastName,
                 'middle_name' => $this->middleName,
+                'variant' => $this->variant,
                 'group_id' => $groupId
             ]
         );
