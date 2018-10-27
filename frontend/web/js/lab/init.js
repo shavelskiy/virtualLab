@@ -65,6 +65,7 @@ $(document).ready(function () {
         labContext.clearRect(0, 0, labCanvas.width, labCanvas.height);
         labContext.font = 'bold 16px sans-serif';
         drawScheme();
+        addPoints(kolPoints);
     }
 })
 ;

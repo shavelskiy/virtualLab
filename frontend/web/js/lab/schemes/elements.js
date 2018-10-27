@@ -3,6 +3,7 @@ var height;
 
 var kolData = 0;
 var currentPoint = 0;
+var kolPoints = 0;
 
 /**
  * Нарисовать резистор
@@ -323,6 +324,7 @@ function drawPoint(x, y, offset, left, top) {
     }
 
     currentPoint++;
+    kolPoints++;
     labContext.font = 'bold 16px sans-serif';
 }
 
@@ -367,4 +369,12 @@ function drawData(name, value, units) {
     dataContext.font = 'bold 16px sans-serif';
     dataContext.fillText(name + ' = ' + value + ' ' + units, 0, kolData * 25 + 20);
     kolData++;
+}
+
+function addPoints(kolPoints) {
+    $('#choose #points').find('select').each(function (data) {
+        for (var i = 0; i < kolPoints; i++) {
+            $(this).append('<option value="' + i + '">' + i + '</option>');
+        }
+    });
 }

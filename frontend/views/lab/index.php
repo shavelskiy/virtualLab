@@ -74,19 +74,19 @@
                                 </div>
                                 <div class="panel-body p-0">
                                     <div class="container-fluid p-0">
-                                        <div class="row p-0 m-0" id="points" channel="<?= $i ?>">
+                                        <div class="row p-0 m-0" id="points">
                                             <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
                                                 <select class="form-control" channel="<?= $i ?>">
-                                                    <?php for ($j = 0; $j <= 7; $j++): ?>
-                                                        <option value="<?= $j ?>"><?= $j ?></option>
-                                                    <?php endfor; ?>
+<!--                                                    --><?php //for ($j = 0; $j <= 7; $j++): ?>
+<!--                                                        <option value="--><?//= $j ?><!--">--><?//= $j ?><!--</option>-->
+<!--                                                    --><?php //endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
                                                 <select class="form-control" channel="<?= $i ?>">
-                                                    <?php for ($j = 0; $j <= 7; $j++): ?>
-                                                        <option value="<?= $j ?>"><?= $j ?></option>
-                                                    <?php endfor; ?>
+<!--                                                    --><?php //for ($j = 0; $j <= 7; $j++): ?>
+<!--                                                        <option value="--><?//= $j ?><!--">--><?//= $j ?><!--</option>-->
+<!--                                                    --><?php //endfor; ?>
                                                 </select>
                                             </div>
                                         </div>

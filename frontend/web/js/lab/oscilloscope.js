@@ -100,8 +100,6 @@ function draw() {
      * @param settings
      */
     function drawSin(channel, settings) {
-        console.log(channel1);
-        console.log(channel2);
         osciContext.beginPath();
 
         var step = 0.01;
@@ -245,7 +243,7 @@ function getSetting(points) {
             phase = -90;
         }
     } else {
-        phase = Math.atan(volt.Im / volt.Re);
+        phase = Math.atan(volt.Im / volt.Re) * 180 / Math.PI;
     }
 
     return {

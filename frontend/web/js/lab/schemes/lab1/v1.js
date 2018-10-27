@@ -29,6 +29,11 @@ function drawScheme() {
     drawData('f', 2000, 'Гц')
 }
 
+/**
+ * Получить значение в конкретнойц точке
+ * @param number
+ * @returns {{Re: number, Im: number}}
+ */
 function getPoint(number) {
     var point = {
         'Re': 0,
