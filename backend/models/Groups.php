@@ -35,7 +35,8 @@ class Groups extends \yii\db\ActiveRecord
         return [
             [['name'], 'required', 'message' => 'Введите группу'],
             [['name'], 'unique', 'targetClass' => '\backend\models\Groups', 'message' => 'Такая группа уже существует'],
-            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу']
+            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
+            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6'], 'safe']
         ];
     }
 
@@ -58,12 +59,12 @@ class Groups extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Группа',
-            'lab1' => 'Лабораторная работа №1',
-            'lab2' => 'Лабораторная работа №1',
-            'lab3' => 'Лабораторная работа №1',
-            'lab4' => 'Лабораторная работа №1',
-            'lab5' => 'Лабораторная работа №1',
-            'lab6' => 'Лабораторная работа №1',
+            'lab1' => 'Работа №1',
+            'lab2' => 'Работа №2',
+            'lab3' => 'Работа №3',
+            'lab4' => 'Работа №4',
+            'lab5' => 'Работа №5',
+            'lab6' => 'Работа №6',
 
         ];
     }

@@ -90,7 +90,8 @@ class GroupController extends Controller
     {
         $model = $this->findGroup($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['index']);
         }
 
