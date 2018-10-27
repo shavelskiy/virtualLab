@@ -1,6 +1,9 @@
 var width;
 var height;
 
+var kolData = 0;
+var currentPoint = 0;
+
 /**
  * Нарисовать резистор
  * @param x
@@ -352,4 +355,16 @@ function drawPointsAroundElement(x, y, vertical, size) {
         drawPoint(x - radius, y, false, null, false);
         drawPoint(x + radius, y, false, null, false);
     }
+}
+
+/**
+ * Добавляет значения элементов
+ * @param name
+ * @param value
+ * @param units
+ */
+function drawData(name, value, units) {
+    dataContext.font = 'bold 16px sans-serif';
+    dataContext.fillText(name + ' = ' + value + ' ' + units, 0, kolData * 25 + 20);
+    kolData++;
 }

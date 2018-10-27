@@ -8,8 +8,8 @@
                 <?php for ($i = 1; $i <= 2; $i++): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading" id="<?= $i ?>">
-                            <label for="active">Канал <?= $i ?></label>
-                            <input type="checkbox" id="active">
+                            <label for="active_<?= $i ?>">Канал <?= $i ?></label>
+                            <input type="checkbox" id="active_<?= $i ?>">
                         </div>
                         <div class="panel-body" id="<?= $i ?>">
                             <label for="timeDiv">Время на деление:</label>
@@ -76,15 +76,15 @@
                                     <div class="container-fluid p-0">
                                         <div class="row p-0 m-0" id="points" channel="<?= $i ?>">
                                             <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
-                                                <select class="form-control" id="point" channel="<?= $i ?>" point="1">
-                                                    <?php for ($j = 0; $j < 15; $j++): ?>
+                                                <select class="form-control" channel="<?= $i ?>">
+                                                    <?php for ($j = 0; $j <= 7; $j++): ?>
                                                         <option value="<?= $j ?>"><?= $j ?></option>
                                                     <?php endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
-                                                <select class="form-control" id="point" channel="<?= $i ?>" point="2">
-                                                    <?php for ($j = 0; $j < 15; $j++): ?>
+                                                <select class="form-control" channel="<?= $i ?>">
+                                                    <?php for ($j = 0; $j <= 7; $j++): ?>
                                                         <option value="<?= $j ?>"><?= $j ?></option>
                                                     <?php endfor; ?>
                                                 </select>

@@ -1,6 +1,3 @@
-var kolData = 0;
-var currentPoint = 0;
-
 /**
  * Рисует в labCanvas схему
  */
@@ -9,41 +6,63 @@ function drawScheme() {
     labContext.strokeStyle = 'black';
     labContext.beginPath();
     labContext.moveTo(50, 50);
-    labContext.lineTo(350, 50);
-    labContext.lineTo(350, 350);
-    labContext.lineTo(50, 350);
+    labContext.lineTo(250, 50);
+    labContext.lineTo(250, 250);
+    labContext.lineTo(50, 250);
     labContext.lineTo(50, 50);
     labContext.stroke();
     labContext.closePath();
 
     // резисторы
-    drawResistor(120, 50, false, 'R1', 100, 'Ом', true);
-    drawResistor(350, 110, true, 'R2', 200, 'Ом', true);
-
-    // конденсатор
-    drawCapacitor(350, 200, true, 'C1', 50, 'нФ', true);
-    drawCapacitor(120, 350, false, 'C2', 140, 'мкФ', true);
+    drawResistor(150, 50, false, 'R', 200, 'Ом', true);
 
     // катушка
-    drawCoil(250, 350, false, 'L1', 340, 'мГн', true);
-    drawCoil(350, 290, true, 'L2', 120, 'мГн', true);
+    drawCoil(250, 150, true, 'L', 300, 'мГн', true);
+
+    // конденсатор
+    drawCapacitor(150, 250, false, 'C', 50, 'мкФ', true);
 
     // источник эдс
-    drawVoltageSource(50, 250, true, true, 'E1', 35, 'В', true);
-    drawVoltageSource(280, 50, false, false, 'E2', 10, 'В', true);
+    drawVoltageSource(50, 150, true, true, 'E', 5, 'В', true);
 
-    // источник тока
-    drawCurrentSource(50, 150, true, true, 'J1', 10, 'мА', true);
+    // частота
+    drawData('f', 2000, 'Гц')
 }
 
-/**
- * Добавляет значения элементов
- * @param name
- * @param value
- * @param units
- */
-function drawData(name, value, units) {
-    dataContext.font = 'bold 16px sans-serif';
-    dataContext.fillText(name + ' = ' + value + ' ' + units, 0, kolData * 25 + 20);
-    kolData++;
+function getPoint(number) {
+    var point = {
+        'Re': 0,
+        'Im': 0
+    };
+
+    switch (number) {
+        case 1:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 2:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 3:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 4:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 5:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 6:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+        case 7:
+            point.Re = 0;
+            point.Im = 0;
+            breake;
+    }
 }

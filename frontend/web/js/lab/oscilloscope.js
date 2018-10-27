@@ -211,3 +211,7 @@ function changeActive(value, settingsId) {
     }
     draw();
 }
+
+function getPoint(point1, point2) {
+
+}
