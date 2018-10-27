@@ -17,6 +17,7 @@ use common\models\User;
  *
  * @property Groups $group
  * @property User $user
+ * @property Lab
  */
 class Student extends \yii\db\ActiveRecord
 {
