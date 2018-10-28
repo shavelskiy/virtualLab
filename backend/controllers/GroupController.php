@@ -7,8 +7,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-use backend\models\Groups;
-use backend\models\Student;
+use common\models\Groups;
+use common\models\Student;
 
 /**
  * GroupController implements the CRUD actions for Group model.

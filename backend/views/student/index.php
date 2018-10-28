@@ -5,7 +5,7 @@ use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var backend\models\Groups $group */
+/* @var common\models\Groups $group */
 
 $this->title = 'Cтуденты группы: ' . $group->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];

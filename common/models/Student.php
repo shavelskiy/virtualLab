@@ -1,9 +1,8 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
-use common\models\User;
 
 /**
  * This is the model class for table "students".

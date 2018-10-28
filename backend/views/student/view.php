@@ -5,8 +5,8 @@ use yii\widgets\DetailView;
 use common\models\Groups;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Student */
-/* @var $group backend\models\Groups */
+/* @var $model common\models\Student */
+/* @var $group common\models\Groups */
 
 $this->title = $model->last_name . ' ' . $model->name . ' ' . $model->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];

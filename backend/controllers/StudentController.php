@@ -6,8 +6,8 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use backend\models\Student;
-use backend\models\Groups;
+use common\models\Student;
+use common\models\Groups;
 use backend\models\StudentForm;
 
 /**
