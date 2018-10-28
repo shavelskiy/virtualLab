@@ -158,6 +158,7 @@ class Student extends \yii\db\ActiveRecord
         $group = Groups::findOne($student->id);
         $labs = [];
         if ($group->lab1) {
+            $lab =
             $labs[] = 1;
         }
         if ($group->lab2) {
