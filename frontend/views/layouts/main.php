@@ -21,9 +21,6 @@ AppAsset::register($this);
     <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
 
     <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/lab/init.js"></script>
-    <script src="/js/lab/oscilloscope.js"></script>
-    <script src="/js/lab/schemes/elements.js"></script>
 
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

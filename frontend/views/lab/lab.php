@@ -1,3 +1,6 @@
+<script src="/js/lab/init.js"></script>
+<script src="/js/lab/oscilloscope.js"></script>
+<script src="/js/lab/schemes/elements.js"></script>
 <script src="/js/lab/schemes/lab<?= $number ?>/v<?= $variant ?>.js"></script>
 
 <div class="panel panel-default">
