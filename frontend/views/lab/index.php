@@ -1,24 +1,22 @@
-<h2 class="text-center mb-2">Доступные работы</h2>
+<h2 class="text-center mb-5 mt-2">Доступные работы</h2>
 
-<div class="card mb-4">
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
-
-<div class="card text-center mb-4">
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
-
-<div class="card text-right mb-4">
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+<?php foreach ($activeLabs as $lab): ?>
+    <?php if ($lab): ?>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><?= 'Лабораторная работа №' . $lab->id . '. ' . $lab->name ?></h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="<?= '/uploads/labs/' . $lab->preview_picture ?>" height="100px">
+                    </div>
+                    <div class="col-10">
+                        <p><?= $lab->description ?></p>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lab/lab', 'number' => 2]) ?>" class="btn btn-primary">Начать выполнение</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>

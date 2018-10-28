@@ -19,7 +19,7 @@ class LabController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'lab'],
                         'allow' => true,
                         'roles' => ['student'],
                     ],
@@ -37,7 +37,7 @@ class LabController extends Controller
             ]);
     }
 
-    public function actionLab()
+    public function actionLab($number)
     {
         return $this->render('lab');
     }
