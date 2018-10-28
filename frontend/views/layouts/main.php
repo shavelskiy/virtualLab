@@ -50,8 +50,8 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-//        $menuItemsLeft[] = [];
-//        $menuItemsLeft[] = [];
+        $menuItemsLeft[] = ['label' => 'Доступные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
+//        $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

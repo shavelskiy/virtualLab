@@ -30,4 +30,9 @@ class LabController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionLab()
+    {
+        return $this->render('lab');
+    }
 }
