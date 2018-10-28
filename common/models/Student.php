@@ -156,7 +156,7 @@ class Student extends \yii\db\ActiveRecord
     public static function getActiveLabs($userId)
     {
         $student = Student::find()->andWhere(['user_id' => $userId])->one();
-        $group = Groups::findOne($student->id);
+        $group = Groups::findOne($student->group_id);
         $labs = [];
         $labs[] = self::getLab($group->lab1, 1);
         $labs[] = self::getLab($group->lab2, 2);
