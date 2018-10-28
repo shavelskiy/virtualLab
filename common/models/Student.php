@@ -23,7 +23,7 @@ use Yii;
  *
  * @property Groups $group
  * @property User $user
- * @property Lab $lab1
+ * @property LabBalls $lab1
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -93,7 +93,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab1()
     {
-        return Lab::findOne($this->lab1_id);
+        return LabBalls::findOne($this->lab1_id);
     }
 
     /**
@@ -101,7 +101,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab2()
     {
-        return Lab::findOne($this->lab2_id);
+        return LabBalls::findOne($this->lab2_id);
     }
 
     /**
@@ -109,7 +109,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab3()
     {
-        return Lab::findOne($this->lab3_id);
+        return LabBalls::findOne($this->lab3_id);
     }
 
     /**
@@ -117,7 +117,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab4()
     {
-        return Lab::findOne($this->lab4_id);
+        return LabBalls::findOne($this->lab4_id);
     }
 
     /**
@@ -125,7 +125,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab5()
     {
-        return Lab::findOne($this->lab5_id);
+        return LabBalls::findOne($this->lab5_id);
     }
 
     /**
@@ -133,7 +133,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getLab6()
     {
-        return Lab::findOne($this->lab6_id);
+        return LabBalls::findOne($this->lab6_id);
     }
 
     public function afterDelete()

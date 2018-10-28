@@ -27,7 +27,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab1_id',
             'students',
             'lab1_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );
@@ -36,7 +36,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab2_id',
             'students',
             'lab2_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );
@@ -45,7 +45,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab3_id',
             'students',
             'lab3_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );
@@ -54,7 +54,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab4_id',
             'students',
             'lab4_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );
@@ -63,7 +63,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab5_id',
             'students',
             'lab5_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );
@@ -72,7 +72,7 @@ class m181027_202347_create_lab_balls_table extends Migration
             'fk-students-lab6_id',
             'students',
             'lab6_id',
-            'labs',
+            'lab_balls',
             'id',
             'CASCADE'
         );

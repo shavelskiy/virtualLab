@@ -22,6 +22,7 @@ class m181028_170132_create_lab_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
+            'preview_picture' => $this->string(255),
         ], $tableOptions);
     }
 

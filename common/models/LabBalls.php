@@ -12,7 +12,7 @@ use Yii;
  * @property integer $created_at
  * @property Student[] $students
  */
-class Lab extends \yii\db\ActiveRecord
+class LabBalls extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
