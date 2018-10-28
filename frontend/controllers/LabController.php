@@ -30,9 +30,11 @@ class LabController extends Controller
 
     public function actionIndex()
     {
-        $student = Student::getActiveLabs(Yii::$app->user->id);
-        echo '<pre>';var_dump($student);die;
-        return $this->render('index');
+        $activeLabs = Student::getActiveLabs(Yii::$app->user->id);
+        return $this->render('index',
+            [
+                'activeLabs' => $activeLabs
+            ]);
     }
 
     public function actionLab()
