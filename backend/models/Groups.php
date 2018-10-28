@@ -9,12 +9,12 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property boolean$ lab1
- * @property boolean$ lab2
- * @property boolean$ lab3
- * @property boolean$ lab4
- * @property boolean$ lab5
- * @property boolean$ lab6
+ * @property boolean $lab1
+ * @property boolean $lab2
+ * @property boolean $lab3
+ * @property boolean $lab4
+ * @property boolean $lab5
+ * @property boolean $lab6
  * @property Student[] $students
  */
 class Groups extends \yii\db\ActiveRecord
