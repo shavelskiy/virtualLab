@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-10">
                         <p><?= $lab->description ?></p>
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lab/lab', 'number' => 2]) ?>" class="btn btn-primary">Начать выполнение</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lab/lab', 'number' => $lab->id]) ?>" class="btn btn-primary">Начать выполнение</a>
                     </div>
                 </div>
             </div>

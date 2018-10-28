@@ -39,6 +39,12 @@ class LabController extends Controller
 
     public function actionLab($number)
     {
-        return $this->render('lab');
+        $variant = Student::getStudentVariant(Yii::$app->user->id);
+        return $this->render('lab',
+            [
+                'number' => $number,
+                'variant' => $variant
+            ]
+        );
     }
 }

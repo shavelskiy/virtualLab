@@ -174,4 +174,9 @@ class Student extends \yii\db\ActiveRecord
         }
         return null;
     }
+
+    public static function getStudentVariant($userId) {
+        $student = Student::find()->andWhere(['user_id' => $userId])->one();
+        return $student->variant;
+    }
 }
