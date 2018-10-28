@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
+use common\models\Student;
 
 class LabController extends Controller
 {
@@ -28,6 +30,8 @@ class LabController extends Controller
 
     public function actionIndex()
     {
+        $student = Student::getActiveLabs(Yii::$app->user->id);
+        echo '<pre>';var_dump($student);die;
         return $this->render('index');
     }
 

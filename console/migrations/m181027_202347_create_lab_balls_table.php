@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `lab`.
  */
-class m181027_202347_create_labs_table extends Migration
+class m181027_202347_create_lab_balls_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class m181027_202347_create_labs_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('labs', [
+        $this->createTable('lab_balls', [
             'id' => $this->primaryKey(),
             'balls' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
@@ -83,7 +83,7 @@ class m181027_202347_create_labs_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('lab');
+        $this->dropTable('lab_balls');
 
         $this->dropForeignKey(
             'fk-students-lab1_id',

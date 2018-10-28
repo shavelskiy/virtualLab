@@ -152,4 +152,29 @@ class Student extends \yii\db\ActiveRecord
             ->andWhere(['group_id' => $groupId])
             ->all();
     }
+
+    public static function getActiveLabs($userId) {
+        $student = Student::find()->andWhere(['user_id' => $userId])->one();
+        $group = Groups::findOne($student->id);
+        $labs = [];
+        if ($group->lab1) {
+            $labs[] = 1;
+        }
+        if ($group->lab2) {
+            $labs[] = 2;
+        }
+        if ($group->lab3) {
+            $labs[] = 3;
+        }
+        if ($group->lab4) {
+            $labs[] = 4;
+        }
+        if ($group->lab5) {
+            $labs[] = 5;
+        }
+        if ($group->lab6) {
+            $labs[] = 6;
+        }
+        return $labs;
+    }
 }

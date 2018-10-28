@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "groups".
+ * This is the model class for table "lab_balls".
  *
  * @property int $id
  * @property integer $balls
@@ -19,7 +19,7 @@ class Lab extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'labs';
+        return 'lab_balls';
     }
 
     /**
