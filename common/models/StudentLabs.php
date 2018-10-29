@@ -41,15 +41,4 @@ class StudentLabs extends \yii\db\ActiveRecord
     {
         return 'student_labs';
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['name'], 'required', 'message' => 'Введите группу'],
-        ];
-    }
-
 }

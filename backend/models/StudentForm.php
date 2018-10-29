@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use common\models\User;
 use common\models\Student;
+use common\models\StudentLabs;
 
 class StudentForm extends Model
 {
@@ -17,6 +18,7 @@ class StudentForm extends Model
     public $lastName;
     public $middleName;
     public $variant;
+    public $labs_id;
     public $groupId;
     public $teacherId;
 
@@ -63,6 +65,9 @@ class StudentForm extends Model
 
         $user = $signUpForm->signup();
 
+        $labs = new StudentLabs();
+        $labs->save();
+
         $student = new Student();
         $student->setAttributes(
             [
@@ -71,6 +76,7 @@ class StudentForm extends Model
                 'last_name' => $this->lastName,
                 'middle_name' => $this->middleName,
                 'variant' => $this->variant,
+                'labs_id' => $labs->id,
                 'group_id' => $groupId,
                 'teacher_id' => $this->teacherId
             ]
