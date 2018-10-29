@@ -12,7 +12,14 @@ class m181029_215612_create_group_labs_keys extends Migration
      */
     public function safeUp()
     {
-
+        $this->addForeignKey(
+            'fk-groups-labs_id',
+            'groups',
+            'labs_id',
+            'group_labs',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
@@ -20,23 +27,9 @@ class m181029_215612_create_group_labs_keys extends Migration
      */
     public function safeDown()
     {
-        echo "m181029_215612_create_group_labs_keys cannot be reverted.\n";
-
-        return false;
+        $this->dropForeignKey(
+            'fk-groups-labs_id',
+            'groups'
+        );
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m181029_215612_create_group_labs_keys cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

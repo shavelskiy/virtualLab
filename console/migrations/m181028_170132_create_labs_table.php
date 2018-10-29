@@ -17,7 +17,6 @@ class m181028_170132_create_labs_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-
         $this->createTable('labs', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
@@ -31,6 +30,6 @@ class m181028_170132_create_labs_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('lab');
+        $this->dropTable('labs');
     }
 }

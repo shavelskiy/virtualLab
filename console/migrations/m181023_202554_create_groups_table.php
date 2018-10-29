@@ -20,14 +20,7 @@ class m181023_202554_create_groups_table extends Migration
         $this->createTable('groups', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'lab1' => $this->boolean()->notNull(),
-            'lab2' => $this->boolean()->notNull(),
-            'lab3' => $this->boolean()->notNull(),
-            'lab4' => $this->boolean()->notNull(),
-            'lab5' => $this->boolean()->notNull(),
-            'lab6' => $this->boolean()->notNull(),
-            'lab7' => $this->boolean()->notNull(),
-            'lab8' => $this->boolean()->notNull(),
+            'labs_id' => $this->integer()->notNull(),
             'teacher1_id' => $this->integer()->notNull(),
             'teacher2_id' => $this->integer()
 

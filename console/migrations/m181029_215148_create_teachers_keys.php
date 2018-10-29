@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m181029_215148_create_teacher_keys
  */
-class m181029_215148_create_teacher_keys extends Migration
+class m181029_215148_create_teachers_keys extends Migration
 {
     /**
      * {@inheritdoc}
