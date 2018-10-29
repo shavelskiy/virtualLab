@@ -92,6 +92,9 @@ class Student extends \yii\db\ActiveRecord
         $user = User::findOne($this->user_id);
         $user->delete();
 
+        $labs = StudentLabs::findOne($this->labs_id);
+        $labs->delete();
+
         $auth = Yii::$app->authManager;
         $student = $auth->getRole('student');
         $auth->revoke($student, $user->id);

@@ -81,4 +81,12 @@ class StudentLabs extends \yii\db\ActiveRecord
     {
         return LabBalls::findOne($this->lab8_id);
     }
+
+    public function afterDelete()
+    {
+        $labs = LabBalls::findAll([$this->lab1_id, $this->lab2_id, $this->lab3_id, $this->lab4_id, $this->lab5_id, $this->lab6_id, $this->lab7_id, $this->lab8_id]);
+        foreach ($labs as $lab) {
+            $lab->delete();
+        }
+    }
 }
