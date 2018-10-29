@@ -32,34 +32,6 @@ class m181023_202554_create_groups_table extends Migration
             'teacher2_id' => $this->integer()
 
         ], $tableOptions);
-
-        $this->addForeignKey(
-            'fk-students-group_id',
-            'students',
-            'group_id',
-            'groups',
-            'id',
-            'CASCADE'
-        );
-
-        $this->addForeignKey(
-            'fk-group-teacher1_id',
-            'groups',
-            'teacher1_id',
-            'teachers',
-            'id',
-            'CASCADE'
-        );
-
-        $this->addForeignKey(
-            'fk-group-teacher2_id',
-            'groups',
-            'teacher2_id',
-            'teachers',
-            'id',
-            'CASCADE'
-        );
-
     }
 
     /**
@@ -68,20 +40,5 @@ class m181023_202554_create_groups_table extends Migration
     public function safeDown()
     {
         $this->dropTable('groups');
-
-        $this->dropForeignKey(
-            'fk-students-group_id',
-            'students'
-        );
-
-        $this->dropForeignKey(
-            'fk-group-teacher1_id',
-            'groups'
-        );
-
-        $this->dropForeignKey(
-            'fk-group-teacher2_id',
-            'groups'
-        );
     }
 }

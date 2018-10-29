@@ -24,35 +24,10 @@ class m181023_202545_create_students_table extends Migration
             'last_name' => $this->string()->notNull(),
             'middle_name' => $this->string(),
             'variant' => $this->string()->notNull(),
-            'lab1_id' => $this->integer(),
-            'lab2_id' => $this->integer(),
-            'lab3_id' => $this->integer(),
-            'lab4_id' => $this->integer(),
-            'lab5_id' => $this->integer(),
-            'lab6_id' => $this->integer(),
-            'lab7_id' => $this->integer(),
-            'lab8_id' => $this->integer(),
+            'labs_id' => $this->integer()->notNull(),
             'group_id' => $this->integer()->notNull(),
             'teacher_id' => $this->integer()->notNull()
         ], $tableOptions);
-
-        $this->addForeignKey(
-            'fk-students-user_id',
-            'students',
-            'user_id',
-            'user',
-            'id',
-            'CASCADE'
-        );
-
-        $this->addForeignKey(
-            'fk-students-teacher_id',
-            'students',
-            'teacher_id',
-            'teachers',
-            'id',
-            'CASCADE'
-        );
     }
 
     /**
@@ -61,15 +36,5 @@ class m181023_202545_create_students_table extends Migration
     public function safeDown()
     {
         $this->dropTable('students');
-
-        $this->dropForeignKey(
-            'fk-students-user_id',
-            'students'
-        );
-
-        $this->dropForeignKey(
-            'fk-students-teacher_id',
-            'students'
-        );
     }
 }

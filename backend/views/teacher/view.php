@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h2>Студенты:</h2>
     <?php foreach ($groupStudents as $group => $students): ?>
-        <table id="w0" class="table table-striped table-bordered detail-view" style="width: 500px">
+        <table id="w0" class="table table-striped table-bordered detail-view">
             <?php if (!empty($students)): ?>
                 <tbody>
                 <tr>
