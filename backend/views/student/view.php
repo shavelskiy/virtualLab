@@ -48,58 +48,53 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         ],
     ]) ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [
-                'label' => 'Работа №1',
-                'attribute' => 'lab1.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab1.createdAt'
-            ],
-            [
-                'label' => 'Работа №2',
-                'attribute' => 'lab2.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab2.createdAt'
-            ],
-            [
-                'label' => 'Работа №3',
-                'attribute' => 'lab3.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab3.createdAt'
-            ],
-            [
-                'label' => 'Работа №4',
-                'attribute' => 'lab4.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab4.createdAt'
-            ],
-            [
-                'label' => 'Работа №5',
-                'attribute' => 'lab5.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab5.createdAt'
-            ],
-            [
-                'label' => 'Работа №6',
-                'attribute' => 'lab6.balls'
-            ],
-            [
-                'label' => 'Время прохождения',
-                'attribute' => 'lab6.createdAt'
-            ],
-        ],
-    ]) ?>
-
+    <table id="w0" class="table table-striped table-bordered detail-view" style="width: 550px">
+        <tbody>
+        <tr>
+            <th style="width: 220px">Название</th>
+            <th style="width: 100px">Баллы</th>
+            <th>Дата прохождения</th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №1</th>
+            <th><?= $model->lab1->balls ?? '' ?></th>
+            <th><?= $model->lab1->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №2</th>
+            <th><?= $model->lab2->balls ?? '' ?></th>
+            <th><?= $model->lab2->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №3</th>
+            <th><?= $model->lab3->balls ?? '' ?></th>
+            <th><?= $model->lab3->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №4</th>
+            <th><?= $model->lab4->balls ?? '' ?></th>
+            <th><?= $model->lab4->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №5</th>
+            <th><?= $model->lab5->balls ?? '' ?></th>
+            <th><?= $model->lab5->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №6</th>
+            <th><?= $model->lab6->balls ?? '' ?></th>
+            <th><?= $model->lab6->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №7</th>
+            <th><?= $model->lab7->balls ?? '' ?></th>
+            <th><?= $model->lab7->createdAt ?? '' ?></th>
+        </tr>
+        <tr>
+            <th>Лабораторная работа №8</th>
+            <th><?= $model->lab8->balls ?? '' ?></th>
+            <th><?= $model->lab8->createdAt ?? '' ?></th>
+        </tr>
+        </tbody>
+    </table>
 </div>

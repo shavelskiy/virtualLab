@@ -135,6 +135,22 @@ class Student extends \yii\db\ActiveRecord
         return LabBalls::findOne($this->lab6_id);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLab7()
+    {
+        return LabBalls::findOne($this->lab7_id);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLab8()
+    {
+        return LabBalls::findOne($this->lab8_id);
+    }
+
     public function afterDelete()
     {
         $user = User::findOne($this->user_id);

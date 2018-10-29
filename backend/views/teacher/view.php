@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\GridView;
+
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -42,11 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h2>Студенты:</h2>
     <?php foreach ($groupStudents as $group => $students): ?>
-        <table id="w0" class="table table-striped table-bordered detail-view">
+        <table id="w0" class="table table-striped table-bordered detail-view" style="width: 500px">
             <?php if (!empty($students)): ?>
                 <tbody>
                 <tr>
-                    <th>Вариант</th>
+                    <th style="width: 80px">Вариант</th>
                     <th><?= $group ?></th>
                 </tr>
                 <?php foreach ($students as $student): ?>
