@@ -25,7 +25,12 @@ class m181023_202554_create_groups_table extends Migration
             'lab3' => $this->boolean()->notNull(),
             'lab4' => $this->boolean()->notNull(),
             'lab5' => $this->boolean()->notNull(),
-            'lab6' => $this->boolean()->notNull()
+            'lab6' => $this->boolean()->notNull(),
+            'lab7' => $this->boolean()->notNull(),
+            'lab8' => $this->boolean()->notNull(),
+            'teacher1_id' => $this->integer()->notNull(),
+            'teacher2_id' => $this->integer()
+
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -36,6 +41,25 @@ class m181023_202554_create_groups_table extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->addForeignKey(
+            'fk-group-teacher1_id',
+            'groups',
+            'teacher1_id',
+            'teachers',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-group-teacher2_id',
+            'groups',
+            'teacher2_id',
+            'teachers',
+            'id',
+            'CASCADE'
+        );
+
     }
 
     /**
@@ -48,6 +72,16 @@ class m181023_202554_create_groups_table extends Migration
         $this->dropForeignKey(
             'fk-students-group_id',
             'students'
+        );
+
+        $this->dropForeignKey(
+            'fk-group-teacher1_id',
+            'groups'
+        );
+
+        $this->dropForeignKey(
+            'fk-group-teacher2_id',
+            'groups'
         );
     }
 }

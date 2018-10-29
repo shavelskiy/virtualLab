@@ -17,7 +17,7 @@ use Yii;
  * @property boolean $lab6
  * @property Student[] $students
  */
-class Groups extends \yii\db\ActiveRecord
+class Group extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -34,7 +34,7 @@ class Groups extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required', 'message' => 'Введите группу'],
-            [['name'], 'unique', 'targetClass' => '\common\models\Groups', 'message' => 'Такая группа уже существует'],
+            [['name'], 'unique', 'targetClass' => '\common\models\Group', 'message' => 'Такая группа уже существует'],
             [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
             [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6'], 'safe']
         ];

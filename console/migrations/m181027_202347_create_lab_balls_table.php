@@ -76,6 +76,24 @@ class m181027_202347_create_lab_balls_table extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->addForeignKey(
+            'fk-students-lab7_id',
+            'students',
+            'lab6_id',
+            'lab_balls',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-students-lab8_id',
+            'students',
+            'lab6_id',
+            'lab_balls',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
@@ -112,6 +130,16 @@ class m181027_202347_create_lab_balls_table extends Migration
 
         $this->dropForeignKey(
             'fk-students-lab6_id',
+            'students'
+        );
+
+        $this->dropForeignKey(
+            'fk-students-lab7_id',
+            'students'
+        );
+
+        $this->dropForeignKey(
+            'fk-students-lab8_id',
             'students'
         );
     }

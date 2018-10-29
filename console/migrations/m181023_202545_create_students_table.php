@@ -30,7 +30,10 @@ class m181023_202545_create_students_table extends Migration
             'lab4_id' => $this->integer(),
             'lab5_id' => $this->integer(),
             'lab6_id' => $this->integer(),
-            'group_id' => $this->integer()->notNull()
+            'lab7_id' => $this->integer(),
+            'lab8_id' => $this->integer(),
+            'group_id' => $this->integer()->notNull(),
+            'teacher_id' => $this->integer()->notNull()
         ], $tableOptions);
 
         $this->addForeignKey(
@@ -38,6 +41,15 @@ class m181023_202545_create_students_table extends Migration
             'students',
             'user_id',
             'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->addForeignKey(
+            'fk-students-teacher_id',
+            'students',
+            'teacher_id',
+            'teachers',
             'id',
             'CASCADE'
         );
@@ -52,6 +64,11 @@ class m181023_202545_create_students_table extends Migration
 
         $this->dropForeignKey(
             'fk-students-user_id',
+            'students'
+        );
+
+        $this->dropForeignKey(
+            'fk-students-teacher_id',
             'students'
         );
     }

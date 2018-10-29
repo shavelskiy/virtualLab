@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-use common\models\Groups;
+use common\models\Group;
 use common\models\Student;
 
 /**
@@ -45,7 +45,7 @@ class GroupController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Groups::find(),
+            'query' => Group::find(),
         ]);
 
         return $this->render('index', [
@@ -67,7 +67,7 @@ class GroupController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Groups();
+        $model = new Group();
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
@@ -120,12 +120,12 @@ class GroupController extends Controller
 
     /**
      * @param $id
-     * @return Groups|null
+     * @return Group|null
      * @throws NotFoundHttpException
      */
     protected function findGroup($id)
     {
-        if (($model = Groups::findOne($id)) !== null) {
+        if (($model = Group::findOne($id)) !== null) {
             return $model;
         }
 

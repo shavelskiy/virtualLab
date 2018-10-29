@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use common\models\Student;
-use common\models\Groups;
+use common\models\Group;
 use backend\models\StudentForm;
 
 /**
@@ -49,7 +49,7 @@ class StudentController extends Controller
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'group' => Groups::findOne($groupId)
+            'group' => Group::findOne($groupId)
         ]);
     }
 
@@ -85,7 +85,7 @@ class StudentController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'group' => Groups::findOne($groupId)
+            'group' => Group::findOne($groupId)
         ]);
     }
 
@@ -102,7 +102,7 @@ class StudentController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'group' => Groups::findOne($model->groupId)
+            'group' => Group::findOne($model->groupId)
         ]);
     }
 

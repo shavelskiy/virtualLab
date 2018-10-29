@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `lab`.
+ * Handles the creation of table `labs`.
  */
-class m181028_170132_create_lab_table extends Migration
+class m181028_170132_create_labs_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class m181028_170132_create_lab_table extends Migration
         }
 
 
-        $this->createTable('lab', [
+        $this->createTable('labs', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
             'description' => $this->text(),

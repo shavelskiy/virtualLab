@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Groups */
+/* @var $model common\models\Group */
 
 $this->title = 'Изменить группу: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];

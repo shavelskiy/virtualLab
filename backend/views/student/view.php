@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use common\models\Groups;
+use common\models\Group;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
-/* @var $group common\models\Groups */
+/* @var $group common\models\Group */
 
 $this->title = $model->last_name . ' ' . $model->name . ' ' . $model->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];

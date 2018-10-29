@@ -21,7 +21,7 @@ use Yii;
  * @property int lab5_id
  * @property int lab6_id
  *
- * @property Groups $group
+ * @property Group $group
  * @property User $user
  * @property LabBalls $lab1
  */
@@ -44,7 +44,7 @@ class Student extends \yii\db\ActiveRecord
             [['user_id', 'name', 'last_name', 'variant', 'group_id'], 'required'],
             [['user_id', 'variant', 'group_id'], 'integer'],
             [['name', 'last_name', 'middle_name'], 'string', 'max' => 255],
-            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Groups::className(), 'targetAttribute' => ['group_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['lab1_id', 'lab2_id', 'lab3_id', 'lab4_id', 'lab5_id', 'lab6_id'], 'integer'],
         ];
@@ -77,7 +77,7 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getGroup()
     {
-        return $this->hasOne(Groups::className(), ['id' => 'group_id']);
+        return $this->hasOne(Group::className(), ['id' => 'group_id']);
     }
 
     /**
@@ -156,14 +156,14 @@ class Student extends \yii\db\ActiveRecord
     public static function getActiveLabs($userId)
     {
         $student = Student::find()->andWhere(['user_id' => $userId])->one();
-        $group = Groups::findOne($student->group_id);
+        $group = Group::findOne($student->group_id);
         $labs = [];
-        $labs[] = self::getLab($group->lab1, 1);
-        $labs[] = self::getLab($group->lab2, 2);
-        $labs[] = self::getLab($group->lab3, 3);
-        $labs[] = self::getLab($group->lab4, 4);
-        $labs[] = self::getLab($group->lab5, 5);
-        $labs[] = self::getLab($group->lab6, 6);
+        if ($lab = self::getLab($group->lab1, 1)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab2, 2)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab3, 3)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab4, 4)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab5, 5)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab6, 6)) {$labs[] = $lab;}
         return $labs;
     }
 
