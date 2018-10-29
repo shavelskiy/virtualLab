@@ -202,4 +202,12 @@ class Student extends \yii\db\ActiveRecord
     {
         return Teacher::getFullNameById($this->teacher_id);
     }
+
+    public static function getTeacherStudents($groupId, $teacherId)
+    {
+        return Student::find()
+            ->where(['group_id' => $groupId])
+            ->andWhere(['teacher_id' => $teacherId])
+            ->all();
+    }
 }

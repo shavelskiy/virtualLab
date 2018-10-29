@@ -116,35 +116,51 @@ class Group extends \yii\db\ActiveRecord
     }
 
     // активность лабораторных работ
-    public function getLab1Active() {
+    public function getLab1Active()
+    {
         return ($this->lab1) ? 'Да' : 'Нет';
     }
 
-    public function getLab2Active() {
+    public function getLab2Active()
+    {
         return ($this->lab2) ? 'Да' : 'Нет';
     }
 
-    public function getLab3Active() {
+    public function getLab3Active()
+    {
         return ($this->lab3) ? 'Да' : 'Нет';
     }
 
-    public function getLab4Active() {
+    public function getLab4Active()
+    {
         return ($this->lab4) ? 'Да' : 'Нет';
     }
 
-    public function getLab5Active() {
+    public function getLab5Active()
+    {
         return ($this->lab5) ? 'Да' : 'Нет';
     }
 
-    public function getLab6Active() {
+    public function getLab6Active()
+    {
         return ($this->lab6) ? 'Да' : 'Нет';
     }
 
-    public function getLab7Active() {
+    public function getLab7Active()
+    {
         return ($this->lab7) ? 'Да' : 'Нет';
     }
 
-    public function getLab8Active() {
+    public function getLab8Active()
+    {
         return ($this->lab8) ? 'Да' : 'Нет';
+    }
+
+    public static function getTeacherGroups($teacherId)
+    {
+        return Group::find()
+            ->Where(['teacher1_id' => $teacherId])
+            ->orWhere(['teacher2_id' => $teacherId])
+            ->all();
     }
 }

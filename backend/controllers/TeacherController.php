@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Student;
 use Yii;
 use common\models\Teacher;
 use backend\models\TeacherForm;
@@ -61,9 +62,16 @@ class TeacherController extends Controller
      */
     public function actionView($id)
     {
+        $teacher = $this->findTeacher($id);
+        $teacherGroups = Group::getTeacherGroups($id);
+        $groupStudents = [];
+        foreach ($teacherGroups as $group) {
+            $groupStudents[$group->name]  = Student::getTeacherStudents($group->id, $id);
+        }
 
         return $this->render('view', [
-            'model' => $this->findTeacher($id),
+            'model' => $teacher,
+            'groupStudents' => $groupStudents
         ]);
     }
 
