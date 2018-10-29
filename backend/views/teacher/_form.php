@@ -13,6 +13,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'middleName')->textInput(['maxlength' => true]) ?>
+
+    <hr>
+
     <?= $form->field($model, 'username')->textInput() ?>
 
     <?= $form->field($model, 'email') ?>
@@ -21,11 +29,7 @@ use yii\widgets\ActiveForm;
         echo $form->field($model, 'password')->passwordInput();
     } ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'middleName')->textInput(['maxlength' => true]) ?>
+    <hr>
 
     <?= $form->field($model, 'pulpit')->textInput(['maxlength' => true]) ?>
 

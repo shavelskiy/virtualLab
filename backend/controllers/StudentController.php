@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use common\models\Student;
 use common\models\Group;
 use backend\models\StudentForm;
-use backend\models\Teacher;
+use common\models\Teacher;
 
 /**
  * StudentController implements the CRUD actions for Student model.

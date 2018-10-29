@@ -3,8 +3,9 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Teacher;
+use common\models\Teacher;
 use backend\models\TeacherForm;
+use common\models\Group;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,6 +61,7 @@ class TeacherController extends Controller
      */
     public function actionView($id)
     {
+
         return $this->render('view', [
             'model' => $this->findTeacher($id),
         ]);

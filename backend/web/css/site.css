@@ -101,9 +101,9 @@ a.desc:after {
     border: none;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
     .nav li > form > button.logout {
-        display:block;
+        display: block;
         text-align: left;
         width: 100%;
         padding: 10px 15px;
@@ -124,5 +124,9 @@ a.desc:after {
 }
 
 .student-form {
+    width: 500px;
+}
+
+.teacher-form {
     width: 500px;
 }

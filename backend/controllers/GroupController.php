@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use backend\models\Teacher;
+use common\models\Teacher;
 use common\models\Group;
 use common\models\Student;
 use Yii;

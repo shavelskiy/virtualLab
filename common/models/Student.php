@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use backend\models\Teacher;
 use Yii;
 
 /**

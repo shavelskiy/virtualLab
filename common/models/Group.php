@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-use backend\models\Teacher;
-
 /**
  * This is the model class for table "groups".
  *
