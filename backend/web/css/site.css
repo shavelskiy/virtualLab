@@ -130,3 +130,7 @@ a.desc:after {
 .teacher-form {
     width: 500px;
 }
+
+table.detail-view {
+    width: 550px;
+}

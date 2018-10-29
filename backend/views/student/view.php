@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         ],
     ]) ?>
 
-    <table id="w0" class="table table-striped table-bordered detail-view" style="width: 550px">
+    <table id="w0" class="table table-striped table-bordered detail-view">
         <tbody>
         <tr>
             <th style="width: 220px">Название</th>
