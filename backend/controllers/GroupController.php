@@ -97,6 +97,12 @@ class GroupController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findGroup($id);
+        $teachers = Teacher::find()->all();
+
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->getFullName();
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             $model->save();
@@ -105,6 +111,7 @@ class GroupController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'teacherList' => $teacherList
         ]);
     }
 

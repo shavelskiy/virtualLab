@@ -17,19 +17,25 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?php if ($update): ?>
-        <?= $form->field($model, 'lab1')->checkbox() ?>
+        <hr>
+        <?= $form->field($model, 'lab1')->checkbox(['label' => 'Лабораторная работа №1']) ?>
 
-        <?= $form->field($model, 'lab2')->checkbox(['value' => 1]) ?>
+        <?= $form->field($model, 'lab2')->checkbox(['label' => 'Лабораторная работа №2']) ?>
 
-        <?= $form->field($model, 'lab3')->checkbox() ?>
+        <?= $form->field($model, 'lab3')->checkbox(['label' => 'Лабораторная работа №3']) ?>
 
-        <?= $form->field($model, 'lab4')->checkbox() ?>
+        <?= $form->field($model, 'lab4')->checkbox(['label' => 'Лабораторная работа №4']) ?>
 
-        <?= $form->field($model, 'lab5')->checkbox() ?>
+        <?= $form->field($model, 'lab5')->checkbox(['label' => 'Лабораторная работа №5']) ?>
 
-        <?= $form->field($model, 'lab6')->checkbox() ?>
+        <?= $form->field($model, 'lab6')->checkbox(['label' => 'Лабораторная работа №6']) ?>
+
+        <?= $form->field($model, 'lab7')->checkbox(['label' => 'Лабораторная работа №7']) ?>
+
+        <?= $form->field($model, 'lab8')->checkbox(['label' => 'Лабораторная работа №8']) ?>
     <?php endif; ?>
 
+    <hr>
     <label>Преподаватели:</label>
 
     <?= $form->field($model, 'teacher1_id')->dropDownList([$teacherList], ['prompt' => ''])->label(''); ?>

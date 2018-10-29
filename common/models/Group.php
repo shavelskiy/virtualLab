@@ -117,6 +117,7 @@ class Group extends \yii\db\ActiveRecord
         return $this->teacher1 . '<br>' . $this->teacher2;
     }
 
+    // активность лабораторных работ
     public function getLab1Active() {
         return ($this->lab1) ? 'Да' : 'Нет';
     }

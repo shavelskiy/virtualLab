@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var array $teacherList
 /* @var $model common\models\Group */
 
 $this->title = 'Изменить группу: ' . $model->name;
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = 'Изменить';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'teacherList' => $teacherList,
         'update' => true
     ]) ?>
 
