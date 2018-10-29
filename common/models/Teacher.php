@@ -78,6 +78,9 @@ class Teacher extends \yii\db\ActiveRecord
         $auth->revoke($teacher, $user->id);
     }
 
+    /**
+     * @return string
+     */
     public function getFullName()
     {
         return $this->last_name . ' ' . $this->name . ' ' . $this->middle_name . ' ' . $this->pulpit;

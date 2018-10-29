@@ -57,16 +57,16 @@ class Group extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Группа',
-            'lab1active' => 'Работа №1',
-            'lab2active' => 'Работа №2',
-            'lab3active' => 'Работа №3',
-            'lab4active' => 'Работа №4',
-            'lab5active' => 'Работа №5',
-            'lab6active' => 'Работа №6',
-            'lab7active' => 'Работа №7',
-            'lab8active' => 'Работа №8',
             'teachers' => 'Преподаватели'
         ];
+    }
+
+    /**
+     * @return GroupLabs|null
+     */
+    public function getLabs()
+    {
+        return GroupLabs::findOne($this->labs_id);
     }
 
     /**
@@ -91,7 +91,11 @@ class Group extends \yii\db\ActiveRecord
      */
     public function getTeachers()
     {
-        return $this->teacher1 . '<br>' . $this->teacher2;
+        $names =  $this->teacher1;
+        if ($this->teacher2_id) {
+            $names = $names . '<br>' . $this->teacher2;
+        }
+        return $names;
     }
 
     /**

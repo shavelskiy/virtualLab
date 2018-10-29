@@ -39,7 +39,7 @@ class GroupLabs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8'], 'required'],
+            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8'], 'required'],
         ];
     }
 
@@ -54,24 +54,6 @@ class GroupLabs extends \yii\db\ActiveRecord
         $this->lab6 = false;
         $this->lab7 = false;
         $this->lab8 = false;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'lab1active' => 'Работа №1',
-            'lab2active' => 'Работа №2',
-            'lab3active' => 'Работа №3',
-            'lab4active' => 'Работа №4',
-            'lab5active' => 'Работа №5',
-            'lab6active' => 'Работа №6',
-            'lab7active' => 'Работа №7',
-            'lab8active' => 'Работа №8',
-        ];
     }
 
     public function getLab1Active()

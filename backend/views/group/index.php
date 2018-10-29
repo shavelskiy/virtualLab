@@ -40,14 +40,14 @@ if (Yii::$app->user->can('deleteGroup')) {
                 },
             ],
 
-            'lab1active',
-            'lab2active',
-            'lab3active',
-            'lab4active',
-            'lab5active',
-            'lab6active',
-            'lab7active',
-            'lab8active',
+            ['attribute' => 'labs.lab1active', 'label' => 'Лаб. №1'],
+            ['attribute' => 'labs.lab2active', 'label' => 'Лаб. №2'],
+            ['attribute' => 'labs.lab3active', 'label' => 'Лаб. №3'],
+            ['attribute' => 'labs.lab4active', 'label' => 'Лаб. №4'],
+            ['attribute' => 'labs.lab5active', 'label' => 'Лаб. №5'],
+            ['attribute' => 'labs.lab6active', 'label' => 'Лаб. №6'],
+            ['attribute' => 'labs.lab7active', 'label' => 'Лаб. №7'],
+            ['attribute' => 'labs.lab8active', 'label' => 'Лабо. №8'],
 
             [
                 'attribute' => 'teachers',

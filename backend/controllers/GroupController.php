@@ -2,14 +2,15 @@
 
 namespace backend\controllers;
 
-use common\models\Teacher;
-use common\models\Group;
-use common\models\Student;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use backend\models\GroupForm;
+use common\models\Teacher;
+use common\models\Group;
+use common\models\Student;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -65,22 +66,23 @@ class GroupController extends Controller
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionCreate()
     {
-        $model = new Group();
-        $teachers = Teacher::find()->all();
-
-        $teacherList = [];
-        foreach ($teachers as $teacher) {
-            $teacherList[$teacher->id] = $teacher->getFullName();
-        }
+        $model = new GroupForm();
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $model->save();
                 return $this->redirect(['index']);
             }
+        }
+
+        $teachers = Teacher::find()->all();
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->getFullName();
         }
 
         return $this->render('create', [
@@ -96,17 +98,19 @@ class GroupController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findGroup($id);
-        $teachers = Teacher::find()->all();
+        $group = $this->findGroup($id);
+        $model = new GroupForm();
+        $model->loadGroup($group);
 
+        if ($model->load(Yii::$app->request->post())) {
+            $model->update();
+            return $this->redirect(['index']);
+        }
+
+        $teachers = Teacher::find()->all();
         $teacherList = [];
         foreach ($teachers as $teacher) {
             $teacherList[$teacher->id] = $teacher->getFullName();
-        }
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save();
-            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
