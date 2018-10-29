@@ -102,7 +102,15 @@ class StudentController extends Controller
     {
         $student = $this->findStudent($id);
         $model = new StudentForm();
-        $model->loadTeacher($student);
+        $model->loadStudent($student);
+
+        $group = Group::findOne($student->group_id);
+        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
+
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->getFullName();
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             $model->update();
@@ -111,7 +119,8 @@ class StudentController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'group' => Group::findOne($model->groupId)
+            'group' => Group::findOne($model->groupId),
+            'teacherList' => $teacherList,
         ]);
     }
 

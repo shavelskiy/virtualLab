@@ -88,6 +88,8 @@ class StudentForm extends Model
         $student = Student::findOne($this->id);
         $student->setAttributes(
             [
+                'variant' => $this->variant,
+                'teacher_id' => $this->teacherId,
                 'name' => $this->name,
                 'last_name' => $this->lastName,
                 'middle_name' => $this->middleName,
@@ -106,7 +108,7 @@ class StudentForm extends Model
     /**
      * @param Student $student
      */
-    public function loadTeacher($student)
+    public function loadStudent($student)
     {
         $this->id = $student->id;
         $this->username = $student->user->username;
@@ -115,5 +117,7 @@ class StudentForm extends Model
         $this->lastName = $student->last_name;
         $this->middleName = $student->middle_name;
         $this->groupId = $student->group_id;
+        $this->variant = $student->variant;
+        $this->teacherId = $student->teacher_id;
     }
 }
