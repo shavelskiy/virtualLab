@@ -46,35 +46,35 @@ if (Yii::$app->user->can('deleteStudent')) {
             'middle_name',
 
             [
-                'attribute' => 'lab1.balls',
+                'attribute' => 'labs.lab1.balls',
                 'label' => 'Лаб. №1'
             ],
             [
-                'attribute' => 'lab2.balls',
+                'attribute' => 'labs.lab2.balls',
                 'label' => 'Лаб. №2'
             ],
             [
-                'attribute' => 'lab3.balls',
+                'attribute' => 'labs.lab3.balls',
                 'label' => 'Лаб. №3'
             ],
             [
-                'attribute' => 'lab4.balls',
+                'attribute' => 'labs.lab4.balls',
                 'label' => 'Лаб. №4'
             ],
             [
-                'attribute' => 'lab5.balls',
+                'attribute' => 'labs.lab5.balls',
                 'label' => 'Лаб. №5'
             ],
             [
-                'attribute' => 'lab6.balls',
+                'attribute' => 'labs.lab6.balls',
                 'label' => 'Лаб. №6'
             ],
             [
-                'attribute' => 'lab6.balls',
+                'attribute' => 'labs.lab7.balls',
                 'label' => 'Лаб. №7'
             ],
             [
-                'attribute' => 'lab6.balls',
+                'attribute' => 'labs.lab8.balls',
                 'label' => 'Лаб. №8'
             ],
             'teacher',

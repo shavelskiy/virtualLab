@@ -82,65 +82,9 @@ class Student extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLab1()
+    public function getLabs()
     {
-        return LabBalls::findOne($this->lab1_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab2()
-    {
-        return LabBalls::findOne($this->lab2_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab3()
-    {
-        return LabBalls::findOne($this->lab3_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab4()
-    {
-        return LabBalls::findOne($this->lab4_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab5()
-    {
-        return LabBalls::findOne($this->lab5_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab6()
-    {
-        return LabBalls::findOne($this->lab6_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab7()
-    {
-        return LabBalls::findOne($this->lab7_id);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab8()
-    {
-        return LabBalls::findOne($this->lab8_id);
+        return StudentLabs::findOne($this->labs_id);
     }
 
     public function afterDelete()

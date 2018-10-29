@@ -41,4 +41,44 @@ class StudentLabs extends \yii\db\ActiveRecord
     {
         return 'student_labs';
     }
+
+    public function getLab1()
+    {
+        return LabBalls::findOne($this->lab1_id);
+    }
+
+    public function getLab2()
+    {
+        return LabBalls::findOne($this->lab2_id);
+    }
+
+    public function getLab3()
+    {
+        return LabBalls::findOne($this->lab3_id);
+    }
+
+    public function getLab4()
+    {
+        return LabBalls::findOne($this->lab4_id);
+    }
+
+    public function getLab5()
+    {
+        return LabBalls::findOne($this->lab5_id);
+    }
+
+    public function getLab6()
+    {
+        return LabBalls::findOne($this->lab6_id);
+    }
+
+    public function getLab7()
+    {
+        return LabBalls::findOne($this->lab7_id);
+    }
+
+    public function getLab8()
+    {
+        return LabBalls::findOne($this->lab8_id);
+    }
 }
