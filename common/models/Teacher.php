@@ -17,9 +17,10 @@ use Yii;
  * @property string $middle_name
  * @property string $pulpit
  *
+ * @property User $user
+ *
  * @property Group[] $groups
  * @property Student[] $students
- * @property User $user
  */
 class Teacher extends \yii\db\ActiveRecord
 {

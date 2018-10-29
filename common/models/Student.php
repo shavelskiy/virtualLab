@@ -12,22 +12,15 @@ use Yii;
  * @property string $name
  * @property string $last_name
  * @property string $middle_name
- * @property integer $variant
+ * @property int $variant
  * @property int $group_id
- * @property int lab1_id
- * @property int lab2_id
- * @property int lab3_id
- * @property int lab4_id
- * @property int lab5_id
- * @property int lab6_id
- * @property int lab7_id
- * @property int lab8_id
+ * @property int labs_id
  * @property int $teacher_id
  *
  * @property Group $group
  * @property User $user
  * @property Teacher $teacher
- * @property LabBalls $lab1
+ * @property StudentLabs $labs
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -46,11 +39,10 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'name', 'last_name', 'variant', 'group_id'], 'required'],
-            [['user_id', 'variant', 'group_id', 'teacher_id'], 'integer'],
+            [['user_id', 'variant', 'group_id', 'teacher_id', 'labs_id'], 'integer'],
             [['name', 'last_name', 'middle_name'], 'string', 'max' => 255],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['lab1_id', 'lab2_id', 'lab3_id', 'lab4_id', 'lab5_id', 'lab6_id'], 'integer'],
         ];
     }
 

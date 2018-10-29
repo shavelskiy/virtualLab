@@ -10,7 +10,10 @@ use Yii;
  * @property int $id
  * @property integer $balls
  * @property integer $created_at
- * @property Student[] $students
+ *
+ * @property Student $student
+ *
+ * @property StudentLabs[] $labs
  */
 class LabBalls extends \yii\db\ActiveRecord
 {

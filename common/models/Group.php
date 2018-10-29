@@ -7,19 +7,14 @@ namespace common\models;
  *
  * @property int $id
  * @property string $name
- * @property boolean $lab1
- * @property boolean $lab2
- * @property boolean $lab3
- * @property boolean $lab4
- * @property boolean $lab5
- * @property boolean $lab6
- * @property boolean $lab7
- * @property boolean $lab8
- * @property integer teacher1_id
- * @property integer teacher2_id
+ * @property int labs_id
+ * @property int teacher1_id
+ * @property int teacher2_id
  *
  * @property Teacher $teacher1
  * @property Teacher $teacher2
+ * @property GroupLabs $labs
+ *
  * @property Student[] $students
  *
  * @property array $teachers
@@ -42,24 +37,16 @@ class Group extends \yii\db\ActiveRecord
         return [
             [['name'], 'required', 'message' => 'Введите группу'],
             [['teacher1_id'], 'required', 'message' => 'Выберите преподавателя'],
-            [['teacher1_id', 'teacher2_id'], 'integer'],
+            [['teacher1_id', 'teacher2_id', 'labs_id'], 'integer'],
             [['name'], 'unique', 'targetClass' => '\common\models\Group', 'message' => 'Такая группа уже существует'],
-            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
-            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8'], 'safe']
+            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу']
         ];
     }
 
     public function __construct(array $config = [])
     {
         parent::__construct($config);
-        $this->lab1 = false;
-        $this->lab2 = false;
-        $this->lab3 = false;
-        $this->lab4 = false;
-        $this->lab5 = false;
-        $this->lab6 = false;
-        $this->lab7 = false;
-        $this->lab8 = false;
+
     }
 
     /**
@@ -80,14 +67,6 @@ class Group extends \yii\db\ActiveRecord
             'lab8active' => 'Работа №8',
             'teachers' => 'Преподаватели'
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStudents()
-    {
-        return $this->hasMany(Students::className(), ['group_id' => 'id']);
     }
 
     /**
@@ -115,47 +94,11 @@ class Group extends \yii\db\ActiveRecord
         return $this->teacher1 . '<br>' . $this->teacher2;
     }
 
-    // активность лабораторных работ
-    public function getLab1Active()
-    {
-        return ($this->lab1) ? 'Да' : 'Нет';
-    }
-
-    public function getLab2Active()
-    {
-        return ($this->lab2) ? 'Да' : 'Нет';
-    }
-
-    public function getLab3Active()
-    {
-        return ($this->lab3) ? 'Да' : 'Нет';
-    }
-
-    public function getLab4Active()
-    {
-        return ($this->lab4) ? 'Да' : 'Нет';
-    }
-
-    public function getLab5Active()
-    {
-        return ($this->lab5) ? 'Да' : 'Нет';
-    }
-
-    public function getLab6Active()
-    {
-        return ($this->lab6) ? 'Да' : 'Нет';
-    }
-
-    public function getLab7Active()
-    {
-        return ($this->lab7) ? 'Да' : 'Нет';
-    }
-
-    public function getLab8Active()
-    {
-        return ($this->lab8) ? 'Да' : 'Нет';
-    }
-
+    /**
+     * Получаем список групп, в которых преподаёт преподаватель
+     * @param $teacherId
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public static function getTeacherGroups($teacherId)
     {
         return Group::find()
