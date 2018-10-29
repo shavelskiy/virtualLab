@@ -1,8 +1,8 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -40,41 +40,18 @@ if (Yii::$app->user->can('deleteGroup')) {
                 },
             ],
 
+            'lab1active',
+            'lab2active',
+            'lab3active',
+            'lab4active',
+            'lab5active',
+            'lab6active',
+            'lab7active',
+            'lab8active',
+
             [
-                'attribute' => 'lab1',
-                'value' => function ($data) {
-                    return ($data->lab1) ? 'Да' : 'Нет';
-                },
-            ],
-            [
-                'attribute' => 'lab2',
-                'value' => function ($data) {
-                    return ($data->lab2) ? 'Да' : 'Нет';
-                },
-            ],
-            [
-                'attribute' => 'lab3',
-                'value' => function ($data) {
-                    return ($data->lab3) ? 'Да' : 'Нет';
-                },
-            ],
-            [
-                'attribute' => 'lab4',
-                'value' => function ($data) {
-                    return ($data->lab4) ? 'Да' : 'Нет';
-                },
-            ],
-            [
-                'attribute' => 'lab5',
-                'value' => function ($data) {
-                    return ($data->lab5) ? 'Да' : 'Нет';
-                },
-            ],
-            [
-                'attribute' => 'lab6',
-                'value' => function ($data) {
-                    return ($data->lab6) ? 'Да' : 'Нет';
-                },
+                'attribute' => 'teachers',
+                'format' => 'html',
             ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],

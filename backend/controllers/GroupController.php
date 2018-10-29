@@ -73,7 +73,7 @@ class GroupController extends Controller
 
         $teacherList = [];
         foreach ($teachers as $teacher) {
-            $teacherList[$teacher->id] = $teacher->last_name . ' ' . $teacher->name . ' ' . $teacher->middle_name . ' ' . $teacher->pulpit;
+            $teacherList[$teacher->id] = $teacher->getFullName();
         }
 
         if ($model->load(Yii::$app->request->post())) {

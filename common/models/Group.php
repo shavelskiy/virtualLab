@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use backend\models\Teacher;
 
 /**
  * This is the model class for table "groups".
@@ -19,7 +19,12 @@ use Yii;
  * @property boolean $lab8
  * @property integer teacher1_id
  * @property integer teacher2_id
+ *
+ * @property Teacher $teacher1
+ * @property Teacher $teacher2
  * @property Student[] $students
+ *
+ * @property array $teachers
  */
 class Group extends \yii\db\ActiveRecord
 {
@@ -67,14 +72,15 @@ class Group extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Группа',
-            'lab1' => 'Работа №1',
-            'lab2' => 'Работа №2',
-            'lab3' => 'Работа №3',
-            'lab4' => 'Работа №4',
-            'lab5' => 'Работа №5',
-            'lab6' => 'Работа №6',
-            'lab7' => 'Работа №6',
-            'lab8' => 'Работа №6',
+            'lab1active' => 'Работа №1',
+            'lab2active' => 'Работа №2',
+            'lab3active' => 'Работа №3',
+            'lab4active' => 'Работа №4',
+            'lab5active' => 'Работа №5',
+            'lab6active' => 'Работа №6',
+            'lab7active' => 'Работа №7',
+            'lab8active' => 'Работа №8',
+            'teachers' => 'Преподаватели'
         ];
     }
 
@@ -84,5 +90,62 @@ class Group extends \yii\db\ActiveRecord
     public function getStudents()
     {
         return $this->hasMany(Students::className(), ['group_id' => 'id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeacher1()
+    {
+        return Teacher::getFullNameById($this->teacher1_id);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeacher2()
+    {
+        return Teacher::getFullNameById($this->teacher2_id);
+    }
+
+    /**
+     * Получить двух преподавалетелей в две строки
+     * @return string
+     */
+    public function getTeachers()
+    {
+        return $this->teacher1 . '<br>' . $this->teacher2;
+    }
+
+    public function getLab1Active() {
+        return ($this->lab1) ? 'Да' : 'Нет';
+    }
+
+    public function getLab2Active() {
+        return ($this->lab2) ? 'Да' : 'Нет';
+    }
+
+    public function getLab3Active() {
+        return ($this->lab3) ? 'Да' : 'Нет';
+    }
+
+    public function getLab4Active() {
+        return ($this->lab4) ? 'Да' : 'Нет';
+    }
+
+    public function getLab5Active() {
+        return ($this->lab5) ? 'Да' : 'Нет';
+    }
+
+    public function getLab6Active() {
+        return ($this->lab6) ? 'Да' : 'Нет';
+    }
+
+    public function getLab7Active() {
+        return ($this->lab7) ? 'Да' : 'Нет';
+    }
+
+    public function getLab8Active() {
+        return ($this->lab8) ? 'Да' : 'Нет';
     }
 }

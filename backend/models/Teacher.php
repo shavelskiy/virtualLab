@@ -4,8 +4,8 @@ namespace backend\models;
 
 use common\models\Group;
 use common\models\Student;
-use Yii;
 use common\models\User;
+use Yii;
 
 /**
  * This is the model class for table "teachers".
@@ -75,5 +75,18 @@ class Teacher extends \yii\db\ActiveRecord
         $auth = Yii::$app->authManager;
         $teacher = $auth->getRole('teacher');
         $auth->revoke($teacher, $user->id);
+    }
+
+    public function getFullName()
+    {
+        return $this->last_name . ' ' . $this->name . ' ' . $this->middle_name . ' ' . $this->pulpit;
+    }
+
+    public static function getFullNameById($id)
+    {
+        $teacher = Teacher::findOne($id);
+        return $teacher->last_name . ' ' .
+            mb_substr($teacher->name, 0, 1, 'UTF-8') . '.' .
+            mb_substr($teacher->middle_name, 0, 1, 'UTF-8') . '.';
     }
 }
