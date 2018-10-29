@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use common\models\Group;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
@@ -33,9 +32,17 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'name',
+            'variant',
             'last_name',
+            'name',
             'middle_name',
+            'teacher'
+        ],
+    ]) ?>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
             'user.username',
             'user.email'
         ],

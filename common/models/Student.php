@@ -68,12 +68,7 @@ class Student extends \yii\db\ActiveRecord
             'middle_name' => 'Отчество',
             'variant' => 'Вариант',
             'group_id' => 'Group ID',
-            'lab1_id' => 'Работа №1',
-            'lab2_id' => 'Работа №2',
-            'lab3_id' => 'Работа №3',
-            'lab4_id' => 'Работа №4',
-            'lab5_id' => 'Работа №5',
-            'lab6_id' => 'Работа №6'
+            'teacher' => 'Преподаватель'
         ];
     }
 
@@ -163,14 +158,30 @@ class Student extends \yii\db\ActiveRecord
         $student = Student::find()->andWhere(['user_id' => $userId])->one();
         $group = Group::findOne($student->group_id);
         $labs = [];
-        if ($lab = self::getLab($group->lab1, 1)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab2, 2)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab3, 3)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab4, 4)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab5, 5)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab6, 6)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab6, 7)) {$labs[] = $lab;}
-        if ($lab = self::getLab($group->lab6, 8)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab1, 1)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab2, 2)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab3, 3)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab4, 4)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab5, 5)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab6, 6)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab6, 7)) {
+            $labs[] = $lab;
+        }
+        if ($lab = self::getLab($group->lab6, 8)) {
+            $labs[] = $lab;
+        }
         return $labs;
     }
 
@@ -182,8 +193,14 @@ class Student extends \yii\db\ActiveRecord
         return null;
     }
 
-    public static function getStudentVariant($userId) {
+    public static function getStudentVariant($userId)
+    {
         $student = Student::find()->andWhere(['user_id' => $userId])->one();
         return $student->variant;
+    }
+
+    public function getTeacher()
+    {
+        return Teacher::getFullNameById($this->teacher_id);
     }
 }

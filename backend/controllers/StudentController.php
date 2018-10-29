@@ -77,7 +77,6 @@ class StudentController extends Controller
     {
         $model = new StudentForm();
         $group = Group::findOne($groupId);
-        $teacherList = [];
         $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
 
         $teacherList = [];

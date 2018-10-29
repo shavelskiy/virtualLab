@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -40,10 +40,9 @@ if (Yii::$app->user->can('deleteStudent')) {
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'variant',
-            'name',
             'last_name',
+            'name',
             'middle_name',
 
             [
@@ -70,6 +69,15 @@ if (Yii::$app->user->can('deleteStudent')) {
                 'attribute' => 'lab6.balls',
                 'label' => 'Лаб. №6'
             ],
+            [
+                'attribute' => 'lab6.balls',
+                'label' => 'Лаб. №7'
+            ],
+            [
+                'attribute' => 'lab6.balls',
+                'label' => 'Лаб. №8'
+            ],
+            'teacher',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => $buttonsTemplate],
         ],
