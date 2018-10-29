@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
+/* @var array $teacherList
 /* @var $model common\models\Group */
 
 $this->title = 'Добавить группу';
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'teacherList' => $teacherList,
         'update' => false
     ]) ?>
 

@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use common\models\Group;
+use common\models\Student;
 use Yii;
 use common\models\User;
 
@@ -15,6 +17,8 @@ use common\models\User;
  * @property string $middle_name
  * @property string $pulpit
  *
+ * @property Group[] $groups
+ * @property Student[] $students
  * @property User $user
  */
 class Teacher extends \yii\db\ActiveRecord

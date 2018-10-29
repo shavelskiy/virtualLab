@@ -5,7 +5,9 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Group */
-/* @var $form yii\widgets\ActiveForm */
+/* @var array $teacherList
+ * /* @var $form yii\widgets\ActiveForm
+ */
 ?>
 
 <div class="group-form">
@@ -27,6 +29,12 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'lab6')->checkbox() ?>
     <?php endif; ?>
+
+    <label>Преподаватели:</label>
+
+    <?= $form->field($model, 'teacher1_id')->dropDownList([$teacherList], ['prompt' => ''])->label(''); ?>
+
+    <?= $form->field($model, 'teacher2_id')->dropDownList([$teacherList], ['prompt' => ''])->label(''); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

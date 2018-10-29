@@ -15,6 +15,10 @@ use Yii;
  * @property boolean $lab4
  * @property boolean $lab5
  * @property boolean $lab6
+ * @property boolean $lab7
+ * @property boolean $lab8
+ * @property integer teacher1_id
+ * @property integer teacher2_id
  * @property Student[] $students
  */
 class Group extends \yii\db\ActiveRecord
@@ -34,9 +38,11 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required', 'message' => 'Введите группу'],
+            [['teacher1_id'], 'required', 'message' => 'Выберите преподавателя'],
+            [['teacher1_id', 'teacher2_id'], 'integer'],
             [['name'], 'unique', 'targetClass' => '\common\models\Group', 'message' => 'Такая группа уже существует'],
             [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу'],
-            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6'], 'safe']
+            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8'], 'safe']
         ];
     }
 
@@ -49,6 +55,8 @@ class Group extends \yii\db\ActiveRecord
         $this->lab4 = false;
         $this->lab5 = false;
         $this->lab6 = false;
+        $this->lab7 = false;
+        $this->lab8 = false;
     }
 
     /**
@@ -65,7 +73,8 @@ class Group extends \yii\db\ActiveRecord
             'lab4' => 'Работа №4',
             'lab5' => 'Работа №5',
             'lab6' => 'Работа №6',
-
+            'lab7' => 'Работа №6',
+            'lab8' => 'Работа №6',
         ];
     }
 

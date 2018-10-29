@@ -2,13 +2,14 @@
 
 namespace backend\controllers;
 
-use Yii;
-use yii\data\ActiveDataProvider;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
+use backend\models\Teacher;
 use common\models\Group;
 use common\models\Student;
+use Yii;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -68,6 +69,12 @@ class GroupController extends Controller
     public function actionCreate()
     {
         $model = new Group();
+        $teachers = Teacher::find()->all();
+
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->last_name . ' ' . $teacher->name . ' ' . $teacher->middle_name . ' ' . $teacher->pulpit;
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
@@ -78,6 +85,7 @@ class GroupController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'teacherList' => $teacherList
         ]);
     }
 
