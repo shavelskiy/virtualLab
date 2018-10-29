@@ -57,43 +57,43 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         </tr>
         <tr>
             <th>Лабораторная работа №1</th>
-            <th><?= $model->lab1->balls ?? '' ?></th>
-            <th><?= $model->lab1->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab1->balls ?? '' ?></th>
+            <th><?= $model->labs->lab1->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №2</th>
-            <th><?= $model->lab2->balls ?? '' ?></th>
-            <th><?= $model->lab2->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab2->balls ?? '' ?></th>
+            <th><?= $model->labs->lab2->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №3</th>
-            <th><?= $model->lab3->balls ?? '' ?></th>
-            <th><?= $model->lab3->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab3->balls ?? '' ?></th>
+            <th><?= $model->labs->lab3->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №4</th>
-            <th><?= $model->lab4->balls ?? '' ?></th>
-            <th><?= $model->lab4->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab4->balls ?? '' ?></th>
+            <th><?= $model->labs->lab4->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №5</th>
-            <th><?= $model->lab5->balls ?? '' ?></th>
-            <th><?= $model->lab5->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab5->balls ?? '' ?></th>
+            <th><?= $model->labs->lab5->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №6</th>
-            <th><?= $model->lab6->balls ?? '' ?></th>
-            <th><?= $model->lab6->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab6->balls ?? '' ?></th>
+            <th><?= $model->labs->lab6->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №7</th>
-            <th><?= $model->lab7->balls ?? '' ?></th>
-            <th><?= $model->lab7->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab7->balls ?? '' ?></th>
+            <th><?= $model->labs->lab7->createdAt ?? '' ?></th>
         </tr>
         <tr>
             <th>Лабораторная работа №8</th>
-            <th><?= $model->lab8->balls ?? '' ?></th>
-            <th><?= $model->lab8->createdAt ?? '' ?></th>
+            <th><?= $model->labs->lab8->balls ?? '' ?></th>
+            <th><?= $model->labs->lab8->createdAt ?? '' ?></th>
         </tr>
         </tbody>
     </table>
