@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var array $teacherList
 /* @var $model common\models\Student */
 
 $this->title = 'Изменить данные о студенте: ' . $model->lastName . ' ' . $model->name . ' ' . $model->middleName;
@@ -17,7 +18,8 @@ $this->params['breadcrumbs'][] = 'Изменение';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'password' => false
+        'password' => false,
+        'teacherList' => $teacherList
     ]) ?>
 
 </div>

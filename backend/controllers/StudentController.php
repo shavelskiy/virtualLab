@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use common\models\Student;
 use common\models\Group;
 use backend\models\StudentForm;
+use backend\models\Teacher;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -75,6 +76,14 @@ class StudentController extends Controller
     public function actionCreate($groupId)
     {
         $model = new StudentForm();
+        $group = Group::findOne($groupId);
+        $teacherList = [];
+        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
+
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->getFullName();
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
@@ -85,6 +94,7 @@ class StudentController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'teacherList' => $teacherList,
             'group' => Group::findOne($groupId)
         ]);
     }

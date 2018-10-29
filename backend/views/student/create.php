@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
+/* @var array $teacherList
 /* @var $model common\models\Student */
 
 $this->title = 'Добавить студента';
@@ -17,7 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'password' => true
+        'password' => true,
+        'teacherList' => $teacherList
     ]) ?>
 
 </div>

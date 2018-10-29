@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\models\Teacher;
 use Yii;
 
 /**
@@ -20,9 +21,13 @@ use Yii;
  * @property int lab4_id
  * @property int lab5_id
  * @property int lab6_id
+ * @property int lab7_id
+ * @property int lab8_id
+ * @property int $teacher_id
  *
  * @property Group $group
  * @property User $user
+ * @property Teacher $teacher
  * @property LabBalls $lab1
  */
 class Student extends \yii\db\ActiveRecord
@@ -42,7 +47,7 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'name', 'last_name', 'variant', 'group_id'], 'required'],
-            [['user_id', 'variant', 'group_id'], 'integer'],
+            [['user_id', 'variant', 'group_id', 'teacher_id'], 'integer'],
             [['name', 'last_name', 'middle_name'], 'string', 'max' => 255],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -164,6 +169,8 @@ class Student extends \yii\db\ActiveRecord
         if ($lab = self::getLab($group->lab4, 4)) {$labs[] = $lab;}
         if ($lab = self::getLab($group->lab5, 5)) {$labs[] = $lab;}
         if ($lab = self::getLab($group->lab6, 6)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab6, 7)) {$labs[] = $lab;}
+        if ($lab = self::getLab($group->lab6, 8)) {$labs[] = $lab;}
         return $labs;
     }
 
