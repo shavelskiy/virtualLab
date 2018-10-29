@@ -29,20 +29,6 @@ class Group extends \yii\db\ActiveRecord
         return 'groups';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['name'], 'required', 'message' => 'Введите группу'],
-            [['teacher1_id'], 'required', 'message' => 'Выберите преподавателя'],
-            [['teacher1_id', 'teacher2_id', 'labs_id'], 'integer'],
-            [['name'], 'unique', 'targetClass' => '\common\models\Group', 'message' => 'Такая группа уже существует'],
-            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу']
-        ];
-    }
-
     public function __construct(array $config = [])
     {
         parent::__construct($config);
@@ -109,5 +95,11 @@ class Group extends \yii\db\ActiveRecord
             ->Where(['teacher1_id' => $teacherId])
             ->orWhere(['teacher2_id' => $teacherId])
             ->all();
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $this->getLabs()->delete();
     }
 }
