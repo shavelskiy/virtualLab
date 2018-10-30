@@ -11,6 +11,7 @@ use backend\models\GroupForm;
 use common\models\Teacher;
 use common\models\Group;
 use common\models\Student;
+use common\models\GroupLabs;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -70,11 +71,14 @@ class GroupController extends Controller
      */
     public function actionCreate()
     {
-        $model = new GroupForm();
+        $group = new Group();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                $model->save();
+        if ($group->load(Yii::$app->request->post())) {
+            if ($group->validate()) {
+                $labs = new GroupLabs();
+                $labs->save();
+                $group->labs_id = $labs->id;
+                $group->save();
                 return $this->redirect(['index']);
             }
         }
@@ -86,7 +90,7 @@ class GroupController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'group' => $group,
             'teacherList' => $teacherList
         ]);
     }
@@ -99,12 +103,15 @@ class GroupController extends Controller
     public function actionUpdate($id)
     {
         $group = $this->findGroup($id);
-        $model = new GroupForm();
-        $model->loadGroup($group);
+        $labs = $group->labs;
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->update();
-            return $this->redirect(['index']);
+        if ($group->load(Yii::$app->request->post())) {
+            if ($group->validate()) {
+                $labs->load(Yii::$app->request->post());
+                $labs->save();
+                $group->save();
+                return $this->redirect(['index']);
+            }
         }
 
         $teachers = Teacher::find()->all();
@@ -114,7 +121,8 @@ class GroupController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'group' => $group,
+            'labs' => $labs,
             'teacherList' => $teacherList
         ]);
     }

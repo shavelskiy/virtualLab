@@ -4,11 +4,13 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var array $teacherList
-/* @var $model common\models\Group */
+ * @var common\models\Group $group
+ * @var common\models\GroupLabs $labs
+ */
 
-$this->title = 'Изменить группу: ' . $model->name;
+$this->title = 'Изменить группу: ' . $group->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $group->name, 'url' => ['view', 'id' => $group->id]];
 $this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="group-update">
@@ -16,7 +18,8 @@ $this->params['breadcrumbs'][] = 'Изменить';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'group' => $group,
+        'labs' => $labs,
         'teacherList' => $teacherList,
         'update' => true
     ]) ?>

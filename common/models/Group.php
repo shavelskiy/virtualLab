@@ -16,8 +16,6 @@ namespace common\models;
  * @property GroupLabs $labs
  *
  * @property Student[] $students
- *
- * @property array $teachers
  */
 class Group extends \yii\db\ActiveRecord
 {
@@ -29,10 +27,15 @@ class Group extends \yii\db\ActiveRecord
         return 'groups';
     }
 
-    public function __construct(array $config = [])
+    public function rules()
     {
-        parent::__construct($config);
-
+        return [
+            [['name'], 'required', 'message' => 'Введите группу'],
+            [['teacher1_id'], 'required', 'message' => 'Выберите преподавателя'],
+            [['teacher1_id', 'teacher2_id', 'labs_id'], 'integer'],
+            [['name'], 'unique', 'targetClass' => '\common\models\Group', 'message' => 'Такая группа уже существует'],
+            [['name'], 'string', 'max' => 10, 'tooLong' => 'Введите корректную группу']
+        ];
     }
 
     /**
@@ -97,6 +100,11 @@ class Group extends \yii\db\ActiveRecord
             ->all();
     }
 
+    /**
+     * удалить записи о лабораторных работах
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public function afterDelete()
     {
         parent::afterDelete();
