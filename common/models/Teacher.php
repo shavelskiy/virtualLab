@@ -38,10 +38,9 @@ class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'last_name'], 'required'],
-            [['user_id'], 'integer'],
+            [['name', 'last_name', 'pulpit'], 'required', 'message' => 'Это поле обязательно для заполнения'],
             [['name', 'last_name', 'middle_name', 'pulpit'], 'string', 'max' => 255],
-            [['user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'integer']
         ];
     }
 

@@ -4,7 +4,9 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Teacher */
+/* @var common\models\Teacher $teacher
+ * @var backend\models\SignupForm $signUpForm
+ */
 
 $this->title = 'Добавить преподавателя';
 $this->params['breadcrumbs'][] = ['label' => 'Преподаватели', 'url' => ['index']];
@@ -15,7 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'signUpForm' => $signUpForm,
+        'teacher' => $teacher,
         'password' => true
     ]) ?>
 

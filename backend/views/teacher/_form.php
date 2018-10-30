@@ -4,34 +4,36 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Teacher */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $password boolean */
+/* @var $password boolean
+ * @var common\models\Teacher $teacher
+ * @var backend\models\SignupForm $signUpForm
+ */
 ?>
 
 <div class="teacher-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($teacher, 'last_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($teacher, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'middleName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($teacher, 'middle_name')->textInput(['maxlength' => true]) ?>
 
     <hr>
 
-    <?= $form->field($model, 'username')->textInput() ?>
+    <?= $form->field($signUpForm, 'username')->textInput() ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($signUpForm, 'email') ?>
 
     <?php if ($password) {
-        echo $form->field($model, 'password')->passwordInput();
+        echo $form->field($signUpForm, 'password')->passwordInput();
     } ?>
 
     <hr>
 
-    <?= $form->field($model, 'pulpit')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($teacher, 'pulpit')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

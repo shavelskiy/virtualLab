@@ -2,15 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Student;
 use Yii;
-use common\models\Teacher;
-use backend\models\TeacherForm;
-use common\models\Group;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
+use common\models\Student;
+use common\models\Teacher;
+use common\models\Group;
+use backend\models\TeacherForm;
+use backend\models\SignupForm;
 
 /**
  * TeacherController implements the CRUD actions for Teacher model.
@@ -81,17 +82,25 @@ class TeacherController extends Controller
      */
     public function actionCreate()
     {
-        $model = new TeacherForm();
+        $signUpForm = new SignupForm();
+        $teacher = new Teacher();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if (($signUpForm->load(Yii::$app->request->post())) && $signUpForm->validate()) {
+                if (($teacher->load(Yii::$app->request->post())) && $teacher->validate()) {
+                    $user = $signUpForm->signup();
+                    $teacher->user_id = $user->id;
+                    $teacher->save();
+
+                    $auth = Yii::$app->authManager;
+                    $teacherRole = $auth->getRole('teacher');
+                    $auth->assign($teacherRole, $user->id);
+                }
+                return $this->redirect(['view', 'id' => $teacher->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'signUpForm' => $signUpForm,
+            'teacher' => $teacher
         ]);
     }
 
