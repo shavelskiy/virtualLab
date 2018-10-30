@@ -114,10 +114,8 @@ class TeacherController extends Controller
         $user = $teacher->user;
 
         if (($user->load(Yii::$app->request->post())) && ($teacher->load(Yii::$app->request->post()))) {
-//            if (($user->validate() && $teacher->validate()){
             $user->save();
             $teacher->save();
-//        }
             return $this->redirect(['view', 'id' => $teacher->id]);
         }
 
