@@ -67,6 +67,11 @@ class Teacher extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getGroups()
+    {
+        return Group::getTeacherGroups($this->id);
+    }
+
     public function afterDelete()
     {
         $user = User::findOne($this->user_id);

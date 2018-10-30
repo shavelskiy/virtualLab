@@ -9,7 +9,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use common\models\Student;
 use common\models\Teacher;
-use common\models\Group;
 use backend\models\SignupForm;
 
 /**
@@ -63,7 +62,7 @@ class TeacherController extends Controller
     public function actionView($id)
     {
         $teacher = $this->findTeacher($id);
-        $teacherGroups = Group::getTeacherGroups($id);
+        $teacherGroups = $teacher->groups;
         $groupStudents = [];
         foreach ($teacherGroups as $group) {
             $groupStudents[$group->name] = Student::getTeacherStudents($group->id, $id);
