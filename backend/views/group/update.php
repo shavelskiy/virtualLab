@@ -8,9 +8,9 @@ use yii\helpers\Html;
  * @var common\models\GroupLabs $labs
  */
 
-$this->title = 'Изменить группу: ' . $group->name;
+$this->title = 'Изменить группу: ' . $group->getOldAttribute('name');
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $group->name, 'url' => ['view', 'id' => $group->id]];
+$this->params['breadcrumbs'][] = ['label' => $group->getOldAttribute('name'), 'url' => ['view', 'id' => $group->id]];
 $this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="group-update">

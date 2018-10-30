@@ -40,14 +40,13 @@ use yii\widgets\ActiveForm;
     <hr>
     <label>Преподаватели:</label>
 
-    <?= $form->field($group, 'teacher1_id')->dropDownList([$teacherList], ['prompt' => ''])->label(''); ?>
+    <?= $form->field($group, 'teacher1_id')->dropDownList($teacherList, ['prompt' => '', 'label' => 'sfd'])->label('') ?>
 
-    <?= $form->field($group, 'teacher2_id')->dropDownList([$teacherList], ['prompt' => ''])->label(''); ?>
+    <?= $form->field($group, 'teacher2_id')->dropDownList($teacherList, ['prompt' => ''])->label(''); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>
