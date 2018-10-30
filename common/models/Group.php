@@ -101,7 +101,7 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * удалить записи о лабораторных работах
+     * удалить записи о лабораторных работах и студентов группы
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
@@ -109,5 +109,13 @@ class Group extends \yii\db\ActiveRecord
     {
         parent::afterDelete();
         $this->getLabs()->delete();
+        foreach ($this->getStudents() as $student) {
+            $student->delete();
+        }
+    }
+
+    public function getStudents()
+    {
+        return Student::find()->where(['group_id' => $this->id])->all();
     }
 }

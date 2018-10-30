@@ -7,7 +7,6 @@ use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use backend\models\GroupForm;
 use common\models\Teacher;
 use common\models\Group;
 use common\models\Student;
@@ -136,12 +135,7 @@ class GroupController extends Controller
      */
     public function actionDelete($id)
     {
-        $students = Student::getGroupStudents($id);
-        foreach ($students as $student) {
-            $student->delete();
-        }
         $this->findGroup($id)->delete();
-
         return $this->redirect(['index']);
     }
 
