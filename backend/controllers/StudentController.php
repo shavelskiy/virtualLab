@@ -10,7 +10,6 @@ use common\models\Student;
 use common\models\Group;
 use common\models\Teacher;
 use backend\models\SignupForm;
-use common\models\StudentLabs;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -24,7 +23,7 @@ class StudentController extends Controller
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index' , 'view', 'create', 'update'],
+                        'actions' => ['index', 'view', 'create', 'update'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
@@ -82,7 +81,7 @@ class StudentController extends Controller
         if (($signUpForm->load(Yii::$app->request->post())) && ($student->load(Yii::$app->request->post()))) {
             if ($signUpForm->validate() && $student->validate()) {
                 $user = $signUpForm->signup();
-                
+
                 $student->user_id = $user->id;
                 $student->group_id = $groupId;
                 $student->save();
@@ -113,28 +112,29 @@ class StudentController extends Controller
 
     public function actionUpdate($id)
     {
-//        $student = $this->findStudent($id);
-//        $model = new StudentForm();
-//        $model->loadStudent($student);
-//
-//        $group = Group::findOne($student->group_id);
-//        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
-//
-//        $teacherList = [];
-//        foreach ($teachers as $teacher) {
-//            $teacherList[$teacher->id] = $teacher->getFullName();
-//        }
-//
-//        if ($model->load(Yii::$app->request->post())) {
-//            $model->update();
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('update', [
-//            'model' => $model,
-//            'group' => Group::findOne($model->groupId),
-//            'teacherList' => $teacherList,
-//        ]);
+        $student = $this->findStudent($id);
+        $user = $student->user;
+
+        if (($user->load(Yii::$app->request->post())) && ($student->load(Yii::$app->request->post()))) {
+            $user->save();
+            $student->save();
+            return $this->redirect(['view', 'id' => $student->id]);
+        }
+
+        $group = $student->group;
+        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
+
+        $teacherList = [];
+        foreach ($teachers as $teacher) {
+            $teacherList[$teacher->id] = $teacher->getFullName();
+        }
+
+        return $this->render('update', [
+            'user' => $user,
+            'student' => $student,
+            'teacherList' => $teacherList,
+            'group' => $group
+        ]);
     }
 
     /**

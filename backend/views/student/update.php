@@ -6,13 +6,13 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View
  * @var array $teacherList
  * @var common\models\Student $student
- * @var backend\models\SignupForm $signUpForm
- * @var int $groupId
+ * @var common\models\User $user
+ * @var common\models\Group $group
  */
 
 $this->title = 'Изменить данные о студенте: ' . $student->last_name . ' ' . $student->name . ' ' . $student->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];
-$this->params['breadcrumbs'][] = ['label' => $student->name, 'url' => ['student/index', 'groupId' => $groupId]];
+$this->params['breadcrumbs'][] = ['label' => $group->name, 'url' => ['student/index', 'groupId' => $group->id]];
 $this->params['breadcrumbs'][] = ['label' => $student->last_name . ' ' . $student->name . ' ' . $student->middle_name, 'url' => ['student/view', 'id' => $student->id]];
 $this->params['breadcrumbs'][] = 'Изменение';
 ?>
@@ -34,17 +34,15 @@ $this->params['breadcrumbs'][] = 'Изменение';
 
         <hr>
 
-        <?= $form->field($signUpForm, 'username')->textInput() ?>
+        <?= $form->field($user, 'username')->textInput() ?>
 
-        <?= $form->field($signUpForm, 'email') ?>
-
-        <?= $form->field($signUpForm, 'password')->passwordInput(); ?>
+        <?= $form->field($user, 'email') ?>
 
         <hr>
 
         <label>Преподаватель:</label>
 
-        <?= $form->field($student, 'teacherId')->dropDownList($teacherList, ['prompt' => ''])->label(''); ?>
+        <?= $form->field($student, 'teacher_id')->dropDownList($teacherList, ['prompt' => ''])->label(''); ?>
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
