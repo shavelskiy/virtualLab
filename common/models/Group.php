@@ -51,11 +51,21 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
+     * Получить активность лабораторных работ для этой группы
      * @return GroupLabs|null
      */
     public function getLabs()
     {
         return GroupLabs::findOne($this->labs_id);
+    }
+
+    /**
+     * Получить студентов данной группы
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getStudents()
+    {
+        return Student::find()->where(['group_id' => $this->id])->all();
     }
 
     /**
@@ -112,10 +122,5 @@ class Group extends \yii\db\ActiveRecord
         foreach ($this->getStudents() as $student) {
             $student->delete();
         }
-    }
-
-    public function getStudents()
-    {
-        return Student::find()->where(['group_id' => $this->id])->all();
     }
 }

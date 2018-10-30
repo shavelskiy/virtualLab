@@ -9,7 +9,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use common\models\Teacher;
 use common\models\Group;
-use common\models\Student;
 use common\models\GroupLabs;
 
 /**
