@@ -8,8 +8,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use common\models\Student;
 use common\models\Group;
-use backend\models\StudentForm;
 use common\models\Teacher;
+use backend\models\SignupForm;
+use common\models\StudentLabs;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -75,7 +76,25 @@ class StudentController extends Controller
      */
     public function actionCreate($groupId)
     {
-        $model = new StudentForm();
+        $signUpForm = new SignupForm();
+        $student = new Student();
+
+        if (($signUpForm->load(Yii::$app->request->post())) && ($student->load(Yii::$app->request->post()))) {
+            if ($signUpForm->validate() && $student->validate()) {
+                $user = $signUpForm->signup();
+                
+                $student->user_id = $user->id;
+                $student->group_id = $groupId;
+                $student->save();
+
+                $auth = Yii::$app->authManager;
+                $studentRole = $auth->getRole('student');
+                $auth->assign($studentRole, $user->id);
+
+                return $this->redirect(['index', 'groupId' => $groupId]);
+            }
+        }
+
         $group = Group::findOne($groupId);
         $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
 
@@ -84,46 +103,47 @@ class StudentController extends Controller
             $teacherList[$teacher->id] = $teacher->getFullName();
         }
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                $model->save($groupId);
-                return $this->redirect(['index', 'groupId' => $groupId]);
-            }
-        }
-
         return $this->render('create', [
-            'model' => $model,
+            'signUpForm' => $signUpForm,
+            'student' => $student,
             'teacherList' => $teacherList,
-            'group' => Group::findOne($groupId)
+            'group' => $group
         ]);
     }
 
     public function actionUpdate($id)
     {
-        $student = $this->findStudent($id);
-        $model = new StudentForm();
-        $model->loadStudent($student);
-
-        $group = Group::findOne($student->group_id);
-        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
-
-        $teacherList = [];
-        foreach ($teachers as $teacher) {
-            $teacherList[$teacher->id] = $teacher->getFullName();
-        }
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->update();
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-            'group' => Group::findOne($model->groupId),
-            'teacherList' => $teacherList,
-        ]);
+//        $student = $this->findStudent($id);
+//        $model = new StudentForm();
+//        $model->loadStudent($student);
+//
+//        $group = Group::findOne($student->group_id);
+//        $teachers = Teacher::findAll([$group->teacher1_id, $group->teacher2_id]);
+//
+//        $teacherList = [];
+//        foreach ($teachers as $teacher) {
+//            $teacherList[$teacher->id] = $teacher->getFullName();
+//        }
+//
+//        if ($model->load(Yii::$app->request->post())) {
+//            $model->update();
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
+//
+//        return $this->render('update', [
+//            'model' => $model,
+//            'group' => Group::findOne($model->groupId),
+//            'teacherList' => $teacherList,
+//        ]);
     }
 
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionDelete($id)
     {
         $student = $this->findStudent($id);

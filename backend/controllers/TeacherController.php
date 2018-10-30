@@ -92,8 +92,9 @@ class TeacherController extends Controller
                 $auth = Yii::$app->authManager;
                 $teacherRole = $auth->getRole('teacher');
                 $auth->assign($teacherRole, $user->id);
+
+                return $this->redirect(['view', 'id' => $teacher->id]);
             }
-            return $this->redirect(['view', 'id' => $teacher->id]);
         }
 
         return $this->render('create', [
