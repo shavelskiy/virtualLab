@@ -10,7 +10,6 @@ use yii\filters\AccessControl;
 use common\models\Student;
 use common\models\Teacher;
 use common\models\Group;
-use backend\models\TeacherForm;
 use backend\models\SignupForm;
 
 /**
@@ -67,7 +66,7 @@ class TeacherController extends Controller
         $teacherGroups = Group::getTeacherGroups($id);
         $groupStudents = [];
         foreach ($teacherGroups as $group) {
-            $groupStudents[$group->name]  = Student::getTeacherStudents($group->id, $id);
+            $groupStudents[$group->name] = Student::getTeacherStudents($group->id, $id);
         }
 
         return $this->render('view', [
@@ -85,17 +84,17 @@ class TeacherController extends Controller
         $signUpForm = new SignupForm();
         $teacher = new Teacher();
 
-        if (($signUpForm->load(Yii::$app->request->post())) && $signUpForm->validate()) {
-                if (($teacher->load(Yii::$app->request->post())) && $teacher->validate()) {
-                    $user = $signUpForm->signup();
-                    $teacher->user_id = $user->id;
-                    $teacher->save();
+        if (($signUpForm->load(Yii::$app->request->post())) && ($teacher->load(Yii::$app->request->post()))) {
+            if ($signUpForm->validate() && $teacher->validate()) {
+                $user = $signUpForm->signup();
+                $teacher->user_id = $user->id;
+                $teacher->save();
 
-                    $auth = Yii::$app->authManager;
-                    $teacherRole = $auth->getRole('teacher');
-                    $auth->assign($teacherRole, $user->id);
-                }
-                return $this->redirect(['view', 'id' => $teacher->id]);
+                $auth = Yii::$app->authManager;
+                $teacherRole = $auth->getRole('teacher');
+                $auth->assign($teacherRole, $user->id);
+            }
+            return $this->redirect(['view', 'id' => $teacher->id]);
         }
 
         return $this->render('create', [
@@ -112,16 +111,19 @@ class TeacherController extends Controller
     public function actionUpdate($id)
     {
         $teacher = $this->findTeacher($id);
-        $model = new TeacherForm();
-        $model->loadTeacher($teacher);
+        $user = $teacher->user;
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->update();
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (($user->load(Yii::$app->request->post())) && ($teacher->load(Yii::$app->request->post()))) {
+//            if (($user->validate() && $teacher->validate()){
+            $user->save();
+            $teacher->save();
+//        }
+            return $this->redirect(['view', 'id' => $teacher->id]);
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'user' => $user,
+            'teacher' => $teacher
         ]);
     }
 
@@ -133,8 +135,7 @@ class TeacherController extends Controller
      */
     public function actionDelete($id)
     {
-        $teacher = $this->findTeacher($id);
-        $teacher->delete();
+        $this->findTeacher($id)->delete();
         return $this->redirect(['index']);
     }
 
