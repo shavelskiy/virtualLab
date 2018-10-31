@@ -69,7 +69,10 @@ class Teacher extends \yii\db\ActiveRecord
 
     public function getGroups()
     {
-        return Group::getTeacherGroups($this->id);
+        return Group::find()
+            ->Where(['teacher1_id' => $this->id])
+            ->orWhere(['teacher2_id' => $this->id])
+            ->all();
     }
 
     public function afterDelete()

@@ -98,19 +98,6 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Получаем список групп, в которых преподаёт преподаватель
-     * @param $teacherId
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getTeacherGroups($teacherId)
-    {
-        return Group::find()
-            ->Where(['teacher1_id' => $teacherId])
-            ->orWhere(['teacher2_id' => $teacherId])
-            ->all();
-    }
-
-    /**
      * удалить записи о лабораторных работах и студентов группы
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
