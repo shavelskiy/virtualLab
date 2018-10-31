@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "lab".
+ * This is the model class for table "labs".
  *
  * @property int $id
  * @property string $name
@@ -19,6 +19,6 @@ class Lab extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'lab';
+        return 'labs';
     }
 }
