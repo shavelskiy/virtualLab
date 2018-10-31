@@ -126,20 +126,6 @@ class Student extends \yii\db\ActiveRecord
         return Teacher::getFullNameById($this->teacher_id);
     }
 
-    /**
-     * получить всех студентов группы данного преподавателя
-     * @param $groupId
-     * @param $teacherId
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public static function getTeacherStudents($groupId, $teacherId)
-    {
-        return Student::find()
-            ->where(['group_id' => $groupId])
-            ->andWhere(['teacher_id' => $teacherId])
-            ->all();
-    }
-
     public function afterDelete()
     {
         StudentLabs::findOne($this->labs_id)->delete();

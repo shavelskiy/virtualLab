@@ -65,7 +65,10 @@ class TeacherController extends Controller
         $teacherGroups = $teacher->groups;
         $groupStudents = [];
         foreach ($teacherGroups as $group) {
-            $groupStudents[$group->name] = Student::getTeacherStudents($group->id, $id);
+            $groupStudents[$group->name] = Student::find()
+                ->where(['group_id' => $group->id])
+                ->andWhere(['teacher_id' => $id])
+                ->all();
         }
 
         return $this->render('view', [
