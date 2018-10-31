@@ -22,6 +22,8 @@ namespace common\models;
  * @property boolean $lab8
  **
  * @property Group $group
+ *
+ * @property array $activeLabs
  */
 class GroupLabs extends \yii\db\ActiveRecord
 {
@@ -94,5 +96,36 @@ class GroupLabs extends \yii\db\ActiveRecord
     public function getLab8Active()
     {
         return ($this->lab8) ? 'Да' : 'Нет';
+    }
+
+    public function getActiveLabs()
+    {
+        $labs = [];
+        if ($this->lab1) {
+            $labs[1] = Lab::findOne(1);
+        }
+        if ($this->lab2) {
+            $labs[2] = Lab::findOne(2);
+        }
+        if ($this->lab3) {
+            $labs[3] = Lab::findOne(3);
+        }
+        if ($this->lab4) {
+            $labs[4] = Lab::findOne(4);
+        }
+        if ($this->lab5) {
+            $labs[5] = Lab::findOne(5);
+        }
+        if ($this->lab6) {
+            $labs[6] = Lab::findOne(6);
+        }
+        if ($this->lab7) {
+            $labs[7] = Lab::findOne(7);
+        }
+        if ($this->lab8) {
+            $labs[8] = Lab::findOne(8);
+        }
+
+        return $labs;
     }
 }

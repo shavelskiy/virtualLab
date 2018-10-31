@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
-use common\models\Student;
+use common\models\User;
 
 class LabController extends Controller
 {
@@ -30,7 +30,8 @@ class LabController extends Controller
 
     public function actionIndex()
     {
-        $activeLabs = Student::getActiveLabs(Yii::$app->user->id);
+        $activeLabs = User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs;
+
         return $this->render('index',
             [
                 'activeLabs' => $activeLabs
@@ -39,7 +40,7 @@ class LabController extends Controller
 
     public function actionLab($number)
     {
-        $variant = Student::getStudentVariant(Yii::$app->user->id);
+        $variant = User::findOne(Yii::$app->user->id)->student->variant;
         return $this->render('lab',
             [
                 'number' => $number,

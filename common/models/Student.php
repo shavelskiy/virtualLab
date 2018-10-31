@@ -126,17 +126,6 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
-     * ИСПОЛЬЗУЕТСЯ ВО ФРОНТЕНД!!! МЕНЯТЬ
-     * @param $userId
-     * @return mixed
-     */
-    public static function getStudentVariant($userId)
-    {
-        $student = Student::find()->andWhere(['user_id' => $userId])->one();
-        return $student->variant;
-    }
-
-    /**
      * получить полное имя преподавателя студента
      * @return string
      */

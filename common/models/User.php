@@ -20,6 +20,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ *
+ * @property Student $student;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -136,5 +138,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    public function getStudent()
+    {
+        return Student::findOne(['user_id' => $this->id]);
     }
 }

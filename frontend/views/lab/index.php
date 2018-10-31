@@ -8,10 +8,10 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <img src="<?= '/uploads/labs/' . $lab->preview_picture ?>" height="100px">
                     </div>
-                    <div class="col-8">
+                    <div class="col-9">
                         <p><?= $lab->description ?></p>
                         <a href="<?= Yii::$app->urlManager->createUrl(['lab/lab', 'number' => $lab->id]) ?>"
                            class="btn btn-primary">Начать выполнение</a>
