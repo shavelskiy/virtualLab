@@ -86,10 +86,6 @@ class StudentController extends Controller
                 $student->group_id = $groupId;
                 $student->save();
 
-                $auth = Yii::$app->authManager;
-                $studentRole = $auth->getRole('student');
-                $auth->assign($studentRole, $user->id);
-
                 return $this->redirect(['index', 'groupId' => $groupId]);
             }
         }
