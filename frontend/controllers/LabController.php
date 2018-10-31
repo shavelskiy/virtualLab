@@ -32,8 +32,7 @@ class LabController extends Controller
     {
         $activeLabs = User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs;
 
-        return $this->render('index',
-            [
+        return $this->render('index', [
                 'activeLabs' => $activeLabs
             ]);
     }
@@ -41,8 +40,7 @@ class LabController extends Controller
     public function actionLab($number)
     {
         $variant = User::findOne(Yii::$app->user->id)->student->variant;
-        return $this->render('lab',
-            [
+        return $this->render('lab', [
                 'number' => $number,
                 'variant' => $variant
             ]
