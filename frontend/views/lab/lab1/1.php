@@ -73,9 +73,9 @@
                 <div class="row mt-5">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="lab1-p3.1" class="col-sm-3 control-label px-3">r<sub>вн</sub> =</label>
+                            <label for="lab1-p1.3" class="col-sm-3 control-label px-3">r<sub>вн</sub> =</label>
                             <div class="col-sm-5 px-0">
-                                <input type="text" class="form-control" id="lab1-p3.1">
+                                <input type="text" class="form-control" id="lab1-p1.3">
                             </div>
                             <label class="col-sm-2 control-label pl-1">Ом</label>
                         </div>
@@ -88,26 +88,38 @@
     <!--1.4-->
     <li>
         <p>Нарисовать последовательную и параллельную схемы замещения
-            реального источника, рассчитать их параметры U<sub>р</sub> I<sub>к</sub> r<sub>вн</sub> g<sub>вн.</sub>
+            реального источника, рассчитать их параметры U<sub>р</sub> I<sub>к</sub> r<sub>вн</sub> g<sub>вн</sub>
         </p>
-        <div class="row">
-            <div class="col-3">
-                <label for="lab1-p3.1">Rвн:</label>
-                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+        <form class="form-horizontal">
+            <div class="form-group col-3">
+                <label for="lab1-p1.4-1" class="col-sm-3 control-label px-3">U<sub>р</sub> =</label>
+                <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control" id="lab1-p1.4-1">
+                </div>
+                <label class="col-sm-2 control-label pl-0">В</label>
             </div>
-            <div class="col-3">
-                <label for="lab1-p3.1">Rвн:</label>
-                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            <div class="form-group col-3">
+                <label for="lab1-p1.4-2" class="col-sm-3 control-label px-3">I<sub>к</sub> =</label>
+                <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control" id="lab1-p1.4-2">
+                </div>
+                <label class="col-sm-2 control-label pl-1">мА</label>
             </div>
-            <div class="col-3">
-                <label for="lab1-p3.1">Rвн:</label>
-                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            <div class="form-group col-3">
+                <label for="lab1-p1.4-3" class="col-sm-3 control-label px-3">r<sub>вн</sub> =</label>
+                <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control" id="lab1-p1.4-3">
+                </div>
+                <label class="col-sm-2 control-label pl-1">Ом</label>
             </div>
-            <div class="col-3">
-                <label for="lab1-p3.1">Rвн:</label>
-                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            <div class="form-group col-3">
+                <label for="lab1-p1.4-4" class="col-sm-3 control-label px-3">g<sub>вн</sub> =</label>
+                <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control" id="lab1-p1.4-4">
+                </div>
+                <label class="col-sm-2 control-label pl-1">См</label>
             </div>
-        </div>
+        </form>
     </li>
 </ul>
 <hr>
