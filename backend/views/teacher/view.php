@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'middle_name',
             'pulpit',
-            'user.email'
+            ['attribute' => 'user.email', 'label' => 'Почта']
         ],
     ]) ?>
 

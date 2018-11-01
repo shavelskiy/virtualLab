@@ -43,8 +43,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'user.username',
-            'user.email'
+            ['attribute' => 'user.username', 'label' => 'Логин'],
+            ['attribute' => 'user.email', 'label' => 'Почта']
         ],
     ]) ?>
 
