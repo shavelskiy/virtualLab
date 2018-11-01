@@ -110,7 +110,7 @@
 
 
 <script src="/js/resources/scheme/elements.js"></script>
-<script src="/js/labs/lab1/v1.js"></script>
+<script src="/js/labs/lab1/variants/v1.js"></script>
 
 <div class="panel panel-default">
     <div class="panel-body p-4">
