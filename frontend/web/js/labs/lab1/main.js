@@ -17,7 +17,7 @@ $(document).ready(function () {
     nextToTask2.click(function () {
         task1.addClass('hidden');
         task2.removeClass('hidden');
-        $('body, html').animate({scrollTop: 0}, 100);
+        $('body, html').animate({scrollTop: 0}, 200);
     });
 
     prevToTask2.click(function () {
@@ -28,6 +28,6 @@ $(document).ready(function () {
     nextToTask3.click(function () {
         task2.addClass('hidden');
         task3.removeClass('hidden');
-        $('body, html').animate({scrollTop: 0}, 100);
+        $('body, html').animate({scrollTop: 0}, 200);
     });
 });

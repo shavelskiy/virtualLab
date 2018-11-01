@@ -4,10 +4,10 @@
     <!--3.1-->
     <li class="mt-5">
         <p><b>3.1</b>
-            &nbsp;&nbsp;В схеме рис. 1.4 рассчитать с помощью законов ирхгофа эквивалентное сопротивление
+            &nbsp;&nbsp;В схеме рис. 1.4 рассчитать с помощью законов Кирхгофа эквивалентное сопротивление
             относительно реального источника (активного двухполюсника) и<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             определить его, используя омметр. (При этом реальный источник
-            отключить от схемы.)
+            отключить от схемы).
         </p>
         <div class="row">
             <div class="col-4 ml-5">
@@ -17,7 +17,7 @@
                     <img src="/uploads/lab1/1.4a.png">
                 <?php endif; ?>
             </div>
-            <div class="col-2 mt-3 ml-3 pr-0">
+            <div class="col-5 mt-3 ml-5">
                 E= 10 В<br>
                 r<sub>вн</sub> = 60 Ом<br>
                 R<sub>1</sub> = 1 кОм<br>
@@ -26,28 +26,44 @@
                 R<sub>4</sub> = 100 Ом<br>
                 R = <?= $R ?> Ом
             </div>
-            <div class="col-3 pl-0 pt-2">
-                <h5>Теоретический расчёт:</h5>
-                <form class="form-horizontal">
-                    <div class="form-group mb-0">
-                        <label for="lab1-p3.1-1" class="col-sm-4 control-label px-3">R<sub>экв</sub> =</label>
-                        <div class="col-sm-5 px-0">
-                            <input type="text" class="form-control" id="lab1-p3.1">
-                        </div>
-                    </div>
-                </form>
-                <h5>Эксперемент:</h5>
-                <form class="form-horizontal">
-                    <div class="form-group mb-0">
-                        <label for="lab1-p3.1-2" class="col-sm-4 control-label px-3">R<sub>экв</sub> =</label>
-                        <div class="col-sm-5 px-0">
-                            <input type="text" class="form-control" id="lab1-p3.1">
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
         <h6 class="ml-5">Рис. 1.4 – Расчетные схема </h6>
+    </li>
+    <!--3.2-->
+    <li class="mt-5">
+        <p>
+            <b>3.2</b>
+            &nbsp;&nbsp;Определить эквивалентное сопротивление R<sub>экв</sub> относительно реального
+            источника с помощью вольтметра. Измерить напряжение U и
+            напряжение на<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; резисторе
+            R<?php if (!(1 % 2)) echo '<sub>4</sub>'; ?>
+        </p>
+        <table class="table table-bordered ml-5 table-p3-2">
+            <thead>
+            <tr>
+                <td></td>
+                <td>Расчитанное R<sub>экв</sub></td>
+                <td>Измеренное R<sub>экв</sub> (п. 3.2)</td>
+                <td>Измеренное R<sub>экв</sub>В (п.3.1)</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>R<sub>экв</sub></td>
+                <?php for ($i = 1; $i <= 3; $i++): ?>
+                    <td class="input volts"><input type="text" class="form-control" id="lab1-p3.2-<?= $i ?>"></td>
+                <?php endfor; ?>
+            </tr>
+            </tbody>
+        </table>
+    </li>
+    <!--3.3-->
+    <li class="mt-5">
+        <p>
+            <b>3.3</b>
+            &nbsp;&nbsp;Записать законы Кирхгофа для данной схемы, обозначив на схеме
+            направление токов в ветвях.
+        </p>
     </li>
 </ul>
 
@@ -58,18 +74,3 @@
 </div>
 <hr>
 
-<style>
-    ul {
-        list-style: none;
-    }
-
-    .value-input {
-        width: 100%;
-        height: 100%;
-    }
-
-    .input {
-        height: 0px;
-        padding: 2px !important;
-    }
-</style>

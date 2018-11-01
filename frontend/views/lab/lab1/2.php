@@ -162,15 +162,3 @@
     <button class="next-to-task-3 btn btn-primary">Далее</button>
 </div>
 <hr>
-
-<style>
-    ul {
-        list-style: none;
-    }
-
-    .bottom-align-text {
-        position: absolute;
-        bottom: 20px;
-        right: 0;
-    }
-</style>

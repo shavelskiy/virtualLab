@@ -37,13 +37,13 @@
             <tr>
                 <td>U, В</td>
                 <?php for ($i = 0; $i < 13; $i++): ?>
-                    <td class="input volts"><input type="text" class="value-input" volt-id="<?= $i ?>"></td>
+                    <td class="input volts"><input type="text" class="value-input form-control" volt-id="<?= $i ?>"></td>
                 <?php endfor; ?>
             </tr>
             <tr>
                 <td>I, мА</td>
                 <?php for ($i = 0; $i < 13; $i++): ?>
-                    <td class="input ampers"><input type="text" class="value-input" amper-id="<?= $i ?>"></td>
+                    <td class="input ampers"><input type="text" class="value-input form-control" amper-id="<?= $i ?>"></td>
                 <?php endfor; ?>
             </tr>
             </tbody>
@@ -84,7 +84,7 @@
                     </form>
                 </div>
             </div>
-            <script src="/js/labs/lab1/1/graph1.js"></script>
+            <script src="/js/labs/lab1/graph.js"></script>
         </div>
     </li>
     <!--1.4-->
@@ -134,19 +134,3 @@
     <button class="next-to-task-2 btn btn-primary">Далее</button>
 </div>
 <hr>
-
-<style>
-    ul {
-        list-style: none;
-    }
-
-    .value-input {
-        width: 100%;
-        height: 100%;
-    }
-
-    .input {
-        height: 0px;
-        padding: 2px !important;
-    }
-</style>
