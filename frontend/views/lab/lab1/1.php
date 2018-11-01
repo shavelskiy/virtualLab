@@ -54,7 +54,7 @@
         <p>
             Построить измеренную внешнюю вольт-амперную характеристику
             реального источника. По полученной характеристике определить
-            внутреннее сопротивление источника rвн.
+            внутреннее сопротивление источника r<sub>вн</sub>
         </p>
         <div class="row">
             <div class="col-8">
@@ -71,18 +71,48 @@
                     <p class="graph-error-type text-danger hidden my-3">Введите корректные значения!</p>
                 </div>
                 <div class="row mt-5">
-                    <label for="lab1-p3.1">Введите Rвн:</label>
-                </div>
-                <div class="row">
-                    <input type="text" class="form-control col-4" id="lab1-p3.1 ">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="lab1-p3.1" class="col-sm-3 control-label px-3">r<sub>вн</sub> =</label>
+                            <div class="col-sm-5 px-0">
+                                <input type="text" class="form-control" id="lab1-p3.1">
+                            </div>
+                            <label class="col-sm-2 control-label pl-1">Ом</label>
+                        </div>
+                    </form>
                 </div>
             </div>
             <script src="/js/labs/lab1/1/graph1.js"></script>
         </div>
     </li>
+    <!--1.4-->
+    <li>
+        <p>Нарисовать последовательную и параллельную схемы замещения
+            реального источника, рассчитать их параметры U<sub>р</sub> I<sub>к</sub> r<sub>вн</sub> g<sub>вн.</sub>
+        </p>
+        <div class="row">
+            <div class="col-3">
+                <label for="lab1-p3.1">Rвн:</label>
+                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            </div>
+            <div class="col-3">
+                <label for="lab1-p3.1">Rвн:</label>
+                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            </div>
+            <div class="col-3">
+                <label for="lab1-p3.1">Rвн:</label>
+                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            </div>
+            <div class="col-3">
+                <label for="lab1-p3.1">Rвн:</label>
+                <input type="text" class="form-control col-4 ml-3" id="lab1-p3.1 ">
+            </div>
+        </div>
+    </li>
 </ul>
-
-<button class="next-to-task-2">Next</button>
+<hr>
+<button class="next-to-task-2 text-center btn btn-primary">Далее</button>
+<hr>
 
 <style>
     .value-input {
