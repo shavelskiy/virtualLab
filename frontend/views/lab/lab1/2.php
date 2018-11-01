@@ -85,41 +85,7 @@
                 <br>
                 R<sub>2</sub> = 2 кОм
                 <br>
-                R =
-                <?php switch (10 % 10) {
-                    case 0:
-                        echo '100';
-                        break;
-                    case 1:
-                        echo '200';
-                        break;
-                    case 2:
-                        echo '250';
-                        break;
-                    case 3:
-                        echo '300';
-                        break;
-                    case 4:
-                        echo '400';
-                        break;
-                    case 5:
-                        echo '500';
-                        break;
-                    case 6:
-                        echo '600';
-                        break;
-                    case 7:
-                        echo '700';
-                        break;
-                    case 8:
-                        echo '800';
-                        break;
-                    case 9:
-                        echo '900';
-                        break;
-                }
-                ?>
-                Ом
+                R = <?= $R ?> Ом
             </div>
         </div>
         <h6 class="ml-5">Рис 1.3−Схема резистивного делителя токов</h6>
