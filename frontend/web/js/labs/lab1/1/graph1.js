@@ -83,7 +83,8 @@ function drawGrid() {
     graphContext.fillText('0', 38, graphCanvas.height - 34);
     graphContext.fillText('I, мА', 5, 65);
     graphContext.fillText('U, В', graphCanvas.width - 80, graphCanvas.height - 30);
-
+    graphContext.fillText('5', graphCanvas.width - 150, graphCanvas.height - 28);
+    graphContext.fillText('50', 15, 100);
 
     // внешняя рамка
     graphContext.strokeStyle = 'rgb(0, 0, 0)';
@@ -154,7 +155,7 @@ function drawGraph() {
     }
 
     if (!error) {
-        graphContext.lineWidth = 3;
+        graphContext.lineWidth = 2;
         var x0 = 50;
         var y0 = graphCanvas.height - 50;
 
@@ -162,7 +163,7 @@ function drawGraph() {
         graphContext.moveTo(x0, y0);
 
         for (var i = 0; i < 13; i++) {
-            graphContext.lineTo(x0 + volts[i], y0 - ampers[i]);
+            graphContext.lineTo(x0 + 100 * (volts[i]), y0 - 5 * ampers[i]);
         }
 
         graphContext.stroke();
