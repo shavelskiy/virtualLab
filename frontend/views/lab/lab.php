@@ -1,12 +1,12 @@
 <!--Задания-->
 <script src="/js/labs/lab1/main.js"></script>
-<div class="container task-1 hidden mb-5">
+<div class="container task-1 mb-5">
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/frontend/views/lab/lab1/1.php');
     ?>
 </div>
 
-<div class="container task-2 mb-5">
+<div class="container task-2 mb-5 hidden">
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/frontend/views/lab/lab1/2.php');
     ?>

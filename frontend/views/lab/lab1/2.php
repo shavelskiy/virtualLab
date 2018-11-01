@@ -3,12 +3,12 @@
 <ul>
     <!--2.1-->
     <li class="mt-5">
-        <p>
-            Согласно варианту аналитически рассчитать коэффициент деления
+        <p><b>2.1</b>
+            &nbsp;&nbsp;Согласно варианту аналитически рассчитать коэффициент деления
             резистивного делителя напряжения – рис. 1.2 (K<sup>V</sup> = U<sub>2</sub> / U<sub>1</sub>)
         </p>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 ml-5">
                 <img src="/uploads/lab1/1.2.png">
             </div>
             <div class="col-2 mt-3">
@@ -31,24 +31,24 @@
                 </form>
             </div>
         </div>
-        <h6>Рис. 1.2 – Схема резистивного делителя напряжения </h6>
+        <h6 class="ml-5">Рис. 1.2 – Схема резистивного делителя напряжения </h6>
     </li>
     <!--2.2-->
     <li class="mt-5">
-        <p>
-            Нарисовать схему рис.1.2 с источником постоянного напряжения и
+        <p><b>2.2</b>
+            &nbsp;&nbsp;Нарисовать схему рис.1.2 с источником постоянного напряжения и
             необходимыми приборами, для измерения напряжений U<sub>1</sub> и U<sub>2</sub>
         </p>
     </li>
     <!--2.3-->
     <li class="mt-5">
-        <p>
-            Выберете схему рис.1.2. На входе схемы должне быть включён источник
-            постоянного напряжения. Измерить напряжения U<sub>1</sub> и U<sub>2</sub> . Рассчитать коэффициент
-            деления напряжения – K<sup>V</sup> = U<sub>2</sub> / U<sub>1</sub> и сравнить с
+        <p><b>2.3</b>
+            &nbsp;&nbsp;Выберете схему рис.1.2. На входе схемы должне быть включён источник
+            постоянного напряжения. Измерить напряжения U<sub>1</sub> и U<sub>2</sub> .<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Рассчитать коэффициент деления напряжения – K<sup>V</sup> = U<sub>2</sub> / U<sub>1</sub> и сравнить с
             аналитически вычисленным значением в п. 2.1.
         </p>
-        <form class="form-horizontal">
+        <form class="form-horizontal ml-4">
             <div class="form-group col-3">
                 <label for="help1" class="col-sm-3 control-label px-3">U<sub>1</sub> =</label>
                 <div class="col-sm-5 px-0">
@@ -73,14 +73,14 @@
     </li>
     <!--2.4-->
     <li class="mt-5">
-        <p>
-            Выберите схему рис 1.3 с источник постоянного напряжения на входе
+        <p><b>2.4</b>
+            &nbsp;&nbsp;Выберите схему рис 1.3 с источник постоянного напряжения на входе
         </p>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 ml-5">
                 <img src="/uploads/lab1/1.3.png">
             </div>
-            <div class="col-2 mt-3">
+            <div class="col-2 mt-5">
                 R<sub>1</sub> = 1 кОм
                 <br>
                 R<sub>2</sub> = 2 кОм
@@ -122,65 +122,71 @@
                 Ом
             </div>
         </div>
-        <h6>Рис 1.3−Схема резистивного делителя токов</h6>
+        <h6 class="ml-5">Рис 1.3−Схема резистивного делителя токов</h6>
     </li>
     <!--2.5-->
     <li class="mt-5">
-        <p>
-            Измерить напряжения U<sub>1</sub>, U<sub>2</sub>, U. По показаниям вольтметров
+        <p><b>2.5</b>
+            &nbsp;&nbsp;Измерить напряжения U<sub>1</sub>, U<sub>2</sub>, U. По показаниям вольтметров
             определить токи I<sub>1</sub>, I<sub>2</sub>, I.
         </p>
-        <form class="form-horizontal">
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-1" class="col-sm-3 control-label px-3">U<sub>1</sub> =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-1">
+        <form class="form-horizontal ml-5">
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-1" class="col-sm-3 control-label px-3">U<sub>1</sub> =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-1">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">В</label>
                 </div>
-                <label class="col-sm-2 control-label pl-0">В</label>
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-4" class="col-sm-3 control-label px-3">I<sub>1</sub> =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-4">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">мА</label>
+                </div>
             </div>
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-2" class="col-sm-3 control-label px-3">U<sub>2</sub> =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-2">
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-2" class="col-sm-3 control-label px-3">U<sub>2</sub> =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-2">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">В</label>
                 </div>
-                <label class="col-sm-2 control-label pl-1">B</label>
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-5" class="col-sm-3 control-label px-3">I<sub>2</sub> =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-5">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">мА</label>
+                </div>
             </div>
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-3" class="col-sm-3 control-label px-3">U =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-3">
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-3" class="col-sm-3 control-label px-3">U =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-3">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">В</label>
                 </div>
-                <label class="col-sm-2 control-label pl-1">B</label>
-            </div>
-        </form>
-        <form class="form-horizontal">
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-4" class="col-sm-3 control-label px-3">I<sub>1</sub> =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-4">
+                <div class="form-group col-3">
+                    <label for="lab1-p2.5-6" class="col-sm-3 control-label px-3">I =</label>
+                    <div class="col-sm-5 px-0">
+                        <input type="text" class="form-control" id="lab1-p2.5-6">
+                    </div>
+                    <label class="col-sm-2 control-label pl-0">мА</label>
                 </div>
-                <label class="col-sm-2 control-label pl-0">мА</label>
-            </div>
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-5" class="col-sm-3 control-label px-3">I<sub>2</sub> =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-5">
-                </div>
-                <label class="col-sm-2 control-label pl-1">мА</label>
-            </div>
-            <div class="form-group col-3">
-                <label for="lab1-p2.5-6" class="col-sm-3 control-label px-3">I =</label>
-                <div class="col-sm-5 px-0">
-                    <input type="text" class="form-control" id="lab1-p2.5-6">
-                </div>
-                <label class="col-sm-2 control-label pl-1">мА</label>
             </div>
         </form>
     </li>
     <!--2.6-->
     <li class="mt-5">
-        Используя вторую формулу разброса, проверить полученный
-        результат.
+        <p><b>2.6</b>
+            &nbsp;&nbsp;Используя вторую формулу разброса, проверить полученный
+            результат.
+        </p>
     </li>
 </ul>
 
@@ -192,9 +198,13 @@
 <hr>
 
 <style>
+    ul {
+        list-style: none;
+    }
+
     .bottom-align-text {
         position: absolute;
-        bottom: 0;
+        bottom: 20px;
         right: 0;
     }
 </style>
