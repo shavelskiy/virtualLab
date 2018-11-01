@@ -1,6 +1,6 @@
 <!--Задания-->
 <script src="/js/labs/lab1/main.js"></script>
-<link href="/css/lab1.css" rel="stylesheet">
+<link href="/css/labs/lab1.css" rel="stylesheet">
 <?php switch (2 % 10) {
     case 0:
         $R = 100;
