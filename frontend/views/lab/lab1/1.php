@@ -61,12 +61,24 @@
                 <canvas id="table-1.1" width="700" height="400"></canvas>
             </div>
             <div class="col-4">
-                <button type="button" class="btn btn-primary draw-graph">Построить</button>
-                <p class="graph-error text-danger hidden my-3">Заполните полностью таблицу!</p>
-                <p class="graph-error-type text-danger hidden my-3">Введите корректные значения!</p>
+                <div class="row">
+                    <button type="button" class="btn btn-primary draw-graph">Построить</button>
+                </div>
+                <div class="row">
+                    <p class="graph-error text-danger hidden my-3">Заполните полностью таблицу!</p>
+                </div>
+                <div class="row">
+                    <p class="graph-error-type text-danger hidden my-3">Введите корректные значения!</p>
+                </div>
+                <div class="row mt-5">
+                    <label for="lab1-p3.1">Введите Rвн:</label>
+                </div>
+                <div class="row">
+                    <input type="text" class="form-control col-4" id="lab1-p3.1 ">
+                </div>
             </div>
+            <script src="/js/labs/lab1/1/graph1.js"></script>
         </div>
-        <script src="/js/labs/lab1/1/graph1.js"></script>
     </li>
 </ul>
 
