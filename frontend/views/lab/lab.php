@@ -119,8 +119,10 @@
                     </div>
                     <div class="form-group col-6">
                         <label class="radio-inline"><input type="radio" class="gdm-mode" value="v" name="mode" checked>V</label>
-                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="a" name="mode">mA</label>
-                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="o" name="mode">kΩ</label>
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="a"
+                                                           name="mode">mA</label>
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="o"
+                                                           name="mode">kΩ</label>
                     </div>
                     <div class="col-3 pt-2">
                         <label class="form-check-label" for="on-off">Pwr</label>
@@ -153,7 +155,9 @@
                                 <div class="form-group">
                                     <label for="lab1-p1.3" class="col-sm-3 control-label px-3">Выбрать схему</label>
                                     <div class="col-sm-5 px-0">
-                                        <select class="form-control"></select>
+                                        <select class="form-control choose-scheme">
+                                            <option value="1">1</option>
+                                        </select>
                                     </div>
                                 </div>
                             </form>
@@ -164,7 +168,7 @@
                                 <div class="form-group">
                                     <label for="lab1-p1.3" class="col-sm-3 control-label px-3">Изменить R</label>
                                     <div class="col-sm-5 px-0">
-                                        <select class="form-control">
+                                        <select class="form-control choose-resistor">
                                             <option value="50">50 Ом</option>
                                             <option value="100">100 Ом</option>
                                             <option value="150">150 Ом</option>
@@ -188,7 +192,6 @@
             <div class="col-3">
                 <div class="panel panel-default" style="margin-bottom: 0px !important; height: 100%;">
                     <?php if ($number != 1): ?>
-                        <!--Для осцилографа-->
                         <div class="panel-heading">
                             <h4>Выберете сигналы</h4>
                         </div>
@@ -222,6 +225,26 @@
                             <?php endfor; ?>
                         </div>
                     <?php endif; ?>
+                    <div class="panel-heading">
+                        <h4>Выберете сигналы</h4>
+                    </div>
+                    <div class="panel-body p-3" id="choose">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body p-0">
+                                <div class="container-fluid p-0">
+                                    <div class="row p-0 m-0" id="points">
+                                        <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
+                                            <select class="form-control point-1"></select>
+                                        </div>
+                                        <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
+                                            <select class="form-control point-2"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

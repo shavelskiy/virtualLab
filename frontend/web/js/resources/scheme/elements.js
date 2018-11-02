@@ -373,7 +373,7 @@ function drawData(name, value, units) {
     kolData++;
 }
 
-function addPoints(kolPoints) {
+function addPoints() {
     $('#choose #points').find('select').each(function (data) {
         for (var i = 0; i < kolPoints; i++) {
             $(this).append('<option value="' + i + '">' + i + '</option>');

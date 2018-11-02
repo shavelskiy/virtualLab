@@ -1,3 +1,25 @@
+function getV() {
+    if (point1 == point2) {
+        return 0;
+    }
+    pot = potentials['1'];
+    return pot[point2] - pot[point1];
+}
+
+function getA() {
+    return 'a';
+}
+
+function getO() {
+    return 'o';
+}
+
+function calculatePotencials() {
+    var curElems = elements['1'];
+    var value = curElems.E * curElems.R / (curElems.R + curElems.R1);
+    potentials['1']['1'] = Math.round(value * 1000) / 1000;
+}
+
 $(document).ready(function () {
 
     var task1 = $('.task-1'),
@@ -29,5 +51,9 @@ $(document).ready(function () {
         task2.addClass('hidden');
         task3.removeClass('hidden');
         $('body, html').animate({scrollTop: 0}, 200);
+    });
+
+    $('.choose-resistor').change(function () {
+        elements["1"].R = $(this).val();
     });
 });
