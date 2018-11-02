@@ -15,8 +15,10 @@ var kolPoints = 0;
  * @param units
  * @param drawPoints
  */
-function drawResistor(x, y, vertical, name, value, units, drawPoints) {
-    drawData(name, value, units);
+function drawResistor(x, y, vertical, name, drawData, value, units, drawPoints) {
+    if (drawData) {
+        drawData(name, value, units);
+    }
 
     if (drawPoints) {
         drawPointsAroundElement(x, y, vertical, 'long');

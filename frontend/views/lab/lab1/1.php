@@ -9,6 +9,11 @@
         <p><b>1.1</b>
             &nbsp;&nbsp;Подключите вольтметр для измерения напряжения на резисторе
         </p>
+        <div class="row">
+            <div class="col-12 ml-5">
+                <img src="/uploads/lab1/1.1.png">
+            </div>
+        <h6 class="ml-5">Рис 1.3−Схема резистивного делителя токов</h6>
     </li>
     <!--1.2-->
     <li class="mt-5">
@@ -37,13 +42,15 @@
             <tr>
                 <td>U, В</td>
                 <?php for ($i = 0; $i < 13; $i++): ?>
-                    <td class="input volts"><input type="text" class="value-input form-control" volt-id="<?= $i ?>"></td>
+                    <td class="input volts"><input type="text" class="value-input form-control" volt-id="<?= $i ?>">
+                    </td>
                 <?php endfor; ?>
             </tr>
             <tr>
                 <td>I, мА</td>
                 <?php for ($i = 0; $i < 13; $i++): ?>
-                    <td class="input ampers"><input type="text" class="value-input form-control" amper-id="<?= $i ?>"></td>
+                    <td class="input ampers"><input type="text" class="value-input form-control" amper-id="<?= $i ?>">
+                    </td>
                 <?php endfor; ?>
             </tr>
             </tbody>

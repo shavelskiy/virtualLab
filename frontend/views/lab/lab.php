@@ -54,6 +54,7 @@
 
 
 <!--Лаборатория-->
+<script src="/js/resources/init.js"></script>
 
 <?php if ($number != 1): ?>
     <!--Осцилограф-->
@@ -107,9 +108,32 @@
         </div>
     </div>
 <?php endif; ?>
+<!--Универсальный измерительный прибор-->
+
+<div class="panel panel-default">
+    <div class="panel-body pb-0">
+        <form class="form-horizontal">
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <input type="text" class="form-control col-8 ml-4" disabled>
+                </div>
+                <div class="form-group col-6">
+                    <label class="radio-inline"><input type="radio" name="mode" checked>V</label>
+                    <label class="radio-inline"><input type="radio" name="mode">mA</label>
+                    <label class="radio-inline"><input type="radio" name="mode">kΩ</label>
+                </div>
+                <div class="col-3 pt-2">
+                    <label class="form-check-label" for="onn-off">Pwr</label>
+                    <input class="form-check-input ml-4" type="checkbox" id="on-off">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 <script src="/js/resources/scheme/elements.js"></script>
+<script src="/js/labs/lab1/schemes.js"></script>
 <script src="/js/labs/lab1/variants/v1.js"></script>
 
 <div class="panel panel-default">
@@ -125,7 +149,40 @@
             <div class="col-7 px-0">
                 <div class="panel panel-default" style="margin-bottom: 0px !important;">
                     <div class="panel-body">
-                        <canvas id="scheme" width="640" height="400"></canvas>
+                        <div class="col">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="lab1-p1.3" class="col-sm-3 control-label px-3">Выбрать схему</label>
+                                    <div class="col-sm-5 px-0">
+                                        <select class="form-control"></select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <canvas id="scheme" width="640" height="302"></canvas>
+                        <div class="col">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="lab1-p1.3" class="col-sm-3 control-label px-3">Изменить R</label>
+                                    <div class="col-sm-5 px-0">
+                                        <select class="form-control">
+                                            <option value="50">50 Ом</option>
+                                            <option value="100">100 Ом</option>
+                                            <option value="150">150 Ом</option>
+                                            <option value="200">200 Ом</option>
+                                            <option value="250">250 Ом</option>
+                                            <option value="300">300 Ом</option>
+                                            <option value="400">400 Ом</option>
+                                            <option value="500">500 Ом</option>
+                                            <option value="600">600 Ом</option>
+                                            <option value="700">700 Ом</option>
+                                            <option value="800">800 Ом</option>
+                                            <option value="900">900 Ом</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
