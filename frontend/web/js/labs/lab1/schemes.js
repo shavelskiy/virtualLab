@@ -1,4 +1,4 @@
-function drawScheme11(R) {
+function drawScheme1(R) {
     // основной контур
     labContext.strokeStyle = 'black';
     labContext.beginPath();

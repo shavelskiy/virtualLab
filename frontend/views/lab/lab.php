@@ -58,9 +58,6 @@
 
 <?php if ($number != 1): ?>
     <!--Осцилограф-->
-    <script src="/js/resources/oscilloscope/init.js"></script>
-    <script src="/js/resources/oscilloscope/oscilloscope.js"></script>
-
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
@@ -107,35 +104,37 @@
             </div>
         </div>
     </div>
+    <script src="/js/resources/oscilloscope/oscilloscope.js"></script>
+    <script src="/js/resources/oscilloscope/init.js"></script>
 <?php endif; ?>
-<!--Универсальный измерительный прибор-->
 
-<div class="panel panel-default">
-    <div class="panel-body pb-0">
-        <form class="form-horizontal">
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <input type="text" class="form-control col-8 ml-4" disabled>
+<!--Универсальный измерительный прибор-->
+<div class="gdm">
+    <div class="panel panel-default">
+        <div class="panel-body pb-0">
+            <form class="form-horizontal">
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <input type="text" class="form-control col-8 ml-4 gdm-display" disabled>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="v" name="mode" checked>V</label>
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="a" name="mode">mA</label>
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="o" name="mode">kΩ</label>
+                    </div>
+                    <div class="col-3 pt-2">
+                        <label class="form-check-label" for="on-off">Pwr</label>
+                        <input class="form-check-input ml-4" type="checkbox" id="on-off">
+                    </div>
                 </div>
-                <div class="form-group col-6">
-                    <label class="radio-inline"><input type="radio" name="mode" checked>V</label>
-                    <label class="radio-inline"><input type="radio" name="mode">mA</label>
-                    <label class="radio-inline"><input type="radio" name="mode">kΩ</label>
-                </div>
-                <div class="col-3 pt-2">
-                    <label class="form-check-label" for="onn-off">Pwr</label>
-                    <input class="form-check-input ml-4" type="checkbox" id="on-off">
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
+<script src="/js/resources/gdm/gdm.js"></script>
+<script src="/js/resources/gdm/init.js"></script>
 
-
-<script src="/js/resources/scheme/elements.js"></script>
-<script src="/js/labs/lab1/schemes.js"></script>
-<script src="/js/labs/lab1/variants/v1.js"></script>
-
+<!--Нижний блок-->
 <div class="panel panel-default">
     <div class="panel-body p-4">
         <div class="row">
@@ -228,3 +227,7 @@
         </div>
     </div>
 </div>
+
+<script src="/js/resources/scheme/elements.js"></script>
+<script src="/js/labs/lab1/schemes.js"></script>
+<script src="/js/labs/lab1/variants/v1.js"></script>

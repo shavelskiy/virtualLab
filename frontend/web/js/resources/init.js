@@ -16,7 +16,7 @@ $(document).ready(function () {
         labContext = labCanvas.getContext('2d');
         labContext.clearRect(0, 0, labCanvas.width, labCanvas.height);
         labContext.font = 'bold 16px sans-serif';
-        drawScheme11(100);
+        drawScheme1(100);
         addPoints(kolPoints);
     }
 });
