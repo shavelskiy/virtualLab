@@ -16,6 +16,9 @@ function getValue() {
 }
 
 $(document).ready(function () {
+
+    calculatePotencials();
+
     onOff.change(function () {
         if (onOff.is(':checked')) {
             display.val(getValue());
@@ -37,7 +40,6 @@ $(document).ready(function () {
 
     $('.point-1').change(function () {
         point1 = $(this).val();
-        calculatePotencials();
         if (on) {
             display.val(getValue());
         }
@@ -45,7 +47,6 @@ $(document).ready(function () {
 
     $('.point-2').change(function () {
         point2 = $(this).val();
-        calculatePotencials();
         if (on) {
             display.val(getValue());
         }

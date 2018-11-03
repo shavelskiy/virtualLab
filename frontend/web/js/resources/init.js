@@ -4,6 +4,9 @@ var labContext;
 var dataCanvas;
 var dataContext;
 
+var schemeNum = 4;
+var elems;
+
 $(document).ready(function () {
     dataCanvas = document.getElementById('data');
     if (dataCanvas.getContext) {
@@ -16,7 +19,20 @@ $(document).ready(function () {
         labContext = labCanvas.getContext('2d');
         labContext.clearRect(0, 0, labCanvas.width, labCanvas.height);
         labContext.font = 'bold 16px sans-serif';
-        drawScheme1(100);
-        addPoints(kolPoints);
+        drawScheme();
+        addPoints();
     }
+
+    $('.choose-scheme').change(function () {
+        schemeNum = Number($(this).val());
+
+        if (on) {
+            display.val(getValue());
+        }
+
+        elems = elements[schemeNum];
+
+        drawScheme();
+        addPoints();
+    });
 });

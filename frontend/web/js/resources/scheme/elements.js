@@ -15,8 +15,8 @@ var kolPoints = 0;
  * @param units
  * @param drawPoints
  */
-function drawResistor(x, y, vertical, name, drawData, value, units, drawPoints) {
-    if (drawData) {
+function drawResistor(x, y, vertical, name, needData, value, units, drawPoints) {
+    if (needData) {
         drawData(name, value, units);
     }
 
@@ -147,8 +147,10 @@ function drawCoil(x, y, vertical, name, value, units, drawPoints) {
  * @param units
  * @param drawPoints
  */
-function drawVoltageSource(x, y, vertical, direction, name, value, units, drawPoints) {
-    drawData(name, value, units);
+function drawVoltageSource(x, y, vertical, direction, name, needData, value, units, drawPoints) {
+    if (needData) {
+        drawData(name, value, units);
+    }
 
     if (drawPoints) {
         drawPointsAroundElement(x, y, vertical, 'middle');
@@ -375,6 +377,7 @@ function drawData(name, value, units) {
 
 function addPoints() {
     $('#choose #points').find('select').each(function (data) {
+        $(this).find('option').remove();
         for (var i = 0; i < kolPoints; i++) {
             $(this).append('<option value="' + i + '">' + i + '</option>');
         }

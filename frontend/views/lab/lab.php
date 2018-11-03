@@ -1,4 +1,7 @@
 <!--Задания-->
+<script src="/js/labs/lab1/variants/v1.js"></script>
+<script src="/js/resources/scheme/elements.js"></script>
+<script src="/js/labs/lab1/schemes.js"></script>
 <script src="/js/labs/lab1/main.js"></script>
 <link href="/css/labs/lab1.css" rel="stylesheet">
 <?php switch (2 % 10) {
@@ -141,7 +144,7 @@
     <div class="panel-body p-4">
         <div class="row">
             <div class="col-2">
-                <div class="panel panel-default" style="margin-bottom: 0px !important;">
+                <div class="panel panel-default" style="margin-bottom: 0px !important; height: 100%;">
                     <div class="panel-body">
                         <canvas id="data" width="180" height="400"></canvas>
                     </div>
@@ -157,14 +160,17 @@
                                     <div class="col-sm-5 px-0">
                                         <select class="form-control choose-scheme">
                                             <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="3">4</option>
                                         </select>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <canvas id="scheme" width="640" height="302"></canvas>
+                        <canvas id="scheme" width="640" height="360"></canvas>
                         <div class="col">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal select-value">
                                 <div class="form-group">
                                     <label for="lab1-p1.3" class="col-sm-3 control-label px-3">Изменить R</label>
                                     <div class="col-sm-5 px-0">
@@ -250,7 +256,3 @@
         </div>
     </div>
 </div>
-
-<script src="/js/resources/scheme/elements.js"></script>
-<script src="/js/labs/lab1/schemes.js"></script>
-<script src="/js/labs/lab1/variants/v1.js"></script>

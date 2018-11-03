@@ -16,6 +16,9 @@ function getO() {
     return getOm();
 }
 
+/**
+ * Пересчитать значение потенциалов
+ */
 function calculatePotencials() {
     var curElems = elements['1'];
     var value = curElems.E * curElems.R / (curElems.R + curElems.R1);
@@ -23,6 +26,7 @@ function calculatePotencials() {
 }
 
 $(document).ready(function () {
+    elems = elements[schemeNum];
 
     var task1 = $('.task-1'),
         task2 = $('.task-2'),
@@ -55,8 +59,11 @@ $(document).ready(function () {
         $('body, html').animate({scrollTop: 0}, 200);
     });
 
+    /**
+     * Изменение значения резистора
+     */
     $('.choose-resistor').change(function () {
-        elements["1"].R = Number($(this).val());
+        elements[schemeNum].R = Number($(this).val());
         calculatePotencials();
         if (on) {
             display.val(getValue());
