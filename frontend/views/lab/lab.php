@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label class="radio-inline"><input type="radio" class="gdm-mode" value="v" name="mode" checked>V</label>
-                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="a"
+                        <label class="radio-inline"><input type="radio" class="gdm-mode" value="a" disabled
                                                            name="mode">mA</label>
                         <label class="radio-inline"><input type="radio" class="gdm-mode" value="o"
                                                            name="mode">kΩ</label>

@@ -160,9 +160,9 @@ function drawGraph() {
         var y0 = graphCanvas.height - 50;
 
         graphContext.beginPath();
-        graphContext.moveTo(x0, y0);
+        graphContext.moveTo(x0 + 100 * (volts[0]), y0 - 5 * ampers[0]);
 
-        for (var i = 0; i < 13; i++) {
+        for (var i = 1; i < 13; i++) {
             graphContext.lineTo(x0 + 100 * (volts[i]), y0 - 5 * ampers[i]);
         }
 

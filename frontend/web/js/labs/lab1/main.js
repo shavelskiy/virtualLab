@@ -2,8 +2,7 @@ function getV() {
     if (point1 == point2) {
         return 0;
     }
-    pot = potentials['1'];
-    return pot[point2] - pot[point1];
+    return getPotDif();
 }
 
 function getA() {
@@ -11,7 +10,10 @@ function getA() {
 }
 
 function getO() {
-    return 'o';
+    if (point1 == point2) {
+        return 0;
+    }
+    return getOm();
 }
 
 function calculatePotencials() {
@@ -54,6 +56,10 @@ $(document).ready(function () {
     });
 
     $('.choose-resistor').change(function () {
-        elements["1"].R = $(this).val();
+        elements["1"].R = Number($(this).val());
+        calculatePotencials();
+        if (on) {
+            display.val(getValue());
+        }
     });
 });
