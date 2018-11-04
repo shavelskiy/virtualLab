@@ -4,7 +4,7 @@ var labContext;
 var dataCanvas;
 var dataContext;
 
-var schemeNum = 4;
+var schemeNum = 5;
 var elems;
 
 $(document).ready(function () {
@@ -25,7 +25,6 @@ $(document).ready(function () {
 
     $('.choose-scheme').change(function () {
         schemeNum = Number($(this).val());
-
         if (on) {
             display.val(getValue());
         }

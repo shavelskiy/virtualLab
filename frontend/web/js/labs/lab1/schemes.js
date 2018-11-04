@@ -117,7 +117,52 @@ function drawScheme() {
 
             $('.select-value').addClass('invisible');
             break;
+        case 5:
+            if (variant % 2) {
+                // нечэтный вариант
+                labContext.strokeStyle = 'black';
+                labContext.beginPath();
+                labContext.moveTo(220, 50);
+                labContext.lineTo(500, 50);
+                labContext.lineTo(500, 200);
+                labContext.lineTo(220, 200);
 
+
+                labContext.moveTo(340, 50);
+                labContext.lineTo(340, 200);
+
+                labContext.moveTo(420, 50);
+                labContext.lineTo(420, 200);
+
+                labContext.moveTo(150, 25);
+                labContext.lineTo(220, 25);
+                labContext.lineTo(220, 225);
+                labContext.lineTo(150, 225);
+                labContext.lineTo(150, 25);
+
+                labContext.stroke();
+                labContext.closePath();
+
+                drawResistor(280, 50, false, 'R', true, elems['R'], 'Ом', false);
+                drawResistor(380, 50, false, 'R1', true, elems['R1'], 'Ом', false);
+                drawResistor(340, 125, true, 'R2', true, elems['R2'], 'Ом', false);
+                drawResistor(420, 125, true, 'R3', true, elems['R3'], 'Ом', false);
+                drawResistor(500, 125, true, 'R4', true, elems['R4'], 'Ом', false);
+
+                drawPoint(340, 200, false, null, false);
+                drawPoint(240, 50, false, null, true);
+                drawPoint(340, 50, false, null, true);
+                drawPoint(420, 50, false, null, true);
+
+                labContext.font = 'bold 16px sans-serif';
+                labContext.fillText('A', 180, 130);
+
+                $('.select-value').addClass('invisible');
+                break;
+            }
+            else {
+                // чётный вариант
+            }
 
     }
 }

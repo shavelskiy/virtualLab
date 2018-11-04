@@ -18,6 +18,13 @@ var elements = {
         'R2': 2000,
         'R': 200,
         'E': 5
+    },
+    '5': {
+        'R1': 1000,
+        'R2': 2000,
+        'R3': 10000,
+        'R4': 100,
+        'R': 200
     }
 };
 
@@ -31,6 +38,8 @@ var potentials = {
         '1': 5
     }
 };
+
+var variant = 1;
 
 function getPotDif() {
     pot = potentials[schemeNum];
