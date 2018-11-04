@@ -4,7 +4,7 @@ var labContext;
 var dataCanvas;
 var dataContext;
 
-var schemeNum = 5;
+var schemeNum = 1;
 var elems;
 
 $(document).ready(function () {
