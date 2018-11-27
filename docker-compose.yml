@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  webserver:
+    privileged: true
+    build: ./docker/webserver
+    container_name: virtualLab
+    working_dir: /application
+    volumes:
+    - .:/application/repo/dev
+    ports:
+    - "80:8000"
