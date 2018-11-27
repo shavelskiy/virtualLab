@@ -16,6 +16,12 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,27 +41,29 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
+    $menuItemsLeft = [];
+    $menuItemsRight = [];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItemsLeft[] = ['label' => 'Доступные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
+//        $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
+        $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Выход (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
     }
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $menuItemsLeft,
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+        'items' => $menuItemsRight,
     ]);
     NavBar::end();
     ?>

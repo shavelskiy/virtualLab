@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use backend\assets\AppAsset;
@@ -35,24 +36,29 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+    $menuItemsLeft = [];
+    $menuItemsRight = [];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItemsLeft[] = ['label' => 'Преподаватели', 'url' => Yii::$app->urlManager->createUrl(["teacher/index"])];
+        $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
+        $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Выход (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
     }
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $menuItemsLeft,
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+        'items' => $menuItemsRight,
     ]);
     NavBar::end();
     ?>
