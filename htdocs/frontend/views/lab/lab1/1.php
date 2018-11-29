@@ -11,7 +11,7 @@
         </p>
         <div class="row">
             <div class="col-12 ml-5">
-                <img src="/uploads/lab1/1.1.png">
+                <img src="/data/uploads/lab1/1.1.png">
             </div>
         <h6 class="ml-5">Рис 1.3−Схема резистивного делителя токов</h6>
     </li>
@@ -91,7 +91,7 @@
                     </form>
                 </div>
             </div>
-            <script src="/js/labs/lab1/graph.js"></script>
+            <script src="/frontend/web/js/labs/lab1/graph.js"></script>
         </div>
     </li>
     <!--1.4-->

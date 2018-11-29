@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3">
-                        <img src="<?= '/uploads/labs/' . $lab->preview_picture ?>" height="100px">
+                        <img src="<?= $lab->previewPicture ?>" height="100px">
                     </div>
                     <div class="col-9">
                         <p><?= $lab->description ?></p>

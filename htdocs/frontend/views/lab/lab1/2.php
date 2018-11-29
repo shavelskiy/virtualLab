@@ -9,7 +9,7 @@
         </p>
         <div class="row">
             <div class="col-4 ml-5">
-                <img src="/uploads/lab1/1.2.png">
+                <img src="/data/uploads/lab1/1.2.png">
             </div>
             <div class="col-2 mt-3">
                 R<sub>1</sub> = 1 кОм
@@ -78,7 +78,7 @@
         </p>
         <div class="row">
             <div class="col-4 ml-5">
-                <img src="/uploads/lab1/1.3.png">
+                <img src="/data/uploads/lab1/1.3.png">
             </div>
             <div class="col-2 mt-5">
                 R<sub>1</sub> = 1 кОм
