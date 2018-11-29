@@ -4,7 +4,7 @@ services:
   webserver:
     privileged: true
     build: ./docker/webserver
-    container_name: shop
+    container_name: virtualLab
     working_dir: /application
     cap_add:
     - SYS_ADMIN
