@@ -14,11 +14,17 @@ use Yii;
  */
 class Lab extends \yii\db\ActiveRecord
 {
+    const PICTURES_DIR = '/data/uploads/labs/';
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'labs';
+    }
+
+    public function getPreviewPicture()
+    {
+        return self::PICTURES_DIR . $this->preview_picture;
     }
 }

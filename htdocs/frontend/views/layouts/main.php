@@ -16,11 +16,11 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="/frontend/web/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/frontend/web/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="/frontend/web/css/bootstrap-reboot.min.css" rel="stylesheet">
 
-    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/frontend/web/js/jquery-3.3.1.min.js"></script>
 
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

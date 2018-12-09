@@ -1,9 +1,9 @@
 <!--Задания-->
-<script src="/js/labs/lab1/variants/v1.js"></script>
-<script src="/js/resources/scheme/elements.js"></script>
-<script src="/js/labs/lab1/schemes.js"></script>
-<script src="/js/labs/lab1/main.js"></script>
-<link href="/css/labs/lab1.css" rel="stylesheet">
+<script src="/frontend/web/js/labs/lab1/variants/v1.js"></script>
+<script src="/frontend/web/js/resources/scheme/elements.js"></script>
+<script src="/frontend/web/js/labs/lab1/schemes.js"></script>
+<script src="/frontend/web/js/labs/lab1/main.js"></script>
+<link href="/frontend/web/css/labs/lab1.css" rel="stylesheet">
 <?php switch (2 % 10) {
     case 0:
         $R = 100;
@@ -57,7 +57,7 @@
 
 
 <!--Лаборатория-->
-<script src="/js/resources/init.js"></script>
+<script src="/frontend/web/js/resources/init.js"></script>
 
 <?php if ($number != 1): ?>
     <!--Осцилограф-->
@@ -107,8 +107,8 @@
             </div>
         </div>
     </div>
-    <script src="/js/resources/oscilloscope/oscilloscope.js"></script>
-    <script src="/js/resources/oscilloscope/init.js"></script>
+    <script src="/frontend/web/js/resources/oscilloscope/oscilloscope.js"></script>
+    <script src="/frontend/web/js/resources/oscilloscope/init.js"></script>
 <?php endif; ?>
 
 <!--Универсальный измерительный прибор-->
@@ -136,8 +136,8 @@
         </div>
     </div>
 </div>
-<script src="/js/resources/gdm/gdm.js"></script>
-<script src="/js/resources/gdm/init.js"></script>
+<script src="/frontend/web/js/resources/gdm/gdm.js"></script>
+<script src="/frontend/web/js/resources/gdm/init.js"></script>
 
 <!--Нижний блок-->
 <div class="panel panel-default">

@@ -12,9 +12,9 @@
         <div class="row">
             <div class="col-4 ml-5">
                 <?php if (1 % 2): ?>
-                    <img src="/uploads/lab1/1.4b.png">
+                    <img src="/data/uploads/lab1/1.4b.png">
                 <?php else: ?>
-                    <img src="/uploads/lab1/1.4a.png">
+                    <img src="/data/uploads/lab1/1.4a.png">
                 <?php endif; ?>
             </div>
             <div class="col-5 mt-3 ml-5">
