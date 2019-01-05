@@ -11,6 +11,8 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $preview_picture
+ *
+ * @property LabItems[] $labItems
  */
 class Lab extends \yii\db\ActiveRecord
 {
@@ -26,5 +28,9 @@ class Lab extends \yii\db\ActiveRecord
     public function getPreviewPicture()
     {
         return self::PICTURES_DIR . $this->preview_picture;
+    }
+
+    public function getLabItems () {
+        return LabItems::find()->where(['lab_id' => $this->id])->all();
     }
 }

@@ -21,8 +21,9 @@ class m190105_204137_create_lab_items_table extends Migration
             'id' => $this->primaryKey(),
             'lab_id' => $this->integer()->notNull(),
             'is_parent' => $this->boolean()->notNull(),
+            'parent' => $this->integer(),
             'number' => $this->integer()->notNull(),
-            'name' => $this->string(255)->notNull(),
+            'name' => $this->text()->notNull(),
             'content' => $this->text(),
             'component' => $this->string(255),
         ], $tableOptions);
