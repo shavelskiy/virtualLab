@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use common\models\Lab;
-use common\models\LabItems;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
