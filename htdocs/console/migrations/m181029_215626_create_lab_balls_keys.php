@@ -90,8 +90,6 @@ class m181029_215626_create_lab_balls_keys extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('student_labs');
-
         $this->dropForeignKey(
             'fk-student_labs-lab1_id',
             'student_labs'
