@@ -16,14 +16,6 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <link href="/frontend/web/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/frontend/web/css/bootstrap-grid.min.css" rel="stylesheet">
-    <link href="/frontend/web/css/bootstrap-reboot.min.css" rel="stylesheet">
-
-    <script src="/frontend/web/js/jquery-3.3.1.min.js"></script>
-
-    <link href="/frontend/web/css/site.css" rel="stylesheet">
-
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
