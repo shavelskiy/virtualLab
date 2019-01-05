@@ -22,6 +22,8 @@ AppAsset::register($this);
 
     <script src="/frontend/web/js/jquery-3.3.1.min.js"></script>
 
+    <link href="/frontend/web/css/site.css" rel="stylesheet">
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,7 +49,6 @@ AppAsset::register($this);
         $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
         $menuItemsLeft[] = ['label' => 'Доступные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
-//        $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

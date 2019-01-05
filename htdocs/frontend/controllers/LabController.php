@@ -63,7 +63,7 @@ class LabController extends Controller
                         'name' => 'Подключите вольтметр для измерения напряжения на резисторе',
                         'content' => '<div class="row">
             <div class="col-12 ml-5">
-                <img src="/src/assets//lab1/1.1.png">
+                <img src="/data/uploads/lab1/1.1.png">
             </div>
         <h6 class="ml-5">Рис 1.3−Схема резистивного делителя токов</h6>',
                         'component' => ''
@@ -125,7 +125,7 @@ class LabController extends Controller
                         'name' => 'Согласно варианту аналитически рассчитать коэффициент деления резистивного делителя напряжения – рис. 1.2 (K<sup>V</sup> = U<sub>2</sub> / U<sub>1</sub>)',
                         'content' => '<div class="row">
             <div class="col-4 ml-5">
-                <img src="/src/assets//lab1/1.2.png">
+                <img src="/data/uploads/lab1/1.2.png">
             </div>
             <div class="col-2 mt-3">
                 R<sub>1</sub> = 1 кОм
@@ -181,7 +181,7 @@ class LabController extends Controller
                         'name' => 'Выберите схему рис 1.3 с источник постоянного напряжения на входе',
                         'content' => '<div class="row">
             <div class="col-4 ml-5">
-                <img src="/src/assets/lab1/1.3.png">
+                <img src="/data/uploads/lab1/1.3.png">
             </div>
             <div class="col-2 mt-5">
                 R<sub>1</sub> = 1 кОм
@@ -262,7 +262,7 @@ class LabController extends Controller
                         'name' => 'В схеме рис. 1.4 рассчитать с помощью законов Кирхгофа эквивалентное сопротивление относительно реального источника (активного двухполюсника) и<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; определить его, используя омметр. (При этом реальный источник отключить от схемы).',
                         'content' => '<div class="row">
             <div class="col-4 ml-5">
-                    <img src="/src/assets//lab1/1.4b.png">
+                    <img src="/data/uploads/lab1/1.4b.png">
             </div>
             <div class="col-5 mt-3 ml-5">
                 E= 10 В<br>

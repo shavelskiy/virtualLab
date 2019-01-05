@@ -119,10 +119,8 @@ a.desc:after {
     outline: none;
 }
 
-
 .bottom-align-text {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
+  position: absolute;
+  bottom: 20px;
+  right: 0;
 }
-

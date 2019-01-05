@@ -1,10 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <task></task>
-    <div class="row">
-      <gdm></gdm>
-      <oscilloscope></oscilloscope>
-    </div>
+    <gdm></gdm>
+    <oscilloscope></oscilloscope>
   </div>
 </template>
 

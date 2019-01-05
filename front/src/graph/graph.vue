@@ -10,10 +10,10 @@
         </div>
       </div>
       <div class="row" v-show="errorCount">
-        <p class="text-danger hidden my-3">Заполните полностью таблицу!</p>
+        <p class="text-danger my-3">Заполните полностью таблицу!</p>
       </div>
       <div class="row" v-show="errorType">
-        <p class="text-danger hidden my-3">Введите корректные значения!</p>
+        <p class="text-danger my-3">Введите корректные значения!</p>
       </div>
       <div class="row mt-5">
         <form class="form-horizontal">
@@ -155,6 +155,8 @@
       drawGraph: function(data) {
         this.errorCount = data.errors.data
         this.errorType = data.errors.type
+        console.log(this.errorCount)
+
 
         this.drawGrid()
         if (!this.errorCount && !this.errorType) {

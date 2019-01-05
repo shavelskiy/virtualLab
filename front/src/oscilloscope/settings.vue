@@ -1,10 +1,10 @@
 <template>
-  <div class="card">
-    <div class="card-header">
+  <div class="panel panel-default">
+    <div class="panel-heading">
       <label :for="'active-' + id">Канал {{id}}</label>
       <input type="checkbox" @change="changeSettings" v-model="settings.active" :id="'active-' + id">
     </div>
-    <div class="card-body">
+    <div class="panel-body">
       <label :for="'timeDiv-' + id">Время на деление:</label>
       <select class="form-control" @change="changeSettings" v-model.number="settings.timeDiv" :id="'timeDiv-' + id">
         <option value="0.05">50 us</option>

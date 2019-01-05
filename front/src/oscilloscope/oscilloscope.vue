@@ -1,17 +1,13 @@
 <template>
-  <div class="col-10 offset-1 mt-5">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-8 text-center">
-            <canvas id="oscilloscope" width="700" height="400"></canvas>
-          </div>
-          <div class="col-2 text-center my-auto">
-            <settings :id="1" @changeSettings="changeSettings($event)"></settings>
-          </div>
-          <div class="col-2 text-center my-auto">
-            <settings :id="2" @changeSettings="changeSettings($event)"></settings>
-          </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-8">
+          <canvas id="oscilloscope" width="700" height="400"></canvas>
+        </div>
+        <div class="col-4 my-auto">
+          <settings :id="1" @changeSettings="changeSettings($event)"></settings>
+          <settings :id="2" @changeSettings="changeSettings($event)"></settings>
         </div>
       </div>
     </div>
