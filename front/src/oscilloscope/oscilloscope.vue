@@ -60,9 +60,9 @@
     },
 
     mounted() {
-      this.canvas = document.getElementById('oscilloscope');
+      this.canvas = document.getElementById('oscilloscope')
       if (this.canvas.getContext) {
-        this.context = this.canvas.getContext('2d');
+        this.context = this.canvas.getContext('2d')
         this.draw()
       }
     },
