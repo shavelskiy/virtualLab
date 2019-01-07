@@ -88,7 +88,20 @@
 
     components: {
       'Scheme': scheme
-    }
+    },
+
+    data() {
+      return {
+        schemesUrl: 'http://localhost/frontend/web/scheme/get'
+      }
+    },
+
+    created: function () {
+      this.$http.get(this.schemesUrl).then(function (response) {
+
+        this.tasks = JSON.parse(response.data)
+      })
+    },
   }
 </script>
 

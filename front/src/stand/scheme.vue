@@ -6,8 +6,8 @@
           <div class="form-group">
             <label for="choose-scheme" class="col-sm-3 control-label px-3">Выбрать схему</label>
             <div class="col-sm-5 px-0">
-              <select class="form-control" id="choose-scheme">
-                <option value="1">1</option>
+              <select class="form-control" @change="drawScheme" v-model.number="currentScheme">
+                <option v-for="n in schemeCol" :value="n">{{ n }}</option>
               </select>
             </div>
           </div>
@@ -36,16 +36,28 @@
 
     data() {
       return {
+        schemesUrl: 'http://localhost/frontend/web/scheme/get',
+        schemeInfo: null,
+        schemeCol: null,
+        currentScheme: 1,
         canvas: null,
         context: null
       }
     },
 
     mounted() {
-      this.canvas = document.getElementById('scheme')
+      this.canvas = document.getElementById('scheme');
       if (this.canvas.getContext) {
         this.context = this.canvas.getContext('2d')
       }
+    },
+
+    created() {
+      this.$http.get(this.schemesUrl).then(function (response) {
+        this.schemeInfo = JSON.parse(response.data)
+        this.schemeCol =  Object.keys(this.schemeInfo).length
+        this.drawScheme(1)
+      })
     },
 
     methods: {
@@ -240,6 +252,72 @@
 
         this.context.stroke();
         this.context.closePath();
+      },
+
+      drawScheme: function () {
+        var num = this.currentScheme
+        var name, i
+
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.context.strokeStyle = 'black';
+        this.context.beginPath();
+        for (name in this.schemeInfo[num]['circuits']) {
+          this.context.moveTo(
+            this.schemeInfo[num]['circuits'][name]['start']['x'],
+            this.schemeInfo[num]['circuits'][name]['start']['y']
+          )
+          for (i in this.schemeInfo[num]['circuits'][name]['points']) {
+            this.context.lineTo(
+              this.schemeInfo[num]['circuits'][name]['points'][i]['x'],
+              this.schemeInfo[num]['circuits'][name]['points'][i]['y']
+            )
+          }
+        }
+        this.context.stroke();
+        this.context.closePath();
+
+        this.context.font = 'bold 16px sans-serif';
+        for (i in this.schemeInfo[num]['texts']) {
+          this.context.fillText(
+            this.schemeInfo[num]['texts'][i]['text'],
+            this.schemeInfo[num]['texts'][i]['x'],
+            this.schemeInfo[num]['texts'][i]['y'],
+          )
+        }
+
+        for (name in this.schemeInfo[num]['resistors']) {
+          this.drawResistor(
+            this.schemeInfo[num]['resistors'][name]['x'],
+            this.schemeInfo[num]['resistors'][name]['y'],
+            this.schemeInfo[num]['resistors'][name]['vertical'],
+            name
+          )
+        }
+        for (name in this.schemeInfo[num]['capacitor']) {
+          this.drawCapacitor(
+            this.schemeInfo[num]['capacitor'][name]['x'],
+            this.schemeInfo[num]['capacitor'][name]['y'],
+            this.schemeInfo[num]['capacitor'][name]['vertical'],
+            name
+          )
+        }
+        for (name in this.schemeInfo[num]['coils']) {
+          this.drawCoil(
+            this.schemeInfo[num]['coils'][name]['x'],
+            this.schemeInfo[num]['coils'][name]['y'],
+            this.schemeInfo[num]['coils'][name]['vertical'],
+            name
+          )
+        }
+        for (name in this.schemeInfo[num]['source']) {
+          this.drawVoltageSource(
+            this.schemeInfo[num]['source'][name]['x'],
+            this.schemeInfo[num]['source'][name]['y'],
+            this.schemeInfo[num]['source'][name]['direction'],
+            this.schemeInfo[num]['source'][name]['vertical'],
+            name
+          )
+        }
       }
     }
   }
