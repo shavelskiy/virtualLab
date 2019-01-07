@@ -31,6 +31,8 @@
 </template>
 
 <script>
+  import {bus} from '../bus.js'
+
   export default {
     name: "scheme",
 
@@ -55,7 +57,7 @@
     created() {
       this.$http.get(this.schemesUrl).then(function (response) {
         this.schemeInfo = JSON.parse(response.data)
-        this.schemeCol =  Object.keys(this.schemeInfo).length
+        this.schemeCol = Object.keys(this.schemeInfo).length
         this.drawScheme(1)
       })
     },
@@ -318,6 +320,8 @@
             name
           )
         }
+
+        bus.$emit('print-scheme-data', this.schemeInfo[num]['data'])
       }
     }
   }
