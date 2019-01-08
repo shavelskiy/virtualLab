@@ -62,10 +62,11 @@ class LabController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $session = Yii::$app->session;
+        $result = [];
+
         if ($session->has('lab_number')) {
             $lab = Lab::findOne($session->get('lab_number'));
             $labItems = $lab->labItems;
-            $result = [];
 
             foreach ($labItems as $item) {
                 if ($item->is_parent) {
@@ -87,9 +88,9 @@ class LabController extends Controller
             }
 
             $result = json_encode($result);
-            return $result;
-        } else {
-            return null;
+
         }
+
+        return $result;
     }
 }
