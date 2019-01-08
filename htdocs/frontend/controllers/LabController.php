@@ -86,10 +86,9 @@ class LabController extends Controller
                     ];
                 }
             }
-
-            $result = json_encode($result);
-
         }
+
+        $result = json_encode($result);
 
         return $result;
     }

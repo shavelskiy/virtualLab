@@ -13,10 +13,12 @@ use Yii;
  * @property string $preview_picture
  *
  * @property LabItems[] $labItems
+ * @property Scheme[] $schemes
  */
 class Lab extends \yii\db\ActiveRecord
 {
     const PICTURES_DIR = '/data/uploads/labs/';
+
     /**
      * {@inheritdoc}
      */
@@ -30,7 +32,13 @@ class Lab extends \yii\db\ActiveRecord
         return self::PICTURES_DIR . $this->preview_picture;
     }
 
-    public function getLabItems () {
+    public function getLabItems()
+    {
         return LabItems::find()->where(['lab_id' => $this->id])->all();
+    }
+
+    public function getSchemes()
+    {
+        return Scheme::find()->where(['lab_id' => $this->id])->all();
     }
 }

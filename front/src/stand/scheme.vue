@@ -287,11 +287,11 @@
           )
         }
 
-        for (name in this.schemeInfo[num]['resistors']) {
+        for (name in this.schemeInfo[num]['resistor']) {
           this.drawResistor(
-            this.schemeInfo[num]['resistors'][name]['x'],
-            this.schemeInfo[num]['resistors'][name]['y'],
-            this.schemeInfo[num]['resistors'][name]['vertical'],
+            this.schemeInfo[num]['resistor'][name]['x'],
+            this.schemeInfo[num]['resistor'][name]['y'],
+            this.schemeInfo[num]['resistor'][name]['vertical'],
             name
           )
         }
@@ -303,11 +303,11 @@
             name
           )
         }
-        for (name in this.schemeInfo[num]['coils']) {
+        for (name in this.schemeInfo[num]['coil']) {
           this.drawCoil(
-            this.schemeInfo[num]['coils'][name]['x'],
-            this.schemeInfo[num]['coils'][name]['y'],
-            this.schemeInfo[num]['coils'][name]['vertical'],
+            this.schemeInfo[num]['coil'][name]['x'],
+            this.schemeInfo[num]['coil'][name]['y'],
+            this.schemeInfo[num]['coil'][name]['vertical'],
             name
           )
         }
