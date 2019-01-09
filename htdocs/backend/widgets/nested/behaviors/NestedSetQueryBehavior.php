@@ -36,7 +36,6 @@ class NestedSetQueryBehavior extends Behavior
 
     public function tree($root = false, $maxLevel = false)
     {
-
         $tree = [];
 
         if ($root === false) {

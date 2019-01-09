@@ -28,6 +28,10 @@
 //}
 ?>
 
+<!--<pre>-->
+<!--    --><?php //var_dump(\common\models\Test::find()->tree()); die; ?>
+<!--</pre>-->
+
 <?= backend\widgets\nested\widgets\NestedList::widget([
     'items' => \common\models\Test::find()->tree(),
     'actions' => false,

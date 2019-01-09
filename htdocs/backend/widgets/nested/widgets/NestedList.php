@@ -26,7 +26,7 @@ class NestedList extends Widget
 
     public function run()
     {
-        $this->registerAssets();
+//        $this->registerAssets();
         $this->renderInput();
     }
 
@@ -63,27 +63,26 @@ class NestedList extends Widget
         return $html;
     }
 
-    protected function buildActionButtons($id)
-    {
-        $html = Html::beginTag('div', ['class'=>'nested-actions']);
-        $html .= Html::a(Html::tag('span', '', ['class'=>'glyphicon glyphicon-pencil text-primary']), [$this->view->context->id . '/update', 'id' => $id], ['class' => 'btn btn-default btn-xs']);
-        $html .= Html::a(Html::tag('span', '', ['class'=>'glyphicon glyphicon-remove text-danger']), [$this->view->context->id . '/delete', 'id' => $id], ['class' => 'btn btn-default btn-xs']);
-        $html .= Html::endTag('div');
-        return $html;
-    }
+//    protected function buildActionButtons($id)
+//    {
+//        $html = Html::beginTag('div', ['class'=>'nested-actions']);
+//        $html .= Html::a(Html::tag('span', '', ['class'=>'glyphicon glyphicon-pencil text-primary']), [$this->view->context->id . '/update', 'id' => $id], ['class' => 'btn btn-default btn-xs']);
+//        $html .= Html::a(Html::tag('span', '', ['class'=>'glyphicon glyphicon-remove text-danger']), [$this->view->context->id . '/delete', 'id' => $id], ['class' => 'btn btn-default btn-xs']);
+//        $html .= Html::endTag('div');
+//        return $html;
+//    }
 
     /**
      * Registers the needed assets
      */
-    public function registerAssets()
-    {
-
-        $view = $this->getView();
-
-        NestedListAsset::register($view);
-        $js = "$('." . $this->wrapClass . "').nestable({'maxDepth':" . $this->maxDepth . "});";
-        $view->registerJs($js);
-
-    }
-
+//    public function registerAssets()
+//    {
+//
+//        $view = $this->getView();
+//
+//        NestedListAsset::register($view);
+//        $js = "$('." . $this->wrapClass . "').nestable({'maxDepth':" . $this->maxDepth . "});";
+//        $view->registerJs($js);
+//
+//    }
 }
