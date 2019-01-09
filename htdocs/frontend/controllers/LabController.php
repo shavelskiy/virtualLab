@@ -66,7 +66,7 @@ class LabController extends Controller
 
         if ($session->has('lab_number')) {
             $lab = Lab::findOne($session->get('lab_number'));
-            $labItems = $lab->labItems;
+            $labItems = $lab->items;
 
             foreach ($labItems as $item) {
                 if ($item->is_parent) {

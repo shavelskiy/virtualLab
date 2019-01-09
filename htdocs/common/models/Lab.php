@@ -12,7 +12,7 @@ use Yii;
  * @property string $description
  * @property string $preview_picture
  *
- * @property LabItems[] $labItems
+ * @property LabItems[] $items
  * @property Scheme[] $schemes
  */
 class Lab extends \yii\db\ActiveRecord
@@ -27,12 +27,21 @@ class Lab extends \yii\db\ActiveRecord
         return 'labs';
     }
 
+    public function attributeLabels()
+    {
+        return [
+          'name' => 'Название',
+          'description' => 'Описание',
+          'preview_picture' => 'Изображение'
+        ];
+    }
+
     public function getPreviewPicture()
     {
         return self::PICTURES_DIR . $this->preview_picture;
     }
 
-    public function getLabItems()
+    public function getItems()
     {
         return LabItems::find()->where(['lab_id' => $this->id])->all();
     }
