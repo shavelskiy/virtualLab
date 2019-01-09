@@ -7,7 +7,7 @@
  * @version   0.2
  */
 
-namespace kgladkiy\widgets;
+namespace backend\widgets\nested\widgets;
 
 /**
  * Asset bundle for Nestable Widget
