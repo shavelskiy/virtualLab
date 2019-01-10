@@ -76,7 +76,6 @@ class NestedList extends Widget
      */
     public function registerAssets()
     {
-
         $view = $this->getView();
 
         NestedListAsset::register($view);
