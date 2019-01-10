@@ -21,6 +21,12 @@
                 list.setParent($(el));
             });
 
+            $.each(this.el.find('.preview'), function (k, el) {
+                $(el).click(function (e) {
+                    console.log($(e))
+                });
+            });
+
             list.el.on('click', 'button', function (e) {
                 var target = $(e.currentTarget),
                     action = target.data('action'),

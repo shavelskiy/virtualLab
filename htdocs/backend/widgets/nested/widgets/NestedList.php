@@ -64,7 +64,7 @@ class NestedList extends Widget
         $html .= Html::tag($tag, $num . ' ' . $item['name']);
 
         $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control']);
-        $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2']);
+        $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
         if (count($item['children']) > 0) {
             $html .= $this->buildList($item['children'], $item['num']);
         }
