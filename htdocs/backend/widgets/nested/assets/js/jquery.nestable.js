@@ -40,8 +40,8 @@
             emptyClass      : 'nested-empty',
             poolClass       : 'nested-pool',
             poolData        : [],
-            expandBtnHTML   : '<button data-action="expand" type="button"><span class="glyphicon glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>',
-            collapseBtnHTML : '<button data-action="collapse" type="button"><span class="glyphicon glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>',
+            expandBtnHTML   : '<button data-action="expand" class="nested" type="button"><span class="glyphicon glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>',
+            collapseBtnHTML : '<button data-action="collapse" class="nested" type="button"><span class="glyphicon glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>',
             group           : 0,
             maxDepth        : 5,
             threshold       : 20

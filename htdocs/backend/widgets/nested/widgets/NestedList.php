@@ -37,29 +37,36 @@ class NestedList extends Widget
         }
     }
 
-    protected function buildList($items)
+    protected function buildList($items, $parentNum = null)
     {
         if (count($items) == 0) {
             return '';
         }
         $html = Html::beginTag('ul', ['class' => $this->wrapClass . '-list']);
         foreach ($items as $id => $item) {
-            $html .= Html::tag('li', $this->buildListItem($item), ['class' => $this->wrapClass . '-item', 'data-id' => $id]);
+            $html .= Html::tag('li', $this->buildListItem($item, $parentNum), ['class' => $this->wrapClass . '-item', 'data-id' => $id]);
         }
         $html .= Html::endTag('ul');
         return $html;
     }
 
-    protected function buildListItem($item)
+    protected function buildListItem($item, $parentNum = null)
     {
         $html = '';
-        $html .= Html::tag(($item['level'] == 1) ? 'h3' : 'p', $item['name']);
-//        $html .= '<text class="form-control">' . $item['name'] . '</text>';
-        if ($this->actions) {
-            $html .= $this->buildActionButtons($item['id']);
+
+        if ($item['level'] == 1) {
+            $tag = 'h3';
+            $num = $item['num'] . '.';
+        } else {
+            $tag = 'p';
+            $num = Html::tag('b', $parentNum . '.' . $item['num']);
         }
+        $html .= Html::tag($tag, $num . ' ' . $item['name']);
+
+        $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control']);
+        $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2']);
         if (count($item['children']) > 0) {
-            $html .= $this->buildList($item['children']);
+            $html .= $this->buildList($item['children'], $item['num']);
         }
         return $html;
     }

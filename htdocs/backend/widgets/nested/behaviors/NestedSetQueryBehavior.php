@@ -49,13 +49,16 @@ class NestedSetQueryBehavior extends Behavior
             }
         }
 
+        $num = 1;
         foreach ($items as $item) {
             $tree[$item->id] = [
                 'id' => $item->id,
                 'name' => $item->{$item->titleAttribute},
-                'level' => $item->level,
+                'num' => $num,
+                'level' => $item->{$item->levelAttribute},
                 'children' => (!$maxLevel || $item->level < $maxLevel) ? $this->tree($item, $maxLevel) : null,
             ];
+            $num++;
         }
 
         return $tree;
