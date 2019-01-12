@@ -1,24 +1,24 @@
 <template>
   <div>
-    <div v-for="(task, taskIndex) in tasks">
-      <div class="container mb-5" v-show="taskIndex == page">
-        <h3 v-html="taskIndex + '. ' + task.name"></h3>
+    <div v-for="task in tasks">
+      <div class="container mb-5" v-show="task.num == page">
+        <h3 v-html="task.num + '. ' + task.name"></h3>
         <ul>
-          <li class="mt-5" v-for="(data, paragraphIndex) in task.task">
-            <p v-html="'<b>' + taskIndex + '.' + paragraphIndex + '</b>&nbsp;&nbsp;' + data.name"></p>
+          <li class="mt-5" v-for="data in task.children">
+            <p v-html="'<b>' + task.num + '.' + data.num + '</b>&nbsp;&nbsp;' + data.name"></p>
             <div v-html="data.content"></div>
             <component :is="data.component"></component>
           </li>
         </ul>
         <hr>
         <div class="col text-center">
-          <button class="btn btn-primary" @click="changePage(Number(taskIndex) - 1)" v-if="Number(taskIndex) != 1">
+          <button class="btn btn-primary" @click="changePage(Number(task.num) - 1)" v-if="Number(task.num) != 1">
             Назад
           </button>
-          <button class="btn btn-primary" @click="changePage(Number(taskIndex) + 1)"
-                  v-if="Number(taskIndex) != maxPage">Далее
+          <button class="btn btn-primary" @click="changePage(Number(task.num) + 1)"
+                  v-if="Number(task.num) != maxPage">Далее
           </button>
-          <button class="btn btn-primary" v-if="Number(taskIndex) == maxPage">Закончить</button>
+          <button class="btn btn-primary" v-if="Number(task.num) == maxPage">Закончить</button>
         </div>
         <hr>
       </div>
@@ -40,7 +40,7 @@
 
     data() {
       return {
-        description: 'http://localhost/frontend/web/lab/description/',
+        description: '/frontend/web/lab/description/',
         page: 1,
         tasks: null
       }
