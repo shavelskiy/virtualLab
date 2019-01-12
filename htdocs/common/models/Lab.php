@@ -12,7 +12,7 @@ use Yii;
  * @property string $description
  * @property string $preview_picture
  *
- * @property LabItems[] $items
+ * @property LabItemsOld[] $items
  * @property Scheme[] $schemes
  */
 class Lab extends \yii\db\ActiveRecord
@@ -43,7 +43,7 @@ class Lab extends \yii\db\ActiveRecord
 
     public function getItems()
     {
-        return LabItems::find()->where(['lab_id' => $this->id])->all();
+        return LabItemsOld::find()->where(['lab_id' => $this->id])->all();
     }
 
     public function getSchemes()

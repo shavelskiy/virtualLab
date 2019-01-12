@@ -19,14 +19,21 @@ class m190105_204137_create_lab_items_table extends Migration
 
         $this->createTable('lab_items', [
             'id' => $this->primaryKey(),
-            'lab_id' => $this->integer()->notNull(),
-            'is_parent' => $this->boolean()->notNull(),
-            'parent' => $this->integer(),
-            'number' => $this->integer()->notNull(),
-            'name' => $this->text()->notNull(),
+            'lab_id' => $this->integer(),
+            'root' => $this->integer(),
+            'lft' => $this->integer(),
+            'rgt' => $this->integer(),
+            'level' => $this->integer(),
+            'name' => $this->text(),
             'content' => $this->text(),
             'component' => $this->string(255),
         ], $tableOptions);
+
+        $this->addForeignKey('fk-lab_items__lab_id',
+            'lab_items',
+            'lab_id',
+            'labs',
+            'id');
     }
 
     /**
