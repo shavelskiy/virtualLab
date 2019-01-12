@@ -56,14 +56,15 @@ class NestedList extends Widget
 
         if ($item['level'] == 1) {
             $tag = 'h3';
-            $num = $item['num'] . '.';
+            $num = $item['num'] . '. ';
         } else {
             $tag = 'p';
-            $num = Html::tag('b', $parentNum . '.' . $item['num']);
+            $num = $parentNum . '.' . $item['num'] . ' ';
         }
-        $html .= Html::tag($tag, $num . ' ' . $item['name']);
+        $num = Html::tag('b', $num . ' ', ['class' => 'number']);
+        $html .= Html::tag($tag, $num . $item['name'], ['class' => 'show-label']);
 
-        $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control']);
+        $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control new-label-input']);
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
         if (count($item['children']) > 0) {
             $html .= $this->buildList($item['children'], $item['num']);
