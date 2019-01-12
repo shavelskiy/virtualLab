@@ -23,9 +23,13 @@
 
             $.each(this.el.find('.preview'), function (k, el) {
                 $(el).click(function () {
-                    var value = $(this).siblings('.new-label-input').val()
+                    var label = $(this).siblings('.new-label-input').val()
                     var number = $(this).siblings('.show-label').find('.number').text()
-                    $(this).siblings('.show-label').empty().append('<b class="number">' + number + '</b>' + value)
+                    $(this).siblings('.show-label').empty().append('<b class="number">' + number + '</b>' + label)
+
+                    var content = $(this).siblings('.new-content-input').val()
+                    $(this).siblings('.content').empty().append(content)
+
                 });
             });
 
