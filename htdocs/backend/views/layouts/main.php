@@ -43,6 +43,7 @@ AppAsset::register($this);
     } else {
         $menuItemsLeft[] = ['label' => 'Преподаватели', 'url' => Yii::$app->urlManager->createUrl(["teacher/index"])];
         $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
+        $menuItemsLeft[] = ['label' => 'Лабораторные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

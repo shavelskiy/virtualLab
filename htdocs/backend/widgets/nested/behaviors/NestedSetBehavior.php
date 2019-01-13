@@ -37,6 +37,10 @@ class NestedSetBehavior extends Behavior
     /**
      * @var string
      */
+    public $componentAttribute = 'component';
+    /**
+     * @var string
+     */
     public $idAttribute = 'id';
     /**
      * @var string

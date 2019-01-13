@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Lab;
+use common\models\LabItems;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -65,27 +66,7 @@ class LabController extends Controller
         $result = [];
 
         if ($session->has('lab_number')) {
-            $lab = Lab::findOne($session->get('lab_number'));
-            $labItems = $lab->items;
-
-            foreach ($labItems as $item) {
-                if ($item->is_parent) {
-                    $result[$item->number] = [
-                        'name' => $item->name,
-                        'task' => []
-                    ];
-                }
-            }
-
-            foreach ($labItems as $item) {
-                if (!$item->is_parent) {
-                    $result[$item->parentItem->number]['task'][$item->number] = [
-                        'name' => $item->name,
-                        'content' => $item->content,
-                        'component' => $item->component
-                    ];
-                }
-            }
+            $result = LabItems::find()->tree();
         }
 
         $result = json_encode($result);

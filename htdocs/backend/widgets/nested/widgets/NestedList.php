@@ -64,10 +64,16 @@ class NestedList extends Widget
         $num = Html::tag('b', $num . ' ', ['class' => 'number']);
 
         $html .= Html::tag($tag, $num . $item['name'], ['class' => 'show-label']);
-        $html .= Html::tag('div', $item['content'], ['class' => 'content']);
+
+        if ($item['level'] == 2) {
+            $html .= Html::tag('div', $item['content'], ['class' => 'content']);
+        }
 
         $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control mt-2 new-label-input']);
-        $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input']);
+
+        if ($item['level'] == 2) {
+            $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input']);
+        }
 
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
         if (count($item['children']) > 0) {

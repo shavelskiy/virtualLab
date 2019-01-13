@@ -55,6 +55,7 @@ class NestedSetQueryBehavior extends Behavior
                 'id' => $item->id,
                 'name' => $item->{$item->titleAttribute},
                 'content' => $item->{$item->contentAttribute},
+                'component' => $item->{$item->componentAttribute},
                 'num' => $num,
                 'level' => $item->{$item->levelAttribute},
                 'children' => (!$maxLevel || $item->level < $maxLevel) ? $this->tree($item, $maxLevel) : null,
