@@ -27,7 +27,10 @@ class LabController extends Controller
                         'roles' => ['student'],
                     ],
                     [
-                        'actions' => ['description'],
+                        'actions' => [
+                            'task',
+                            'signal'
+                        ],
                         'allow' => true,
                     ],
                 ],
@@ -58,7 +61,7 @@ class LabController extends Controller
     }
 
     // получить задание для работы
-    public function actionDescription()
+    public function actionTask()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -66,7 +69,26 @@ class LabController extends Controller
         $result = [];
 
         if ($session->has('lab_number')) {
-            $result = LabItems::find()->tree();
+            $result = LabItems::find()->tree($session->get('lab_number'));
+//        $result = LabItems::find()->tree(1);
+        }
+
+        $result = json_encode($result);
+
+        return $result;
+    }
+
+    public function actionSignal()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $session = Yii::$app->session;
+        $result = [];
+
+        if ($session->has('lab_number')) {
+            $lab = Lab::findOne($session->get('lab_number'));
+//        $lab = Lab::findOne(1);
+        $result = $lab->signal_view;
         }
 
         $result = json_encode($result);

@@ -40,7 +40,8 @@
 
     data() {
       return {
-        description: '/frontend/web/lab/description/',
+        // description: 'http://localhost:80/frontend/web/lab/task/',
+        description: '/frontend/web/lab/task/',
         page: 1,
         tasks: null
       }
@@ -48,7 +49,7 @@
 
     methods: {
       changePage: function (page) {
-        this.page = page
+        this.page = page;
         $('body, html').animate({scrollTop: 0}, 200)
       }
     },

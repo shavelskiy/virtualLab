@@ -32,20 +32,30 @@ class NestedList extends Widget
 
     protected function renderInput()
     {
-        if (count($this->items) > 0) {
-            echo Html::tag('div', $this->buildList($this->items), ['class' => $this->wrapClass]);
-        }
+        echo Html::tag('div', $this->buildList($this->items), ['class' => $this->wrapClass]);
     }
 
     protected function buildList($items, $parentNum = null)
     {
-        if (count($items) == 0) {
-            return '';
+        $html = '';
+
+        if (count($items) != 0) {
+            $html = Html::beginTag('ul', ['class' => $this->wrapClass . '-list', 'data-count' => count($items)]);
+            foreach ($items as $id => $item) {
+                $html .= Html::tag('li',
+                    Html::button('Восстановить', ['class' => 'btn btn-warning restore-item hidden']) .
+                    Html::tag('div', $this->buildListItem($item, $parentNum), ['class' => 'item']),
+                    ['class' => $this->wrapClass . '-item', 'data-id' => $id, 'data-num' => $item['num']]
+                );
+            }
         }
-        $html = Html::beginTag('ul', ['class' => $this->wrapClass . '-list']);
-        foreach ($items as $id => $item) {
-            $html .= Html::tag('li', $this->buildListItem($item, $parentNum), ['class' => $this->wrapClass . '-item', 'data-id' => $id]);
+
+        if ($parentNum) {
+            $html .= Html::button('Добавить задание', ['class' => 'btn btn-success mb-3 mt-2 new-item']);
+        } else {
+            $html .= Html::button('Добавить задание', ['class' => 'btn btn-success mb-3 mt-2 new-task']);
         }
+
         $html .= Html::endTag('ul');
         return $html;
     }
@@ -69,16 +79,27 @@ class NestedList extends Widget
             $html .= Html::tag('div', $item['content'], ['class' => 'content']);
         }
 
-        $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control mt-2 new-label-input']);
+        $html .= Html::button('Панель редактирования', ['class' => 'btn btn-info mb-3 mt-2 show-settings']);
 
+        // блок изменения данных о работе
+        $html .= Html::beginTag('div', ['class' => 'hidden settings']);
+        $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control mt-2 new-label-input']);
         if ($item['level'] == 2) {
             $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input']);
         }
-
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
+        $html .= Html::button('Удалить', ['class' => 'btn btn-danger mb-3 mt-2 ml-2 delete-item']);
+
+        $html .= Html::endTag('div');
+
         if (count($item['children']) > 0) {
             $html .= $this->buildList($item['children'], $item['num']);
         }
+
+        if ($item['level'] == 1) {
+            $html .= Html::tag('hr');
+        }
+
         return $html;
     }
 

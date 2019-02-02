@@ -38,7 +38,8 @@
 
     data() {
       return {
-        schemesUrl: 'http://localhost/frontend/web/scheme/get',
+        // schemesUrl: 'http://localhost/frontend/web/scheme/get',
+        schemesUrl: '/frontend/web/scheme/get',
         schemeInfo: null,
         schemeCol: null,
         currentScheme: 1,

@@ -24,23 +24,23 @@ class NestedSetQueryBehavior extends Behavior
      * Gets root node(s).
      * @return ActiveRecord the owner.
      */
-    public function roots()
+    public function roots($labId)
     {
         /** @var $modelClass ActiveRecord */
         $modelClass = $this->owner->modelClass;
         $model = new $modelClass;
-        $this->owner->andWhere($modelClass::getDb()->quoteColumnName($model->leftAttribute) . '=1');
+        $this->owner->andWhere(['lab_id' => $labId])->andWhere($modelClass::getDb()->quoteColumnName($model->leftAttribute) . '=1');
         unset($model);
         return $this->owner;
     }
 
-    public function tree($root = false, $maxLevel = false)
+    public function tree($labId, $root = false, $maxLevel = false)
     {
         $tree = [];
 
         if ($root === false) {
             $ownerClass = $this->owner->modelClass;
-            $items = $ownerClass::find()->roots()->all();
+            $items = $ownerClass::find()->roots($labId)->all();
         } else {
             if (!$maxLevel || $root->level <= $maxLevel) {
                 $items = $root->children()->all();
@@ -58,7 +58,7 @@ class NestedSetQueryBehavior extends Behavior
                 'component' => $item->{$item->componentAttribute},
                 'num' => $num,
                 'level' => $item->{$item->levelAttribute},
-                'children' => (!$maxLevel || $item->level < $maxLevel) ? $this->tree($item, $maxLevel) : null,
+                'children' => (!$maxLevel || $item->level < $maxLevel) ? $this->tree($labId, $item, $maxLevel) : null,
             ];
             $num++;
         }
@@ -86,5 +86,4 @@ class NestedSetQueryBehavior extends Behavior
         return $map($tree, false);
 
     }
-
 }

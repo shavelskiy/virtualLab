@@ -18,7 +18,9 @@ class SchemeController extends Controller
 
         if ($session->has('lab_number')) {
             $lab = Lab::findOne($session->get('lab_number'));
-            $schemes = $lab->schemes;
+//        $lab = Lab::findOne(1);
+
+        $schemes = $lab->schemes;
 
             foreach ($schemes as $scheme) {
                 $items = [

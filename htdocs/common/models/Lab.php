@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $preview_picture
+ * @property string signal_view
  *
  * @property LabItemsOld[] $items
  * @property Scheme[] $schemes

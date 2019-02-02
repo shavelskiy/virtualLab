@@ -36,9 +36,9 @@ class LabItems extends \yii\db\ActiveRecord
         return [
             [
                 'class' => NestedSetBehavior::className(),
-                // 'rootAttribute' => 'root',
-                // 'levelAttribute' => 'level',
-                // 'hasManyRoots' => true
+                 'rootAttribute' => 'root',
+                 'levelAttribute' => 'level',
+                 'hasManyRoots' => true
             ],
         ];
     }
