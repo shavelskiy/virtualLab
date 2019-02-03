@@ -93,10 +93,10 @@ class NestedSetBehavior extends Behavior
     public function events()
     {
         return [
-            ActiveRecord::EVENT_AFTER_FIND => 'afterFind',
-            ActiveRecord::EVENT_BEFORE_DELETE => 'beforeDelete',
-            ActiveRecord::EVENT_BEFORE_INSERT => 'beforeInsert',
-            ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeUpdate',
+//            ActiveRecord::EVENT_AFTER_FIND => 'afterFind',
+//            ActiveRecord::EVENT_BEFORE_DELETE => 'beforeDelete',
+//            ActiveRecord::EVENT_BEFORE_INSERT => 'beforeInsert',
+//            ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeUpdate',
         ];
     }
 
@@ -250,22 +250,22 @@ class NestedSetBehavior extends Behavior
      * @param array $attributes list of attributes.
      * @return boolean whether the saving succeeds.
      */
-    public function save($runValidation = true, $attributes = null)
-    {
-        if ($runValidation && !$this->owner->validate($attributes)) {
-            return false;
-        }
-
-        if ($this->owner->getIsNewRecord()) {
-            return $this->makeRoot($attributes);
-        }
-
-        $this->_ignoreEvent = true;
-        $result = $this->owner->update(false, $attributes);
-        $this->_ignoreEvent = false;
-
-        return $result;
-    }
+//    public function save($runValidation = true, $attributes = null)
+//    {
+//        if ($runValidation && !$this->owner->validate($attributes)) {
+//            return false;
+//        }
+//
+//        if ($this->owner->getIsNewRecord()) {
+//            return $this->makeRoot($attributes);
+//        }
+//
+//        $this->_ignoreEvent = true;
+//        $result = $this->owner->update(false, $attributes);
+//        $this->_ignoreEvent = false;
+//
+//        return $result;
+//    }
 
     /**
      * Create root node if multiple-root tree mode. Update node if it's not new.
@@ -284,71 +284,71 @@ class NestedSetBehavior extends Behavior
      * @throws \Exception.
      * @return boolean whether the deletion is successful.
      */
-    public function delete()
-    {
-        if ($this->owner->getIsNewRecord()) {
-            throw new Exception('The node can\'t be deleted because it is new.');
-        }
-
-        if ($this->getIsDeletedRecord()) {
-            throw new Exception('The node can\'t be deleted because it is already deleted.');
-        }
-
-        $db = $this->owner->getDb();
-
-        if ($db->getTransaction() === null) {
-            $transaction = $db->beginTransaction();
-        }
-
-        try {
-            $this->_ignoreEvent = true;
-            if ($this->owner->isLeaf()) {
-                $result = $this->owner->delete();
-            } elseif ($this->owner->beforeDelete()) {
-                $condition = $db->quoteColumnName($this->leftAttribute) . '>='
-                    . $this->owner->getOldAttribute($this->leftAttribute) . ' AND '
-                    . $db->quoteColumnName($this->rightAttribute) . '<='
-                    . $this->owner->getOldAttribute($this->rightAttribute);
-                $params = [];
-
-                if ($this->hasManyRoots) {
-                    $condition .= ' AND ' . $db->quoteColumnName($this->rootAttribute) . '=:' . $this->rootAttribute;
-                    $params[':' . $this->rootAttribute] = $this->owner->getOldAttribute($this->rootAttribute);
-                }
-
-                $result = $this->owner->deleteAll($condition, $params) > 0;
-                $this->owner->afterDelete();
-            }
-            $this->_ignoreEvent = false;
-
-            if (!$result) {
-                if (isset($transaction)) {
-                    $transaction->rollback();
-                }
-
-                return false;
-            }
-
-            $this->shiftLeftRight(
-                $this->owner->getAttribute($this->rightAttribute) + 1,
-                $this->owner->getAttribute($this->leftAttribute) - $this->owner->getAttribute($this->rightAttribute) - 1
-            );
-
-            if (isset($transaction)) {
-                $transaction->commit();
-            }
-
-            $this->correctCachedOnDelete();
-        } catch (\Exception $e) {
-            if (isset($transaction)) {
-                $transaction->rollback();
-            }
-
-            throw $e;
-        }
-
-        return true;
-    }
+//    public function delete()
+//    {
+//        if ($this->owner->getIsNewRecord()) {
+//            throw new Exception('The node can\'t be deleted because it is new.');
+//        }
+//
+//        if ($this->getIsDeletedRecord()) {
+//            throw new Exception('The node can\'t be deleted because it is already deleted.');
+//        }
+//
+//        $db = $this->owner->getDb();
+//
+//        if ($db->getTransaction() === null) {
+//            $transaction = $db->beginTransaction();
+//        }
+//
+//        try {
+//            $this->_ignoreEvent = true;
+//            if ($this->owner->isLeaf()) {
+//                $result = $this->owner->delete();
+//            } elseif ($this->owner->beforeDelete()) {
+//                $condition = $db->quoteColumnName($this->leftAttribute) . '>='
+//                    . $this->owner->getOldAttribute($this->leftAttribute) . ' AND '
+//                    . $db->quoteColumnName($this->rightAttribute) . '<='
+//                    . $this->owner->getOldAttribute($this->rightAttribute);
+//                $params = [];
+//
+//                if ($this->hasManyRoots) {
+//                    $condition .= ' AND ' . $db->quoteColumnName($this->rootAttribute) . '=:' . $this->rootAttribute;
+//                    $params[':' . $this->rootAttribute] = $this->owner->getOldAttribute($this->rootAttribute);
+//                }
+//
+//                $result = $this->owner->deleteAll($condition, $params) > 0;
+//                $this->owner->afterDelete();
+//            }
+//            $this->_ignoreEvent = false;
+//
+//            if (!$result) {
+//                if (isset($transaction)) {
+//                    $transaction->rollback();
+//                }
+//
+//                return false;
+//            }
+//
+//            $this->shiftLeftRight(
+//                $this->owner->getAttribute($this->rightAttribute) + 1,
+//                $this->owner->getAttribute($this->leftAttribute) - $this->owner->getAttribute($this->rightAttribute) - 1
+//            );
+//
+//            if (isset($transaction)) {
+//                $transaction->commit();
+//            }
+//
+//            $this->correctCachedOnDelete();
+//        } catch (\Exception $e) {
+//            if (isset($transaction)) {
+//                $transaction->rollback();
+//            }
+//
+//            throw $e;
+//        }
+//
+//        return true;
+//    }
 
     /**
      * Deletes node and it's descendants.
@@ -657,14 +657,14 @@ class NestedSetBehavior extends Behavior
      * @throws Exception.
      * @return boolean.
      */
-    public function beforeInsert($event)
-    {
-        if ($this->_ignoreEvent) {
-            return true;
-        } else {
-            throw new Exception('You should not use ActiveRecord::save() or ActiveRecord::insert() methods when NestedSet behavior attached.');
-        }
-    }
+//    public function beforeInsert($event)
+//    {
+//        if ($this->_ignoreEvent) {
+//            return true;
+//        } else {
+//            throw new Exception('You should not use ActiveRecord::save() or ActiveRecord::insert() methods when NestedSet behavior attached.');
+//        }
+//    }
 
     /**
      * Handle 'beforeUpdate' event of the owner.
@@ -672,14 +672,14 @@ class NestedSetBehavior extends Behavior
      * @throws Exception.
      * @return boolean.
      */
-    public function beforeUpdate($event)
-    {
-        if ($this->_ignoreEvent) {
-            return true;
-        } else {
-            throw new Exception('You should not use ActiveRecord::save() or ActiveRecord::update() methods when NestedSet behavior attached.');
-        }
-    }
+//    public function beforeUpdate($event)
+//    {
+//        if ($this->_ignoreEvent) {
+//            return true;
+//        } else {
+//            throw new Exception('You should not use ActiveRecord::save() or ActiveRecord::update() methods when NestedSet behavior attached.');
+//        }
+//    }
 
     /**
      * Handle 'beforeDelete' event of the owner.
@@ -687,14 +687,14 @@ class NestedSetBehavior extends Behavior
      * @throws Exception.
      * @return boolean.
      */
-    public function beforeDelete($event)
-    {
-        if ($this->_ignoreEvent) {
-            return true;
-        } else {
-            throw new Exception('You should not use ActiveRecord::delete() method when NestedSet behavior attached.');
-        }
-    }
+//    public function beforeDelete($event)
+//    {
+//        if ($this->_ignoreEvent) {
+//            return true;
+//        } else {
+//            throw new Exception('You should not use ActiveRecord::delete() method when NestedSet behavior attached.');
+//        }
+//    }
 
     /**
      * @param int $key.

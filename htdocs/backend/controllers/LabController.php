@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Lab;
+use common\models\LabItems;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -57,6 +58,25 @@ class LabController extends Controller
     public function actionUpdate($id)
     {
         $lab = $this->findLab($id);
+
+        if (Yii::$app->request->isPost) {
+            $data = Yii::$app->request->post('task');
+
+            foreach ($data['old'] as $taskId => $oldTask) {
+
+                $item = LabItems::findOne($taskId);
+                $item->name = $oldTask['name'];
+                $item->save();
+
+                foreach ($oldTask['items']['old'] as $oldItemId => $oldItem) {
+                    $item = LabItems::findOne($oldItemId);
+                    $item->name = $oldItem['name'];
+                    $item->content = $oldItem['content'];
+                    $item->component_id = $oldItem['component'];
+                    $item->save();
+                }
+            }
+        }
 
         return $this->render('update', [
             'lab' => $lab,
