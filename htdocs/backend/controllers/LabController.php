@@ -66,7 +66,6 @@ class LabController extends Controller
 
                 $rootItem = LabItems::findOne($taskId);
                 $rootItem->name = $task['name'];
-                $rootItem->save();
 
                 if (isset($task['items'])) {
                     if (isset($task['items']['old'])) {
@@ -75,7 +74,6 @@ class LabController extends Controller
                             $labItem->name = $item['name'];
                             $labItem->content = $item['content'];
                             $labItem->component_id = $item['component'];
-                            $labItem->save();
                         }
                     }
 
@@ -84,7 +82,6 @@ class LabController extends Controller
                             // обновляем родительский элемент
                             $rgt = $rootItem->rgt;
                             $rootItem->rgt = $rgt + 2;
-                            $rootItem->save();
 
                             $labItem = new LabItems();
                             $labItem->lab_id = $lab->id;
@@ -99,6 +96,8 @@ class LabController extends Controller
                         }
                     }
                 }
+
+                $rootItem->save();
             }
         }
 
