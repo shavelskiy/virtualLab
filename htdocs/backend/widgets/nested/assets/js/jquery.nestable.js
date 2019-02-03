@@ -1,12 +1,13 @@
 ;(function ($) {
     var defaults = {
         newItem: '<li class="nested-item" data-id="3" data-num="{lastNum}"><p class="show-label"><b class="number">{parentNum}.{lastNum} </b></p>' +
-            '<div class="content"></div><div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><textarea class="form-control mt-2 new-content-input"></textarea>' +
+            '<div class="content"></div><div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><textarea class="form-control mt-2 new-content-input"></textarea>{components}' +
             '<button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button><button type="button" class="btn btn-danger mb-3 mt-2 ml-2 delete-new-item">Удалить</button></div></li>',
 
         newTask: '<li class="nested-item" data-id="1" data-num="{number}"><h3 class="show-label"><b class="number">{number}. </b></h3>' +
             '<div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
-            '<ul class="nested-list" data-count="1">{newItem}<button type="button" class="btn btn-success mb-3 mt-2 new-item">Добавить задание</button></ul><hr></li>'
+            '<ul class="nested-list" data-count="1">{newItem}<button type="button" class="btn btn-success mb-3 mt-2 new-item">Добавить задание</button></ul><hr></li>',
+        components: ''
     };
 
     function Plugin(element, options) {
@@ -19,6 +20,19 @@
 
         init: function () {
             var list = this;
+
+            $.ajax({
+                url: '/frontend/web/lab/components/',
+                success: function (data) {
+                    var components = JSON.parse(data);
+                    var html = '<select class="form-control mt-2"><option></option>';
+                    for (var key in components) {
+                        html += '<option value="' + key + '">' + components[key] + '</option>';
+                    }
+                    html += '</select>';
+                    list.options.components = html;
+                }
+            });
 
             $.each(this.el.find('.preview'), function (k, el) {
                 list.setPreviewListener($(el))
@@ -38,7 +52,7 @@
                     $(this).parent().attr('data-count', lastNum);
 
                     var html = list.options.newItem;
-                    html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum);
+                    html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum).replace(/{components}/g, list.options.components);
                     $(this).before(html);
 
                     list.setPreviewListener($(this).siblings('.nested-item').last().find('.preview'))
@@ -66,9 +80,13 @@
             this.el.find('.new-task').click(function () {
                 var number = Number($(this).siblings('.nested-item').last().attr('data-num')) + 1;
 
+                if (!number) {
+                    number = 1;
+                }
+
                 var html = list.options.newTask;
                 html = html.replace(/{number}/g, number).replace('{newItem}', list.options.newItem);
-                html = html.replace(/{lastNum}/g, 1).replace(/{parentNum}/g, number);
+                html = html.replace(/{lastNum}/g, 1).replace(/{parentNum}/g, number).replace(/{components}/g, list.options.components);
                 $(this).before(html);
 
                 $(this).siblings('.nested-item').last().find('.preview').each(function (k, el) {
@@ -81,10 +99,18 @@
                     $(this).parent().attr('data-count', lastNum);
 
                     var html = list.options.newItem;
-                    html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum)
+                    html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum).replace(/{components}/g, list.options.components);
                     $(this).before(html);
 
-                    list.setPreviewListener($(this).siblings('.nested-item').last().find('.preview'))
+                    list.setPreviewListener($(this).siblings('.nested-item').last().find('.preview'));
+
+                    $(this).siblings('.nested-item').last().find('.delete-new-item').click(function () {
+                        $(this).closest('.nested-item').remove();
+                    });
+                });
+
+                $(this).siblings('.nested-item').last().find('.delete-new-item').click(function () {
+                    $(this).closest('.nested-item').remove();
                 });
             });
         },

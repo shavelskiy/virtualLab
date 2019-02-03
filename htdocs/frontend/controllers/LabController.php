@@ -2,9 +2,11 @@
 
 namespace frontend\controllers;
 
+use common\models\Component;
 use common\models\Lab;
 use common\models\LabItems;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -29,7 +31,8 @@ class LabController extends Controller
                     [
                         'actions' => [
                             'task',
-                            'signal'
+                            'signal',
+                            'components'
                         ],
                         'allow' => true,
                     ],
@@ -90,6 +93,18 @@ class LabController extends Controller
 //        $lab = Lab::findOne(1);
         $result = $lab->signal_view;
         }
+
+        $result = json_encode($result);
+
+        return $result;
+    }
+
+    public function actionComponents()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $components = Component::find()->all();
+        $result = ArrayHelper::map($components, 'id', 'name');
 
         $result = json_encode($result);
 

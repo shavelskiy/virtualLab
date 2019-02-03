@@ -9,7 +9,9 @@
 
 namespace backend\widgets\nested\widgets;
 
+use common\models\Component;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 
@@ -24,8 +26,11 @@ class NestedList extends Widget
 
     public $actions = true;
 
+    public $components = [];
+
     public function run()
     {
+        $this->getComponents();
         $this->registerAssets();
         $this->renderInput();
     }
@@ -39,15 +44,13 @@ class NestedList extends Widget
     {
         $html = '';
 
-        if (count($items) != 0) {
-            $html = Html::beginTag('ul', ['class' => $this->wrapClass . '-list', 'data-count' => count($items)]);
-            foreach ($items as $id => $item) {
-                $html .= Html::tag('li',
-                    Html::button('Восстановить', ['class' => 'btn btn-warning restore-item hidden']) .
-                    Html::tag('div', $this->buildListItem($item, $parentNum), ['class' => 'item']),
-                    ['class' => $this->wrapClass . '-item', 'data-id' => $id, 'data-num' => $item['num']]
-                );
-            }
+        $html .= Html::beginTag('ul', ['class' => $this->wrapClass . '-list', 'data-count' => count($items)]);
+        foreach ($items as $id => $item) {
+            $html .= Html::tag('li',
+                Html::button('Восстановить', ['class' => 'btn btn-warning restore-item hidden']) .
+                Html::tag('div', $this->buildListItem($item, $parentNum), ['class' => 'item']),
+                ['class' => $this->wrapClass . '-item', 'data-id' => $id, 'data-num' => $item['num']]
+            );
         }
 
         if ($parentNum) {
@@ -87,6 +90,22 @@ class NestedList extends Widget
         if ($item['level'] == 2) {
             $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input']);
         }
+
+        if ($item['level'] == 2) {
+            $html .= Html::beginTag('select', ['class' => 'form-control mt-2']);
+            $html .= Html::tag('option', '');
+            foreach ($this->components as $id => $component) {
+                $options = [
+                    'value' => $id,
+                ];
+                if ($item['component'] == $component) {
+                    $options['selected'] = 'selected';
+                }
+                $html .= Html::tag('option', $component, $options);
+            }
+            $html .= Html::endTag('select');
+        }
+
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
         $html .= Html::button('Удалить', ['class' => 'btn btn-danger mb-3 mt-2 ml-2 delete-item']);
 
@@ -114,5 +133,11 @@ class NestedList extends Widget
         $js = "$('." . $this->wrapClass . "').nestable({'maxDepth':" . $this->maxDepth . "});";
         $view->registerJs($js);
 
+    }
+
+    public function getComponents()
+    {
+        $components = Component::find()->all();
+        $this->components = ArrayHelper::map($components, 'id', 'name');
     }
 }
