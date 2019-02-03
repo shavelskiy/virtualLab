@@ -17,9 +17,10 @@ use backend\widgets\nested\behaviors\NestedSetBehavior;
  * @property int $level
  * @property string $name
  * @property string $content
- * @property string $component
+ * @property string $component_id
  *
  * @property Lab $lab
+ * @property Component $component
  */
 class LabItems extends \yii\db\ActiveRecord
 {
@@ -49,9 +50,8 @@ class LabItems extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lab_id', 'root', 'lft', 'rgt', 'level'], 'integer'],
+            [['lab_id', 'root', 'lft', 'rgt', 'level', 'component_id'], 'integer'],
             [['name', 'content'], 'string'],
-            [['component'], 'string', 'max' => 255],
             [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Labs::className(), 'targetAttribute' => ['lab_id' => 'id']],
         ];
     }
@@ -70,7 +70,7 @@ class LabItems extends \yii\db\ActiveRecord
             'level' => 'Level',
             'name' => 'Name',
             'content' => 'Content',
-            'component' => 'Component',
+            'component_id' => 'Component',
         ];
     }
 
@@ -80,6 +80,11 @@ class LabItems extends \yii\db\ActiveRecord
     public function getLab()
     {
         return $this->hasOne(Lab::className(), ['id' => 'lab_id']);
+    }
+
+    public function getComponent()
+    {
+        return $this->hasOne(Component::className(), ['id' => 'component_id']);
     }
 
     public static function find()

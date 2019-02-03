@@ -26,7 +26,7 @@ class m190105_204137_create_lab_items_table extends Migration
             'level' => $this->integer(),
             'name' => $this->text(),
             'content' => $this->text(),
-            'component' => $this->string(255),
+            'component_id' => $this->integer(),
         ], $tableOptions);
 
         $this->addForeignKey('fk-lab_items__lab_id',
