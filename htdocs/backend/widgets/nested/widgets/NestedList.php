@@ -56,7 +56,7 @@ class NestedList extends Widget
             $html .= Html::tag('li',
                 Html::button('Восстановить', ['class' => 'btn btn-warning restore-item hidden']) .
                 Html::tag('div', $content, ['class' => 'item']),
-                ['class' => $this->wrapClass . '-item', 'data-num' => $item['num']]
+                ['class' => $this->wrapClass . '-item', 'data-id' => $id, 'data-num' => $item['num']]
             );
         }
 
@@ -116,7 +116,7 @@ class NestedList extends Widget
         $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input', 'name' => $name . '[content]']); // контент
 
         // блок с выбором компонента
-        $html .= Html::beginTag('select', ['class' => 'form-control mt-2', 'name' => $name . '[component]']);
+        $html .= Html::beginTag('select', ['class' => 'form-control mt-2',  'name' => $name . '[component]']);
         $html .= Html::tag('option', '');
         foreach ($this->components as $id => $component) {
             $options = [

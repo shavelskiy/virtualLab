@@ -1,12 +1,14 @@
 ;(function ($) {
     var defaults = {
         newItem: '<li class="nested-item" data-id="3" data-num="{lastNum}"><p class="show-label"><b class="number">{parentNum}.{lastNum} </b></p>' +
-            '<div class="content"></div><div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><textarea class="form-control mt-2 new-content-input"></textarea>{components}' +
+            '<div class="content"></div><div class="settings"><textarea class="form-control mt-2 new-label-input" name="task[{type}][{parentId}][items][new][{sort}][name]"></textarea>' + '' +
+            '<textarea class="form-control mt-2 new-content-input" name="task[{type}][{parentId}][items][new][{sort}][content]"></textarea>{components}' +
             '<button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button><button type="button" class="btn btn-danger mb-3 mt-2 ml-2 delete-new-item">Удалить</button></div></li>',
 
         newTask: '<li class="nested-item" data-id="1" data-num="{number}"><h3 class="show-label"><b class="number">{number}. </b></h3>' +
             '<div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
             '<ul class="nested-list" data-count="1">{newItem}<button type="button" class="btn btn-success mb-3 mt-2 new-item">Добавить задание</button></ul><hr></li>',
+
         components: ''
     };
 
@@ -25,7 +27,7 @@
                 url: '/frontend/web/lab/components/',
                 success: function (data) {
                     var components = JSON.parse(data);
-                    var html = '<select class="form-control mt-2"><option></option>';
+                    var html = '<select class="form-control mt-2" name="task[{type}][{parentId}][items][new][{sort}][component]"><option></option>';
                     for (var key in components) {
                         html += '<option value="' + key + '">' + components[key] + '</option>';
                     }
@@ -48,11 +50,13 @@
             $.each(this.el.find('.new-item'), function (k, el) {
                 $(el).click(function () {
                     var parentNum = Number($(this).parent().parent().parent().attr('data-num'));
+                    var parentId = Number($(this).parent().parent().parent().attr('data-id'));
                     var lastNum = Number($(this).parent().attr('data-count')) + 1;
                     $(this).parent().attr('data-count', lastNum);
 
                     var html = list.options.newItem;
                     html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum).replace(/{components}/g, list.options.components);
+                    html = html.replace(/{type}/g, 'old').replace(/{parentId}/g, parentId).replace(/{sort}/g, lastNum);
                     $(this).before(html);
 
                     list.setPreviewListener($(this).siblings('.nested-item').last().find('.preview'))

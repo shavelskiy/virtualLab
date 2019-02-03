@@ -62,21 +62,46 @@ class LabController extends Controller
         if (Yii::$app->request->isPost) {
             $data = Yii::$app->request->post('task');
 
-            foreach ($data['old'] as $taskId => $oldTask) {
+            foreach ($data['old'] as $taskId => $task) {
 
-                $item = LabItems::findOne($taskId);
-                $item->name = $oldTask['name'];
-                $item->save();
+                $rootItem = LabItems::findOne($taskId);
+                $rootItem->name = $task['name'];
+                $rootItem->save();
 
-                foreach ($oldTask['items']['old'] as $oldItemId => $oldItem) {
-                    $item = LabItems::findOne($oldItemId);
-                    $item->name = $oldItem['name'];
-                    $item->content = $oldItem['content'];
-                    $item->component_id = $oldItem['component'];
-                    $item->save();
+                if (isset($task['items'])) {
+                    if (isset($task['items']['old'])) {
+                        foreach ($task['items']['old'] as $itemId => $item) {
+                            $labItem = LabItems::findOne($itemId);
+                            $labItem->name = $item['name'];
+                            $labItem->content = $item['content'];
+                            $labItem->component_id = $item['component'];
+                            $labItem->save();
+                        }
+                    }
+
+                    if (isset($task['items']['new'])) {
+                        foreach ($task['items']['new'] as $itemId => $item) {
+                            // обновляем родительский элемент
+                            $rgt = $rootItem->rgt;
+                            $rootItem->rgt = $rgt + 2;
+                            $rootItem->save();
+
+                            $labItem = new LabItems();
+                            $labItem->lab_id = $lab->id;
+                            $labItem->name = $item['name'];
+                            $labItem->content = $item['content'];
+                            $labItem->component_id = isset($item['component']) ? $item['component'] : null;
+                            $labItem->level = 2;
+                            $labItem->root = $rootItem->id;
+                            $labItem->lft = $rgt;
+                            $labItem->rgt = $rgt + 1;
+                            $labItem->save();
+                        }
+                    }
                 }
             }
         }
+
 
         return $this->render('update', [
             'lab' => $lab,
