@@ -6,7 +6,7 @@
             '<button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button><button type="button" class="btn btn-danger mb-3 mt-2 ml-2 delete-new-item">Удалить</button></div></li>',
 
         newTask: '<li class="nested-item" data-id="1" data-num="{number}"><h3 class="show-label"><b class="number">{number}. </b></h3>' +
-            '<div class="settings"><textarea class="form-control mt-2 new-label-input"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
+            '<div class="settings"><textarea class="form-control mt-2 new-label-input name="task[new][{taskSort}][name]"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
             '<ul class="nested-list" data-count="1">{newItem}<button type="button" class="btn btn-success mb-3 mt-2 new-item">Добавить задание</button></ul><hr></li>',
 
         components: ''
@@ -90,20 +90,23 @@
 
                 var html = list.options.newTask;
                 html = html.replace(/{number}/g, number).replace('{newItem}', list.options.newItem);
+                html = html.replace(/{taskSort}/g, number);
                 html = html.replace(/{lastNum}/g, 1).replace(/{parentNum}/g, number).replace(/{components}/g, list.options.components);
+                html = html.replace(/{type}/g, 'new').replace(/{parentId}/g, number).replace(/{sort}/g, 1);
                 $(this).before(html);
 
                 $(this).siblings('.nested-item').last().find('.preview').each(function (k, el) {
                     list.setPreviewListener($(el))
                 });
 
-                $(this).siblings('.nested-item').find('.new-item').click(function () {
+                $(this).siblings('.nested-item').last().find('.new-item').click(function () {
                     var parentNum = Number($(this).parent().parent().attr('data-num'));
                     var lastNum = Number($(this).parent().attr('data-count')) + 1;
                     $(this).parent().attr('data-count', lastNum);
 
                     var html = list.options.newItem;
                     html = html.replace(/{lastNum}/g, lastNum).replace(/{parentNum}/g, parentNum).replace(/{components}/g, list.options.components);
+                    html = html.replace(/{parentId}/g, parentNum).replace(/{sort}/g, lastNum).replace(/{type}/g, 'new');
                     $(this).before(html);
 
                     list.setPreviewListener($(this).siblings('.nested-item').last().find('.preview'));

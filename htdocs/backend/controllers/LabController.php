@@ -62,31 +62,66 @@ class LabController extends Controller
         if (Yii::$app->request->isPost) {
             $data = Yii::$app->request->post('task');
 
-            foreach ($data['old'] as $taskId => $task) {
+            if (isset($data['old'])) {
+                foreach ($data['old'] as $taskId => $task) {
+                    $rootItem = LabItems::findOne($taskId);
+                    $rootItem->name = $task['name'];
 
-                $rootItem = LabItems::findOne($taskId);
-                $rootItem->name = $task['name'];
+                    if (isset($task['items'])) {
+                        if (isset($task['items']['old'])) {
+                            foreach ($task['items']['old'] as $itemId => $item) {
+                                $labItem = LabItems::findOne($itemId);
+                                $labItem->name = $item['name'];
+                                $labItem->content = $item['content'];
+                                $labItem->component_id = $item['component'];
+                            }
+                        }
 
-                if (isset($task['items'])) {
-                    if (isset($task['items']['old'])) {
-                        foreach ($task['items']['old'] as $itemId => $item) {
-                            $labItem = LabItems::findOne($itemId);
-                            $labItem->name = $item['name'];
-                            $labItem->content = $item['content'];
-                            $labItem->component_id = $item['component'];
+                        if (isset($task['items']['new'])) {
+                            foreach ($task['items']['new'] as $itemId => $item) {
+                                // обновляем родительский элемент
+                                $rgt = $rootItem->rgt;
+                                $rootItem->rgt = $rgt + 2;
+
+                                $labItem = new LabItems();
+                                $labItem->lab_id = $lab->id;
+                                $labItem->name = $item['name'];
+                                $labItem->content = $item['content'];
+                                $labItem->component_id = isset($item['component']) ? $item['component'] : null;
+                                $labItem->level = 2;
+                                $labItem->root = $rootItem->id;
+                                $labItem->lft = $rgt;
+                                $labItem->rgt = $rgt + 1;
+                                $labItem->save();
+                            }
                         }
                     }
+                    $rootItem->save();
+                }
+            }
+
+            if (isset($data['new'])) {
+                foreach ($data['new'] as $task) {
+                    $rootItem = new LabItems();
+                    $rootItem->lab_id = $lab->id;
+                    $rootItem->name = isset($task['name']) ? $task['name'] : '';
+                    $rootItem->level = 1;
+                    $rootItem->lft = 1;
+                    $rootItem->rgt = 2;
+
+                    $rootItem->save();
+                    $rootItem->root = $rootItem->id;
 
                     if (isset($task['items']['new'])) {
-                        foreach ($task['items']['new'] as $itemId => $item) {
+                        foreach ($task['items']['new'] as $item) {
                             // обновляем родительский элемент
                             $rgt = $rootItem->rgt;
                             $rootItem->rgt = $rgt + 2;
 
                             $labItem = new LabItems();
                             $labItem->lab_id = $lab->id;
-                            $labItem->name = $item['name'];
-                            $labItem->content = $item['content'];
+                            $labItem->name = isset($item['name']) ? $item['name'] : ' ';
+                            $labItem->content = isset($item['content']) ? $item['content'] : ' ';
                             $labItem->component_id = isset($item['component']) ? $item['component'] : null;
                             $labItem->level = 2;
                             $labItem->root = $rootItem->id;
@@ -95,9 +130,9 @@ class LabController extends Controller
                             $labItem->save();
                         }
                     }
-                }
 
-                $rootItem->save();
+                    $rootItem->save();
+                }
             }
         }
 
