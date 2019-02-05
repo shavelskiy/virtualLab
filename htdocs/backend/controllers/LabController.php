@@ -22,15 +22,10 @@ class LabController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update'],
+                        'actions' => ['index', 'view', 'create', 'update', 'update-task'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
-                    [
-                        'actions' => ['delete'],
-                        'allow' => true,
-                        'roles' => ['admin']
-                    ]
                 ],
             ],
         ];
@@ -50,12 +45,18 @@ class LabController extends Controller
         ]);
     }
 
+    public function actionUpdate($id)
+    {
+        $lab = $this->findLab($id);
+        return $this->render('update', ['lab' => $lab]);
+    }
+
     /**
      * @param $id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
      */
-    public function actionUpdate($id)
+    public function actionUpdateTask($id)
     {
         $lab = $this->findLab($id);
 
@@ -183,7 +184,7 @@ class LabController extends Controller
         }
 
 
-        return $this->render('update', [
+        return $this->render('update-task', [
             'lab' => $lab,
         ]);
     }

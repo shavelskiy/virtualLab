@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use \yii\helpers\Url;
 
 /**
  * @var $lab \common\models\Lab
@@ -9,15 +10,11 @@ use yii\helpers\Html;
 $this->title = 'ЛР №' . $lab->id . '. ' . $lab->name;
 $this->params['breadcrumbs'][] = ['label' => 'Лабораторные работы', 'url' => ['lab/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+<div class="lab-index">
 
-<form method="post">
-    <button type="submit" class="btn btn-primary mb-3 mt-2">Сохранить</button>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= Html:: hiddenInput(\Yii:: $app->getRequest()->csrfParam, \Yii:: $app->getRequest()->getCsrfToken(), []); ?>
-    <?= backend\widgets\nested\widgets\NestedList::widget([
-        'items' => \common\models\LabItems::find()->tree($lab->id),
-        'actions' => false,
-    ]); ?>
-</form>
-
+    <a href="<?= Url::toRoute(['lab/update-task', 'id' => $lab->id]) ?>">Изменить задание</a>
+</div>
