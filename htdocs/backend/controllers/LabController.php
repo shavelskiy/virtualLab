@@ -134,6 +134,52 @@ class LabController extends Controller
                     $rootItem->save();
                 }
             }
+
+            if (isset($data['delete'])) {
+                foreach ($data['delete'] as $taskId => $deleteData) {
+                    $taskItem = LabItems::findOne($taskId);
+
+                    if ($deleteData['delete']) {
+                        $taskItems = LabItems::find()
+                            ->andWhere(['root' => $taskItem->id])
+                            ->andWhere(['>', 'lft', $taskItem->lft])
+                            ->andWhere(['<', 'rgt', $taskItem->rgt])
+                            ->all();
+
+                        foreach ($taskItems as $item) {
+                            $item->delete();
+                        }
+
+                        $taskItem->delete();
+                    } else {
+                        if (isset($deleteData['items'])) {
+                            foreach ($deleteData['items'] as $itemId => $delete) {
+                                if ($delete) {
+                                    $item = LabItems::findOne($itemId);
+
+                                    $otherItems = LabItems::find()
+                                        ->andWhere(['root' => $taskItem->id])
+                                        ->andWhere(['>', 'lft', $item->rgt])
+                                        ->andWhere(['<', 'rgt', $taskItem->rgt])
+                                        ->all();
+
+                                    foreach ($otherItems as $otherItem) {
+                                        $otherItem->lft = $otherItem->lft - 2;
+                                        $otherItem->rgt = $otherItem->rgt - 2;
+
+                                        $otherItem->save();
+                                    }
+
+                                    $taskItem->rgt = $taskItem->rgt - 2;
+                                    $taskItem->save();
+
+                                    $item->delete();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -144,7 +190,7 @@ class LabController extends Controller
 
     /**
      * @param $id
-     * @return Group|null
+     * @return Lab|null
      * @throws NotFoundHttpException
      */
     protected function findLab($id)

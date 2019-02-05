@@ -40,7 +40,7 @@ class NestedList extends Widget
         echo Html::tag('div', $this->buildList($this->items), ['class' => $this->wrapClass]);
     }
 
-    protected function buildList($items, $parentNum = null, $parentName = null)
+    protected function buildList($items, $parentNum = null, $parentName = null, $parentId = null)
     {
         $html = '';
 
@@ -48,7 +48,7 @@ class NestedList extends Widget
         foreach ($items as $id => $item) {
 
             if ($parentNum) {
-                $content = $this->buildSecondLevelItem($item, $parentNum, $parentName);
+                $content = $this->buildSecondLevelItem($item, $parentNum, $parentName, $parentId);
             } else {
                 $content = $this->buildFirstLevelItem($item);
             }
@@ -86,19 +86,18 @@ class NestedList extends Widget
         $html .= Html::tag('textarea', $item['name'], ['class' => 'form-control mt-2 new-label-input', 'name' => $name . '[name]']); // имя заголовка
 
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
+        $html .= Html::input('hidden', 'task[delete][' . $item['id'] . '][delete]', '0', ['class' => 'delete-input']);
         $html .= Html::button('Удалить', ['class' => 'btn btn-danger mb-3 mt-2 ml-2 delete-item']);
         $html .= Html::endTag('div');
 
-        if (count($item['children']) > 0) {
-            $html .= $this->buildList($item['children'], $item['num'], $name . '[items][old]');
-        }
+        $html .= $this->buildList($item['children'], $item['num'], $name . '[items][old]', $item['id']);
 
         $html .= Html::tag('hr');
 
         return $html;
     }
 
-    protected function buildSecondLevelItem($item, $parentNum, $parentName)
+    protected function buildSecondLevelItem($item, $parentNum, $parentName, $parentId)
     {
         $name = $parentName . '[' . $item['id'] . ']';
         $html = '';
@@ -116,7 +115,7 @@ class NestedList extends Widget
         $html .= Html::tag('textarea', $item['content'], ['class' => 'form-control mt-2 new-content-input', 'name' => $name . '[content]']); // контент
 
         // блок с выбором компонента
-        $html .= Html::beginTag('select', ['class' => 'form-control mt-2',  'name' => $name . '[component]']);
+        $html .= Html::beginTag('select', ['class' => 'form-control mt-2', 'name' => $name . '[component]']);
         $html .= Html::tag('option', '');
         foreach ($this->components as $id => $component) {
             $options = [
@@ -130,6 +129,7 @@ class NestedList extends Widget
         $html .= Html::endTag('select');
 
         $html .= Html::button('Предосмотр', ['class' => 'btn btn-primary mb-3 mt-2 preview']);
+        $html .= Html::input('hidden', 'task[delete][' . $parentId . '][items][' . $item['id'] . ']', '0', ['class' => 'delete-input']);
         $html .= Html::button('Удалить', ['class' => 'btn btn-danger mb-3 mt-2 ml-2 delete-item']);
         $html .= Html::endTag('div');
 

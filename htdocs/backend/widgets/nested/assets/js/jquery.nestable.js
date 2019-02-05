@@ -6,7 +6,7 @@
             '<button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button><button type="button" class="btn btn-danger mb-3 mt-2 ml-2 delete-new-item">Удалить</button></div></li>',
 
         newTask: '<li class="nested-item" data-id="1" data-num="{number}"><h3 class="show-label"><b class="number">{number}. </b></h3>' +
-            '<div class="settings"><textarea class="form-control mt-2 new-label-input name="task[new][{taskSort}][name]"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
+            '<div class="settings"><textarea class="form-control mt-2 new-label-input" name="task[new][{taskSort}][name]"></textarea><button type="button" class="btn btn-primary mb-3 mt-2 preview">Предосмотр</button></div>' +
             '<ul class="nested-list" data-count="1">{newItem}<button type="button" class="btn btn-success mb-3 mt-2 new-item">Добавить задание</button></ul><hr></li>',
 
         components: ''
@@ -70,6 +70,7 @@
             $.each(this.el.find('.delete-item'), function (k, el) {
                 $(el).click(function () {
                     $(el).closest('.nested-item').find('.item').first().addClass('hidden');
+                    $(el).siblings('.delete-input').val('1');
                     $(el).closest('.nested-item').find('.restore-item').first().removeClass('hidden');
                 });
             });
