@@ -17,4 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <a href="<?= Url::toRoute(['lab/update-task', 'id' => $lab->id]) ?>">Изменить задание</a>
+    <br>
+    <a href="<?= Url::toRoute(['scheme/update-schemes', 'labId' => $lab->id]) ?>">Изменить схемы</a>
 </div>

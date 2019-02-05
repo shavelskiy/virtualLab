@@ -13,7 +13,6 @@ use Yii;
  * @property string $preview_picture
  * @property string signal_view
  *
- * @property LabItemsOld[] $items
  * @property Scheme[] $schemes
  */
 class Lab extends \yii\db\ActiveRecord
@@ -42,13 +41,12 @@ class Lab extends \yii\db\ActiveRecord
         return self::PICTURES_DIR . $this->preview_picture;
     }
 
-    public function getItems()
-    {
-        return LabItemsOld::find()->where(['lab_id' => $this->id])->all();
-    }
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getSchemes()
     {
-        return Scheme::find()->where(['lab_id' => $this->id])->all();
+        return Scheme::find()->andWhere(['lab_id' => $this->id])->all();
+//        return $this->hasMany(Scheme::className(), ['lab_id', 'id']);
     }
 }

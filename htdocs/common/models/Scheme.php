@@ -8,6 +8,7 @@ use yii\db\ActiveRecord;
  * This is the model class for table "schemes".
  *
  * @property int $id
+ * @property int lab_id
  * @property int $number
  * @property int $variant
  *
