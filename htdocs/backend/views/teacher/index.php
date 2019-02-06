@@ -42,7 +42,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'user.email'
                 ],
 
-                ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => $buttonTemplate,
+                    'buttons' => [
+                        'delete' => function ($url, $model, $key) {
+                            return (count($model->groups) == 0) ? \backend\widgets\CActionColumn::renderDeleteButton($url) : false;
+                        }
+                    ]
+                ],
             ]
         ]
     ); ?>

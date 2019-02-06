@@ -54,7 +54,15 @@ if (Yii::$app->user->can('deleteGroup')) {
                 'format' => 'html',
             ],
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => $buttonTemplate],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => $buttonTemplate,
+                'buttons' => [
+                    'delete' => function ($url, $model, $key) {
+                        return (count($model->students) == 0) ? \backend\widgets\CActionColumn::renderDeleteButton($url) : false;
+                    }
+                ]
+            ],
         ],
     ]); ?>
 </div>
