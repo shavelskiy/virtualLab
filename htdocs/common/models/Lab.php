@@ -41,12 +41,8 @@ class Lab extends \yii\db\ActiveRecord
         return self::PICTURES_DIR . $this->preview_picture;
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getSchemes()
     {
         return Scheme::find()->andWhere(['lab_id' => $this->id])->all();
-//        return $this->hasMany(Scheme::className(), ['lab_id', 'id']);
     }
 }

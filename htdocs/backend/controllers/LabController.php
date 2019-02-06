@@ -62,6 +62,7 @@ class LabController extends Controller
 
         if (Yii::$app->request->isPost) {
             $data = Yii::$app->request->post('task');
+            dump($data);die;
 
             if (isset($data['old'])) {
                 foreach ($data['old'] as $taskId => $task) {

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -62,6 +63,7 @@ class TeacherController extends Controller
     public function actionView($id)
     {
         $teacher = $this->findTeacher($id);
+
         $teacherGroups = $teacher->groups;
         $groupStudents = [];
         foreach ($teacherGroups as $group) {
