@@ -1,2 +1,2 @@
 <div id="app"></div>
-<script src="/dist/build.js"></script>
+<script src="http://localhost:8081/dist/build.js"></script>
