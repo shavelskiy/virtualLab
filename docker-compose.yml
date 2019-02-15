@@ -15,8 +15,6 @@ services:
     - /tmp
     - /sys/fs/cgroup:/sys/fs/cgroup:ro
     - ../../:/application/
-    environment:
-      MYSQL_ROOT_PASSWORD: "root"
     ports:
     - "8080:80"
     - "8083:8081"

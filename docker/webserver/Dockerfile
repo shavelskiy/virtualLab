@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y apache2
-RUN apt install -y mysql-client
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php libapache2-mod-php php-mysql php-mbstring php-xml
 RUN apt-get install -y nginx
 RUN apt-get install -y nodejs npm
