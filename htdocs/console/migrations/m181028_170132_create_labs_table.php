@@ -22,7 +22,7 @@ class m181028_170132_create_labs_table extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'preview_picture' => $this->string(255),
-            'signal' => $this->string(255),
+            'signal_view' => $this->string(255),
         ], $tableOptions);
     }
 

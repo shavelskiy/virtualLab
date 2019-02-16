@@ -1,2 +1,5 @@
 <div id="app"></div>
-<script src="http://localhost:8081/dist/build.js"></script>
+
+<?php require_once '../../dist/scripts.php'; ?>
+
+<script src="<?= $scripts['lab'] ?>"></script>
