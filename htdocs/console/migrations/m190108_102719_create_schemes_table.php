@@ -20,8 +20,7 @@ class m190108_102719_create_schemes_table extends Migration
         $this->createTable('schemes', [
             'id' => $this->primaryKey(),
             'lab_id' => $this->integer()->notNull(),
-            'number' => $this->integer()->notNull(),
-            'variant' => $this->integer()
+            'number' => $this->integer()->notNull()
         ], $tableOptions);
     }
 
