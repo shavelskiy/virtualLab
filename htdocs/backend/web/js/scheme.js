@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     var canvas, context
-    var element, name, value, x, y, vertical, direction
-    var elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
-    var html
-    var toDelete = []
 
     canvas = document.getElementById('scheme')
     if (canvas.getContext) {
         context = canvas.getContext('2d')
     }
 
-    // рисуем текущие элементы
     drawScheme()
 
     // сохранение
@@ -36,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             url: location.href,
             data: JSON.stringify({
                 'save': data,
-                'delete': toDelete
+                'delete': elementsToDelete
             }),
             success: function (data) {
                 console.log('done')
@@ -44,11 +39,59 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
+    // работа с контуром
+    var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
+        coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>';
+    var html
+
+    // удаление старых
+    $('.circuit-remove').each(function () {
+        $(this).click(function () {
+            // var id = Number($(this).attr('data-id'))
+            // toDelete.push(id)
+            $(this).closest('li').remove()
+            drawScheme()
+        })
+    })
+
+    // добавление точек у существующих
+    $('.circuit-point-add').each(function () {
+        $(this).click(function () {
+            $(this).siblings('.circuit-items').append(coordinateHtml)
+        })
+    })
+
+    // добавление контура
+    $('.circuit-add').click(function () {
+        html = circuitHtml.replace('{{INPUT}}', coordinateHtml)
+        $('.circuits-list').append(html)
+
+        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-point-add').click(function() {
+            $(this).siblings('.circuit-items').append(coordinateHtml)
+        })
+
+        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-remove').click(function() {
+            $(this).closest('.circuits-list-item').remove()
+        })
+    })
+
+    // предосмотр
+    $('.circuit-preview').click(function () {
+        drawScheme()
+    })
+
+
+    // работа с элементами
+    var element, name, value, x, y, vertical, direction
+    var elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
+    var html
+    var elementsToDelete = []
+
     // удаление старых
     $('.element-remove').each(function () {
         $(this).click(function () {
             var id = Number($(this).attr('data-id'))
-            toDelete.push(id)
+            elementsToDelete.push(id)
             $(this).closest('li').remove()
             drawScheme()
         })
@@ -75,9 +118,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    // нарисовать элементы по таблице
     function drawScheme() {
         context.clearRect(0, 0, canvas.width, canvas.height)
+        drawCircuits()
+        drawElements()
+    }
+
+    // нарисовать элементы по таблице
+    function drawElements() {
         $('.elements-list').find('li').each(function () {
             element = $(this).attr('data-type')
             name = $(this).attr('data-name')
@@ -88,6 +136,24 @@ document.addEventListener('DOMContentLoaded', function () {
             direction = $(this).attr('data-direction') === 'true'
             drawElement()
         })
+    }
+
+    // нарисовать контура по таблице
+    function drawCircuits() {
+        context.beginPath()
+        $('.circuits-list').find('.circuits-list-item').each(function () {
+            $(this).find('.circuit-items').find('li').each(function (key) {
+                x = Number($(this).find('#circuit-x').val())
+                y = Number($(this).find('#circuit-y').val())
+                if (key === 0) {
+                    context.moveTo(x, y)
+                } else {
+                    context.lineTo(x, y)
+                }
+            })
+        })
+        context.stroke()
+        context.closePath()
     }
 
     function drawElement() {

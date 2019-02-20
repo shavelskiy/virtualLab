@@ -51,11 +51,20 @@ class Scheme extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return array
      */
     public function getSchemeCircuits()
     {
-        return $this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id']);
+        $circuits = [];
+        /** @var SchemeCircuit $item */
+        foreach ($this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id'])->all() as $item) {
+            $circuits[$item->parent][$item->sort] = [
+                'id' => $item->id,
+                'x' => $item->x,
+                'y' => $item->y
+            ];
+        }
+        return $circuits;
     }
 
     /**
