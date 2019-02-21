@@ -46,13 +46,20 @@ class SchemeController extends Controller
     public function actionUpdate($schemeId = null, $labId = null)
     {
         if (Yii::$app->request->isAjax) {
+
+            if ($labId) {
+                $scheme = new Scheme();
+                $scheme->lab_id = $labId;
+                $scheme->save();
+            }
+
             $data = Json::decode(Yii::$app->request->getRawBody());
 
             SchemeCircuit::saveData($data['circuits'], $schemeId);
             SchemeItem::saveData($data['elements'], $schemeId);
             SchemeText::saveData($data['texts'], $schemeId);
 
-            $this->redirect(['lab/index']);
+            $this->redirect(['lab/update', 'id' => ($schemeId) ? $schemeId : $scheme->lab->id]);
         }
 
         if ($schemeId) {
@@ -60,7 +67,6 @@ class SchemeController extends Controller
         } else {
             $scheme = new Scheme();
             $scheme->lab_id = $labId;
-            $scheme->save();
         }
 
         return $this->render('update', ['scheme' => $scheme]);
