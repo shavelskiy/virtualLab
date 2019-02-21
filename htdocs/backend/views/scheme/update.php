@@ -1,17 +1,15 @@
 <?php
 
-use yii\helpers\Html;
-
 /**
  * @var $scheme \common\models\Scheme
  */
 
 $this->registerJsFile("@web/js/scheme.js");
 
-//$this->title = 'ЛР №' . $scheme->lab->id . '. ' . $scheme->lab->name;
-//$this->params['breadcrumbs'][] = ['label' => 'Лабораторные работы', 'url' => ['lab/index']];
-//$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['lab/update', 'id' => $lab->id]];
-//$this->params['breadcrumbs'][] = 'Изменение схем для лабораторной работы';
+$this->title = 'ЛР №' . $scheme->lab->id . '. ' . $scheme->lab->name;
+$this->params['breadcrumbs'][] = ['label' => 'Лабораторные работы', 'url' => ['lab/index']];
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['lab/update', 'id' => $scheme->lab->id]];
+$this->params['breadcrumbs'][] = 'Изменение схем для лабораторной работы';
 ?>
 
 <div class="container-fluid">
@@ -37,7 +35,7 @@ $this->registerJsFile("@web/js/scheme.js");
         </div>
     </div>
 
-    <!--Редактирование элементов-->
+    <!--Добавление элементов-->
     <div class="elements-setting hidden">
         <div class="form-group">
             <label for="element-select">Выберите элемент</label>
@@ -84,6 +82,29 @@ $this->registerJsFile("@web/js/scheme.js");
         </div>
     </div>
 
+    <!--Добавление текста-->
+    <div class="text-setting hidden">
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="text-value">Текст</label>
+                    <input type="text" id="text-value" class="form-control" placeholder="Текст">
+                </div>
+                <div class="col">
+                    <label for="text-x">Координата по x</label>
+                    <input type="text" id="text-x" class="form-control" placeholder="x">
+                </div>
+                <div class="col">
+                    <label for="text-y">Координата по y</label>
+                    <input type="text" id="text-y" class="form-control" placeholder="y">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary text-add">Добавить</button>
+        </div>
+    </div>
+
     <div class="row">
 
         <div class="col">
@@ -106,10 +127,12 @@ $this->registerJsFile("@web/js/scheme.js");
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <input type="text" id="circuit-x" class="form-control" placeholder="x" value="<?= $point['x'] ?>">
+                                                            <input type="text" id="circuit-x" class="form-control"
+                                                                   placeholder="x" value="<?= $point['x'] ?>">
                                                         </div>
                                                         <div class="col">
-                                                            <input type="text" id="circuit-y" class="form-control" placeholder="y" value="<?= $point['y'] ?>">
+                                                            <input type="text" id="circuit-y" class="form-control"
+                                                                   placeholder="y" value="<?= $point['y'] ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,9 +169,34 @@ $this->registerJsFile("@web/js/scheme.js");
                                     <div class="row">
                                         <div class="col-10"><p><?= $schemeItem->name ?></p></div>
                                         <div class="col-2">
-                                            <button type="button" data-id="<?= $schemeItem->id ?>"
-                                                    class="btn btn-default btn-sm element-remove"><span
-                                                        class="glyphicon glyphicon-remove"></span></button>
+                                            <button type="button" data-id="<?= $schemeItem->id ?>" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--для текста-->
+        <div class="col text-panel hidden">
+            <div class="panel panel-default">
+                <div class="panel-heading">Элементы</div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <ul class="list-group text-list">
+                            <?php /** @var \common\models\SchemeText $schemeText */ ?>
+                            <?php foreach ($scheme->schemeTexts as $schemeText): ?>
+                                <li class="list-group-item"
+                                    data-value="<?= $schemeText->text ?>"
+                                    data-x="<?= $schemeText->x ?>"
+                                    data-y="<?= $schemeText->y ?>">
+                                    <div class="row">
+                                        <div class="col-10"><p><?= $schemeText->text ?></p></div>
+                                        <div class="col-2">
+                                            <button type="button" data-id="<?= $schemeText->id ?>" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button>
                                         </div>
                                     </div>
                                 </li>

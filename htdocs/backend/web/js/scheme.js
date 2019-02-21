@@ -3,31 +3,47 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentSettings = $('.circuits-setting'),
         currentPanel = $('.circuits-panel')
 
+    var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
+        coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
+        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
+        textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
+
+    var html
+    var element, name, value, x, y, vertical, direction // для элементов
+    var text
+    var circuitsToDelete = [], elementsToDelete = [], textsToDelete = []
+
     canvas = document.getElementById('scheme')
     if (canvas.getContext) {
         context = canvas.getContext('2d')
     }
 
-    $('.change-tab').each(function() {
+    // рисуем изначальную схему
+    drawScheme()
+
+    // управление вкладками
+    $('.change-tab').each(function () {
         $(this).click(function () {
             currentSettings.addClass('hidden')
             currentPanel.addClass('hidden')
             switch ($(this).attr('data-tab')) {
                 case 'circuit':
-                    currentSettings  = $('.circuits-setting')
-                    currentPanel  = $('.circuits-panel')
+                    currentSettings = $('.circuits-setting')
+                    currentPanel = $('.circuits-panel')
                     break
                 case 'element':
-                    currentSettings  = $('.elements-setting')
-                    currentPanel  = $('.elements-panel')
+                    currentSettings = $('.elements-setting')
+                    currentPanel = $('.elements-panel')
+                    break
+                case 'text':
+                    currentSettings = $('.text-setting')
+                    currentPanel = $('.text-panel')
                     break
             }
             currentSettings.removeClass('hidden')
             currentPanel.removeClass('hidden')
         })
     })
-
-    drawScheme()
 
     // сохранение
     $('.save').click(function () {
@@ -70,6 +86,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
 
+        var texts = []
+        $('.text-list').find('li').each(function () {
+            var curText = {}
+            if (!$(this).find('.text-remove').attr('data-id')) {
+                curText.text = $(this).attr('data-value')
+                curText.x = Number($(this).attr('data-x'))
+                curText.y = Number($(this).attr('data-y'))
+                texts.push(curText)
+            }
+        })
+
         $.ajax({
             method: 'POST',
             url: location.href,
@@ -81,21 +108,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 'elements': {
                     'save': elements,
                     'delete': elementsToDelete
+                },
+                'texts': {
+                    'save': texts,
+                    'delete': textsToDelete
                 }
             }),
-            success: function (data) {
+            success: function () {
                 console.log('done')
             }
         })
     })
 
-    // работа с контуром
-    var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
-        coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>'
-    var html
-    var circuitsToDelete = []
+    // предосмотр
+    $('.circuit-preview').click(function () {
+        drawScheme()
+    })
 
-    // удаление старых
+    // удаление старых контуров
     $('.circuit-remove').each(function () {
         $(this).click(function () {
             var id = Number($(this).attr('data-parent-id'))
@@ -105,14 +135,34 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    // добавление точек у существующих
+    // удаление старых элементов
+    $('.element-remove').each(function () {
+        $(this).click(function () {
+            var id = Number($(this).attr('data-id'))
+            elementsToDelete.push(id)
+            $(this).closest('li').remove()
+            drawScheme()
+        })
+    })
+
+    // удаление старых текстов
+    $('.text-remove').each(function () {
+        $(this).click(function () {
+            var id = Number($(this).attr('data-id'))
+            textsToDelete.push(id)
+            $(this).closest('li').remove()
+            drawScheme()
+        })
+    })
+
+    // добавление точек у существующих контуров
     $('.circuit-point-add').each(function () {
         $(this).click(function () {
             $(this).siblings('.circuit-items').append(coordinateHtml)
         })
     })
 
-    // добавление контура
+    // добавление нового контура
     $('.circuit-add').click(function () {
         html = circuitHtml.replace('{{INPUT}}', coordinateHtml)
         $('.circuits-list').append(html)
@@ -126,28 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    // предосмотр
-    $('.circuit-preview').click(function () {
-        drawScheme()
-    })
-
-
-    // работа с элементами
-    var element, name, value, x, y, vertical, direction
-    var elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
-    var html
-    var elementsToDelete = []
-
-    // удаление старых
-    $('.element-remove').each(function () {
-        $(this).click(function () {
-            var id = Number($(this).attr('data-id'))
-            elementsToDelete.push(id)
-            $(this).closest('li').remove()
-            drawScheme()
-        })
-    })
-
     // добавление элемента
     $('.element-add').click(function () {
         element = $('#element-select').val()
@@ -158,10 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
         vertical = $('#vertical').is(':checked')
         direction = $('#direction').is(':checked')
 
-        drawElement()
-
-        html = elementHtml.replace('{{NAME}}', name).replace('{{TYPE}}', element).replace('{{VALUE}}', value).replace('{{VERTICAL}}', vertical).replace('{{NAME}}', name).replace('{{DIRECTION}}', direction).replace('{{X}}', x).replace('{{Y}}', y)
+        html = elementHtml.replace(/{{NAME}}/g, name).replace('{{TYPE}}', element).replace('{{VALUE}}', value).replace('{{VERTICAL}}', vertical).replace('{{DIRECTION}}', direction).replace('{{X}}', x).replace('{{Y}}', y)
         $('.elements-list').append(html)
+
+        drawScheme()
 
         $('.element-remove').last().click(function () {
             $(this).closest('li').remove()
@@ -169,10 +197,29 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
+    // добавление текста
+    $('.text-add').click(function () {
+        text = $('#text-value').val()
+        x = Number($('#text-x').val())
+        y = Number($('#text-y').val())
+
+        html = textHtml.replace('{{X}}', x).replace('{{Y}}', y).replace(/{{TEXT}}/g, text)
+        $('.text-list').append(html)
+
+        drawScheme()
+
+        $('.text-remove').last().click(function () {
+            $(this).closest('li').remove()
+            drawScheme()
+        })
+    })
+
+    // нарисовать всю схему
     function drawScheme() {
         context.clearRect(0, 0, canvas.width, canvas.height)
         drawCircuits()
         drawElements()
+        drawTexts()
     }
 
     // нарисовать элементы по таблице
@@ -207,6 +254,17 @@ document.addEventListener('DOMContentLoaded', function () {
         context.closePath()
     }
 
+    // нарисовать текст по таблице
+    function drawTexts() {
+        $('.text-list').find('li').each(function () {
+            text = $(this).attr('data-value')
+            x = Number($(this).attr('data-x'))
+            y = Number($(this).attr('data-y'))
+            context.fillText(text, x, y)
+        })
+    }
+
+    // нарисовать элемент
     function drawElement() {
         switch (element) {
             case 'R':

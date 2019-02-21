@@ -6,6 +6,7 @@ use common\models\Lab;
 use common\models\Scheme;
 use common\models\SchemeCircuit;
 use common\models\SchemeItem;
+use common\models\SchemeText;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -47,7 +48,8 @@ class SchemeController extends Controller
             $data = Json::decode(Yii::$app->request->getRawBody());
 
             SchemeCircuit::saveData($data['circuits'], $schemeId);
-            SchemeItem::saveData( $data['elements'], $schemeId);
+            SchemeItem::saveData($data['elements'], $schemeId);
+            SchemeText::saveData($data['texts'], $schemeId);
 
             $this->redirect(['lab/index']);
         }
