@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     var canvas, context
     var currentSettings = $('.circuits-setting'),
-        currentPanel = $('.circuits-panel')
+        currentPanel = $('.circuits-panel'),
+        currentTab = $('.nav-tabs').find('.active')
 
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
         coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
@@ -24,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // управление вкладками
     $('.change-tab').each(function () {
         $(this).click(function () {
+            currentTab.removeClass('active')
+            currentTab = $(this)
+            currentTab.addClass('active')
+
             currentSettings.addClass('hidden')
             currentPanel.addClass('hidden')
             switch ($(this).attr('data-tab')) {

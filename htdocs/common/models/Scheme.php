@@ -9,9 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property int $lab_id
- * @property int $number
  *
- * @property SchemeCircuit[] $schemeCircuits
+ * @property [] $schemeCircuits
  * @property SchemeItem[] $schemeItems
  * @property SchemeText[] $schemeTexts
  * @property Lab $lab
@@ -32,8 +31,6 @@ class Scheme extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lab_id', 'number'], 'required'],
-            [['lab_id', 'number'], 'integer'],
             [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lab::className(), 'targetAttribute' => ['lab_id' => 'id']],
         ];
     }
@@ -46,7 +43,6 @@ class Scheme extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'lab_id' => 'Lab ID',
-            'number' => 'Number',
         ];
     }
 

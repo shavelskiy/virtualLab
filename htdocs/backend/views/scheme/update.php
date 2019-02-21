@@ -17,13 +17,13 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
     <!--меню-->
     <ul class="nav nav-tabs mb-3">
         <li class="nav-item">
-            <a class="nav-link change-tab" data-tab="circuit">Цепь</a>
+            <a class="active change-tab" data-tab="circuit">Цепь</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link change-tab" data-tab="element">Элементы</a>
+            <a class="change-tab" data-tab="element">Элементы</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link change-tab" data-tab="text">Текст</a>
+            <a class="change-tab" data-tab="text">Текст</a>
         </li>
     </ul>
 

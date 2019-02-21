@@ -25,7 +25,7 @@ class SchemeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['update-schemes'],
+                        'actions' => ['create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
@@ -33,6 +33,7 @@ class SchemeController extends Controller
             ],
         ];
     }
+
 
     /**
      * Изменение элементов схемы
@@ -42,7 +43,7 @@ class SchemeController extends Controller
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    public function actionUpdateSchemes($schemeId)
+    public function actionUpdate($schemeId = null, $labId = null)
     {
         if (Yii::$app->request->isAjax) {
             $data = Json::decode(Yii::$app->request->getRawBody());
@@ -54,9 +55,34 @@ class SchemeController extends Controller
             $this->redirect(['lab/index']);
         }
 
-        $scheme = $this->findScheme($schemeId);
+        if ($schemeId) {
+            $scheme = $this->findScheme($schemeId);
+        } else {
+            $scheme = new Scheme();
+            $scheme->lab_id = $labId;
+            $scheme->save();
+        }
 
         return $this->render('update', ['scheme' => $scheme]);
+    }
+
+    public function actionDelete()
+    {
+        $scheme = Scheme::findOne(Yii::$app->request->post('schemeId'));
+
+        foreach (SchemeCircuit::find()->andWhere(['scheme_id' => $scheme->id])->all() as $circuit) {
+            $circuit->delete();
+        }
+
+        foreach ($scheme->schemeItems as $item) {
+            $item->delete();
+        }
+
+        foreach ($scheme->schemeTexts as $text) {
+            $text->delete();
+        }
+
+        $scheme->delete(); die;
     }
 
     /**

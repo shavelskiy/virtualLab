@@ -14,7 +14,7 @@ use Yii;
  * @property int $y
  * @property int $sort
  *
- * @property Schemes $scheme
+ * @property Scheme $scheme
  */
 class SchemeCircuit extends \yii\db\ActiveRecord
 {
