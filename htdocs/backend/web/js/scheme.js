@@ -10,8 +10,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // сохранение
     $('.save').click(function () {
-        var data = []
+        var circuits = []
+        $('.circuits-list').find('.circuits-list-item').each(function () {
+            var curCircuit = {}
+            var points = []
+            var sort = 0
 
+            $(this).find('.circuit-items').find('li').each(function () {
+                if ($(this).attr('data-id')) {
+                    sort++
+                } else {
+                    var point = {}
+                    point.x = Number($(this).find('#circuit-x').val())
+                    point.y = Number($(this).find('#circuit-y').val())
+                    points.push(point)
+                }
+            })
+
+            curCircuit.parentId = $(this).find('.circuit-remove').attr('data-parent-id')
+            curCircuit.lastSort = sort
+            curCircuit.points = points
+
+            circuits.push(curCircuit)
+        })
+
+        var elements = []
         $('.elements-list').find('li').each(function () {
             var curElement = {}
             if (!$(this).find('.element-remove').attr('data-id')) {
@@ -22,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 curElement.y = Number($(this).attr('data-y'))
                 curElement.vertical = $(this).attr('data-vertical') === 'true'
                 curElement.direction = $(this).attr('data-direction') === 'true'
-                data.push(curElement)
+                elements.push(curElement)
             }
         })
 
@@ -30,8 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             url: location.href,
             data: JSON.stringify({
-                'save': data,
-                'delete': elementsToDelete
+                'circuits': {
+                    'save': circuits,
+                    'delete': circuitsToDelete
+                },
+                'elements': {
+                    'save': elements,
+                    'delete': elementsToDelete
+                }
             }),
             success: function (data) {
                 console.log('done')
@@ -41,14 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // работа с контуром
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
-        coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>';
+        coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>'
     var html
+    var circuitsToDelete = []
 
     // удаление старых
     $('.circuit-remove').each(function () {
         $(this).click(function () {
-            // var id = Number($(this).attr('data-id'))
-            // toDelete.push(id)
+            var id = Number($(this).attr('data-parent-id'))
+            circuitsToDelete.push(id)
             $(this).closest('li').remove()
             drawScheme()
         })
@@ -66,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function () {
         html = circuitHtml.replace('{{INPUT}}', coordinateHtml)
         $('.circuits-list').append(html)
 
-        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-point-add').click(function() {
+        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-point-add').click(function () {
             $(this).siblings('.circuit-items').append(coordinateHtml)
         })
 
-        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-remove').click(function() {
+        $('.circuits-list').find('.circuits-list-item').last().find('.circuit-remove').click(function () {
             $(this).closest('.circuits-list-item').remove()
         })
     })

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Lab;
 use common\models\Scheme;
+use common\models\SchemeCircuit;
 use common\models\SchemeItem;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -45,7 +46,10 @@ class SchemeController extends Controller
         if (Yii::$app->request->isAjax) {
             $data = Json::decode(Yii::$app->request->getRawBody());
 
-            foreach ($data['save'] as $element) {
+            SchemeCircuit::saveData($data['circuits'], $schemeId);
+
+            $elements = $data['elements'];
+            foreach ($elements['save'] as $element) {
                 $schemeItem = new SchemeItem();
                 $schemeItem->scheme_id = $schemeId;
                 $schemeItem->type = $element['element'];
@@ -61,7 +65,7 @@ class SchemeController extends Controller
                 }
             }
 
-            foreach ($data['delete'] as $itemId) {
+            foreach ($elements['delete'] as $itemId) {
                 $schemeItem = SchemeItem::findOne($itemId);
                 $schemeItem->delete();
             }

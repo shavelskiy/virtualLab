@@ -85,11 +85,11 @@ $this->registerJsFile("@web/js/scheme.js");
                     <div class="container-fluid">
                         <ul class="list-group circuits-list">
                             <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
-                            <?php foreach ($scheme->schemeCircuits as $circuit): ?>
+                            <?php foreach ($scheme->schemeCircuits as $parentId => $circuit): ?>
                                 <li class="list-group-item circuits-list-item">
                                     <ul class="list-group circuit-items">
                                         <?php foreach ($circuit as $point): ?>
-                                            <li class="list-group-item">
+                                            <li class="list-group-item" data-id="<?= $point['id'] ?>">
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col">
@@ -104,7 +104,7 @@ $this->registerJsFile("@web/js/scheme.js");
                                         <?php endforeach; ?>
                                     </ul>
                                     <button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button>
-                                    <button type="button" class="btn-sm btn-danger circuit-remove">Удалить</button>
+                                    <button type="button" class="btn-sm btn-danger circuit-remove" data-parent-id="<?= $parentId ?>">Удалить</button>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
