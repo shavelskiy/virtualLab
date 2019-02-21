@@ -16,6 +16,19 @@ $this->registerJsFile("@web/js/scheme.js");
 
 <div class="container-fluid">
 
+    <!--меню-->
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link change-tab" data-tab="circuit">Цепь</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link change-tab" data-tab="element">Элементы</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link change-tab" data-tab="text">Текст</a>
+        </li>
+    </ul>
+
     <!--Добавление контура-->
     <div class="circuits-setting">
         <div class="form-group">

@@ -1,10 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
     var canvas, context
+    var currentSettings = $('.circuits-setting'),
+        currentPanel = $('.circuits-panel')
 
     canvas = document.getElementById('scheme')
     if (canvas.getContext) {
         context = canvas.getContext('2d')
     }
+
+    $('.change-tab').each(function() {
+        $(this).click(function () {
+            currentSettings.addClass('hidden')
+            currentPanel.addClass('hidden')
+            switch ($(this).attr('data-tab')) {
+                case 'circuit':
+                    currentSettings  = $('.circuits-setting')
+                    currentPanel  = $('.circuits-panel')
+                    break
+                case 'element':
+                    currentSettings  = $('.elements-setting')
+                    currentPanel  = $('.elements-panel')
+                    break
+            }
+            currentSettings.removeClass('hidden')
+            currentPanel.removeClass('hidden')
+        })
+    })
 
     drawScheme()
 

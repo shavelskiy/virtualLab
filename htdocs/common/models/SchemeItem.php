@@ -68,4 +68,28 @@ class SchemeItem extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Scheme::className(), ['id' => 'scheme_id']);
     }
+
+    public static function saveData($data, $schemeId)
+    {
+        foreach ($data['save'] as $element) {
+            $schemeItem = new SchemeItem();
+            $schemeItem->scheme_id = $schemeId;
+            $schemeItem->type = $element['element'];
+            $schemeItem->name = $element['name'];
+            $schemeItem->value = $element['value'];
+            $schemeItem->x = $element['x'];
+            $schemeItem->y = $element['y'];
+            $schemeItem->vertical = $element['vertical'] == 'true';
+            $schemeItem->direction = $element['direction'] == 'true';
+
+            if ($schemeItem->validate()) {
+                $schemeItem->save();
+            }
+        }
+
+        foreach ($data['delete'] as $itemId) {
+            $schemeItem = SchemeItem::findOne($itemId);
+            $schemeItem->delete();
+        }
+    }
 }

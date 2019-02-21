@@ -47,28 +47,8 @@ class SchemeController extends Controller
             $data = Json::decode(Yii::$app->request->getRawBody());
 
             SchemeCircuit::saveData($data['circuits'], $schemeId);
+            SchemeItem::saveData( $data['elements'], $schemeId);
 
-            $elements = $data['elements'];
-            foreach ($elements['save'] as $element) {
-                $schemeItem = new SchemeItem();
-                $schemeItem->scheme_id = $schemeId;
-                $schemeItem->type = $element['element'];
-                $schemeItem->name = $element['name'];
-                $schemeItem->value = $element['value'];
-                $schemeItem->x = $element['x'];
-                $schemeItem->y = $element['y'];
-                $schemeItem->vertical = $element['vertical'] == 'true';
-                $schemeItem->direction = $element['direction'] == 'true';
-
-                if ($schemeItem->validate()) {
-                    $schemeItem->save();
-                }
-            }
-
-            foreach ($elements['delete'] as $itemId) {
-                $schemeItem = SchemeItem::findOne($itemId);
-                $schemeItem->delete();
-            }
             $this->redirect(['lab/index']);
         }
 
