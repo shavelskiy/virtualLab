@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
     <div class="row">
 
         <div class="col">
-            <canvas id="scheme" width="640" height="360"></canvas>
+            <canvas id="scheme" width="640" height="360" style="border: 1px solid black"></canvas>
         </div>
 
         <!--для контуров-->
@@ -167,7 +167,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                     data-vertical="<?= $schemeItem->vertical ? 'true' : 'false' ?>"
                                     data-direction="<?= $schemeItem->direction ? 'true' : 'false' ?>">
                                     <div class="row">
-                                        <div class="col-10"><p><?= $schemeItem->name ?></p></div>
+                                        <div class="col-10"><p><?= $schemeItem->name  . ' = ' . $schemeItem->value . ' ( x = ' . $schemeItem->x . ', y = ' . $schemeItem->y . ' )' ?></p></div>
                                         <div class="col-2">
                                             <button type="button" data-id="<?= $schemeItem->id ?>" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button>
                                         </div>
@@ -194,7 +194,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                     data-x="<?= $schemeText->x ?>"
                                     data-y="<?= $schemeText->y ?>">
                                     <div class="row">
-                                        <div class="col-10"><p><?= $schemeText->text ?></p></div>
+                                        <div class="col-10"><p><?= $schemeText->text . ' ( x = ' . $schemeItem->x . ', y = ' . $schemeItem->y . ' )' ?></p></div>
                                         <div class="col-2">
                                             <button type="button" data-id="<?= $schemeText->id ?>" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button>
                                         </div>

@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
         coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
-        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
-        textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}}</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
+        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}} = {{VALUE}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
+        textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
 
     var html
     var element, name, value, x, y, vertical, direction // для элементов
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         vertical = $('#vertical').is(':checked')
         direction = $('#direction').is(':checked')
 
-        html = elementHtml.replace(/{{NAME}}/g, name).replace('{{TYPE}}', element).replace('{{VALUE}}', value).replace('{{VERTICAL}}', vertical).replace('{{DIRECTION}}', direction).replace('{{X}}', x).replace('{{Y}}', y)
+        html = elementHtml.replace(/{{NAME}}/g, name).replace('{{TYPE}}', element).replace(/{{VALUE}}/g, value).replace('{{VERTICAL}}', vertical).replace('{{DIRECTION}}', direction).replace(/{{X}}/g, x).replace(/{{Y}}/g, y)
         $('.elements-list').append(html)
 
         drawScheme()
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
         x = Number($('#text-x').val())
         y = Number($('#text-y').val())
 
-        html = textHtml.replace('{{X}}', x).replace('{{Y}}', y).replace(/{{TEXT}}/g, text)
+        html = textHtml.replace(/{{X}}/g, x).replace(/{{Y}}/g, y).replace(/{{TEXT}}/g, text)
         $('.text-list').append(html)
 
         drawScheme()
@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // нарисовать всю схему
     function drawScheme() {
         context.clearRect(0, 0, canvas.width, canvas.height)
+        drawGrid()
         drawCircuits()
         drawElements()
         drawTexts()
@@ -376,5 +377,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         context.stroke()
         context.closePath()
+    }
+
+    // нарисовать сетку
+    function drawGrid() {
+        context.lineWidth = 0.1
+        context.beginPath()
+        for (var i = 50; i <= canvas.width; i += 50) {
+            context.moveTo(i, 0);
+            context.lineTo(i, canvas.height)
+        }
+
+        for (var i = 50; i <= canvas.height; i += 50) {
+            context.moveTo(0, i);
+            context.lineTo(canvas.width, i)
+        }
+        context.stroke()
+        context.closePath()
+        context.lineWidth = 1
     }
 })
