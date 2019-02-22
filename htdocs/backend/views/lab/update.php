@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a class="btn btn-primary" href="<?= Url::toRoute(['scheme/update', 'labId' => $lab->id]) ?>">Добавить схему</a>
             </div>
             <div class="col-7">
-                <canvas id="scheme" width="640" height="360"></canvas>
+                <canvas id="scheme" width="640" height="360" style="border: 1px solid black"></canvas>
 
             </div>
         </div>
