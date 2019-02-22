@@ -66,70 +66,72 @@
         methods: {
             drawScheme: function () {
                 var num = this.currentScheme
-                var name, i
+                var name
+                var key, index
 
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
                 this.context.strokeStyle = 'black'
                 this.context.beginPath()
-                for (name in this.schemeInfo[num]['circuits']) {
-                    this.context.moveTo(
-                        this.schemeInfo[num]['circuits'][name]['start']['x'],
-                        this.schemeInfo[num]['circuits'][name]['start']['y']
-                    )
-                    for (i in this.schemeInfo[num]['circuits'][name]['points']) {
-                        this.context.lineTo(
-                            this.schemeInfo[num]['circuits'][name]['points'][i]['x'],
-                            this.schemeInfo[num]['circuits'][name]['points'][i]['y']
-                        )
+
+                for (key in this.schemeInfo[num].circuits) {
+                    for (index in this.schemeInfo[num].circuits[key]) {
+                        if (index === 0) {
+                            this.context.moveTo(this.schemeInfo[num].circuits[key][index].x, this.schemeInfo[num].circuits[key][index].y)
+                        } else {
+                            this.context.lineTo(this.schemeInfo[num].circuits[key][index].x, this.schemeInfo[num].circuits[key][index].y)
+                        }
                     }
                 }
+
                 this.context.stroke()
                 this.context.closePath()
 
-                this.context.font = 'bold 16px sans-serif'
-                for (i in this.schemeInfo[num]['texts']) {
-                    this.context.fillText(
-                        this.schemeInfo[num]['texts'][i]['text'],
-                        this.schemeInfo[num]['texts'][i]['x'],
-                        this.schemeInfo[num]['texts'][i]['y'],
-                    )
-                }
+                // this.context.font = 'bold 16px sans-serif'
+                // for (key in this.schemeInfo[num].texts) {
+                //     console.log(this.schemeInfo[num].texts[key])
+                // }
+//                     this.context.fillText(
+//                         this.schemeInfo[num]['texts'][i]['text'],
+//                         this.schemeInfo[num]['texts'][i]['x'],
+//                         this.schemeInfo[num]['texts'][i]['y'],
+//                     )
+                // }
 
-                for (name in this.schemeInfo[num]['resistor']) {
-                    this.drawResistor(
-                        this.schemeInfo[num]['resistor'][name]['x'],
-                        this.schemeInfo[num]['resistor'][name]['y'],
-                        this.schemeInfo[num]['resistor'][name]['vertical'],
-                        name
-                    )
-                }
-                for (name in this.schemeInfo[num]['capacitor']) {
-                    this.drawCapacitor(
-                        this.schemeInfo[num]['capacitor'][name]['x'],
-                        this.schemeInfo[num]['capacitor'][name]['y'],
-                        this.schemeInfo[num]['capacitor'][name]['vertical'],
-                        name
-                    )
-                }
-                for (name in this.schemeInfo[num]['coil']) {
-                    this.drawCoil(
-                        this.schemeInfo[num]['coil'][name]['x'],
-                        this.schemeInfo[num]['coil'][name]['y'],
-                        this.schemeInfo[num]['coil'][name]['vertical'],
-                        name
-                    )
-                }
-                for (name in this.schemeInfo[num]['source']) {
-                    this.drawVoltageSource(
-                        this.schemeInfo[num]['source'][name]['x'],
-                        this.schemeInfo[num]['source'][name]['y'],
-                        this.schemeInfo[num]['source'][name]['direction'],
-                        this.schemeInfo[num]['source'][name]['vertical'],
-                        name
-                    )
-                }
+                // for (name in this.schemeInfo[num]['resistor']) {
+                //     this.drawResistor(
+                //         this.schemeInfo[num]['resistor'][name]['x'],
+                //         this.schemeInfo[num]['resistor'][name]['y'],
+                //         this.schemeInfo[num]['resistor'][name]['vertical'],
+                //         name
+                //     )
+                // }
+                // for (name in this.schemeInfo[num]['capacitor']) {
+                //     this.drawCapacitor(
+                //         this.schemeInfo[num]['capacitor'][name]['x'],
+                //         this.schemeInfo[num]['capacitor'][name]['y'],
+                //         this.schemeInfo[num]['capacitor'][name]['vertical'],
+                //         name
+                //     )
+                // }
+                // for (name in this.schemeInfo[num]['coil']) {
+                //     this.drawCoil(
+                //         this.schemeInfo[num]['coil'][name]['x'],
+                //         this.schemeInfo[num]['coil'][name]['y'],
+                //         this.schemeInfo[num]['coil'][name]['vertical'],
+                //         name
+                //     )
+                // }
+                // for (name in this.schemeInfo[num]['source']) {
+                //     this.drawVoltageSource(
+                //         this.schemeInfo[num]['source'][name]['x'],
+                //         this.schemeInfo[num]['source'][name]['y'],
+                //         this.schemeInfo[num]['source'][name]['direction'],
+                //         this.schemeInfo[num]['source'][name]['vertical'],
+                //         name
+                //     )
+                // }
 
-                bus.$emit('print-scheme-data', this.schemeInfo[num]['data'])
+                // bus.$emit('print-scheme-data', this.schemeInfo[num]['data'])
             },
             // резистор
             drawResistor: function (x, y, vertical, name) {
