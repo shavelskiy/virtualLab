@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <a class="btn btn-primary" href="<?= Url::toRoute(['scheme/update', 'labId' => $scheme->lab_id]) ?>">Добавить схему</a>
+                <a class="btn btn-primary" href="<?= Url::toRoute(['scheme/update', 'labId' => $lab->id]) ?>">Добавить схему</a>
             </div>
             <div class="col-7">
                 <canvas id="scheme" width="640" height="360"></canvas>

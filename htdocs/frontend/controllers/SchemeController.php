@@ -26,58 +26,35 @@ class SchemeController extends Controller
 
             foreach ($schemes as $scheme) {
                 $items = [
-                    'circuits' => [],
-                    'resistor' => [],
-                    'capacitor' => [],
-                    'coil' => [],
-                    'data' => [],
+                    'circuits' => $scheme->schemeCircuits,
+                    'elements' => [],
                     'texts' => []
                 ];
 
-
-                $circuits = [];
-                foreach ($scheme->circuits as $circuit) {
-                    if ($circuit->is_start) {
-                        $circuits[$circuit->id]['start'] = [
-                            'x' => $circuit->x,
-                            'y' => $circuit->y
-                        ];
-                    } else {
-                        $circuits[$circuit->parent]['points'][$circuit->sort] = [
-                            'x' => $circuit->x,
-                            'y' => $circuit->y
-                        ];
-                    }
-                }
-
-                $items['circuits'] = $circuits;
-
-                foreach ($scheme->items as $item) {
-                    $items[$item->type][$item->name] = [
-                        'x' => $item->x,
-                        'y' => $item->y,
-                        'vertical' => $item->vertical,
-                        'direction' => isset($item->vertical) ? $item->vertical : true
+                foreach ($scheme->schemeItems as $schemeItem) {
+                    $items['elements'][] = [
+                        'type' => $schemeItem->type,
+                        'name' => $schemeItem->name,
+                        'x' => $schemeItem->x,
+                        'y' => $schemeItem->y,
+                        'vertical' => $schemeItem->vertical,
+                        'direction' => $schemeItem->direction
                     ];
-
-                    if ($item->value) {
-                        $items['data'][$item->name] = $item->value;
-                    }
                 }
 
-                foreach ($scheme->texts as $text) {
+                foreach ($scheme->schemeTexts as $schemeText) {
                     $items['texts'][] = [
-                        'text' => $text->text,
-                        'x' => $text->x,
-                        'y' => $text->y
+                        'text' => $schemeText->text,
+                        'x' => $schemeText->x,
+                        'y' => $schemeText->y
                     ];
                 }
 
-                $result[$scheme->number] = $items;
+                $result[] = $items;
             }
         }
-        $result = json_encode($result);
-        return $result;
+
+        return Json::encode($result);
     }
 
     public function actionInfo($schemeId)
