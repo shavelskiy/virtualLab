@@ -28,7 +28,8 @@ class SchemeController extends Controller
                 $items = [
                     'circuits' => $scheme->schemeCircuits,
                     'elements' => [],
-                    'texts' => []
+                    'texts' => [],
+                    'data' => []
                 ];
 
                 foreach ($scheme->schemeItems as $schemeItem) {
@@ -38,8 +39,10 @@ class SchemeController extends Controller
                         'x' => $schemeItem->x,
                         'y' => $schemeItem->y,
                         'vertical' => $schemeItem->vertical,
-                        'direction' => $schemeItem->direction
+                        'direction' => $schemeItem->direction,
                     ];
+
+                    $items['data'][$schemeItem->name] = $schemeItem->value;
                 }
 
                 foreach ($scheme->schemeTexts as $schemeText) {
