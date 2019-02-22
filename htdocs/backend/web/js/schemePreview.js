@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
         context = canvas.getContext('2d')
     }
 
+    context.strokeStyle = 'black'
+    context.font = 'bold 16px sans-serif'
+
     // удалить схему
     $('.delete-scheme').each(function () {
         $(this).click(function () {

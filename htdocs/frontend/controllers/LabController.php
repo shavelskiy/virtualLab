@@ -89,9 +89,9 @@ class LabController extends Controller
         $result = [];
 
         if ($session->has('lab_number')) {
-            $lab = Lab::findOne($session->get('lab_number'));
-//        $lab = Lab::findOne(1);
-        $result = $lab->signal_view;
+//            $lab = Lab::findOne($session->get('lab_number'));
+        $lab = Lab::findOne(1);
+        $result = $lab->signal;
         }
 
         $result = json_encode($result);
