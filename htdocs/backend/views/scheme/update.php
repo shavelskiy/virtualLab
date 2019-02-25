@@ -109,7 +109,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-primary point-add">Добавить</button>
-            <button type="button" class="btn-sm btn-primary preview">Предосмотр</button>
+            <button type="button" class="btn btn-primary preview">Предосмотр</button>
         </div>
     </div>
 
