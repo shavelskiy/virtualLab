@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <li class="list-group-item">
                             <?= $key + 1 ?>.
                             <a class="ml-2" href="<?= Url::toRoute(['scheme/update', 'schemeId' => $scheme->id]) ?>">Изменить схему.</a>
-                            <a class="mx-2" href="<?= Url::toRoute(['scheme/update', 'schemeId' => $scheme->id]) ?>">Изменить Данные</a>
+                            <a class="mx-2" href="<?= Url::toRoute(['scheme/update-data', 'schemeId' => $scheme->id]) ?>">Изменить Данные</a>
                             <button type="button" class="btn btn-default ml-2 pull-right delete-scheme" data-id="<?= $scheme->id ?>"><span class="glyphicon glyphicon-remove"></span></button>
                             <button class="btn btn-primary draw-scheme pull-right" data-id="<?= $scheme->id ?>">Показать</button>
                         </li>

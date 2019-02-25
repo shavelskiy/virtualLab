@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use common\models\Lab;
 use common\models\Scheme;
 use common\models\SchemeCircuit;
 use common\models\SchemeItem;
@@ -25,7 +24,7 @@ class SchemeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['create', 'update', 'update-data', 'delete'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
@@ -70,6 +69,18 @@ class SchemeController extends Controller
         }
 
         return $this->render('update', ['scheme' => $scheme]);
+    }
+
+    /**
+     * @param $schemeId
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionUpdateData($schemeId)
+    {
+        $scheme = $this->findScheme($schemeId);
+
+        return $this->render('update-data', ['scheme' => $scheme]);
     }
 
     public function actionDelete()

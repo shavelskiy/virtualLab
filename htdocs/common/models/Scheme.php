@@ -13,6 +13,7 @@ use Yii;
  * @property [] $schemeCircuits
  * @property SchemeItem[] $schemeItems
  * @property SchemeText[] $schemeTexts
+ * @property SchemePoint[] $schemePoints
  * @property Lab $lab
  */
 class Scheme extends \yii\db\ActiveRecord
@@ -77,6 +78,14 @@ class Scheme extends \yii\db\ActiveRecord
     public function getSchemeTexts()
     {
         return $this->hasMany(SchemeText::className(), ['scheme_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchemePoints()
+    {
+        return $this->hasMany(SchemePoint::className(), ['scheme_id' => 'id']);
     }
 
     /**
