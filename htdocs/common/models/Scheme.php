@@ -37,14 +37,11 @@ class Scheme extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * @return \yii\db\ActiveQuery
      */
-    public function attributeLabels()
+    public function getSchemeCircuits()
     {
-        return [
-            'id' => 'ID',
-            'lab_id' => 'Lab ID',
-        ];
+     return    $this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id']);
     }
 
     /**
@@ -86,7 +83,7 @@ class Scheme extends \yii\db\ActiveRecord
     {
         $circuits = [];
         /** @var SchemeCircuit $item */
-        foreach ($this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id'])->all() as $item) {
+        foreach ($this->schemeCircuits as $item) {
             $circuits[$item->parent][$item->sort] = [
                 'id' => $item->id,
                 'x' => $item->x,
