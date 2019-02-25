@@ -51,16 +51,18 @@ class SchemeController extends Controller
                 $scheme = new Scheme();
                 $scheme->lab_id = $labId;
                 $scheme->save();
+            } else {
+                $scheme = self::findScheme($schemeId);
             }
 
             $data = Json::decode(Yii::$app->request->getRawBody());
 
-            SchemeCircuit::saveData($data['circuits'], $schemeId);
-            SchemeItem::saveData($data['elements'], $schemeId);
-            SchemePoint::saveData($data['points'], $schemeId);
-            SchemeText::saveData($data['texts'], $schemeId);
+            SchemeCircuit::saveData($data['circuits'], $scheme->id);
+            SchemeItem::saveData($data['elements'], $scheme->id);
+            SchemePoint::saveData($data['points'], $scheme->id);
+            SchemeText::saveData($data['texts'], $scheme->id);
 
-            $this->redirect(['lab/update', 'id' => ($schemeId) ? $schemeId : $scheme->lab->id]);
+            $this->redirect(['lab/update', 'id' => $scheme->lab->id]);
         }
 
         if ($schemeId) {

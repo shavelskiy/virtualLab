@@ -70,9 +70,10 @@
                 var key, index
 
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
-                this.context.beginPath()
+
 
                 for (key in this.schemeInfo[num].circuits) {
+                    this.context.beginPath()
                     for (index in this.schemeInfo[num].circuits[key]) {
                         var element = this.schemeInfo[num].circuits[key][index];
                         if (index === 0) {
@@ -81,10 +82,10 @@
                             this.context.lineTo(element.x, element.y)
                         }
                     }
+                    this.context.stroke()
+                    this.context.closePath()
                 }
 
-                this.context.stroke()
-                this.context.closePath()
 
                 this.context.font = 'bold 16px sans-serif'
                 for (key in this.schemeInfo[num].texts) {
