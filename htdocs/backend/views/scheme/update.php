@@ -23,6 +23,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
             <a class="change-tab" data-tab="element">Элементы</a>
         </li>
         <li class="nav-item">
+            <a class="change-tab" data-tab="points">Узлы</a>
+        </li>
+        <li class="nav-item">
             <a class="change-tab" data-tab="text">Текст</a>
         </li>
     </ul>
@@ -30,7 +33,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
     <!--Добавление контура-->
     <div class="circuits-setting">
         <div class="form-group">
-            <button type="button" class="btn btn-primary circuit-preview">Предосмотр</button>
+            <button type="button" class="btn btn-primary preview">Предосмотр</button>
             <button type="button" class="btn btn-primary circuit-add">Добавить</button>
         </div>
     </div>
@@ -82,8 +85,36 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         </div>
     </div>
 
+    <!--Добавление узла-->
+    <div class="points-setting hidden">
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="text-value">Текст</label>
+                    <input type="text" id="point-text" class="form-control" placeholder="Текст">
+                </div>
+                <div class="col">
+                    <label for="text-x">Координата по x</label>
+                    <input type="text" id="point-x" class="form-control" placeholder="x">
+                </div>
+                <div class="col">
+                    <label for="text-y">Координата по y</label>
+                    <input type="text" id="point-y" class="form-control" placeholder="y">
+                </div>
+                <div class="col">
+                    <label for="point-vertical">Веритикально</label>
+                    <input type="checkbox" id="point-vertical" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary point-add">Добавить</button>
+            <button type="button" class="btn-sm btn-primary preview">Предосмотр</button>
+        </div>
+    </div>
+
     <!--Добавление текста-->
-    <div class="text-setting hidden">
+    <div class="texts-setting hidden">
         <div class="form-group">
             <div class="row">
                 <div class="col">
@@ -127,12 +158,10 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <input type="text" id="circuit-x" class="form-control"
-                                                                   placeholder="x" value="<?= $point['x'] ?>">
+                                                            <input type="text" id="circuit-x" class="form-control" placeholder="x" value="<?= $point['x'] ?>">
                                                         </div>
                                                         <div class="col">
-                                                            <input type="text" id="circuit-y" class="form-control"
-                                                                   placeholder="y" value="<?= $point['y'] ?>">
+                                                            <input type="text" id="circuit-y" class="form-control" placeholder="y" value="<?= $point['y'] ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,8 +209,43 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
             </div>
         </div>
 
+        <!--для узлов-->
+        <div class="col points-panel hidden">
+            <div class="panel panel-default">
+                <div class="panel-heading">Узлы</div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <ul class="list-group point-list">
+                            <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
+                            <?php foreach ($scheme->schemePoints as $point): ?>
+                                <li class="list-group-item" data-id="<?= $point->id ?>">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" id="point-text" class="form-control" placeholder="x" value="<?= $point->text ?>">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" id="point-x" class="form-control" placeholder="y" value="<?= $point->x ?>">
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" id="point-y" class="form-control" placeholder="y" value="<?= $point->y ?>">
+                                            </div>
+                                            <div class="col">
+                                                <input type="checkbox" id="point-vertical" class="form-control" <?= $point->vertical ? 'checked' : '' ?>>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-sm btn-danger point-remove" data-id="<?= $point->id ?>">Удалить</button>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--для текста-->
-        <div class="col text-panel hidden">
+        <div class="col texts-panel hidden">
             <div class="panel panel-default">
                 <div class="panel-heading">Элементы</div>
                 <div class="panel-body">

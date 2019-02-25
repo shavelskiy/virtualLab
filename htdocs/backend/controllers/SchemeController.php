@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\Scheme;
 use common\models\SchemeCircuit;
 use common\models\SchemeItem;
+use common\models\SchemePoint;
 use common\models\SchemeText;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -56,6 +57,7 @@ class SchemeController extends Controller
 
             SchemeCircuit::saveData($data['circuits'], $schemeId);
             SchemeItem::saveData($data['elements'], $schemeId);
+            SchemePoint::saveData($data['points'], $schemeId);
             SchemeText::saveData($data['texts'], $schemeId);
 
             $this->redirect(['lab/update', 'id' => ($schemeId) ? $schemeId : $scheme->lab->id]);

@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
         coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
         elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}} = {{VALUE}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
-        textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>'
+        textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
+        pointHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="point-text" class="form-control" placeholder="x" value="{{VALUE}}"></div><div class="col"><input type="text" id="point-x" class="form-control" placeholder="y" value="{{X}}"></div><div class="col"><input type="text" id="point-y" class="form-control" placeholder="y" value="{{Y}}"></div><div class="col"><input type="checkbox" id="point-vertical" class="form-control" {{VERTICAL}}></div></div></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>'
 
     var html
     var element, name, value, x, y, vertical, direction // для элементов
     var text
-    var circuitsToDelete = [], elementsToDelete = [], textsToDelete = []
+    var circuitsToDelete = [], elementsToDelete = [], textsToDelete = [], pointsToDelete = []
 
     canvas = document.getElementById('scheme')
     if (canvas.getContext) {
@@ -20,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     context.strokeStyle = 'black'
-    context.font = 'bold 16px sans-serif'
 
     // рисуем изначальную схему
     drawScheme()
@@ -43,9 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     currentSettings = $('.elements-setting')
                     currentPanel = $('.elements-panel')
                     break
+                case 'points':
+                    currentSettings = $('.points-setting')
+                    currentPanel = $('.points-panel')
+                    break
                 case 'text':
-                    currentSettings = $('.text-setting')
-                    currentPanel = $('.text-panel')
+                    currentSettings = $('.texts-setting')
+                    currentPanel = $('.texts-panel')
                     break
             }
             currentSettings.removeClass('hidden')
@@ -94,6 +98,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
 
+        var points = []
+        $('.point-list').find('li').each(function () {
+            var curPoint = {}
+            curPoint.id = $(this).find('.point-remove').attr('data-id')
+            curPoint.x = Number($(this).find('#point-x').val())
+            curPoint.y = Number($(this).find('#point-y').val())
+            curPoint.text = $(this).find('#point-text').val()
+            curPoint.vertical = $(this).find('#point-vertical').is(':checked')
+            points.push(curPoint)
+        })
+
         var texts = []
         $('.text-list').find('li').each(function () {
             var curText = {}
@@ -117,6 +132,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     'save': elements,
                     'delete': elementsToDelete
                 },
+                'points': {
+                    'save': points,
+                    'delete': pointsToDelete
+                },
                 'texts': {
                     'save': texts,
                     'delete': textsToDelete
@@ -129,8 +148,10 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     // предосмотр
-    $('.circuit-preview').click(function () {
-        drawScheme()
+    $('.preview').each(function () {
+        $(this).click(function () {
+            drawScheme()
+        })
     })
 
     // удаление старых контуров
@@ -148,6 +169,16 @@ document.addEventListener('DOMContentLoaded', function () {
         $(this).click(function () {
             var id = Number($(this).attr('data-id'))
             elementsToDelete.push(id)
+            $(this).closest('li').remove()
+            drawScheme()
+        })
+    })
+
+    // удаление старых узлов
+    $('.point-remove').each(function () {
+        $(this).click(function () {
+            var id = Number($(this).attr('data-id'))
+            pointsToDelete.push(id)
             $(this).closest('li').remove()
             drawScheme()
         })
@@ -181,6 +212,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
         $('.circuits-list').find('.circuits-list-item').last().find('.circuit-remove').click(function () {
             $(this).closest('.circuits-list-item').remove()
+        })
+    })
+
+    // добавление узла
+    $('.point-add').click(function () {
+        value = $('#point-text').val()
+        x = Number($('#point-x').val())
+        y = Number($('#point-y').val())
+        vertical = $('#point-vertical').is(':checked')
+
+        html = pointHtml.replace(/{{NAME}}/g, name).replace(/{{VALUE}}/g, value).replace(/{{X}}/g, x).replace(/{{Y}}/g, y)
+        if (vertical) {
+            html = html.replace(/{{VERTICAL}}/, 'checked')
+        }
+        $('.point-list').append(html)
+
+        drawScheme()
+
+        $('.point-remove').last().click(function () {
+            $(this).closest('li').remove()
+            drawScheme()
         })
     })
 
@@ -229,10 +281,12 @@ document.addEventListener('DOMContentLoaded', function () {
         drawCircuits()
         drawElements()
         drawTexts()
+        drawPoints()
     }
 
     // нарисовать элементы по таблице
     function drawElements() {
+        context.font = 'bold 16px sans-serif'
         $('.elements-list').find('li').each(function () {
             element = $(this).attr('data-type')
             name = $(this).attr('data-name')
@@ -263,8 +317,32 @@ document.addEventListener('DOMContentLoaded', function () {
         context.closePath()
     }
 
+    // нарисовать все узлы по таблице
+    function drawPoints() {
+        context.font = 'bold 10px sans-serif'
+        $('.point-list').find('li').each(function () {
+            x = Number($(this).find('#point-x').val())
+            y = Number($(this).find('#point-y').val())
+            text = $(this).find('#point-text').val()
+            vertical = $(this).find('#point-vertical').is(':checked')
+
+            context.beginPath()
+            context.clearRect(x - 3, y - 3, 6, 6)
+            context.arc(x, y, 4, 0, 2 * Math.PI, true)
+            context.stroke()
+            context.closePath()
+
+            if (vertical) {
+                context.fillText(text, x - 3, y - 7)
+            } else {
+                context.fillText(text, x + 7, y + 4)
+            }
+        })
+    }
+
     // нарисовать текст по таблице
     function drawTexts() {
+        context.font = 'bold 16px sans-serif'
         $('.text-list').find('li').each(function () {
             text = $(this).attr('data-value')
             x = Number($(this).attr('data-x'))
@@ -384,12 +462,12 @@ document.addEventListener('DOMContentLoaded', function () {
         context.lineWidth = 0.1
         context.beginPath()
         for (var i = 50; i <= canvas.width; i += 50) {
-            context.moveTo(i, 0);
+            context.moveTo(i, 0)
             context.lineTo(i, canvas.height)
         }
 
         for (var i = 50; i <= canvas.height; i += 50) {
-            context.moveTo(0, i);
+            context.moveTo(0, i)
             context.lineTo(canvas.width, i)
         }
         context.stroke()

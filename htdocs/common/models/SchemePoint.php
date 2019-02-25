@@ -49,4 +49,30 @@ class SchemePoint extends \yii\db\ActiveRecord
             'text' => 'Text',
         ];
     }
+
+    public static function saveData($data, $schemeId)
+    {
+        foreach ($data['save'] as $point) {
+            if (isset($point['id'])) {
+                $schemePoint = SchemePoint::findOne($point['id']);
+            } else {
+                $schemePoint = new SchemePoint();
+                $schemePoint->scheme_id = $schemeId;
+            }
+
+            $schemePoint->text = $point['text'];
+            $schemePoint->x = $point['x'];
+            $schemePoint->y = $point['y'];
+            $schemePoint->vertical = $point['vertical'] == 'true';
+
+            if ($schemePoint->validate()) {
+                $schemePoint->save();
+            }
+        }
+
+        foreach ($data['delete'] as $pointId) {
+            $schemePoint = SchemePoint::findOne($pointId);
+            $schemePoint->delete();
+        }
+    }
 }
