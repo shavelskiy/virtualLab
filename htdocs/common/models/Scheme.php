@@ -82,7 +82,6 @@ class Scheme extends \yii\db\ActiveRecord
     public function getSchemeCircuitsArray()
     {
         $circuits = [];
-        /** @var SchemeCircuit $item */
         foreach ($this->schemeCircuits as $item) {
             $circuits[$item->parent][$item->sort] = [
                 'id' => $item->id,
