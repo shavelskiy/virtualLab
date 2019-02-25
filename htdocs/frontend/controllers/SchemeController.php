@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Scheme;
+use phpDocumentor\Reflection\DocBlock\Tags\Property;
 use yii\helpers\Json;
 use yii\web\Controller;
 use Yii;
@@ -68,6 +69,7 @@ class SchemeController extends Controller
         $result = [
             'circuits' => $scheme->schemeCircuits,
             'elements' => [],
+            'points' => [],
             'texts' => []
         ];
 
@@ -82,6 +84,15 @@ class SchemeController extends Controller
             ];
         }
 
+        foreach ($scheme->schemePoints as $schemePoint) {
+            $result['points'][] = [
+                'text' => $schemePoint->text,
+                'x' => $schemePoint->x,
+                'y' => $schemePoint->y,
+                'vertical' => $schemePoint->vertical
+            ];
+        }
+
         foreach ($scheme->schemeTexts as $schemeText) {
             $result['texts'][] = [
                 'text' => $schemeText->text,
@@ -89,7 +100,7 @@ class SchemeController extends Controller
                 'y' => $schemeText->y
             ];
         }
-        
+
         return Json::encode($result);
     }
 }

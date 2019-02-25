@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var canvas, context
 
-    var type, name, x, y, vertical, direction // для элементов
+    var type, name, x, y, vertical, direction, text // для элементов
     var data
 
     canvas = document.getElementById('scheme')
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     data = JSON.parse(info)
 
                     var key
+                    // рисуем контур
                     for (key in data.circuits) {
                         context.beginPath()
                         data.circuits[key].forEach(function (item, index) {
@@ -54,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         context.closePath()
                     }
 
+                    // рисуем элементы
+                    context.font = 'bold 16px sans-serif'
                     data.elements.forEach(function (item) {
                         type = item.type
                         name = item.name
@@ -64,6 +67,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         drawElement()
                     })
 
+                    // рисуем узлы
+                    context.font = 'bold 10px sans-serif'
+                    data.points.forEach(function (item) {
+                        text = item.text
+                        x = item.x
+                        y = item.y
+                        vertical = item.vertical
+
+                        context.beginPath()
+                        context.clearRect(x - 3, y - 3, 6, 6)
+                        context.arc(x, y, 4, 0, 2 * Math.PI, true)
+                        context.stroke()
+                        context.closePath()
+
+                        if (vertical) {
+                            context.fillText(text, x - 3, y - 7)
+                        } else {
+                            context.fillText(text, x + 7, y + 4)
+                        }
+                    })
+
+                    // рисуем текст
+                    context.font = 'bold 16px sans-serif'
                     data.texts.forEach(function (item) {
                         context.fillText(item.text, item.x, item.y)
                     })
