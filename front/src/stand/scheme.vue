@@ -38,7 +38,6 @@
 
         data() {
             return {
-                // schemesUrl: 'http://localhost/frontend/web/scheme/get',
                 schemesUrl: '/frontend/web/scheme/get',
                 schemeInfo: null,
                 schemeCol: null,
@@ -55,7 +54,6 @@
             }
 
             this.context.strokeStyle = 'black'
-            this.context.font = 'bold 16px sans-serif'
         },
 
         created() {
@@ -88,11 +86,30 @@
                 this.context.stroke()
                 this.context.closePath()
 
+                this.context.font = 'bold 16px sans-serif'
                 for (key in this.schemeInfo[num].texts) {
                     var element = this.schemeInfo[num].texts[key]
                     this.context.fillText(element.text, element.x, element.y)
                 }
 
+                this.context.font = 'bold 10px sans-serif'
+                for (key in this.schemeInfo[num].points) {
+                    var element = this.schemeInfo[num].points[key]
+
+                    this.context.beginPath()
+                    this.context.clearRect(element.x - 3, element.y - 3, 6, 6)
+                    this.context.arc(element.x, element.y, 4, 0, 2 * Math.PI, true)
+                    this.context.stroke()
+                    this.context.closePath()
+
+                    if (element.vertical) {
+                        this.context.fillText(element.text, element.x - 3, element.y - 7)
+                    } else {
+                        this.context.fillText(element.text, element.x + 7, element.y + 4)
+                    }
+                }
+
+                this.context.font = 'bold 16px sans-serif'
                 for (key in this.schemeInfo[num].elements) {
                     var element = this.schemeInfo[num].elements[key]
                     this.drawElement(element.type, element.x, element.y, element.vertical, element.name)

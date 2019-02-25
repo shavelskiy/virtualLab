@@ -18,7 +18,6 @@
 
     data: function() {
       return {
-        // signal_url: 'http://localhost:80/frontend/web/lab/signal/',
         signal_url: '/frontend/web/lab/signal/',
         signal: null
       }

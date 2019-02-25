@@ -40,7 +40,6 @@
 
     data() {
       return {
-        // description: 'http://localhost:80/frontend/web/lab/task/',
         description: '/frontend/web/lab/task/',
         page: 1,
         tasks: null
