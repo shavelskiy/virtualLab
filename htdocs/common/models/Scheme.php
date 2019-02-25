@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $lab_id
  *
- * @property [] $schemeCircuits
+ * @property SchemeCircuit[] $schemeCircuits
  * @property SchemeItem[] $schemeItems
  * @property SchemeText[] $schemeTexts
  * @property SchemePoint[] $schemePoints
@@ -48,23 +48,6 @@ class Scheme extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return array
-     */
-    public function getSchemeCircuits()
-    {
-        $circuits = [];
-        /** @var SchemeCircuit $item */
-        foreach ($this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id'])->all() as $item) {
-            $circuits[$item->parent][$item->sort] = [
-                'id' => $item->id,
-                'x' => $item->x,
-                'y' => $item->y
-            ];
-        }
-        return $circuits;
-    }
-
-    /**
      * @return \yii\db\ActiveQuery
      */
     public function getSchemeItems()
@@ -94,5 +77,88 @@ class Scheme extends \yii\db\ActiveRecord
     public function getLab()
     {
         return $this->hasOne(Lab::className(), ['id' => 'lab_id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemeCircuitsArray()
+    {
+        $circuits = [];
+        /** @var SchemeCircuit $item */
+        foreach ($this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id'])->all() as $item) {
+            $circuits[$item->parent][$item->sort] = [
+                'id' => $item->id,
+                'x' => $item->x,
+                'y' => $item->y
+            ];
+        }
+        return $circuits;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemeItemsArray()
+    {
+        $result = [];
+        foreach ($this->schemeItems as $schemeItem) {
+            $result[] = [
+                'type' => $schemeItem->type,
+                'name' => $schemeItem->name,
+                'x' => $schemeItem->x,
+                'y' => $schemeItem->y,
+                'vertical' => $schemeItem->vertical,
+                'direction' => $schemeItem->direction,
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemeDataArray()
+    {
+        $result = [];
+        foreach ($this->schemeItems as $schemeItem) {
+            $result[$schemeItem->name] = $schemeItem->value;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemeTextsArray()
+    {
+        $result = [];
+        foreach ($this->schemeTexts as $schemeText) {
+            $result[] = [
+                'text' => $schemeText->text,
+                'x' => $schemeText->x,
+                'y' => $schemeText->y
+            ];
+        }
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemePointsArray()
+    {
+        $result = [];
+        foreach ($this->schemePoints as $schemePoint) {
+            $result[] = [
+                'text' => $schemePoint->text,
+                'x' => $schemePoint->x,
+                'y' => $schemePoint->y,
+                'vertical' => $schemePoint->vertical
+            ];
+        }
+        return $result;
     }
 }

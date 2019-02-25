@@ -12,6 +12,10 @@ use common\models\Lab;
 
 class SchemeController extends Controller
 {
+    /**
+     * Отдать все схемы для лабораторной на фронт
+     * @return string
+     */
     public function actionGet()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -23,93 +27,36 @@ class SchemeController extends Controller
 //            $lab = Lab::findOne($session->get('lab_number'));
             $lab = Lab::findOne(1);
 
-            $schemes = $lab->schemes;
-
-            foreach ($schemes as $scheme) {
-                $items = [
-                    'circuits' => $scheme->schemeCircuits,
-                    'elements' => [],
-                    'points' => [],
-                    'texts' => [],
-                    'data' => []
+            foreach ($lab->schemes as $scheme) {
+                $result[] = [
+                    'circuits' => $scheme->getSchemeCircuitsArray(),
+                    'elements' => $scheme->getSchemeItemsArray(),
+                    'points' => $scheme->getSchemePointsArray(),
+                    'texts' => $scheme->getSchemeTextsArray(),
+                    'data' => $scheme->getSchemeDataArray()
                 ];
-
-                foreach ($scheme->schemeItems as $schemeItem) {
-                    $items['elements'][] = [
-                        'type' => $schemeItem->type,
-                        'name' => $schemeItem->name,
-                        'x' => $schemeItem->x,
-                        'y' => $schemeItem->y,
-                        'vertical' => $schemeItem->vertical,
-                        'direction' => $schemeItem->direction,
-                    ];
-
-                    $items['data'][$schemeItem->name] = $schemeItem->value;
-                }
-
-                foreach ($scheme->schemePoints as $schemePoint) {
-                    $items['points'][] = [
-                        'text' => $schemePoint->text,
-                        'x' => $schemePoint->x,
-                        'y' => $schemePoint->y,
-                        'vertical' => $schemePoint->vertical
-                    ];
-                }
-
-                foreach ($scheme->schemeTexts as $schemeText) {
-                    $items['texts'][] = [
-                        'text' => $schemeText->text,
-                        'x' => $schemeText->x,
-                        'y' => $schemeText->y
-                    ];
-                }
-
-                $result[] = $items;
             }
         }
 
         return Json::encode($result);
     }
 
+    /**
+     * Получить для предосмотра в админке
+     * @param $schemeId
+     * @return string
+     */
     public function actionInfo($schemeId)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $scheme = Scheme::findOne($schemeId);
         $result = [
-            'circuits' => $scheme->schemeCircuits,
-            'elements' => [],
-            'points' => [],
-            'texts' => []
+            'circuits' => $scheme->getSchemeCircuitsArray(),
+            'elements' => $scheme->getSchemeItemsArray(),
+            'points' => $scheme->getSchemePointsArray(),
+            'texts' => $scheme->getSchemeTextsArray()
         ];
-
-        foreach ($scheme->schemeItems as $schemeItem) {
-            $result['elements'][] = [
-                'type' => $schemeItem->type,
-                'name' => $schemeItem->name,
-                'x' => $schemeItem->x,
-                'y' => $schemeItem->y,
-                'vertical' => $schemeItem->vertical,
-                'direction' => $schemeItem->direction
-            ];
-        }
-
-        foreach ($scheme->schemePoints as $schemePoint) {
-            $result['points'][] = [
-                'text' => $schemePoint->text,
-                'x' => $schemePoint->x,
-                'y' => $schemePoint->y,
-                'vertical' => $schemePoint->vertical
-            ];
-        }
-
-        foreach ($scheme->schemeTexts as $schemeText) {
-            $result['texts'][] = [
-                'text' => $schemeText->text,
-                'x' => $schemeText->x,
-                'y' => $schemeText->y
-            ];
-        }
 
         return Json::encode($result);
     }
