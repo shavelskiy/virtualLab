@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                     <div class="container-fluid">
                         <ul class="list-group circuits-list">
                             <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
-                            <?php foreach ($scheme->schemeCircuits as $parentId => $circuit): ?>
+                            <?php foreach ($scheme->getSchemeCircuitsArray() as $parentId => $circuit): ?>
                                 <li class="list-group-item circuits-list-item">
                                     <ul class="list-group circuit-items">
                                         <?php foreach ($circuit as $point): ?>
