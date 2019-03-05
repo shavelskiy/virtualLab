@@ -5,7 +5,7 @@ services:
     privileged: true
     build: ./docker/webserver
     container_name: virtualLab
-    working_dir: /application/repo/dev/front
+    working_dir: /application
     cap_add:
     - SYS_ADMIN
     security_opt:
@@ -17,4 +17,3 @@ services:
     - ../../:/application/
     ports:
     - "8080:80"
-    - "8083:8081"

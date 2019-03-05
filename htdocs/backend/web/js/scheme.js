@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    // сохранение
+    // сохранение схемы
     $('.save').click(function () {
         var circuits = []
         $('.circuits-list').find('.circuits-list-item').each(function () {

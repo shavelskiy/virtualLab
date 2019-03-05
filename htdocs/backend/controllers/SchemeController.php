@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Scheme;
 use common\models\SchemeCircuit;
+use common\models\SchemeData;
 use common\models\SchemeItem;
 use common\models\SchemePoint;
 use common\models\SchemeText;
@@ -25,7 +26,7 @@ class SchemeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'update', 'update-data', 'delete'],
+                        'actions' => ['create', 'update', 'update-data', 'delete', 'save-data'],
                         'allow' => true,
                         'roles' => ['teacher']
                     ],
@@ -34,6 +35,10 @@ class SchemeController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        return true;
+    }
 
     /**
      * Изменение элементов схемы
@@ -103,7 +108,34 @@ class SchemeController extends Controller
             $text->delete();
         }
 
-        $scheme->delete(); die;
+        $scheme->delete();
+        die;
+    }
+
+    public function actionSaveData()
+    {
+        $data = Yii::$app->request->post('data');
+        foreach ($data as $points => $values) {
+           $pointsArr = explode('.', $points);
+           $pointId1 = $pointsArr[0];
+           $pointId2 = $pointsArr[1];
+
+           $schemeData = SchemeData::find()->andWhere(['point1' => $pointId1, 'point2' => $pointId2])->one();
+
+           if (!$schemeData) {
+               $schemeData = new SchemeData();
+           }
+
+           $schemeData->point1 = $pointId1;
+           $schemeData->point2 = $pointId2;
+
+           $schemeData->cur_u = ($values['cur_u']) ? $values['cur_u'] : null;
+           $schemeData->cur_i = ($values['cur_i']) ? $values['cur_i'] : null;
+           $schemeData->cur_r = ($values['cur_r']) ? $values['cur_r'] : null;
+
+           $schemeData->save();
+        }
+       die;
     }
 
     /**

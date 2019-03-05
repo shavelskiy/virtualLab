@@ -3,9 +3,8 @@ FROM ubuntu:18.04
 RUN apt-get update && apt-get install -y apache2
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php libapache2-mod-php php-mysql php-mbstring php-xml
 RUN apt-get install -y nginx
-#RUN apt-get install -y nodejs npm
 
-WORKDIR "/application/repo/dev/front"
+WORKDIR "/application"
 
 RUN chmod -R 755 /application/
 
@@ -17,6 +16,4 @@ RUN service apache2 restart
 
 COPY ./nginx/vhost.conf /etc/nginx/sites-available/default
 
-EXPOSE 8081
 CMD /usr/sbin/nginx && /usr/sbin/apache2ctl -D FOREGROUND
-#CMD npm run dev && /usr/sbin/apache2ctl && /usr/sbin/nginx -D FOREGROUND

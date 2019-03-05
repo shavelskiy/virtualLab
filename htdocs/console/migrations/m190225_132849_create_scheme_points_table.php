@@ -20,13 +20,7 @@ class m190225_132849_create_scheme_points_table extends Migration
             'text' => $this->string(),
             'vertical' => $this->boolean()
         ]);
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function safeDown()
-    {
         $this->addForeignKey(
             'fk-scheme_points-scheme_id',
             'scheme_points',
@@ -35,7 +29,13 @@ class m190225_132849_create_scheme_points_table extends Migration
             'id',
             'CASCADE'
         );
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
+    {
         $this->dropTable('scheme_points');
     }
 }
