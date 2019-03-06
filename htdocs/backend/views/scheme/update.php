@@ -74,29 +74,17 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
 
     <!--Добавление узла-->
     <div class="points-setting hidden">
-        <div class="form-group">
-            <div class="row">
-                <div class="col">
-                    <label for="text-value">Текст</label>
-                    <input type="text" id="point-text" class="form-control" placeholder="Текст">
-                </div>
-                <div class="col">
-                    <label for="text-x">Координата по x</label>
-                    <input type="text" id="point-x" class="form-control" placeholder="x">
-                </div>
-                <div class="col">
-                    <label for="text-y">Координата по y</label>
-                    <input type="text" id="point-y" class="form-control" placeholder="y">
-                </div>
-                <div class="col">
-                    <label for="point-vertical">Веритикально</label>
-                    <input type="checkbox" id="point-vertical" class="form-control">
-                </div>
-                <div class="col">
-                    <label for="point-vertical">Инверсия</label>
-                    <input type="checkbox" id="point-reverse" class="form-control">
-                </div>
-            </div>
+        <div class="form-check-inline">
+            <label for="point-text" class="col-1 col-form-label text-right">Номер:</label>
+            <input type="text" id="point-text" class="form-control col" placeholder="Номер">
+            <label for="point-x" class="col col-form-label text-right">Координата по x:</label>
+            <input type="text" id="point-x" class="form-control col" placeholder="x">
+            <label for="point-y" class="col col-form-label text-right">Координата по y:</label>
+            <input type="text" id="point-y" class="form-control col" placeholder="y">
+            <label for="point-vertical" class="col col-form-label text-right">Веритикально:</label>
+            <input type="checkbox" id="point-vertical" class="form-check-input">
+            <label for="point-reverse" class="col col-form-label text-right">Инверсия:</label>
+            <input type="checkbox" id="point-reverse" class="form-check-input">
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-primary point-add">Добавить</button>
