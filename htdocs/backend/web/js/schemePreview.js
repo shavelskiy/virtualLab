@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var canvas, context
 
-    var type, name, x, y, vertical, direction, text // для элементов
+    var type, name, x, y, vertical, reverse, text // для элементов
     var data
 
     canvas = document.getElementById('scheme')
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         x = item.x
                         y = item.y
                         vertical = item.vertical === 1
-                        direction = item.direction === 1
                         drawElement()
                     })
 
@@ -74,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         x = item.x
                         y = item.y
                         vertical = item.vertical
+                        reverse = item.reverse
 
                         context.beginPath()
                         context.clearRect(x - 3, y - 3, 6, 6)
@@ -81,11 +81,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         context.stroke()
                         context.closePath()
 
+                        var offsetX, offsetY;
+
                         if (vertical) {
-                            context.fillText(text, x - 3, y - 7)
+                            offsetX = -3
+                            offsetY = (reverse) ? 14 : -7
                         } else {
-                            context.fillText(text, x + 7, y + 4)
+                            offsetX = (reverse) ? -7 * (1 + text.length) : 7
+                            offsetY = 4
                         }
+
+                        context.fillText(text, x + offsetX, y + offsetY)
                     })
 
                     // рисуем текст

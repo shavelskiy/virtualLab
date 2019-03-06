@@ -26,7 +26,6 @@ class m190108_103525_create_scheme_items_table extends Migration
             'x' => $this->integer(),
             'y' => $this->integer(),
             'vertical' => $this->boolean(),
-            'direction' => $this->boolean()
         ], $tableOptions);
     }
 

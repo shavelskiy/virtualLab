@@ -63,8 +63,14 @@ class SchemeText extends \yii\db\ActiveRecord
     public static function saveData($data, $schemeId)
     {
         foreach ($data['save'] as $element) {
-            $schemeText = new SchemeText();
-            $schemeText->scheme_id = $schemeId;
+
+            if (isset($element['id'])) {
+                $schemeText = SchemeText::findOne($element['id']);
+            } else {
+                $schemeText = new SchemeText();
+                $schemeText->scheme_id = $schemeId;
+            }
+
             $schemeText->text = $element['text'];
             $schemeText->x = $element['x'];
             $schemeText->y = $element['y'];

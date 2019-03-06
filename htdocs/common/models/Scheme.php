@@ -105,7 +105,6 @@ class Scheme extends \yii\db\ActiveRecord
                 'x' => $schemeItem->x,
                 'y' => $schemeItem->y,
                 'vertical' => $schemeItem->vertical,
-                'direction' => $schemeItem->direction,
             ];
         }
 

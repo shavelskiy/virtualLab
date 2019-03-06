@@ -15,7 +15,6 @@ use Yii;
  * @property int $x
  * @property int $y
  * @property int $vertical
- * @property int $direction
  *
  * @property Scheme $scheme
  */
@@ -37,7 +36,7 @@ class SchemeItem extends \yii\db\ActiveRecord
         return [
             [['scheme_id', 'type'], 'required'],
             [['scheme_id', 'x', 'y'], 'integer'],
-            [['vertical', 'direction'], 'boolean'],
+            [['vertical'], 'boolean'],
             [['type', 'name', 'value'], 'string', 'max' => 255],
             [['scheme_id'], 'exist', 'skipOnError' => true, 'targetClass' => Scheme::className(), 'targetAttribute' => ['scheme_id' => 'id']],
         ];
@@ -57,7 +56,6 @@ class SchemeItem extends \yii\db\ActiveRecord
             'x' => 'X',
             'y' => 'Y',
             'vertical' => 'Vertical',
-            'direction' => 'Direction',
         ];
     }
 
@@ -72,15 +70,19 @@ class SchemeItem extends \yii\db\ActiveRecord
     public static function saveData($data, $schemeId)
     {
         foreach ($data['save'] as $element) {
-            $schemeItem = new SchemeItem();
-            $schemeItem->scheme_id = $schemeId;
+            if (isset($element['id'])) {
+                $schemeItem = SchemeItem::findOne($element['id']);
+            } else {
+                $schemeItem = new SchemeItem();
+                $schemeItem->scheme_id = $schemeId;
+            }
+
             $schemeItem->type = $element['element'];
             $schemeItem->name = $element['name'];
             $schemeItem->value = $element['value'];
             $schemeItem->x = $element['x'];
             $schemeItem->y = $element['y'];
             $schemeItem->vertical = $element['vertical'] == 'true';
-            $schemeItem->direction = $element['direction'] == 'true';
 
             if ($schemeItem->validate()) {
                 $schemeItem->save();

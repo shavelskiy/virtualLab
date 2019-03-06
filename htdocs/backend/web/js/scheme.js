@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm ml-1 btn-danger circuit-remove">Удалить</button></li>',
         coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
-        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}} = {{VALUE}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
+        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}} = {{VALUE}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
         textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
         pointHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col px-1"><input type="text" id="point-text" class="form-control" placeholder="x" value="{{VALUE}}"></div><div class="col px-1"><input type="text" id="point-x" class="form-control" placeholder="y" value="{{X}}"></div><div class="col px-1"><input type="text" id="point-y" class="form-control" placeholder="y" value="{{Y}}"></div><div class="col px-1"><input type="checkbox" id="point-vertical" class="form-control" {{VERTICAL}}></div><div class="col px-1"><input type="checkbox" id="point-reverse" class="form-control" {{REVERSE}}></div></div></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>'
 
     var html
-    var element, name, value, x, y, vertical, direction, reverse // для элементов
+    var element, name, value, x, y, vertical, reverse // для элементов
     var text
     var circuitsToDelete = [], elementsToDelete = [], textsToDelete = [], pointsToDelete = []
 
@@ -86,16 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
         var elements = []
         $('.elements-list').find('li').each(function () {
             var curElement = {}
-            if (!$(this).find('.element-remove').attr('data-id')) {
-                curElement.element = $(this).attr('data-type')
-                curElement.name = $(this).attr('data-name')
-                curElement.value = $(this).attr('data-value')
-                curElement.x = Number($(this).attr('data-x'))
-                curElement.y = Number($(this).attr('data-y'))
-                curElement.vertical = $(this).attr('data-vertical') === 'true'
-                curElement.direction = $(this).attr('data-direction') === 'true'
-                elements.push(curElement)
-            }
+            curElement.id = $(this).find('.element-remove').attr('data-id')
+            curElement.element = $(this).attr('data-type')
+            curElement.name = $(this).find('#item-name').val()
+            curElement.value = $(this).find('#item-value').val()
+            curElement.x = Number($(this).find('#item-x').val())
+            curElement.y = Number($(this).find('#item-y').val())
+            curElement.vertical = $(this).find('#item-vertical').is(':checked')
+            elements.push(curElement)
         })
 
         var points = []
@@ -113,12 +111,11 @@ document.addEventListener('DOMContentLoaded', function () {
         var texts = []
         $('.text-list').find('li').each(function () {
             var curText = {}
-            if (!$(this).find('.text-remove').attr('data-id')) {
-                curText.text = $(this).attr('data-value')
-                curText.x = Number($(this).attr('data-x'))
-                curText.y = Number($(this).attr('data-y'))
-                texts.push(curText)
-            }
+            curText.id = $(this).find('.text-remove').attr('data-id')
+            curText.text = $(this).find('#text-value').val()
+            curText.x = Number($(this).find('#text-x').val())
+            curText.y = Number($(this).find('#text-y').val())
+            texts.push(curText)
         })
 
         $.ajax({
@@ -251,9 +248,8 @@ document.addEventListener('DOMContentLoaded', function () {
         x = Number($('#x-coordinate').val())
         y = Number($('#y-coordinate').val())
         vertical = $('#vertical').is(':checked')
-        direction = $('#direction').is(':checked')
 
-        html = elementHtml.replace(/{{NAME}}/g, name).replace('{{TYPE}}', element).replace(/{{VALUE}}/g, value).replace('{{VERTICAL}}', vertical).replace('{{DIRECTION}}', direction).replace(/{{X}}/g, x).replace(/{{Y}}/g, y)
+        html = elementHtml.replace(/{{NAME}}/g, name).replace('{{TYPE}}', element).replace(/{{VALUE}}/g, value).replace('{{VERTICAL}}', vertical).replace(/{{X}}/g, x).replace(/{{Y}}/g, y)
         $('.elements-list').append(html)
 
         drawScheme()
@@ -296,12 +292,11 @@ document.addEventListener('DOMContentLoaded', function () {
         context.font = 'bold 16px sans-serif'
         $('.elements-list').find('li').each(function () {
             element = $(this).attr('data-type')
-            name = $(this).attr('data-name')
-            value = $(this).attr('data-value')
-            x = Number($(this).attr('data-x'))
-            y = Number($(this).attr('data-y'))
-            vertical = $(this).attr('data-vertical') === 'true'
-            direction = $(this).attr('data-direction') === 'true'
+            name = $(this).find('#item-name').val()
+            value = $(this).find('#item-value').val()
+            x = Number($(this).find('#item-x').val())
+            y = Number($(this).find('#item-y').val())
+            vertical = $(this).find('#item-vertical').is(':checked')
             drawElement()
         })
     }
@@ -340,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
             context.stroke()
             context.closePath()
 
-            var offsetX, offsetY;
+            var offsetX, offsetY
 
             if (vertical) {
                 offsetX = -3
@@ -358,9 +353,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawTexts() {
         context.font = 'bold 16px sans-serif'
         $('.text-list').find('li').each(function () {
-            text = $(this).attr('data-value')
-            x = Number($(this).attr('data-x'))
-            y = Number($(this).attr('data-y'))
+            text = $(this).find('#text-value').val()
+            x = Number($(this).find('#text-x').val())
+            y = Number($(this).find('#text-y').val())
             context.fillText(text, x, y)
         })
     }
