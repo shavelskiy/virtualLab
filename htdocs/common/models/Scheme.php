@@ -153,7 +153,8 @@ class Scheme extends \yii\db\ActiveRecord
                 'text' => $schemePoint->text,
                 'x' => $schemePoint->x,
                 'y' => $schemePoint->y,
-                'vertical' => $schemePoint->vertical
+                'vertical' => $schemePoint->vertical,
+                'reverse' => $schemePoint->reverse
             ];
         }
         return $result;
@@ -170,9 +171,9 @@ class Scheme extends \yii\db\ActiveRecord
                 if (intval($pointTwo->text) > intval($pointOne->text)) {
                     $value = SchemeData::find()->andWhere(['point1' => $pointOne->id, 'point2' => $pointTwo->id])->one();
                     $result[$pointOne->id . '.' . $pointTwo->id] = [
-                        'cur_u' => $value->cur_u,
-                        'cur_i' => $value->cur_i,
-                        'cur_r' => $value->cur_r,
+                        'cur_u' => $value->cur_u ?? 0,
+                        'cur_i' => $value->cur_i ?? 0,
+                        'cur_r' => $value->cur_r ?? 0,
                     ];
               }
             }

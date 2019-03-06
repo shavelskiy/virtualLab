@@ -18,7 +18,8 @@ class m190225_132849_create_scheme_points_table extends Migration
             'x' => $this->integer()->notNull(),
             'y' => $this->integer()->notNull(),
             'text' => $this->string(),
-            'vertical' => $this->boolean()
+            'vertical' => $this->boolean(),
+            'reverse' => $this->boolean()
         ]);
 
         $this->addForeignKey(

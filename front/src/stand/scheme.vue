@@ -103,11 +103,17 @@
                     this.context.stroke()
                     this.context.closePath()
 
+                    var offsetX, offsetY;
+
                     if (element.vertical) {
-                        this.context.fillText(element.text, element.x - 3, element.y - 7)
+                        offsetX = -3
+                        offsetY = (element.reverse) ? 14 : -7
                     } else {
-                        this.context.fillText(element.text, element.x + 7, element.y + 4)
+                        offsetX = (element.reverse) ? -7 * (1 + element.text.length) : 7
+                        offsetY = 4
                     }
+
+                    this.context.fillText(element.text, element.x + offsetX, element.y + offsetY)
                 }
 
                 this.context.font = 'bold 16px sans-serif'

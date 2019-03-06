@@ -105,6 +105,10 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                     <label for="point-vertical">Веритикально</label>
                     <input type="checkbox" id="point-vertical" class="form-control">
                 </div>
+                <div class="col">
+                    <label for="point-vertical">Инверсия</label>
+                    <input type="checkbox" id="point-reverse" class="form-control">
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -221,17 +225,20 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                 <li class="list-group-item" data-id="<?= $point->id ?>">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col px-1">
                                                 <input type="text" id="point-text" class="form-control" placeholder="x" value="<?= $point->text ?>">
                                             </div>
-                                            <div class="col">
+                                            <div class="col px-1">
                                                 <input type="text" id="point-x" class="form-control" placeholder="y" value="<?= $point->x ?>">
                                             </div>
-                                            <div class="col">
+                                            <div class="col px-1">
                                                 <input type="text" id="point-y" class="form-control" placeholder="y" value="<?= $point->y ?>">
                                             </div>
-                                            <div class="col">
+                                            <div class="col px-1">
                                                 <input type="checkbox" id="point-vertical" class="form-control" <?= $point->vertical ? 'checked' : '' ?>>
+                                            </div>
+                                            <div class="col px-1">
+                                                <input type="checkbox" id="point-reverse" class="form-control" <?= $point->reverse ? 'checked' : '' ?>>
                                             </div>
                                         </div>
                                     </div>

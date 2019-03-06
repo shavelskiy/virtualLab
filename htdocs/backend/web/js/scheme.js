@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
         coordinateHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="circuit-x" class="form-control" placeholder="x"></div><div class="col"><input type="text" id="circuit-y" class="form-control" placeholder="y"></div></div></div></li>',
         elementHtml = '<li class="list-group-item" data-type="{{TYPE}}" data-name="{{NAME}}" data-value="{{VALUE}}" data-vertical="{{VERTICAL}}" data-direction="{{DIRECTION}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{NAME}} = {{VALUE}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm element-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
         textHtml = '<li class="list-group-item" data-value="{{TEXT}}" data-x="{{X}}" data-y="{{Y}}"><div class="row"><div class="col-10"><p>{{TEXT}} ( x = {{X}}, y = {{Y}} )</p></div><div class="col-2"><button type="button" class="btn btn-default btn-sm text-remove"><span class="glyphicon glyphicon-remove"></span></button></div></div></li>',
-        pointHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col"><input type="text" id="point-text" class="form-control" placeholder="x" value="{{VALUE}}"></div><div class="col"><input type="text" id="point-x" class="form-control" placeholder="y" value="{{X}}"></div><div class="col"><input type="text" id="point-y" class="form-control" placeholder="y" value="{{Y}}"></div><div class="col"><input type="checkbox" id="point-vertical" class="form-control" {{VERTICAL}}></div></div></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>'
+        pointHtml = '<li class="list-group-item"><div class="form-group"><div class="row"><div class="col px-1"><input type="text" id="point-text" class="form-control" placeholder="x" value="{{VALUE}}"></div><div class="col px-1"><input type="text" id="point-x" class="form-control" placeholder="y" value="{{X}}"></div><div class="col px-1"><input type="text" id="point-y" class="form-control" placeholder="y" value="{{Y}}"></div><div class="col px-1"><input type="checkbox" id="point-vertical" class="form-control" {{VERTICAL}}></div><div class="col px-1"><input type="checkbox" id="point-reverse" class="form-control" {{REVERSE}}></div></div></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>'
 
     var html
-    var element, name, value, x, y, vertical, direction // для элементов
+    var element, name, value, x, y, vertical, direction, reverse // для элементов
     var text
     var circuitsToDelete = [], elementsToDelete = [], textsToDelete = [], pointsToDelete = []
 
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             curPoint.y = Number($(this).find('#point-y').val())
             curPoint.text = $(this).find('#point-text').val()
             curPoint.vertical = $(this).find('#point-vertical').is(':checked')
+            curPoint.reverse = $(this).find('#point-reverse').is(':checked')
             points.push(curPoint)
         })
 
@@ -221,11 +222,17 @@ document.addEventListener('DOMContentLoaded', function () {
         x = Number($('#point-x').val())
         y = Number($('#point-y').val())
         vertical = $('#point-vertical').is(':checked')
+        reverse = $('#point-reverse').is(':checked')
 
         html = pointHtml.replace(/{{NAME}}/g, name).replace(/{{VALUE}}/g, value).replace(/{{X}}/g, x).replace(/{{Y}}/g, y)
         if (vertical) {
             html = html.replace(/{{VERTICAL}}/, 'checked')
         }
+
+        if (reverse) {
+            html = html.replace(/{{REVERSE}}/, 'checked')
+        }
+
         $('.point-list').append(html)
 
         drawScheme()
@@ -325,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
             y = Number($(this).find('#point-y').val())
             text = $(this).find('#point-text').val()
             vertical = $(this).find('#point-vertical').is(':checked')
+            reverse = $(this).find('#point-reverse').is(':checked')
 
             context.beginPath()
             context.clearRect(x - 3, y - 3, 6, 6)
@@ -332,11 +340,17 @@ document.addEventListener('DOMContentLoaded', function () {
             context.stroke()
             context.closePath()
 
+            var offsetX, offsetY;
+
             if (vertical) {
-                context.fillText(text, x - 3, y - 7)
+                offsetX = -3
+                offsetY = (reverse) ? 14 : -7
             } else {
-                context.fillText(text, x + 7, y + 4)
+                offsetX = (reverse) ? -7 * (1 + text.length) : 7
+                offsetY = 4
             }
+
+            context.fillText(text, x + offsetX, y + offsetY)
         })
     }
 

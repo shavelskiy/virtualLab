@@ -13,6 +13,7 @@ use Yii;
  * @property int $y
  * @property string $text
  * @property boolean $vertical
+ * @property boolean $reverse
  */
 class SchemePoint extends \yii\db\ActiveRecord
 {
@@ -64,6 +65,7 @@ class SchemePoint extends \yii\db\ActiveRecord
             $schemePoint->x = $point['x'];
             $schemePoint->y = $point['y'];
             $schemePoint->vertical = $point['vertical'] == 'true';
+            $schemePoint->reverse = $point['reverse'] == 'true';
 
             if ($schemePoint->validate()) {
                 $schemePoint->save();
