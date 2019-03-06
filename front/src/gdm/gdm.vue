@@ -43,16 +43,16 @@
 
         methods: {
             printSignal(data) {
-                var tmp;
-                var reverse = false;
+                var tmp
+                var reverse = false
 
                 if (data.point1 === data.point2) {
-                    tmp = false;
+                    tmp = false
                 } else {
                     if (data.point1 < data.point2) {
                         tmp = this.values[data.point1 + '.' + data.point2]
                     } else {
-                        reverse = true;
+                        reverse = true
                         tmp = this.values[data.point2 + '.' + data.point1]
                     }
                 }
