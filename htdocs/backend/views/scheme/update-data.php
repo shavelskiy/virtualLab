@@ -21,6 +21,8 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
             </div>
         </div>
 
+        <input type="hidden" name="schemeId" value="<?= $scheme->id ?>">
+
         <div class="col">
             <div class="panel panel-default">
                 <div class="panel-heading">Узлы</div>

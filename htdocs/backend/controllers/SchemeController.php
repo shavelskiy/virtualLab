@@ -92,6 +92,10 @@ class SchemeController extends Controller
         return $this->render('update-data', ['scheme' => $scheme]);
     }
 
+    /**
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionDelete()
     {
         $scheme = Scheme::findOne(Yii::$app->request->post('schemeId'));
@@ -112,6 +116,10 @@ class SchemeController extends Controller
         die;
     }
 
+    /**
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
     public function actionSaveData()
     {
         $data = Yii::$app->request->post('data');
@@ -135,7 +143,9 @@ class SchemeController extends Controller
 
            $schemeData->save();
         }
-       die;
+
+        $scheme = self::findScheme(Yii::$app->request->post('schemeId'));
+        return $this->redirect(['lab/update', 'id' => $scheme->lab->id]);
     }
 
     /**

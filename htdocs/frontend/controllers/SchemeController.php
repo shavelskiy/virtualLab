@@ -33,7 +33,8 @@ class SchemeController extends Controller
                     'elements' => $scheme->getSchemeItemsArray(),
                     'points' => $scheme->getSchemePointsArray(),
                     'texts' => $scheme->getSchemeTextsArray(),
-                    'data' => $scheme->getSchemeDataArray()
+                    'data' => $scheme->getSchemeDataArray(),
+                    'values' => $scheme->getSchemeValuesArray()
                 ];
             }
         }

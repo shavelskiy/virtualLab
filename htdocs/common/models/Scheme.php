@@ -149,11 +149,33 @@ class Scheme extends \yii\db\ActiveRecord
         $result = [];
         foreach ($this->schemePoints as $schemePoint) {
             $result[] = [
+                'id' => $schemePoint->id,
                 'text' => $schemePoint->text,
                 'x' => $schemePoint->x,
                 'y' => $schemePoint->y,
                 'vertical' => $schemePoint->vertical
             ];
+        }
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSchemeValuesArray()
+    {
+        $result = [];
+        foreach ($this->schemePoints as $pointOne) {
+            foreach ($this->schemePoints as $pointTwo) {
+                if (intval($pointTwo->text) > intval($pointOne->text)) {
+                    $value = SchemeData::find()->andWhere(['point1' => $pointOne->id, 'point2' => $pointTwo->id])->one();
+                    $result[$pointOne->id . '.' . $pointTwo->id] = [
+                        'cur_u' => $value->cur_u,
+                        'cur_i' => $value->cur_i,
+                        'cur_r' => $value->cur_r,
+                    ];
+              }
+            }
         }
         return $result;
     }
