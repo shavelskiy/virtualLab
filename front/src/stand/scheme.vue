@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <label for="choose-scheme" class="col-sm-3 control-label px-3">Выбрать схему</label>
                         <div class="col-sm-5 px-0">
-                            <select class="form-control" @change="drawScheme" v-model.number="currentScheme">
+                            <select id="choose-scheme" class="form-control" @change="drawScheme" v-model.number="currentScheme">
                                 <option v-for="n in schemeCol" :value="n - 1">{{ n }}</option>
                             </select>
                         </div>
@@ -75,7 +75,7 @@
                 for (key in this.schemeInfo[num].circuits) {
                     this.context.beginPath()
                     for (index in this.schemeInfo[num].circuits[key]) {
-                        var element = this.schemeInfo[num].circuits[key][index];
+                        var element = this.schemeInfo[num].circuits[key][index]
                         if (index === 0) {
                             this.context.moveTo(element.x, element.y)
                         } else {
@@ -117,6 +117,8 @@
                 }
 
                 bus.$emit('print-scheme-data', this.schemeInfo[num]['data'])
+                bus.$emit('print-choose-points', this.schemeInfo[num]['points'])
+                bus.$emit('load-values', this.schemeInfo[num]['values'])
             },
 
             // нарисовать элемент
