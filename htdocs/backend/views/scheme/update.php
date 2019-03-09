@@ -118,27 +118,29 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
 
         <div class="col">
             <canvas id="scheme" width="640" height="360" style="border: 1px solid black"></canvas>
-            <button type="button" class="btn btn-primary mb-2 preview">Предосмотр</button>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary save">Сохранить</button>
+            </div>
         </div>
 
         <!--для контуров-->
         <div class="col circuits-panel">
             <div class="panel panel-default">
                 <div class="panel-heading">Контура</div>
-                <div class="panel-body">
+                <div class="panel-body pre-scrollable" style="max-height: 600px">
                     <div class="container-fluid">
                         <ul class="list-group circuits-list">
                             <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
                             <?php foreach ($scheme->getSchemeCircuitsArray() as $parentId => $circuit): ?>
                                 <li class="list-group-item circuits-list-item">
                                     <ul class="list-group circuit-items ">
-                                        <?php foreach ($circuit as $point): ?>
+                                        <?php foreach ($circuit as $i => $point): ?>
                                             <li class="list-group-item" data-id="<?= $point['id'] ?>">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-1 offset-1 col-form-label mx-2 text-center">X:</label>
-                                                    <input type="text" id="circuit-x" class="form-control col-sm-4 pl-2" placeholder="x" value="<?= $point['x'] ?>">
-                                                    <label class="col-sm-1 col-form-label mx-2 text-center">Y:</label>
-                                                    <input type="text" id="circuit-y" class="form-control col-sm-4 pl-2" placeholder="y" value="<?= $point['y'] ?>">
+                                                    <label for="circuit-x-<?= $parentId ?>-<?= $i ?>" class="col-sm-1 offset-1 col-form-label mx-2 text-center">X:</label>
+                                                    <input type="text" id="circuit-x-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-x" placeholder="x" value="<?= $point['x'] ?>">
+                                                    <label for="circuit-y-<?= $parentId ?>-<?= $i ?>" class="col-sm-1 col-form-label mx-2 text-center">Y:</label>
+                                                    <input type="text" id="circuit-y-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-y" placeholder="y" value="<?= $point['y'] ?>">
                                                 </div>
                                             </li>
                                         <?php endforeach; ?>
@@ -157,26 +159,26 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         <div class="col elements-panel hidden">
             <div class="panel panel-default">
                 <div class="panel-heading">Элементы</div>
-                <div class="panel-body">
+                <div class="panel-body pre-scrollable" style="max-height: 480px">
                     <div class="container-fluid">
                         <ul class="list-group elements-list">
                             <?php /** @var \common\models\SchemeItem $schemeItem */ ?>
-                            <?php foreach ($scheme->schemeItems as $schemeItem): ?>
+                            <?php foreach ($scheme->schemeItems as $i => $schemeItem): ?>
                                 <li class="list-group-item" data-type="<?= $schemeItem->type ?>">
                                     <div class="row">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label ml-2 text-center">Название:</label>
-                                            <input type="text" id="item-name" class="form-control col-sm-2" placeholder="Название" value="<?= $schemeItem->name ?>">
-                                            <label class="col-sm-3 col-form-label text-center">Значение:</label>
-                                            <input type="text" id="item-value" class="form-control col-sm-3" placeholder="Значение" value="<?= $schemeItem->value ?>">
+                                            <label for="item-name-<?= $i ?>" class="col-sm-3 col-form-label ml-2 text-center">Название:</label>
+                                            <input type="text" id="item-name-<?= $i ?>" class="form-control col-sm-2 item-name" placeholder="Название" value="<?= $schemeItem->name ?>">
+                                            <label for="item-value-<?= $i ?>" class="col-sm-3 col-form-label text-center">Значение:</label>
+                                            <input type="text" id="item-value-<?= $i ?>" class="form-control col-sm-3 item-value" placeholder="Значение" value="<?= $schemeItem->value ?>">
                                         </div>
                                         <div class="form-check-inline row">
-                                            <label class="col-sm-1 ml-4 px-0 col-form-label text-center">X:</label>
-                                            <input type="text" id="item-x" class="form-control col-sm-2" placeholder="x" value="<?= $schemeItem->x ?>">
-                                            <label class="col-sm-1 col-form-label text-center">Y:</label>
-                                            <input type="text" id="item-y" class="form-control col-sm-2" placeholder="y" value="<?= $schemeItem->y ?>">
-                                            <label class="col-sm form-check-label pr-2">Веритикально:</label>
-                                            <input type="checkbox" id="item-vertical" class="form-check-input col-sm" <?= $schemeItem->vertical ? 'checked' : '' ?>
+                                            <label for="item-x-<?= $i ?>" class="col-sm-1 ml-4 px-0 col-form-label text-center">X:</label>
+                                            <input type="text" id="item-x-<?= $i ?>" class="form-control col-sm-2 item-x" placeholder="x" value="<?= $schemeItem->x ?>">
+                                            <label for="item-y-<?= $i ?>" class="col-sm-1 col-form-label text-center">Y:</label>
+                                            <input type="text" id="item-y-<?= $i ?>" class="form-control col-sm-2 item-y" placeholder="y" value="<?= $schemeItem->y ?>">
+                                            <label for="item-vertical-<?= $i ?>" class="col-sm form-check-label pr-2">Веритикально:</label>
+                                            <input type="checkbox" id="item-vertical-<?= $i ?>" class="form-check-input col-sm item-vertical" <?= $schemeItem->vertical ? 'checked' : '' ?>>
                                         </div>
 
                                         <button type="button" class="btn-sm btn-danger ml-5 mt-3 element-remove" data-id="<?= $schemeItem->id ?>">Удалить</button>
@@ -193,25 +195,25 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         <div class="col points-panel hidden">
             <div class="panel panel-default">
                 <div class="panel-heading">Узлы</div>
-                <div class="panel-body">
+                <div class="panel-body pre-scrollable" style="max-height: 540px">
                     <div class="container-fluid">
                         <ul class="list-group point-list">
                             <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
-                            <?php foreach ($scheme->schemePoints as $point): ?>
+                            <?php foreach ($scheme->schemePoints as $i => $point): ?>
                                 <li class="list-group-item" data-id="<?= $point->id ?>">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 px-0 ml-4 col-form-label text-center">Номер:</label>
-                                        <input type="text" id="point-text" class="form-control col-sm-2" placeholder="Номер" value="<?= $point->text ?>">
-                                        <label class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
-                                        <input type="text" id="point-x" class="form-control col-sm-2" placeholder="x" value="<?= $point->x ?>">
-                                        <label class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
-                                        <input type="text" id="point-y" class="form-control col-sm-2" placeholder="y" value="<?= $point->y ?>">
+                                        <label for="point-text-<?= $i ?>" class="col-sm-2 px-0 ml-4 col-form-label text-center">Номер:</label>
+                                        <input type="text" id="point-text-<?= $i ?>" class="form-control col-sm-2 point-text" placeholder="Номер" value="<?= $point->text ?>">
+                                        <label for="point-x-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
+                                        <input type="text" id="point-x-<?= $i ?>" class="form-control col-sm-2 point-x" placeholder="x" value="<?= $point->x ?>">
+                                        <label for="point-y-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
+                                        <input type="text" id="point-y-<?= $i ?>" class="form-control col-sm-2 point-y" placeholder="y" value="<?= $point->y ?>">
                                     </div>
                                     <div class="form-check-inline row mb-4">
-                                        <label class="col-sm form-check-label pr-2">Веритикально:</label>
-                                        <input type="checkbox" id="point-vertical" class="form-check-input col-sm" <?= $point->vertical ? 'checked' : '' ?>>
-                                        <label class="col-sm form-check-label pr-2">Инверсия:</label>
-                                        <input type="checkbox" id="point-reverse" class="form-check-input col-sm" <?= $point->reverse ? 'checked' : '' ?>>
+                                        <label for="point-vertical-<?= $i ?>" class="col-sm form-check-label pr-2">Веритикально:</label>
+                                        <input type="checkbox" id="point-vertical-<?= $i ?>" class="form-check-input col-sm point-vertical" <?= $point->vertical ? 'checked' : '' ?>>
+                                        <label for="point-reverse-<?= $i ?>" class="col-sm form-check-label pr-2">Инверсия:</label>
+                                        <input type="checkbox" id="point-reverse-<?= $i ?>" class="form-check-input col-sm point-reverse" <?= $point->reverse ? 'checked' : '' ?>>
                                     </div>
                                     <button type="button" class="btn-sm btn-danger point-remove" data-id="<?= $point->id ?>">Удалить</button>
                                 </li>
@@ -226,19 +228,19 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         <div class="col texts-panel hidden">
             <div class="panel panel-default">
                 <div class="panel-heading">Элементы</div>
-                <div class="panel-body">
+                <div class="panel-body pre-scrollable" style="max-height: 520px">
                     <div class="container-fluid">
                         <ul class="list-group text-list">
                             <?php /** @var \common\models\SchemeText $schemeText */ ?>
-                            <?php foreach ($scheme->schemeTexts as $schemeText): ?>
+                            <?php foreach ($scheme->schemeTexts as $i => $schemeText): ?>
                                 <li class="list-group-item">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 px-0 ml-4 col-form-label text-center">Текст:</label>
-                                        <input type="text" id="text-value" class="form-control col-sm-2" placeholder="Текст" value="<?= $schemeText->text ?>">
-                                        <label class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
-                                        <input type="text" id="text-x" class="form-control col-sm-2" placeholder="x" value="<?= $schemeText->x ?>">
-                                        <label class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
-                                        <input type="text" id="text-y" class="form-control col-sm-2" placeholder="y" value="<?= $schemeText->y ?>">
+                                        <label for="text-value-<?= $i ?>" class="col-sm-2 px-0 ml-4 col-form-label text-center">Текст:</label>
+                                        <input type="text" id="text-value-<?= $i ?>" class="form-control col-sm-2 text-value" placeholder="Текст" value="<?= $schemeText->text ?>">
+                                        <label for="text-x-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
+                                        <input type="text" id="text-x-<?= $i ?>" class="form-control col-sm-2 text-x" placeholder="x" value="<?= $schemeText->x ?>">
+                                        <label for="text-y-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
+                                        <input type="text" id="text-y-<?= $i ?>" class="form-control col-sm-2 text-y" placeholder="y" value="<?= $schemeText->y ?>">
                                     </div>
                                     <button type="button" class="btn-sm btn-danger text-remove" data-id="<?= $schemeText->id ?>">Удалить</button>
                                 </li>
@@ -248,8 +250,5 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <button type="button" class="btn btn-primary save">Сохранить</button>
     </div>
 </div>
