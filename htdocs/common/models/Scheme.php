@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property int $lab_id
+ * @property boolean $changeable_r
+ * @property boolean $changeable_c
  *
  * @property SchemeCircuit[] $schemeCircuits
  * @property SchemeItem[] $schemeItems

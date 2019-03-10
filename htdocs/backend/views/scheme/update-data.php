@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
         <div class="col">
             <div class="panel panel-default">
                 <div class="panel-heading">Узлы</div>
-                <div class="panel-body">
+                <div class="panel-body pre-scrollable" style="max-height: 700px">
                     <div class="container-fluid">
                         <ul class="list-group">
                             <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
@@ -45,13 +45,19 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_u]" class="form-control" placeholder="U" value="<?= ($schemeData) ? $schemeData->cur_u : '' ?>">
+                                                                <input type="text" name="data[<?= $key ?>][cur_u]"
+                                                                       class="form-control" placeholder="U"
+                                                                       value="<?= ($schemeData) ? $schemeData->cur_u : '' ?>">
                                                             </div>
                                                             <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_i]" class="form-control" placeholder="I" value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
+                                                                <input type="text" name="data[<?= $key ?>][cur_i]"
+                                                                       class="form-control" placeholder="I"
+                                                                       value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
                                                             </div>
                                                             <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_r]" class="form-control" placeholder="R" value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
+                                                                <input type="text" name="data[<?= $key ?>][cur_r]"
+                                                                       class="form-control" placeholder="R"
+                                                                       value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -74,10 +80,10 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
         <?php foreach ($scheme->getSchemeCircuitsArray() as $parentId => $circuit): ?>
             <li class="circuits-list-item">
                 <ul class="circuit-items">
-                    <?php foreach ($circuit as $point): ?>
+                    <?php foreach ($circuit as $i => $point): ?>
                         <li>
-                            <input type="text" id="circuit-x" value="<?= $point['x'] ?>">
-                            <input type="text" id="circuit-y" value="<?= $point['y'] ?>">
+                            <input type="text" class="circuit-x" value="<?= $point['x'] ?>">
+                            <input type="text" class="circuit-y" value="<?= $point['y'] ?>">
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -88,15 +94,13 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
     <!--для элементов-->
     <ul class="elements-list hidden">
         <?php /** @var \common\models\SchemeItem $schemeItem */ ?>
-        <?php foreach ($scheme->schemeItems as $schemeItem): ?>
-            <li
-                    data-type="<?= $schemeItem->type ?>"
-                    data-name="<?= $schemeItem->name ?>"
-                    data-value="<?= $schemeItem->value ?>"
-                    data-x="<?= $schemeItem->x ?>"
-                    data-y="<?= $schemeItem->y ?>"
-                    data-vertical="<?= $schemeItem->vertical ? 'true' : 'false' ?>"
-                    data-direction="<?= $schemeItem->direction ? 'true' : 'false' ?>">
+        <?php foreach ($scheme->schemeItems as $i => $schemeItem): ?>
+            <li data-type="<?= $schemeItem->type ?>">
+                <input type="text" class="item-name" value="<?= $schemeItem->name ?>">
+                <input type="text" class="item-value" value="<?= $schemeItem->value ?>">
+                <input type="text" class="item-x" value="<?= $schemeItem->x ?>">
+                <input type="text" class="item-y" value="<?= $schemeItem->y ?>">
+                <input type="checkbox" class="item-vertical" <?= $schemeItem->vertical ? 'checked' : '' ?>>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -104,12 +108,13 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
     <!--для узлов-->
     <ul class="point-list hidden">
         <?php /** @var \common\models\SchemeCircuit $circuit */ ?>
-        <?php foreach ($scheme->schemePoints as $point): ?>
+        <?php foreach ($scheme->schemePoints as $i => $point): ?>
             <li>
-                <input type="text" id="point-text" value="<?= $point->text ?>">
-                <input type="text" id="point-x" value="<?= $point->x ?>">
-                <input type="text" id="point-y" value="<?= $point->y ?>">
-                <input type="checkbox" id="point-vertical"<?= $point->vertical ? 'checked' : '' ?>>
+                <input type="text" class="point-text" value="<?= $point->text ?>">
+                <input type="text" class="point-x" value="<?= $point->x ?>">
+                <input type="text" class="point-y" value="<?= $point->y ?>">
+                <input type="checkbox" class="point-vertical" <?= $point->vertical ? 'checked' : '' ?>>
+                <input type="checkbox" class="point-reverse" <?= $point->reverse ? 'checked' : '' ?>>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -117,11 +122,11 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
     <!--для текста-->
     <ul class="text-list hidden">
         <?php /** @var \common\models\SchemeText $schemeText */ ?>
-        <?php foreach ($scheme->schemeTexts as $schemeText): ?>
-            <li
-                    data-value="<?= $schemeText->text ?>"
-                    data-x="<?= $schemeText->x ?>"
-                    data-y="<?= $schemeText->y ?>">
+        <?php foreach ($scheme->schemeTexts as $i => $schemeText): ?>
+            <li>
+                <input type="text" class="text-value" value="<?= $schemeText->text ?>">
+                <input type="text" class="text-x" value="<?= $schemeText->x ?>">
+                <input type="text" class="text-y" value="<?= $schemeText->y ?>">
             </li>
         <?php endforeach; ?>
     </ul>

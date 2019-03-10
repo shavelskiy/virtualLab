@@ -1,7 +1,7 @@
 <template>
     <div class="panel panel-default">
         <div class="panel-body">
-            <p class="text-center" v-for="(key, item) in data">{{ item }} = {{ key }}</p>
+            <p class="text-center" v-if="key !== ''" v-for="(key, item) in data">{{ item }} = {{ key }}</p>
         </div>
     </div>
 </template>

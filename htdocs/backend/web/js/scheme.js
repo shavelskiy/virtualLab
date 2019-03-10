@@ -137,7 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 'texts': {
                     'save': texts,
                     'delete': textsToDelete
-                }
+                },
+                'changeable_r': $('#changeable_r').is(':checked'),
+                'changeable_c': $('#changeable_c').is(':checked')
             }),
             success: function () {
                 console.log('done')

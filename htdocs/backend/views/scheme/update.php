@@ -118,8 +118,12 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
 
         <div class="col">
             <canvas id="scheme" width="640" height="360" style="border: 1px solid black"></canvas>
-            <div class="form-group">
+            <div class="form-check-inline">
                 <button type="button" class="btn btn-primary save">Сохранить</button>
+                <label for="changeable_r" class="ml-5 mr-2 col-form-label text-right">Изменяемый резистор:</label>
+                <input type="checkbox" id="changeable_r" class="form-check-input" <?= $scheme->changeable_r ? 'checked' : '' ?>>
+                <label for="changeable_c" class="ml-5 mr-2 col-form-label text-right">Изменяемый конденсатор:</label>
+                <input type="checkbox" id="changeable_c" class="form-check-input" <?= $scheme->changeable_c ? 'checked' : '' ?>>
             </div>
         </div>
 

@@ -31,6 +31,8 @@ class SchemeController extends Controller
                 $result[] = [
                     'circuits' => $scheme->getSchemeCircuitsArray(),
                     'elements' => $scheme->getSchemeItemsArray(),
+                    'changeable_r' => $scheme->changeable_r,
+                    'changeable_c' => $scheme->changeable_c,
                     'points' => $scheme->getSchemePointsArray(),
                     'texts' => $scheme->getSchemeTextsArray(),
                     'data' => $scheme->getSchemeDataArray(),

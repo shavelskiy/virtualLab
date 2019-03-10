@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col">
-                <form class="form-horizontal">
+                <div class="form-horizontal">
                     <div class="form-group">
                         <label for="choose-scheme" class="col-sm-3 control-label px-3">Выбрать схему</label>
                         <div class="col-sm-5 px-0">
@@ -11,20 +11,30 @@
                             </select>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <canvas id="scheme" width="640" height="360"></canvas>
             <div class="col">
-                <form class="form-horizontal">
-                    <div class="form-group">
+                <div class="form-horizontal">
+                    <div class="form-group" v-if="changeableR">
                         <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить R</label>
                         <div class="col-sm-5 px-0">
-                            <select class="form-control" id="choose-resistor">
+                            <select class="form-control">
                                 <option value="50">50 Ом</option>
                             </select>
                         </div>
                     </div>
-                </form>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group" v-if="changeableC">
+                        <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить C</label>
+                        <div class="col-sm-5 px-0">
+                            <select class="form-control">
+                                <option value="10">10 мкФ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +113,7 @@
                     this.context.stroke()
                     this.context.closePath()
 
-                    var offsetX, offsetY;
+                    var offsetX, offsetY
 
                     if (element.vertical) {
                         offsetX = -3
@@ -268,6 +278,31 @@
                 this.context.fill()
                 this.context.closePath()
             },
+        },
+
+        computed: {
+            changeableR: function() {
+                if (this.schemeInfo) {
+                    if (this.schemeInfo[this.currentScheme]['changeable_r']) {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            },
+            changeableC: function() {
+                if (this.schemeInfo) {
+                    if (this.schemeInfo[this.currentScheme]['changeable_c']) {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            }
         }
     }
 </script>

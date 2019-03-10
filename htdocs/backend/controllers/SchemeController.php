@@ -67,6 +67,9 @@ class SchemeController extends Controller
             SchemePoint::saveData($data['points'], $scheme->id);
             SchemeText::saveData($data['texts'], $scheme->id);
 
+            $scheme->changeable_r = $data['changeable_r'];
+            $scheme->changeable_c = $data['changeable_c'];
+
             $this->redirect(['lab/update', 'id' => $scheme->lab->id]);
         }
 
