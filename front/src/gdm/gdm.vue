@@ -52,32 +52,22 @@
 
         methods: {
             evalSingal: function () {
-                var tmp
-                var reverse = false
+                var tmp = false
+                var k = 1
 
                 var R = Number(this.changeableData.r),
                     C = Number(this.changeableData.c)
 
-                if (this.point1 === this.point2) {
-                    tmp = false
-                } else {
-                    if (this.point1 < this.point2) {
-                        tmp = this.values[this.point1 + '.' + this.point2]
-                    } else {
-                        reverse = true
-                        tmp = this.values[this.point2 + '.' + this.point1]
-                    }
+                if (this.values[this.point1 + '.' + this.point2]) {
+                    tmp = this.values[this.point1 + '.' + this.point2]
+                } else if (this.values[this.point1 + '.' + this.point2]) {
+                    k = -1
+                    tmp = this.values[this.point2 + '.' + this.point1]
                 }
 
-                this.curValues['cur_u'] = tmp ? eval(tmp['cur_u']) : 0
-                this.curValues['cur_i'] = tmp ? eval(tmp['cur_i']) : 0
-                this.curValues['cur_r'] = tmp ? eval(tmp['cur_r']) : 0
-
-                if (reverse) {
-                    this.curValues['cur_u'] = (-1) * this.curValues['cur_u']
-                    this.curValues['cur_i'] = (-1) * this.curValues['cur_i']
-
-                }
+                this.curValues['cur_u'] = tmp ? k * Math.round(eval(tmp['cur_u']) * 100) / 100 : 0
+                this.curValues['cur_i'] = tmp ? k * Math.round(eval(tmp['cur_i']) * 100) / 100 : 0
+                this.curValues['cur_r'] = tmp ? k *  Math.round(eval(tmp['cur_r']) * 100) / 100 : 0
             },
 
             acceptPoints: function (data) {

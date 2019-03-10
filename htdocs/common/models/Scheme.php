@@ -67,7 +67,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemePoints()
     {
-        return $this->hasMany(SchemePoint::className(), ['scheme_id' => 'id']);
+        return $this->hasMany(SchemePoint::className(), ['scheme_id' => 'id'])->orderBy(['text' => SORT_ASC]);
     }
 
     /**
