@@ -67,6 +67,12 @@ class SchemeItem extends \yii\db\ActiveRecord
         return $this->hasOne(Scheme::className(), ['id' => 'scheme_id']);
     }
 
+    /**
+     * @param $data
+     * @param $schemeId
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
     public static function saveData($data, $schemeId)
     {
         foreach ($data['save'] as $element) {

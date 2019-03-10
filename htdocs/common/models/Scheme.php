@@ -181,4 +181,19 @@ class Scheme extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    /**
+     * @param $data
+     * @param $id
+     * @return bool
+     */
+    public static function saveChangeableState($data, $id)
+    {
+        $scheme = Scheme::findOne($id);
+        $scheme->changeable_r = $data['r'];
+        $scheme->changeable_c = $data['c'];
+        $scheme->save();
+
+        return true;
+    }
 }

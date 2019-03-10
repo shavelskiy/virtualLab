@@ -12,19 +12,14 @@
                     <div class="container-fluid p-0">
                         <div class="row p-0 m-0">
                             <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
-                                <select class="form-control" v-model="channel1.point1">
+                                <select class="form-control" v-model="channel1.point1" v-on:change="sendPoints">
                                     <option v-for="(item) in data" :value="item.id">{{ item.text }}</option>
                                 </select>
                             </div>
                             <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
-                                <select class="form-control" v-model="channel1.point2">
+                                <select class="form-control" v-model="channel1.point2" v-on:change="sendPoints">
                                     <option v-for="(item) in data" :value="item.id">{{ item.text }}</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="row p-0 m-0">
-                            <div class="col p-2 text-center">
-                                <button type="button" class="btn btn-default" v-on:click="sendPoints">Построить</button>
                             </div>
                         </div>
                     </div>
@@ -38,19 +33,14 @@
                     <div class="container-fluid p-0">
                         <div class="row p-0 m-0">
                             <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
-                                <select class="form-control" v-model="channel2.point1">
+                                <select class="form-control" v-model="channel2.point1" v-on:change="sendPoints">
                                     <option v-for="(item) in data" :value="item.id">{{ item.text }}</option>
                                 </select>
                             </div>
                             <div class="col m-0 pl-1 pr-2 pt-2 pb-2">
-                                <select class="form-control" v-model="channel2.point2">
+                                <select class="form-control" v-model="channel2.point2" v-on:change="sendPoints">
                                     <option v-for="(item) in data" :value="item.id">{{ item.text }}</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="row p-0 m-0">
-                            <div class="col p-2 text-center">
-                                <button type="button" class="btn btn-default" v-on:click="sendPoints">Построить</button>
                             </div>
                         </div>
                     </div>
@@ -68,15 +58,15 @@
 
         data() {
             return {
-                'isTwoChannels': null,
-                'data': null,
-                'channel1' : {
-                    'point1': null,
-                    'point2': null
+                isTwoChannels: null,
+                data: null,
+                channel1: {
+                    point1: null,
+                    point2: null
                 },
-                'channel2' : {
-                    'point1': null,
-                    'point2': null
+                channel2: {
+                    point1: null,
+                    point2: null
                 }
             }
         },

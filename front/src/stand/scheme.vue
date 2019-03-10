@@ -6,7 +6,8 @@
                     <div class="form-group">
                         <label for="choose-scheme" class="col-sm-3 control-label px-3">Выбрать схему</label>
                         <div class="col-sm-5 px-0">
-                            <select id="choose-scheme" class="form-control" @change="drawScheme" v-model.number="currentScheme">
+                            <select id="choose-scheme" class="form-control" @change="drawScheme"
+                                    v-model.number="currentScheme">
                                 <option v-for="n in schemeCol" :value="n - 1">{{ n }}</option>
                             </select>
                         </div>
@@ -19,8 +20,9 @@
                     <div class="form-group" v-if="changeableR">
                         <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить R</label>
                         <div class="col-sm-5 px-0">
-                            <select class="form-control">
+                            <select class="form-control" v-model="changeableData.r" v-on:change="sendData">
                                 <option value="50">50 Ом</option>
+                                <option value="100">100 Ом</option>
                             </select>
                         </div>
                     </div>
@@ -29,8 +31,9 @@
                     <div class="form-group" v-if="changeableC">
                         <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить C</label>
                         <div class="col-sm-5 px-0">
-                            <select class="form-control">
+                            <select class="form-control" v-model="changeableData.c" v-on:change="sendData">
                                 <option value="10">10 мкФ</option>
+                                <option value="20">20 мкФ</option>
                             </select>
                         </div>
                     </div>
@@ -51,6 +54,10 @@
                 schemesUrl: '/frontend/web/scheme/get',
                 schemeInfo: null,
                 schemeCol: null,
+                changeableData: {
+                    r: 50,
+                    c: 10
+                },
                 currentScheme: 0,
                 canvas: null,
                 context: null
@@ -278,10 +285,14 @@
                 this.context.fill()
                 this.context.closePath()
             },
+
+            sendData: function() {
+                bus.$emit('send-changeable-data', this.changeableData)
+            }
         },
 
         computed: {
-            changeableR: function() {
+            changeableR: function () {
                 if (this.schemeInfo) {
                     if (this.schemeInfo[this.currentScheme]['changeable_r']) {
                         return true
@@ -292,7 +303,7 @@
                     return false
                 }
             },
-            changeableC: function() {
+            changeableC: function () {
                 if (this.schemeInfo) {
                     if (this.schemeInfo[this.currentScheme]['changeable_c']) {
                         return true
