@@ -2,7 +2,7 @@
 /**
  * @var \common\models\Lab $lab
  */
-$this->title = $lab->name;
+$this->title = 'ЛР №' . $lab->id . '. ' . $lab->name;
 ?>
 
 <div id="app"></div>
