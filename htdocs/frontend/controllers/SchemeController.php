@@ -24,8 +24,7 @@ class SchemeController extends Controller
         $result = [];
 
         if ($session->has('lab_number')) {
-//            $lab = Lab::findOne($session->get('lab_number'));
-            $lab = Lab::findOne(1);
+            $lab = Lab::findOne($session->get('lab_number'));
 
             foreach ($lab->schemes as $scheme) {
                 $result[] = [

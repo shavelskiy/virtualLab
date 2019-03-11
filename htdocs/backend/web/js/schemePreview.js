@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         context.stroke()
                         context.closePath()
 
-                        var offsetX, offsetY;
+                        var offsetX, offsetY
 
                         if (vertical) {
                             offsetX = -3
@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break
             case 'L':
                 drawCoil()
+                break
+            case 'G':
+                drawGng()
                 break
         }
     }
@@ -206,6 +209,22 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             context.arc(x + height, y, height / 2, 0, Math.PI, true)
         }
+        context.stroke()
+        context.closePath()
+    }
+
+    // земля
+    function drawGng() {
+        var width = 20, height = 10
+
+        context.clearRect(x - width / 2, y, width, height)
+        context.beginPath()
+
+        context.moveTo(x, y)
+        context.lineTo(x, y + height)
+        context.moveTo(x - width / 2, y + height)
+        context.lineTo(x + width / 2, y + height)
+
         context.stroke()
         context.closePath()
     }

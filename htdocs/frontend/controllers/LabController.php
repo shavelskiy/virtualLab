@@ -52,8 +52,6 @@ class LabController extends Controller
 
     public function actionLab($number)
     {
-//        $variant = User::findOne(Yii::$app->user->id)->student->variant;
-
         $session = Yii::$app->session;
         if ($session->has('lab_number')) {
             $session->remove('lab_number');
@@ -73,7 +71,6 @@ class LabController extends Controller
 
         if ($session->has('lab_number')) {
             $result = LabItems::find()->tree($session->get('lab_number'));
-//        $result = LabItems::find()->tree(1);
         }
 
         $result = json_encode($result);
@@ -89,9 +86,8 @@ class LabController extends Controller
         $result = [];
 
         if ($session->has('lab_number')) {
-//            $lab = Lab::findOne($session->get('lab_number'));
-        $lab = Lab::findOne(1);
-        $result = $lab->signal;
+            $lab = Lab::findOne($session->get('lab_number'));
+            $result = $lab->signal;
         }
 
         $result = json_encode($result);

@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
         currentTab = $('.nav-tabs').find('.active')
 
     var circuitHtml = '<li class="list-group-item circuits-list-item"><ul class="list-group circuit-items ">{{INPUT}}</ul><button type="button" class="btn-sm btn-primary circuit-point-add">Добавить точку</button><button type="button" class="btn-sm btn-danger circuit-remove">Удалить</button></li>',
-        coordinateHtml = '<li class="list-group-item"><div class="form-group row"><label for="circuit-x-{{SORT}}" class="col-sm-1 offset-1 col-form-label mx-2 text-center">X:</label><input type="text" id="circuit-x-{{SORT}}" class="form-control col-sm-4 pl-2 circuit-x" placeholder="x"><label for="circuit-y-{{SORT}}" class="col-sm-1 col-form-label mx-2 text-center">Y:</label><input type="text" id="circuit-y-{{SORT}}" class="form-control col-sm-4 pl-2 circuit-y" placeholder="y"></div></li>',
-        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}"><div class="row"><div class="form-group row"><label for="item-name-{{SORT}}" class="col-sm-3 col-form-label ml-2 text-center">Название:</label><input type="text" id="item-name-{{SORT}}" class="form-control col-sm-2 item-name" placeholder="Название" value="{{NAME}}"><label for="item-value-{{SORT}}" class="col-sm-3 col-form-label text-center">Значение:</label><input type="text" id="item-value-{{SORT}}" class="form-control col-sm-3 item-value" placeholder="Значение" value="{{VALUE}}"></div> <div class="form-check-inline row"><label for="item-x-{{SORT}}" class="col-sm-1 ml-4 px-0 col-form-label text-center">X:</label><input type="text" id="item-x-{{SORT}}" class="form-control col-sm-2 item-x" placeholder="x" value="{{X}}"><label for="item-y-{{SORT}}" class="col-sm-1 col-form-label text-center">Y:</label><input type="text" id="item-y-{{SORT}}" class="form-control col-sm-2 item-y" placeholder="y" value="{{Y}}"><label for="item-vertical-{{SORT}}" class="col-sm form-check-label pr-2">Веритикально:</label><input type="checkbox" id="item-vertical-{{SORT}}" class="form-check-input col-sm item-vertical" {{VERTICAL}}></div></div><button type="button" class="btn-sm btn-danger ml-5 mt-3 element-remove">Удалить</button></li>',
-        pointHtml = '<li class="list-group-item"><div class="form-group row"><label for="point-text-{{SORT}}" class="col-sm-2 px-0 ml-4 col-form-label text-center">Номер:</label><input type="text" id="point-text-{{SORT}}" class="form-control col-sm-2 point-text" placeholder="Номер" value="{{VALUE}}"><label for="point-x-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label><input type="text" id="point-x-{{SORT}}" class="form-control col-sm-2 point-x" placeholder="x" value="{{X}}"> <label for="point-y-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label><input type="text" id="point-y-{{SORT}}" class="form-control col-sm-2 point-y" placeholder="y" value="{{Y}}"></div><div class="form-check-inline row mb-4"><label for="point-vertical-{{SORT}}" class="col-sm form-check-label pr-2">Веритикально:</label><input type="checkbox" id="point-vertical-{{SORT}}" class="form-check-input col-sm point-vertical" {{VERTICAL}}><label for="point-reverse-{{SORT}}" class="col-sm form-check-label pr-2">Инверсия:</label><input type="checkbox" id="point-reverse-{{SORT}}" class="form-check-input col-sm point-reverse" {{REVERSE}}></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>',
-        textHtml = '<li class="list-group-item"><div class="form-group row"><label for="text-value-{{SORT}}" class="col-sm-2 px-0 ml-4 col-form-label text-center">Текст:</label><input type="text" id="text-value-{{SORT}}" class="form-control col-sm-2 text-value" placeholder="Текст" value="{{TEXT}}"><label for="text-x-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label><input type="text" id="text-x-{{SORT}}" class="form-control col-sm-2 text-x" placeholder="x" value="{{X}}"><label for="text-y-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label><input type="text" id="text-y-{{SORT}}" class="form-control col-sm-2 text-y" placeholder="y" value="{{Y}}"></div><button type="button" class="btn-sm btn-danger text-remove">Удалить</button></li>'
+        coordinateHtml = '<li class="list-group-item"><div class="form-group row"><label for="circuit-x-{{SORT}}" class="col-sm-1 offset-1 col-form-label mx-2 text-center">X:</label><input type="number" step="5" id="circuit-x-{{SORT}}" class="form-control col-sm-4 pl-2 circuit-x" placeholder="x"><label for="circuit-y-{{SORT}}" class="col-sm-1 col-form-label mx-2 text-center">Y:</label><input type="number" step="5" id="circuit-y-{{SORT}}" class="form-control col-sm-4 pl-2 circuit-y" placeholder="y"></div></li>',
+        elementHtml = '<li class="list-group-item" data-type="{{TYPE}}"><div class="row"><div class="form-group row"><label for="item-name-{{SORT}}" class="col-sm-3 col-form-label ml-2 text-center">Название:</label><input type="text" id="item-name-{{SORT}}" class="form-control col-sm-2 item-name" placeholder="Название" value="{{NAME}}"><label for="item-value-{{SORT}}" class="col-sm-3 col-form-label text-center">Значение:</label><input type="text" id="item-value-{{SORT}}" class="form-control col-sm-3 item-value" placeholder="Значение" value="{{VALUE}}"></div> <div class="form-check-inline row"><label for="item-x-{{SORT}}" class="col-sm-1 ml-4 px-0 col-form-label text-center">X:</label><input type="number" step="5" id="item-x-{{SORT}}" class="form-control col-sm-2 item-x" placeholder="x" value="{{X}}"><label for="item-y-{{SORT}}" class="col-sm-1 col-form-label text-center">Y:</label><input type="number" step="5" id="item-y-{{SORT}}" class="form-control col-sm-2 item-y" placeholder="y" value="{{Y}}"><label for="item-vertical-{{SORT}}" class="col-sm form-check-label pr-2">Веритикально:</label><input type="checkbox" id="item-vertical-{{SORT}}" class="form-check-input col-sm item-vertical" {{VERTICAL}}></div></div><button type="button" class="btn-sm btn-danger ml-5 mt-3 element-remove">Удалить</button></li>',
+        pointHtml = '<li class="list-group-item"><div class="form-group row"><label for="point-text-{{SORT}}" class="col-sm-2 px-0 ml-4 col-form-label text-center">Номер:</label><input type="text" id="point-text-{{SORT}}" class="form-control col-sm-2 point-text" placeholder="Номер" value="{{VALUE}}"><label for="point-x-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label><input type="number" step="5" id="point-x-{{SORT}}" class="form-control col-sm-2 point-x" placeholder="x" value="{{X}}"> <label for="point-y-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label><input type="number" step="5" id="point-y-{{SORT}}" class="form-control col-sm-2 point-y" placeholder="y" value="{{Y}}"></div><div class="form-check-inline row mb-4"><label for="point-vertical-{{SORT}}" class="col-sm form-check-label pr-2">Веритикально:</label><input type="checkbox" id="point-vertical-{{SORT}}" class="form-check-input col-sm point-vertical" {{VERTICAL}}><label for="point-reverse-{{SORT}}" class="col-sm form-check-label pr-2">Инверсия:</label><input type="checkbox" id="point-reverse-{{SORT}}" class="form-check-input col-sm point-reverse" {{REVERSE}}></div><button type="button" class="btn-sm btn-danger point-remove">Удалить</button></li>',
+        textHtml = '<li class="list-group-item"><div class="form-group row"><label for="text-value-{{SORT}}" class="col-sm-2 px-0 ml-4 col-form-label text-center">Текст:</label><input type="text" id="text-value-{{SORT}}" class="form-control col-sm-2 text-value" placeholder="Текст" value="{{TEXT}}"><label for="text-x-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label><input type="number" step="5" id="text-x-{{SORT}}" class="form-control col-sm-2 text-x" placeholder="x" value="{{X}}"><label for="text-y-{{SORT}}" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label><input type="number" step="5" id="text-y-{{SORT}}" class="form-control col-sm-2 text-y" placeholder="y" value="{{Y}}"></div><button type="button" class="btn-sm btn-danger text-remove">Удалить</button></li>'
 
     var html
     var element, name, value, x, y, vertical, reverse // для элементов
@@ -379,6 +379,9 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'L':
                 drawCoil()
                 break
+            case 'G':
+                drawGng()
+                break
         }
     }
 
@@ -469,6 +472,22 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             context.arc(x + height, y, height / 2, 0, Math.PI, true)
         }
+        context.stroke()
+        context.closePath()
+    }
+
+    // земля
+    function drawGng() {
+        var width = 20, height = 10
+
+        context.clearRect(x - width / 2, y, width, height)
+        context.beginPath()
+
+        context.moveTo(x, y)
+        context.lineTo(x, y + height)
+        context.moveTo(x - width / 2, y + height)
+        context.lineTo(x + width / 2, y + height)
+
         context.stroke()
         context.closePath()
     }

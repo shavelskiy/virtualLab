@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                         <option value="R">Резистор</option>
                         <option value="C">Конденсатор</option>
                         <option value="L">Катушка индуктивности</option>
+                        <option value="G">Земля</option>
                     </select>
                 </div>
                 <div class="col">
@@ -61,9 +62,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
         </div>
         <div class="form-check-inline">
             <label for="x-coordinate" class="col-3 col-form-label text-right">Координата по x:</label>
-            <input type="text" id="x-coordinate" class="form-control col-2" placeholder="x">
+            <input type="number" step="5" id="x-coordinate" class="form-control col-2" placeholder="x">
             <label for="y-coordinate" class="col-3 col-form-label text-right">Координата по y:</label>
-            <input type="text" id="y-coordinate" class="form-control col-2" placeholder="y">
+            <input type="number" step="5" id="y-coordinate" class="form-control col-2" placeholder="y">
             <label for="vertical" class="col-3 col-form-label text-right">Веритикально:</label>
             <input type="checkbox" id="vertical" class="form-check-input col-1">
         </div>
@@ -78,9 +79,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
             <label for="point-text" class="col-1 col-form-label text-right">Номер:</label>
             <input type="text" id="point-text" class="form-control col" placeholder="Номер">
             <label for="point-x" class="col col-form-label text-right">Координата по x:</label>
-            <input type="text" id="point-x" class="form-control col" placeholder="x">
+            <input type="number" step="5" id="point-x" class="form-control col" placeholder="x">
             <label for="point-y" class="col col-form-label text-right">Координата по y:</label>
-            <input type="text" id="point-y" class="form-control col" placeholder="y">
+            <input type="number" step="5" id="point-y" class="form-control col" placeholder="y">
             <label for="point-vertical" class="col col-form-label text-right">Веритикально:</label>
             <input type="checkbox" id="point-vertical" class="form-check-input">
             <label for="point-reverse" class="col col-form-label text-right">Инверсия:</label>
@@ -101,11 +102,11 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                 </div>
                 <div class="col">
                     <label for="text-x">Координата по x</label>
-                    <input type="text" id="text-x" class="form-control" placeholder="x">
+                    <input type="number" step="5" id="text-x" class="form-control" placeholder="x">
                 </div>
                 <div class="col">
                     <label for="text-y">Координата по y</label>
-                    <input type="text" id="text-y" class="form-control" placeholder="y">
+                    <input type="number" step="5" id="text-y" class="form-control" placeholder="y">
                 </div>
             </div>
         </div>
@@ -142,9 +143,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                             <li class="list-group-item" data-id="<?= $point['id'] ?>">
                                                 <div class="form-group row">
                                                     <label for="circuit-x-<?= $parentId ?>-<?= $i ?>" class="col-sm-1 offset-1 col-form-label mx-2 text-center">X:</label>
-                                                    <input type="text" id="circuit-x-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-x" placeholder="x" value="<?= $point['x'] ?>">
+                                                    <input type="number" step="5" id="circuit-x-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-x" placeholder="x" value="<?= $point['x'] ?>">
                                                     <label for="circuit-y-<?= $parentId ?>-<?= $i ?>" class="col-sm-1 col-form-label mx-2 text-center">Y:</label>
-                                                    <input type="text" id="circuit-y-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-y" placeholder="y" value="<?= $point['y'] ?>">
+                                                    <input type="number" step="5" id="circuit-y-<?= $parentId ?>-<?= $i ?>" class="form-control col-sm-4 pl-2 circuit-y" placeholder="y" value="<?= $point['y'] ?>">
                                                 </div>
                                             </li>
                                         <?php endforeach; ?>
@@ -178,9 +179,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                         </div>
                                         <div class="form-check-inline row">
                                             <label for="item-x-<?= $i ?>" class="col-sm-1 ml-4 px-0 col-form-label text-center">X:</label>
-                                            <input type="text" id="item-x-<?= $i ?>" class="form-control col-sm-2 item-x" placeholder="x" value="<?= $schemeItem->x ?>">
+                                            <input type="number" step="5" id="item-x-<?= $i ?>" class="form-control col-sm-2 item-x" placeholder="x" value="<?= $schemeItem->x ?>">
                                             <label for="item-y-<?= $i ?>" class="col-sm-1 col-form-label text-center">Y:</label>
-                                            <input type="text" id="item-y-<?= $i ?>" class="form-control col-sm-2 item-y" placeholder="y" value="<?= $schemeItem->y ?>">
+                                            <input type="number" step="5" id="item-y-<?= $i ?>" class="form-control col-sm-2 item-y" placeholder="y" value="<?= $schemeItem->y ?>">
                                             <label for="item-vertical-<?= $i ?>" class="col-sm form-check-label pr-2">Веритикально:</label>
                                             <input type="checkbox" id="item-vertical-<?= $i ?>" class="form-check-input col-sm item-vertical" <?= $schemeItem->vertical ? 'checked' : '' ?>>
                                         </div>
@@ -209,9 +210,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                         <label for="point-text-<?= $i ?>" class="col-sm-2 px-0 ml-4 col-form-label text-center">Номер:</label>
                                         <input type="text" id="point-text-<?= $i ?>" class="form-control col-sm-2 point-text" placeholder="Номер" value="<?= $point->text ?>">
                                         <label for="point-x-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
-                                        <input type="text" id="point-x-<?= $i ?>" class="form-control col-sm-2 point-x" placeholder="x" value="<?= $point->x ?>">
+                                        <input type="number" step="5" id="point-x-<?= $i ?>" class="form-control col-sm-2 point-x" placeholder="x" value="<?= $point->x ?>">
                                         <label for="point-y-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
-                                        <input type="text" id="point-y-<?= $i ?>" class="form-control col-sm-2 point-y" placeholder="y" value="<?= $point->y ?>">
+                                        <input type="number" step="5" id="point-y-<?= $i ?>" class="form-control col-sm-2 point-y" placeholder="y" value="<?= $point->y ?>">
                                     </div>
                                     <div class="form-check-inline row mb-4">
                                         <label for="point-vertical-<?= $i ?>" class="col-sm form-check-label pr-2">Веритикально:</label>
@@ -242,9 +243,9 @@ $this->params['breadcrumbs'][] = 'Изменение схем для лабор�
                                         <label for="text-value-<?= $i ?>" class="col-sm-2 px-0 ml-4 col-form-label text-center">Текст:</label>
                                         <input type="text" id="text-value-<?= $i ?>" class="form-control col-sm-2 text-value" placeholder="Текст" value="<?= $schemeText->text ?>">
                                         <label for="text-x-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">X:</label>
-                                        <input type="text" id="text-x-<?= $i ?>" class="form-control col-sm-2 text-x" placeholder="x" value="<?= $schemeText->x ?>">
+                                        <input type="number" step="5" id="text-x-<?= $i ?>" class="form-control col-sm-2 text-x" placeholder="x" value="<?= $schemeText->x ?>">
                                         <label for="text-y-<?= $i ?>" class="col-sm-1 px-0 ml-3 col-form-label text-center">Y:</label>
-                                        <input type="text" id="text-y-<?= $i ?>" class="form-control col-sm-2 text-y" placeholder="y" value="<?= $schemeText->y ?>">
+                                        <input type="number" step="5" id="text-y-<?= $i ?>" class="form-control col-sm-2 text-y" placeholder="y" value="<?= $schemeText->y ?>">
                                     </div>
                                     <button type="button" class="btn-sm btn-danger text-remove" data-id="<?= $schemeText->id ?>">Удалить</button>
                                 </li>

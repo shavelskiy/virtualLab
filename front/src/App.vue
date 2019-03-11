@@ -2,7 +2,7 @@
     <div>
         <task></task>
         <gdm v-if="signal == 'linear'"></gdm>
-        <oscilloscope v-else></oscilloscope>
+        <oscilloscope v-if="needOsci"></oscilloscope>
         <stand></stand>
     </div>
 </template>
@@ -38,6 +38,12 @@
                 bus.$emit('signal-view', this.signal)
             })
         },
+
+        computed: {
+            needOsci: function () {
+                return ((this.signal === 'sin') || (this.signal === 'rect'))
+            }
+        }
     }
 </script>
 

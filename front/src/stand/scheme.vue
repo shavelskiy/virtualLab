@@ -156,6 +156,9 @@
                     case 'L':
                         this.drawCoil(x, y, vertical, name)
                         break
+                    case 'G':
+                        this.drawGng(x, y)
+                        break
                 }
             },
 
@@ -286,7 +289,23 @@
                 this.context.closePath()
             },
 
-            sendData: function() {
+            // земля
+            drawGng: function (x, y) {
+                var width = 20, height = 10
+
+                this.context.clearRect(x - width / 2, y, width, height)
+                this.context.beginPath()
+
+                this.context.moveTo(x, y)
+                this.context.lineTo(x, y + height)
+                this.context.moveTo(x - width / 2, y + height)
+                this.context.lineTo(x + width / 2, y + height)
+
+                this.context.stroke()
+                this.context.closePath()
+            },
+
+            sendData: function () {
                 bus.$emit('send-changeable-data', this.changeableData)
             }
         },
