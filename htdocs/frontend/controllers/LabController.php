@@ -58,7 +58,7 @@ class LabController extends Controller
         }
 
         $session->set('lab_number', $number);
-        return $this->render('lab');
+        return $this->render('lab', ['lab' => Lab::findOne($number)]);
     }
 
     // получить задание для работы
