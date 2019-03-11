@@ -48,12 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php if (!empty($students)): ?>
                 <tbody>
                 <tr>
-                    <th style="width: 80px">Вариант</th>
                     <th><?= $group ?></th>
                 </tr>
-                <?php foreach ($students as $student): ?>
+                <?php foreach ($students as $key => $student): ?>
                     <tr>
-                        <td><?= $student->variant; ?></td>
                         <td><?= Html::a(Html::encode($student->last_name . ' ' . $student->name . ' ' . $student->middle_name), Url::toRoute(['student/view', 'id' => $student->id])); ?></td>
                     </tr>
                 <?php endforeach; ?>

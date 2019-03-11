@@ -23,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($student, 'variant')->textInput() ?>
-
         <?= $form->field($student, 'last_name')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($student, 'name')->textInput(['maxlength' => true]) ?>

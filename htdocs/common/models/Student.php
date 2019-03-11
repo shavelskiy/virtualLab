@@ -12,7 +12,6 @@ use Yii;
  * @property string $name
  * @property string $last_name
  * @property string $middle_name
- * @property int $variant
  * @property int $group_id
  * @property int labs_id
  * @property int $teacher_id
@@ -38,10 +37,9 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'last_name', 'variant'], 'required', 'message' => 'Это поле обязательно для заполнения'],
+            [['name', 'last_name'], 'required', 'message' => 'Это поле обязательно для заполнения'],
             [['name', 'last_name', 'middle_name'], 'string', 'max' => 255],
             [['teacher_id'], 'required', 'message' => 'Выберите преподавателя'],
-            ['variant', 'integer', 'message' => 'Вариант должен являться целым цислом'],
             ['labs_id', 'safe']
         ];
     }
@@ -55,7 +53,6 @@ class Student extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'last_name' => 'Фамилия',
             'middle_name' => 'Отчество',
-            'variant' => 'Вариант',
             'teacher' => 'Преподаватель'
         ];
     }

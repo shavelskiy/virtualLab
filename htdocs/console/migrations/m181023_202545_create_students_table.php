@@ -23,7 +23,6 @@ class m181023_202545_create_students_table extends Migration
             'name' => $this->string()->notNull(),
             'last_name' => $this->string()->notNull(),
             'middle_name' => $this->string(),
-            'variant' => $this->string()->notNull(),
             'labs_id' => $this->integer()->notNull(),
             'group_id' => $this->integer()->notNull(),
             'teacher_id' => $this->integer()->notNull()

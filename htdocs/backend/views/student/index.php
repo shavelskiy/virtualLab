@@ -40,7 +40,6 @@ if (Yii::$app->user->can('deleteStudent')) {
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            'variant',
             'last_name',
             'name',
             'middle_name',

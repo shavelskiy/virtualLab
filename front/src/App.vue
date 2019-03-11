@@ -41,7 +41,7 @@
 
         computed: {
             needOsci: function () {
-                return ((this.signal === 'sin') || (this.signal === 'rect'))
+                return ((this.signal === 'sinusoidal') || (this.signal === 'rectangular'))
             }
         }
     }
