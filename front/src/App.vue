@@ -1,52 +1,60 @@
 <template>
-    <div>
-        <task></task>
-        <gdm v-if="signal == 'linear'"></gdm>
-        <oscilloscope v-if="needOsci"></oscilloscope>
-        <stand></stand>
-    </div>
+  <div>
+    <task></task>
+    <gdm v-if="signal == 'linear' && !isHomePrepair"></gdm>
+    <oscilloscope v-if="needOsci && !isHomePrepair"></oscilloscope>
+    <stand v-if="!isHomePrepair"></stand>
+  </div>
 </template>
 
 <script>
-    import {bus} from './bus.js'
-    import oscilloscope from './oscilloscope/oscilloscope.vue'
-    import gdm from './gdm/gdm.vue'
-    import task from './task/task.vue'
-    import stand from './stand/stand.vue'
+import { bus } from "./bus.js";
+import oscilloscope from "./oscilloscope/oscilloscope.vue";
+import gdm from "./gdm/gdm.vue";
+import task from "./task/task.vue";
+import stand from "./stand/stand.vue";
 
-    export default {
-        name: "App",
+export default {
+  name: "App",
 
-        data: function () {
-            return {
-                signal_url: '/frontend/web/lab/signal/',
-                signal: null
-            }
-        },
+  data: function() {
+    return {
+      signal_url: "/frontend/web/lab/signal/",
+      signal: null,
+      isHomePrepair: true
+    };
+  },
 
-        components: {
-            'Task': task,
-            'Oscilloscope': oscilloscope,
-            'Gdm': gdm,
-            'Stand': stand
-        },
-
-        created: function () {
-            this.$http.get(this.signal_url).then(function (response) {
-                this.signal = JSON.parse(response.data)
-
-                bus.$emit('signal-view', this.signal)
-            })
-        },
-
-        computed: {
-            needOsci: function () {
-                return ((this.signal === 'sinusoidal') || (this.signal === 'rectangular'))
-            }
-        }
+  methods: {
+    homePrepair: function(isHomePrepair) {
+      this.isHomePrepair = isHomePrepair;
     }
+  },
+
+  components: {
+    Task: task,
+    Oscilloscope: oscilloscope,
+    Gdm: gdm,
+    Stand: stand
+  },
+
+  created: function() {
+    this.$http.get(this.signal_url).then(function(response) {
+      this.signal = JSON.parse(response.data);
+
+      bus.$emit("signal-view", this.signal);
+    });
+
+    bus.$on("home-prepair", this.homePrepair);
+  },
+
+  computed: {
+    needOsci: function () {
+      return this.signal === "sinusoidal" || this.signal === "rectangular"
+    }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

@@ -4,7 +4,6 @@ import VueResources from 'vue-resource'
 
 Vue.use(VueResources)
 
-
 new Vue({
   el: '#app',
   render: h => h(App)
