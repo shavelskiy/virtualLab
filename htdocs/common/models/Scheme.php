@@ -43,7 +43,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemeCircuits()
     {
-     return    $this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id']);
+        return $this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id']);
     }
 
     /**
@@ -120,7 +120,12 @@ class Scheme extends \yii\db\ActiveRecord
     {
         $result = [];
         foreach ($this->schemeItems as $schemeItem) {
-            $result[$schemeItem->name] = $schemeItem->value;
+            if ($schemeItem->value) {
+                $result[] = [
+                    'name' => $schemeItem->name,
+                    'value' => $schemeItem->value
+                ];
+            }
         }
 
         return $result;
@@ -176,7 +181,7 @@ class Scheme extends \yii\db\ActiveRecord
                         'cur_i' => $value->cur_i ?? 0,
                         'cur_r' => $value->cur_r ?? 0,
                     ];
-              }
+                }
             }
         }
         return $result;
