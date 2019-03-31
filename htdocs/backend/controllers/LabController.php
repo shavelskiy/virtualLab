@@ -75,6 +75,7 @@ class LabController extends Controller
                                 $labItem->name = $item['name'];
                                 $labItem->content = $item['content'];
                                 $labItem->component_id = $item['component'];
+                                $labItem->save();
                             }
                         }
 

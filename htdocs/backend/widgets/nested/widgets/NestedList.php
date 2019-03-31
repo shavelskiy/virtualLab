@@ -76,7 +76,7 @@ class NestedList extends Widget
         $name = 'task[old][' . $item['id'] . ']';
 
         $html .= Html::beginTag('h3', ['class' => 'show-label']);
-        $html .= Html::tag('b', $item['num'] . '. ', ['class' => 'number']) . $item['name'];
+        $html .= Html::tag('b', $item['num'] . '.&nbsp;', ['class' => 'number']) . $item['name'];
         $html .= Html::endTag('h3');
 
         $html .= Html::button('Панель редактирования', ['class' => 'btn btn-info mb-3 mt-2 show-settings']);
@@ -103,7 +103,7 @@ class NestedList extends Widget
         $html = '';
 
         $html .= Html::beginTag('p', ['class' => 'show-label']);
-        $html .= Html::tag('b', $parentNum . '.' . $item['num'] . ' ', ['class' => 'number']) . $item['name'];
+        $html .= Html::tag('b', $parentNum . '.' . $item['num'] . '&nbsp;&nbsp;', ['class' => 'number']) . $item['name'];
         $html .= Html::endTag('p');
 
         $html .= Html::tag('div', $item['content'], ['class' => 'content']);

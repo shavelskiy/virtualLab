@@ -43,7 +43,11 @@ class LabController extends Controller
 
     public function actionIndex()
     {
-        $activeLabs = User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs;
+        if (Yii::$app->user->can('viewAdminPage')) {
+            $activeLabs = Lab::find()->all();
+        } else {
+            $activeLabs = User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs;
+        }
 
         return $this->render('index', [
             'activeLabs' => $activeLabs
