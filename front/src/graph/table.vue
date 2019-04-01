@@ -192,14 +192,5 @@ export default {
 };
 </script>
 
-<style>
-.value-input {
-  width: 100%;
-  height: 100%;
-}
-
-.input {
-  height: 0px;
-  padding: 2px !important;
-}
+<style scoped>
 </style>
