@@ -64,13 +64,17 @@ class SchemeCircuit extends \yii\db\ActiveRecord
     public static function saveData($data, $schemeId)
     {
         foreach ($data['save'] as $circuit) {
-            $sort = $circuit['lastSort'];
             $parentId = (isset($circuit['parentId'])) ? $circuit['parentId'] : null;
 
             foreach ($circuit['points'] as $point) {
-                $schemeCircuit = new SchemeCircuit();
-                $schemeCircuit->sort = $sort;
-                $schemeCircuit->scheme_id = $schemeId;
+                if ($point['id']) {
+                    $schemeCircuit = SchemeCircuit::findOne($point['id']);
+                } else {
+                    $schemeCircuit = new SchemeCircuit();
+                    $schemeCircuit->scheme_id = $schemeId;
+                    $schemeCircuit->sort = $point['sort'];
+                }
+
                 $schemeCircuit->x = $point['x'];
                 $schemeCircuit->y = $point['y'];
 
@@ -81,8 +85,6 @@ class SchemeCircuit extends \yii\db\ActiveRecord
 
                 $schemeCircuit->parent = $parentId;
                 $schemeCircuit->save();
-
-                $sort++;
             }
         }
 

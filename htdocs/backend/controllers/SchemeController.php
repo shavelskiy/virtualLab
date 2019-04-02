@@ -61,7 +61,7 @@ class SchemeController extends Controller
             }
 
             $data = Json::decode(Yii::$app->request->getRawBody());
-
+            
             SchemeCircuit::saveData($data['circuits'], $scheme->id);
             SchemeItem::saveData($data['elements'], $scheme->id);
             SchemePoint::saveData($data['points'], $scheme->id);
