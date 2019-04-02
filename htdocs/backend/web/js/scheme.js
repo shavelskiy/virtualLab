@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         context.clearRect(x - width / 2, y, width, height)
         context.beginPath()
 
-        context.moveTo(x, y)
+        context.moveTo(x, y - 5)
         context.lineTo(x, y + height)
         context.moveTo(x - width / 2, y + height)
         context.lineTo(x + width / 2, y + height)
