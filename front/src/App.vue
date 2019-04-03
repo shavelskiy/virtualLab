@@ -1,9 +1,9 @@
 <template>
   <div>
     <task></task>
-    <gdm v-if="signal == 'linear' && !isHomePrepair"></gdm>
-    <oscilloscope v-if="needOsci && !isHomePrepair"></oscilloscope>
-    <stand v-if="!isHomePrepair"></stand>
+    <gdm v-if="signal === 'linear' && !isHomeTraining"></gdm>
+    <oscilloscope v-if="needOscilloscope && !isHomeTraining"></oscilloscope>
+    <stand v-if="!isHomeTraining"></stand>
   </div>
 </template>
 
@@ -21,13 +21,16 @@ export default {
     return {
       signal_url: "/frontend/web/lab/signal/",
       signal: null,
-      isHomePrepair: true
+      isHomeTraining: true
     };
   },
 
   methods: {
-    homePrepair: function(isHomePrepair) {
-      this.isHomePrepair = isHomePrepair;
+    homeTraining: function(isHomeTraining) {
+      this.isHomeTraining = isHomeTraining;
+    },
+    sendSignal: function() {
+      bus.$emit("signal-view", this.signal);
     }
   },
 
@@ -45,11 +48,12 @@ export default {
       bus.$emit("signal-view", this.signal);
     });
 
-    bus.$on("home-prepair", this.homePrepair);
+    bus.$on("home-training", this.homeTraining);
+    bus.$on("get-signal", this.sendSignal);
   },
 
   computed: {
-    needOsci: function () {
+    needOscilloscope: function () {
       return this.signal === "sinusoidal" || this.signal === "rectangular"
     }
   }

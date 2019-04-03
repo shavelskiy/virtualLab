@@ -55,7 +55,7 @@ export default {
     changePage: function(page) {
       this.page = page;
       $("body, html").animate({ scrollTop: 0 }, 200);
-      bus.$emit("home-prepair", page == 1);
+      bus.$emit("home-training", page == 1);
     }
   },
 

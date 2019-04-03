@@ -44,21 +44,36 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <div class="row">
-                                                            <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_u]"
-                                                                       class="form-control" placeholder="U"
-                                                                       value="<?= ($schemeData) ? $schemeData->cur_u : '' ?>">
-                                                            </div>
-                                                            <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_i]"
-                                                                       class="form-control" placeholder="I"
-                                                                       value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
-                                                            </div>
-                                                            <div class="col">
-                                                                <input type="text" name="data[<?= $key ?>][cur_r]"
-                                                                       class="form-control" placeholder="R"
-                                                                       value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
-                                                            </div>
+                                                            <?php if ($scheme->lab->signal == \common\models\Lab::SIGNAL_LINEAR): ?>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][cur_u]"
+                                                                           class="form-control" placeholder="U"
+                                                                           value="<?= ($schemeData) ? $schemeData->cur_u : '' ?>">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][cur_i]"
+                                                                           class="form-control" placeholder="I"
+                                                                           value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][cur_r]"
+                                                                           class="form-control" placeholder="R"
+                                                                           value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
+                                                                </div>
+                                                            <?php elseif ($scheme->lab->signal == \common\models\Lab::SIGNAL_SINUSOIDAL): ?>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][re]"
+                                                                           class="form-control" placeholder="Re"
+                                                                           value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][im]"
+                                                                           class="form-control" placeholder="Im"
+                                                                           value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
+                                                                </div>
+                                                            <?php elseif ($scheme->lab->signal == \common\models\Lab::SIGNAL_RECTANGLE): ?>
+                                                                kek
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>

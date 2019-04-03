@@ -11,13 +11,22 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $preview_picture
- * @property string signal
+ * @property string $signal
  *
+ * @property string $previewPicture
  * @property Scheme[] $schemes
  */
 class Lab extends \yii\db\ActiveRecord
 {
     const PICTURES_DIR = '/data/uploads/labs/';
+    const SIGNAL_LINEAR = 1;
+    const SIGNAL_SINUSOIDAL = 2;
+    const SIGNAL_RECTANGLE = 3;
+    const SIGNAL_NAMES = [
+        self::SIGNAL_LINEAR => 'linear',
+        self::SIGNAL_SINUSOIDAL => 'sinusoidal',
+        self::SIGNAL_RECTANGLE => 'rectangular'
+    ];
 
     /**
      * {@inheritdoc}
@@ -30,9 +39,9 @@ class Lab extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-          'name' => 'Название',
-          'description' => 'Описание',
-          'preview_picture' => 'Изображение'
+            'name' => 'Название',
+            'description' => 'Описание',
+            'preview_picture' => 'Изображение'
         ];
     }
 

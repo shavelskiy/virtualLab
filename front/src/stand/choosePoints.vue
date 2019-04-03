@@ -79,6 +79,8 @@ export default {
     acceptSignal: function(data) {
       if (data === "linear") {
         this.isTwoChannels = false;
+      } else {
+        this.isTwoChannels = true;
       }
     },
 
@@ -94,6 +96,7 @@ export default {
   mounted() {
     bus.$on("print-choose-points", this.acceptData);
     bus.$on("signal-view", this.acceptSignal);
+    bus.$emit("get-signal");
   }
 };
 </script>
