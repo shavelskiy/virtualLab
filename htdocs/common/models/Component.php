@@ -49,6 +49,6 @@ class Component extends \yii\db\ActiveRecord
      */
     public function getLabItems()
     {
-        return $this->hasMany(LabItems::className(), ['component_id' => 'id']);
+        return $this->hasMany(LabItems::class, ['component_id' => 'id']);
     }
 }

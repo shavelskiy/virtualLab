@@ -18,7 +18,9 @@ class m190305_215541_create_scheme_data_table extends Migration
             'point2' => $this->integer()->notNull(),
             'cur_u' => $this->string(),
             'cur_i' => $this->string(),
-            'cur_r' => $this->string()
+            'cur_r' => $this->string(),
+            're' => $this->string(),
+            'im' => $this->string()
         ]);
 
         for ($i = 1; $i <= 2; $i++) {

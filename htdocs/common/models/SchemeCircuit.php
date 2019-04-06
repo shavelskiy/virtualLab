@@ -34,7 +34,7 @@ class SchemeCircuit extends \yii\db\ActiveRecord
         return [
             [['scheme_id', 'x', 'y'], 'required'],
             [['scheme_id', 'parent', 'x', 'y', 'sort'], 'integer'],
-            [['scheme_id'], 'exist', 'skipOnError' => true, 'targetClass' => Scheme::className(), 'targetAttribute' => ['scheme_id' => 'id']],
+            [['scheme_id'], 'exist', 'skipOnError' => true, 'targetClass' => Scheme::class, 'targetAttribute' => ['scheme_id' => 'id']],
         ];
     }
 
@@ -58,7 +58,7 @@ class SchemeCircuit extends \yii\db\ActiveRecord
      */
     public function getScheme()
     {
-        return $this->hasOne(Scheme::className(), ['id' => 'scheme_id']);
+        return $this->hasOne(Scheme::class, ['id' => 'scheme_id']);
     }
 
     public static function saveData($data, $schemeId)

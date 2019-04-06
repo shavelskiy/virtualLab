@@ -34,7 +34,7 @@ class Scheme extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lab::className(), 'targetAttribute' => ['lab_id' => 'id']],
+            [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lab::class, 'targetAttribute' => ['lab_id' => 'id']],
         ];
     }
 
@@ -43,7 +43,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemeCircuits()
     {
-        return $this->hasMany(SchemeCircuit::className(), ['scheme_id' => 'id']);
+        return $this->hasMany(SchemeCircuit::class, ['scheme_id' => 'id']);
     }
 
     /**
@@ -51,7 +51,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemeItems()
     {
-        return $this->hasMany(SchemeItem::className(), ['scheme_id' => 'id']);
+        return $this->hasMany(SchemeItem::class, ['scheme_id' => 'id']);
     }
 
     /**
@@ -59,7 +59,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemeTexts()
     {
-        return $this->hasMany(SchemeText::className(), ['scheme_id' => 'id']);
+        return $this->hasMany(SchemeText::class, ['scheme_id' => 'id']);
     }
 
     /**
@@ -67,7 +67,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getSchemePoints()
     {
-        return $this->hasMany(SchemePoint::className(), ['scheme_id' => 'id'])->orderBy(['text' => SORT_ASC]);
+        return $this->hasMany(SchemePoint::class, ['scheme_id' => 'id'])->orderBy(['text' => SORT_ASC]);
     }
 
     /**
@@ -75,7 +75,7 @@ class Scheme extends \yii\db\ActiveRecord
      */
     public function getLab()
     {
-        return $this->hasOne(Lab::className(), ['id' => 'lab_id']);
+        return $this->hasOne(Lab::class, ['id' => 'lab_id']);
     }
 
     /**
@@ -176,11 +176,23 @@ class Scheme extends \yii\db\ActiveRecord
             foreach ($this->schemePoints as $pointTwo) {
                 if (intval($pointTwo->text) > intval($pointOne->text)) {
                     $value = SchemeData::find()->andWhere(['point1' => $pointOne->id, 'point2' => $pointTwo->id])->one();
-                    $result[$pointOne->id . '.' . $pointTwo->id] = [
-                        'cur_u' => $value->cur_u ?? 0,
-                        'cur_i' => $value->cur_i ?? 0,
-                        'cur_r' => $value->cur_r ?? 0,
-                    ];
+
+                    if ($this->lab->signal == Lab::SIGNAL_LINEAR) {
+                        $outValue = [
+                            'cur_u' => $value->cur_u ?? 0,
+                            'cur_i' => $value->cur_i ?? 0,
+                            'cur_r' => $value->cur_r ?? 0,
+                        ];
+                    } else if ($this->lab->signal == Lab::SIGNAL_SINUSOIDAL) {
+                        $outValue = [
+                            're' => $value->re,
+                            'im' => $value->im
+                        ];
+                    } else {
+                        $outValue = null; // todo значения для сигнала прямоугольного импульса
+                    }
+
+                    $result[$pointOne->id . '.' . $pointTwo->id] = $outValue;
                 }
             }
         }

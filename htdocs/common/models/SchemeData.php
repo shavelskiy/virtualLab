@@ -13,9 +13,11 @@ use Yii;
  * @property string $cur_u
  * @property string $cur_i
  * @property string $cur_r
+ * @property string $re
+ * @property string $im
  *
- * @property SchemePoints $point20
- * @property SchemePoints $point10
+ * @property SchemePoint $point20
+ * @property SchemePoint $point10
  */
 class SchemeData extends \yii\db\ActiveRecord
 {
@@ -35,9 +37,9 @@ class SchemeData extends \yii\db\ActiveRecord
         return [
             [['point1', 'point2'], 'required'],
             [['point1', 'point2'], 'integer'],
-            [['cur_u', 'cur_i', 'cur_r'], 'string', 'max' => 255],
-            [['point2'], 'exist', 'skipOnError' => true, 'targetClass' => SchemePoint::className(), 'targetAttribute' => ['point2' => 'id']],
-            [['point1'], 'exist', 'skipOnError' => true, 'targetClass' => SchemePoint::className(), 'targetAttribute' => ['point1' => 'id']],
+            [['cur_u', 'cur_i', 'cur_r', 're', 'im'], 'string', 'max' => 255],
+            [['point2'], 'exist', 'skipOnError' => true, 'targetClass' => SchemePoint::class, 'targetAttribute' => ['point2' => 'id']],
+            [['point1'], 'exist', 'skipOnError' => true, 'targetClass' => SchemePoint::class, 'targetAttribute' => ['point1' => 'id']],
         ];
     }
 
@@ -61,7 +63,7 @@ class SchemeData extends \yii\db\ActiveRecord
      */
     public function getPoint20()
     {
-        return $this->hasOne(SchemePoint::className(), ['id' => 'point2']);
+        return $this->hasOne(SchemePoint::class, ['id' => 'point2']);
     }
 
     /**
@@ -69,6 +71,6 @@ class SchemeData extends \yii\db\ActiveRecord
      */
     public function getPoint10()
     {
-        return $this->hasOne(SchemePoint::className(), ['id' => 'point1']);
+        return $this->hasOne(SchemePoint::class, ['id' => 'point1']);
     }
 }

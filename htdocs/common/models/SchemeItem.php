@@ -38,7 +38,7 @@ class SchemeItem extends \yii\db\ActiveRecord
             [['scheme_id', 'x', 'y'], 'integer'],
             [['vertical'], 'boolean'],
             [['type', 'name', 'value'], 'string', 'max' => 255],
-            [['scheme_id'], 'exist', 'skipOnError' => true, 'targetClass' => Scheme::className(), 'targetAttribute' => ['scheme_id' => 'id']],
+            [['scheme_id'], 'exist', 'skipOnError' => true, 'targetClass' => Scheme::class, 'targetAttribute' => ['scheme_id' => 'id']],
         ];
     }
 
@@ -64,7 +64,7 @@ class SchemeItem extends \yii\db\ActiveRecord
      */
     public function getScheme()
     {
-        return $this->hasOne(Scheme::className(), ['id' => 'scheme_id']);
+        return $this->hasOne(Scheme::class, ['id' => 'scheme_id']);
     }
 
     /**

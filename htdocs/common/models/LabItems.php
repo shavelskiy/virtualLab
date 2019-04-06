@@ -36,7 +36,7 @@ class LabItems extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => NestedSetBehavior::className(),
+                'class' => NestedSetBehavior::class,
             ],
         ];
     }
@@ -49,7 +49,7 @@ class LabItems extends \yii\db\ActiveRecord
         return [
             [['lab_id', 'root', 'lft', 'rgt', 'level', 'component_id'], 'integer'],
             [['name', 'content'], 'string'],
-            [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lab::className(), 'targetAttribute' => ['lab_id' => 'id']],
+            [['lab_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lab::class, 'targetAttribute' => ['lab_id' => 'id']],
         ];
     }
 
@@ -76,12 +76,12 @@ class LabItems extends \yii\db\ActiveRecord
      */
     public function getLab()
     {
-        return $this->hasOne(Lab::className(), ['id' => 'lab_id']);
+        return $this->hasOne(Lab::class, ['id' => 'lab_id']);
     }
 
     public function getComponent()
     {
-        return $this->hasOne(Component::className(), ['id' => 'component_id']);
+        return $this->hasOne(Component::class, ['id' => 'component_id']);
     }
 
     public static function find()
