@@ -64,12 +64,12 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
                                                                 <div class="col">
                                                                     <input type="text" name="data[<?= $key ?>][re]"
                                                                            class="form-control" placeholder="Re"
-                                                                           value="<?= ($schemeData) ? $schemeData->cur_i : '' ?>">
+                                                                           value="<?= ($schemeData) ? $schemeData->re : '' ?>">
                                                                 </div>
                                                                 <div class="col">
                                                                     <input type="text" name="data[<?= $key ?>][im]"
                                                                            class="form-control" placeholder="Im"
-                                                                           value="<?= ($schemeData) ? $schemeData->cur_r : '' ?>">
+                                                                           value="<?= ($schemeData) ? $schemeData->im : '' ?>">
                                                                 </div>
                                                             <?php elseif ($scheme->lab->signal == \common\models\Lab::SIGNAL_RECTANGLE): ?>
                                                                 kek

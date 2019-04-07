@@ -176,23 +176,24 @@ class Scheme extends \yii\db\ActiveRecord
             foreach ($this->schemePoints as $pointTwo) {
                 if (intval($pointTwo->text) > intval($pointOne->text)) {
                     $value = SchemeData::find()->andWhere(['point1' => $pointOne->id, 'point2' => $pointTwo->id])->one();
+                    if ($value) {
+                        if ($this->lab->signal == Lab::SIGNAL_LINEAR) {
+                            $outValue = [
+                                'cur_u' => $value->cur_u ?? 0,
+                                'cur_i' => $value->cur_i ?? 0,
+                                'cur_r' => $value->cur_r ?? 0,
+                            ];
+                        } else if ($this->lab->signal == Lab::SIGNAL_SINUSOIDAL) {
+                            $outValue = [
+                                're' => $value->re,
+                                'im' => $value->im
+                            ];
+                        } else {
+                            $outValue = null; // todo значения для сигнала прямоугольного импульса
+                        }
 
-                    if ($this->lab->signal == Lab::SIGNAL_LINEAR) {
-                        $outValue = [
-                            'cur_u' => $value->cur_u ?? 0,
-                            'cur_i' => $value->cur_i ?? 0,
-                            'cur_r' => $value->cur_r ?? 0,
-                        ];
-                    } else if ($this->lab->signal == Lab::SIGNAL_SINUSOIDAL) {
-                        $outValue = [
-                            're' => $value->re,
-                            'im' => $value->im
-                        ];
-                    } else {
-                        $outValue = null; // todo значения для сигнала прямоугольного импульса
+                        $result[$pointOne->id . '.' . $pointTwo->id] = $outValue;
                     }
-
-                    $result[$pointOne->id . '.' . $pointTwo->id] = $outValue;
                 }
             }
         }

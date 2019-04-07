@@ -16,6 +16,7 @@
 
 <script>
 import Settings from "./settings.vue";
+import { bus } from "../bus.js";
 
 export default {
   name: "oscilloscope",
@@ -26,18 +27,27 @@ export default {
 
   data() {
     return {
+      valuse: null,
       canvas: null,
       context: null,
       channel1: {
-        curVolt: 1,
-        amplitude: 5,
-        freq: 4500,
+        points: {
+          1: null,
+          2: null
+        },
+        curVolt: 0,
+        amplitude: 0,
+        freq: 3000,
         phase: 0
       },
       channel2: {
-        curVolt: 3,
-        amplitude: 2,
-        freq: 2000,
+        points: {
+          1: null,
+          2: null
+        },
+        curVolt: 0,
+        amplitude: 0,
+        freq: 3000,
         phase: 0
       },
       settings: {
@@ -65,9 +75,81 @@ export default {
       this.context = this.canvas.getContext("2d");
       this.draw();
     }
+
+    bus.$on("load-values", this.loadValues);
+    bus.$on("print-signal", this.acceptPoints);
   },
 
   methods: {
+    loadValues: function(values) {
+      this.values = values;
+    },
+    acceptPoints: function(channel1, channel2) {
+      this.channel1.points[1] = channel1.point1;
+      this.channel1.points[2] = channel1.point2;
+      this.channel2.points[1] = channel2.point1;
+      this.channel2.points[2] = channel2.point2;
+      this.calculateSignals();
+      this.draw();
+    },
+    calculateSignals: function() {
+      var re, im, tmp, k;
+      if (
+        this.values[this.channel1.points[1] + "." + this.channel1.points[2]]
+      ) {
+        k = 1;
+        tmp = this.values[
+          this.channel1.points[1] + "." + this.channel1.points[2]
+        ];
+      } else if (
+        this.values[this.channel1.points[2] + "." + this.channel1.points[1]]
+      ) {
+        k = -1;
+        tmp = this.values[
+          this.channel1.points[2] + "." + this.channel1.points[1]
+        ];
+      }
+
+      if (tmp) {
+        re = tmp.re;
+        im = tmp.im;
+        this.channel1.amplitude = Math.sqrt(re * re + im * im) * k;
+        this.channel1.phase = (Math.atan(im / re) * 180) / Math.PI;
+      } else {
+        this.channel1.amplitude = 0;
+        this.channel1.phase = 0;
+      }
+
+      tmp = undefined;
+      if (
+        this.values[this.channel2.points[1] + "." + this.channel2.points[2]]
+      ) {
+        k = 1;
+        tmp = this.values[
+          this.channel2.points[1] + "." + this.channel2.points[2]
+        ];
+      } else if (
+        this.values[this.channel2.points[2] + "." + this.channel2.points[1]]
+      ) {
+        k = -1;
+        tmp = this.values[
+          this.channel2.points[2] + "." + this.channel2.points[1]
+        ];
+      }
+
+      if (tmp) {
+        re = tmp.re;
+        im = tmp.im;
+        this.channel2.amplitude = Math.sqrt(re * re + im * im) * k;
+        this.channel2.phase = (Math.atan(im / re) * 180) / Math.PI;
+      } else {
+        this.channel2.amplitude = 0;
+        this.channel2.phase = 0;
+      }
+
+      console.log(this.channel1);
+      console.log(this.channel2);
+    },
     draw: function() {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       drawMainGrid(this.canvas, this.context);

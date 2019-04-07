@@ -125,24 +125,27 @@ class SchemeController extends Controller
     {
         $data = Yii::$app->request->post('data');
         foreach ($data as $points => $values) {
-           $pointsArr = explode('.', $points);
-           $pointId1 = $pointsArr[0];
-           $pointId2 = $pointsArr[1];
+            $pointsArr = explode('.', $points);
+            $pointId1 = $pointsArr[0];
+            $pointId2 = $pointsArr[1];
 
-           $schemeData = SchemeData::find()->andWhere(['point1' => $pointId1, 'point2' => $pointId2])->one();
+            $schemeData = SchemeData::find()->andWhere(['point1' => $pointId1, 'point2' => $pointId2])->one();
 
-           if (!$schemeData) {
-               $schemeData = new SchemeData();
-           }
+            if (!$schemeData) {
+                $schemeData = new SchemeData();
+            }
 
-           $schemeData->point1 = $pointId1;
-           $schemeData->point2 = $pointId2;
+            $schemeData->point1 = $pointId1;
+            $schemeData->point2 = $pointId2;
 
-           $schemeData->cur_u = ($values['cur_u']) ? $values['cur_u'] : null;
-           $schemeData->cur_i = ($values['cur_i']) ? $values['cur_i'] : null;
-           $schemeData->cur_r = ($values['cur_r']) ? $values['cur_r'] : null;
+            $schemeData->cur_u = (isset($values['cur_u'])) ? $values['cur_u'] : null;
+            $schemeData->cur_i = (isset($values['cur_i'])) ? $values['cur_i'] : null;
+            $schemeData->cur_r = (isset($values['cur_r'])) ? $values['cur_r'] : null;
 
-           $schemeData->save();
+            $schemeData->re = (isset($values['re'])) ? $values['re'] : null;
+            $schemeData->im = (isset($values['im'])) ? $values['im'] : null;
+
+            $schemeData->save();
         }
 
         $scheme = self::findScheme(Yii::$app->request->post('schemeId'));
