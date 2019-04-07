@@ -3,6 +3,7 @@
     <task></task>
     <gdm v-if="signal === 'linear' && !isHomeTraining"></gdm>
     <oscilloscope v-if="needOscilloscope && !isHomeTraining"></oscilloscope>
+    <generator v-if="needOscilloscope && !isHomeTraining"></generator>
     <stand v-if="!isHomeTraining"></stand>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 import { bus } from "./bus.js";
 import oscilloscope from "./oscilloscope/oscilloscope.vue";
+import generator from "./generator/generator.vue";
 import gdm from "./gdm/gdm.vue";
 import task from "./task/task.vue";
 import stand from "./stand/stand.vue";
@@ -37,6 +39,7 @@ export default {
   components: {
     Task: task,
     Oscilloscope: oscilloscope,
+    Generator: generator,
     Gdm: gdm,
     Stand: stand
   },

@@ -37,7 +37,7 @@ export default {
         },
         curVolt: 0,
         amplitude: 0,
-        freq: 3000,
+        freq: 0,
         phase: 0
       },
       channel2: {
@@ -47,7 +47,7 @@ export default {
         },
         curVolt: 0,
         amplitude: 0,
-        freq: 3000,
+        freq: 0,
         phase: 0
       },
       settings: {
