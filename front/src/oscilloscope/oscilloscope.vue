@@ -27,9 +27,13 @@ export default {
 
   data() {
     return {
-      valuse: null,
+      values: null,
       canvas: null,
       context: null,
+      generator: {
+        amplitude: 0,
+        freq: 0
+      },
       channel1: {
         points: {
           1: null,
@@ -37,7 +41,7 @@ export default {
         },
         curVolt: 0,
         amplitude: 0,
-        freq: 0,
+        // freq: 0,
         phase: 0
       },
       channel2: {
@@ -47,7 +51,7 @@ export default {
         },
         curVolt: 0,
         amplitude: 0,
-        freq: 0,
+        // freq: 0,
         phase: 0
       },
       settings: {
@@ -77,6 +81,7 @@ export default {
     }
 
     bus.$on("load-values", this.loadValues);
+    bus.$on("send-generator-params", this.loadGeneratorParams);
     bus.$on("print-signal", this.acceptPoints);
   },
 
@@ -92,8 +97,17 @@ export default {
       this.calculateSignals();
       this.draw();
     },
+    loadGeneratorParams: function(data) {
+      this.generator = data;
+      this.calculateSignals();
+      this.draw();
+    },
     calculateSignals: function() {
       var re, im, tmp, k;
+
+      var w = this.generator.freq / (2 * Math.PI),
+        A = this.generator.amplitude;
+
       if (
         this.values[this.channel1.points[1] + "." + this.channel1.points[2]]
       ) {
@@ -111,8 +125,11 @@ export default {
       }
 
       if (tmp) {
-        re = tmp.re;
-        im = tmp.im;
+        re = eval(tmp.re);
+        im = eval(tmp.im);
+        re = (re) ? re : 0;
+        im = (im) ? im : 0;
+        console.log(tmp, re, im)
         this.channel1.amplitude = Math.sqrt(re * re + im * im) * k;
         this.channel1.phase = (Math.atan(im / re) * 180) / Math.PI;
       } else {
@@ -138,17 +155,14 @@ export default {
       }
 
       if (tmp) {
-        re = tmp.re;
-        im = tmp.im;
+        re = eval(Number(tmp.re));
+        im = eval(Number(tmp.im));
         this.channel2.amplitude = Math.sqrt(re * re + im * im) * k;
         this.channel2.phase = (Math.atan(im / re) * 180) / Math.PI;
       } else {
         this.channel2.amplitude = 0;
         this.channel2.phase = 0;
       }
-
-      console.log(this.channel1);
-      console.log(this.channel2);
     },
     draw: function() {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -156,12 +170,12 @@ export default {
 
       if (this.settings["1"].active) {
         this.context.strokeStyle = "rgb(134, 222, 200)";
-        drawSin(this.channel1, this.settings["1"], this.canvas, this.context);
+        drawSin(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
       }
 
       if (this.settings["2"].active) {
         this.context.strokeStyle = "rgb(234, 222, 200)";
-        drawSin(this.channel2, this.settings["2"], this.canvas, this.context);
+        drawSin(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
       }
 
       // внешняя рамка
@@ -214,7 +228,7 @@ export default {
       /**
        * нарисовать синусоидальный сигнал
        */
-      function drawSin(channel, settings, canvas, context) {
+      function drawSin(channel, settings, freq, canvas, context) {
         var step = 0.01;
 
         var voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
@@ -248,7 +262,7 @@ export default {
                   Math.sin(
                     2 *
                       Math.PI *
-                      channel.freq *
+                      freq *
                       t *
                       step *
                       timeK *

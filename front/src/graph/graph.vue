@@ -165,7 +165,6 @@ export default {
     drawGraph: function(data) {
       this.errorCount = data.errors.data;
       this.errorType = data.errors.type;
-      console.log(this.errorCount);
 
       this.drawGrid();
       if (!this.errorCount && !this.errorType) {
