@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import graphTable from "../graph/table.vue";
-import graph from "../graph/graph.vue";
+import graphTable from "../lab_components/table_1.vue";
+import graph from "../lab_components/graph_1.vue";
+import transfer_functions from "../lab_components/transfer_functions_5_6";
 import { bus } from "../bus.js";
 
 export default {
@@ -40,7 +41,8 @@ export default {
 
   components: {
     graphTable: graphTable,
-    graph: graph
+    graph: graph,
+    transfer_functions: transfer_functions
   },
 
   data() {

@@ -126,11 +126,11 @@ a.desc:after {
 }
 
 .value-input {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .input {
-    height: 0px;
+    height: 0;
     padding: 2px !important;
 }
