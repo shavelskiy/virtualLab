@@ -69,7 +69,7 @@
         <div class="col-6 ml-5">
             <div class="col-8 ml-4">
                 <label>Функция для АЧХ</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-model="afrFunction">
                 <button type="button" class="btn btn-primary mt-4" v-on:click="drawAfr">Построить</button>
             </div>
             <canvas id="afr" width="700" height="400" class="mt-3"></canvas>
@@ -87,7 +87,8 @@
                 amplitude: [],
                 phase: [],
                 afrCanvas: null,
-                afrContext: null
+                afrContext: null,
+                afrFunction: null
             }
         },
 
@@ -203,8 +204,27 @@
 
             drawAfr: function () {
                 this.drawGrid(this.afrCanvas, this.afrContext, "f, кГц", "100", "A", "1");
-
+                var f, a, func;
                 this.afrContext.lineWidth = 2;
+                this.afrContext.strokeStyle = 'rgb(255, 0, 0)';
+
+                this.afrContext.beginPath();
+                this.afrContext.moveTo(50, this.afrCanvas.height - 50);
+
+                func = this.afrFunction ? this.afrFunction : '0';
+
+                for (f = 0; f <= 110; f++) {
+                    a = eval(func.replace(/sqrt/g, 'Math.sqrt'));
+                    console.log(f, a)
+                    this.afrContext.lineTo(
+                        50 + f * 5,
+                        this.afrCanvas.height - 50 - a * 250
+                    );
+                }
+
+                this.afrContext.stroke();
+                this.afrContext.closePath();
+
                 this.afrContext.strokeStyle = 'rgb(36, 93, 210)';
 
                 this.afrContext.beginPath();
