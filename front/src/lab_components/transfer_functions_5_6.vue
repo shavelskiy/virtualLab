@@ -74,6 +74,14 @@
             </div>
             <canvas id="afr" width="700" height="400" class="mt-3"></canvas>
         </div>
+        <div class="col-6 ml-5">
+            <div class="col-8 ml-4">
+                <label>Функция для Фчх</label>
+                <input type="text" class="form-control" v-model="pfrFunction">
+                <button type="button" class="btn btn-primary mt-4" v-on:click="drawPfr">Построить</button>
+            </div>
+            <canvas id="pfr" width="700" height="400" class="mt-3"></canvas>
+        </div>
     </div>
 </template>
 
@@ -88,15 +96,107 @@
                 phase: [],
                 afrCanvas: null,
                 afrContext: null,
-                afrFunction: null
+                afrFunction: null,
+
+                pfrCanvas: null,
+                pfrContext: null,
+                pfrFunction: null,
             }
         },
 
         methods: {
             /**
+             * Сторим ачх
+             */
+            drawAfr: function () {
+                this.drawGrid(this.afrCanvas, this.afrContext, "f, кГц", "100", "A", "1");
+                var f, a, func;
+                this.afrContext.lineWidth = 2;
+                this.afrContext.strokeStyle = 'rgb(255, 0, 0)';
+
+                this.afrContext.beginPath();
+                this.afrContext.moveTo(50, this.afrCanvas.height - 50);
+
+                func = this.afrFunction ? this.afrFunction : '0';
+
+                for (f = 0; f <= 110; f++) {
+                    a = eval(func.replace(/sqrt/g, 'Math.sqrt'));
+                    this.afrContext.lineTo(
+                        50 + f * 5,
+                        this.afrCanvas.height - 50 - a * 250
+                    );
+                }
+
+                this.afrContext.stroke();
+                this.afrContext.closePath();
+
+                this.afrContext.strokeStyle = 'rgb(36, 93, 210)';
+
+                this.afrContext.beginPath();
+                this.afrContext.moveTo(50, this.afrCanvas.height - 50);
+
+                for (var i = 0; i < 11; i++) {
+                    this.afrContext.lineTo(
+                        this.freq[i] * 5 + 50,
+                        this.afrCanvas.height - this.amplitude[i] * 250 - 50
+                    );
+                }
+
+                this.afrContext.stroke();
+                this.afrContext.closePath();
+            },
+
+            /**
+             * Сторим фчх
+             */
+            drawPfr: function () {
+                this.drawGrid(this.pfrCanvas, this.pfrContext, "f, кГц", "100", "A", "1");
+
+                var f, p, func, x, y, isStart;
+                isStart = true;
+                func = this.pfrFunction ? this.pfrFunction : '0';
+
+                this.pfrContext.lineWidth = 2;
+                this.pfrContext.strokeStyle = 'rgb(255, 0, 0)';
+
+                this.pfrContext.beginPath();
+
+                for (f = 0; f <= 110; f++) {
+                    console.log(Math.atan(0))
+                    p = eval(func.replace(/atan/g, 'Math.atan').replace(/PI/g, 'Math.PI'));
+                    x = 50 + f * 5;
+                    y = this.pfrCanvas.height - 200 - p * 200 / Math.PI;
+                    if (isStart) {
+                        this.pfrContext.moveTo(x, y);
+                        isStart = false;
+                    } else {
+                        this.pfrContext.lineTo(x, y);
+                    }
+                }
+
+                this.pfrContext.stroke();
+                this.pfrContext.closePath();
+
+                // this.pfrContext.strokeStyle = 'rgb(36, 93, 210)';
+                //
+                // this.pfrContext.beginPath();
+                // this.pfrContext.moveTo(50, this.pfrCanvas.height - 50);
+                //
+                // for (var i = 0; i < 11; i++) {
+                //     this.pfrContext.lineTo(
+                //         this.freq[i] * 5 + 50,
+                //         this.pfrCanvas.height - 200 - this.phase[i] * 200 / Math.PI
+                //     );
+                // }
+                //
+                // this.pfrContext.stroke();
+                // this.pfrContext.closePath();
+            },
+
+            /**
              * Русиуем разметку
              */
-            drawGrid: function (canvas, context, xText, xValue, yText, yValute) {
+            drawGrid: function (canvas, context, xText, xValue, yText, yValue) {
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
                 // основной прямоугольник
@@ -176,7 +276,7 @@
                     canvas.width - 150,
                     canvas.height - 28
                 );
-                context.fillText(yValute, 20, 100);
+                context.fillText(yValue, 20, 100);
 
                 // внешняя рамка
                 context.strokeStyle = "rgb(0, 0, 0)";
@@ -201,45 +301,6 @@
                     }
                 }
             },
-
-            drawAfr: function () {
-                this.drawGrid(this.afrCanvas, this.afrContext, "f, кГц", "100", "A", "1");
-                var f, a, func;
-                this.afrContext.lineWidth = 2;
-                this.afrContext.strokeStyle = 'rgb(255, 0, 0)';
-
-                this.afrContext.beginPath();
-                this.afrContext.moveTo(50, this.afrCanvas.height - 50);
-
-                func = this.afrFunction ? this.afrFunction : '0';
-
-                for (f = 0; f <= 110; f++) {
-                    a = eval(func.replace(/sqrt/g, 'Math.sqrt'));
-                    console.log(f, a)
-                    this.afrContext.lineTo(
-                        50 + f * 5,
-                        this.afrCanvas.height - 50 - a * 250
-                    );
-                }
-
-                this.afrContext.stroke();
-                this.afrContext.closePath();
-
-                this.afrContext.strokeStyle = 'rgb(36, 93, 210)';
-
-                this.afrContext.beginPath();
-                this.afrContext.moveTo(50, this.afrCanvas.height - 50);
-
-                for (var i = 0; i < 11; i++) {
-                    this.afrContext.lineTo(
-                        this.freq[i] * 5 + 50,
-                        this.afrCanvas.height - this.amplitude[i] * 250 - 50
-                    );
-                }
-
-                this.afrContext.stroke();
-                this.afrContext.closePath();
-            }
         },
 
         mounted() {
@@ -247,6 +308,12 @@
             if (this.afrCanvas.getContext) {
                 this.afrContext = this.afrCanvas.getContext("2d");
                 this.drawGrid(this.afrCanvas, this.afrContext, "f, кГц", "100", "A", "1");
+            }
+
+            this.pfrCanvas = document.getElementById("pfr");
+            if (this.pfrCanvas.getContext) {
+                this.pfrContext = this.pfrCanvas.getContext("2d");
+                this.drawGrid(this.pfrCanvas, this.pfrContext, "f, кГц", "100", "A", "1");
             }
         }
     }
