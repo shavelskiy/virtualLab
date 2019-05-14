@@ -30,9 +30,10 @@ export default {
       values: null,
       canvas: null,
       context: null,
+      isRec: true,
       generator: {
-        amplitude: 0,
-        freq: 0
+        amplitude: 5,
+        freq: 1000
       },
       channel1: {
         points: {
@@ -40,8 +41,7 @@ export default {
           2: null
         },
         curVolt: 0,
-        amplitude: 0,
-        // freq: 0,
+        amplitude: 3,
         phase: 0
       },
       channel2: {
@@ -51,7 +51,6 @@ export default {
         },
         curVolt: 0,
         amplitude: 0,
-        // freq: 0,
         phase: 0
       },
       settings: {
@@ -170,12 +169,20 @@ export default {
 
       if (this.settings["1"].active) {
         this.context.strokeStyle = "rgb(134, 222, 200)";
-        drawSin(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
+        if (!this.isRec) {
+          drawSin(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
+        } else {
+          drawRec(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
+        }
       }
 
       if (this.settings["2"].active) {
         this.context.strokeStyle = "rgb(234, 222, 200)";
-        drawSin(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
+        if (!this.isRec) {
+          drawSin(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
+        } else {
+          drawRec(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
+        }
       }
 
       // внешняя рамка
@@ -278,6 +285,50 @@ export default {
             y = yMax;
           }
           return y;
+        }
+      }
+
+      function drawRec(channel, settings, freq, canvas, context) {
+        var step = 0.01;
+
+        var voltK = 20; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
+        var timeK = 10; // коэфициент для времени
+
+        var xStart = settings.offsetX;
+        var yStart = canvas.height / 2 - settings.offsetY;
+
+        var yMax = canvas.height - yStart;
+        var yMin = -1 * yStart;
+
+        context.beginPath();
+        context.moveTo(xStart + getX(0), yStart + getY(0));
+        for (var t = xStart; t < canvas.width / step - xStart; t++) {
+          context.lineTo(xStart + getX(t), yStart + getY(t));
+        }
+
+        context.lineWidth = 2;
+        context.stroke();
+        context.closePath();
+
+        function getX(t) {
+          return step * t;
+        }
+
+        console.log(settings.timeDiv);
+        function getY(t) {
+          var pos = t % (freq * settings.timeDiv * timeK);
+          var y = 0;
+          if (pos > freq * settings.timeDiv * timeK / 2) {
+            y = -1 * channel.amplitude;
+          }
+
+          if (y < yMin) {
+            y = yMin;
+          }
+          if (y > yMax) {
+            y = yMax;
+          }
+          return y * voltK;
         }
       }
     },
