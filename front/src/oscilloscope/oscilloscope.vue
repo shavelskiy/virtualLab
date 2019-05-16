@@ -30,7 +30,7 @@ export default {
       values: null,
       canvas: null,
       context: null,
-      isRec: true,
+      signal: 'rec',
       generator: {
         amplitude: 5,
         freq: 1000
@@ -41,7 +41,7 @@ export default {
           2: null
         },
         curVolt: 0,
-        amplitude: 3,
+        amplitude: 30,
         phase: 0
       },
       channel2: {
@@ -55,7 +55,7 @@ export default {
       },
       settings: {
         1: {
-          active: true,
+          active: false,
           voltDiv: 5,
           timeDiv: 1,
           offsetX: 0,
@@ -102,9 +102,9 @@ export default {
       this.draw();
     },
     calculateSignals: function() {
-      var re, im, tmp, k;
+      let re, im, tmp, k;
 
-      var w = this.generator.freq / (2 * Math.PI),
+      let w = this.generator.freq / (2 * Math.PI),
         A = this.generator.amplitude;
 
       if (
@@ -128,7 +128,6 @@ export default {
         im = eval(tmp.im);
         re = (re) ? re : 0;
         im = (im) ? im : 0;
-        console.log(tmp, re, im)
         this.channel1.amplitude = Math.sqrt(re * re + im * im) * k;
         this.channel1.phase = (Math.atan(im / re) * 180) / Math.PI;
       } else {
@@ -169,20 +168,12 @@ export default {
 
       if (this.settings["1"].active) {
         this.context.strokeStyle = "rgb(134, 222, 200)";
-        if (!this.isRec) {
-          drawSin(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
-        } else {
-          drawRec(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context);
-        }
+        drawSignal(this.channel1, this.settings["1"], this.generator.freq, this.canvas, this.context, this.signal);
       }
 
       if (this.settings["2"].active) {
         this.context.strokeStyle = "rgb(234, 222, 200)";
-        if (!this.isRec) {
-          drawSin(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
-        } else {
-          drawRec(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context);
-        }
+        drawSignal(this.channel2, this.settings["2"], this.generator.freq, this.canvas, this.context, this.signal);
       }
 
       // внешняя рамка
@@ -214,7 +205,7 @@ export default {
         context.closePath();
 
         function drawVerticalLines(context, canvas, gridSpacing) {
-          var i = gridSpacing;
+          let i = gridSpacing;
           while (i < canvas.width) {
             context.moveTo(i, 0);
             context.lineTo(i, canvas.height);
@@ -223,7 +214,7 @@ export default {
         }
 
         function drawHorizontalLines(context, canvas, gridSpacing) {
-          var i = gridSpacing;
+          let i = gridSpacing;
           while (i < canvas.height) {
             context.moveTo(0, i);
             context.lineTo(canvas.width, i);
@@ -232,103 +223,66 @@ export default {
         }
       }
 
-      /**
-       * нарисовать синусоидальный сигнал
-       */
-      function drawSin(channel, settings, freq, canvas, context) {
-        var step = 0.01;
+      function drawSignal(channel, settings, freq, canvas, context, signal) {
+        // параметры отрисовки
+        let step = 1;
 
-        var voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
-        var timeK = 0.000005; // коэфициент для времени
+        let voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
+        let timeK = 0.00001; // коэфициент для времени
 
-        var xStart = settings.offsetX;
-        var yStart = canvas.height / 2 - settings.offsetY;
+        let xStart = settings.offsetX;
+        let xEnd = (settings.offsetX > 0) ? canvas.width : canvas.width + settings.offsetX;
 
-        var yMax = canvas.height - yStart;
-        var yMin = -1 * yStart;
+        let yStart = canvas.height / 2 - settings.offsetY;
 
         context.beginPath();
-        context.moveTo(xStart + getX(0), yStart + getY(0));
-        for (var t = xStart; t < canvas.width / step - xStart; t++) {
-          context.lineTo(xStart + getX(t), yStart + getY(t));
+        context.moveTo(xStart, yStart - getY(0));
+
+        // основной цикл отрисовки
+        for (let x = (xStart > 0) ? xStart : 0; x < xEnd; x += step) {
+          context.lineTo(x, yStart - getY(getT(x)));
         }
 
         context.lineWidth = 2;
         context.stroke();
         context.closePath();
 
-        function getX(t) {
-          return step * t;
+        // получить время
+        function getT(x) {
+          return (x - xStart) * settings.timeDiv * timeK;
         }
 
-        function getY(t) {
-          var y =
-            ((-1 *
-              (channel.curVolt +
-                channel.amplitude *
-                  Math.sin(
-                    2 *
-                      Math.PI *
-                      freq *
-                      t *
-                      step *
-                      timeK *
-                      settings.timeDiv +
-                      (channel.phase / 180) * Math.PI
-                  ))) /
-              settings.voltDiv) *
-            voltK;
-          if (y < yMin) {
-            y = yMin;
+        // получить значение
+        function getY(time) {
+          let y = 0;
+
+          if (signal == 'sin') {
+            y = getSin(time);
+          } else if (signal == 'rec') {
+            y = getRec(time);
           }
-          if (y > yMax) {
-            y = yMax;
+
+          return y * voltK / settings.voltDiv;
+        }
+
+        function getSin(time) {
+          return (channel.curVolt + channel.amplitude * Math.sin(2 * Math.PI * freq * time * (channel.phase / 180) * Math.PI));
+        }
+
+        function getRec(time) {
+          let y = 0;
+
+          let T = 1 / freq;
+          let t = time % T;
+
+          if (t > T / 2) {
+            t -= T / 2;
+            y = 5 - 5 * Math.exp((-20000) * t);
+          } else {
+            y = 5 * Math.exp((-20000) * t);
           }
+
           return y;
-        }
-      }
-
-      function drawRec(channel, settings, freq, canvas, context) {
-        var step = 0.01;
-
-        var voltK = 20; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
-        var timeK = 10; // коэфициент для времени
-
-        var xStart = settings.offsetX;
-        var yStart = canvas.height / 2 - settings.offsetY;
-
-        var yMax = canvas.height - yStart;
-        var yMin = -1 * yStart;
-
-        context.beginPath();
-        context.moveTo(xStart + getX(0), yStart + getY(0));
-        for (var t = xStart; t < canvas.width / step - xStart; t++) {
-          context.lineTo(xStart + getX(t), yStart + getY(t));
-        }
-
-        context.lineWidth = 2;
-        context.stroke();
-        context.closePath();
-
-        function getX(t) {
-          return step * t;
-        }
-
-        console.log(settings.timeDiv);
-        function getY(t) {
-          var pos = t % (freq * settings.timeDiv * timeK);
-          var y = 0;
-          if (pos > freq * settings.timeDiv * timeK / 2) {
-            y = -1 * channel.amplitude;
-          }
-
-          if (y < yMin) {
-            y = yMin;
-          }
-          if (y > yMax) {
-            y = yMax;
-          }
-          return y * voltK;
         }
       }
     },
