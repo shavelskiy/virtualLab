@@ -185,11 +185,14 @@ class Scheme extends \yii\db\ActiveRecord
                             ];
                         } else if ($this->lab->signal == Lab::SIGNAL_SINUSOIDAL) {
                             $outValue = [
-                                're' => $value->re,
-                                'im' => $value->im
+                                're' => $value->re ?? 0,
+                                'im' => $value->im ?? 0
                             ];
                         } else {
-                            $outValue = null; // todo значения для сигнала прямоугольного импульса
+                            $outValue = [
+                                'first_front' => $value->first_front ?? 0,
+                                'second_front' => $value->second_front ?? 0
+                            ];
                         }
 
                         $result[$pointOne->id . '.' . $pointTwo->id] = $outValue;

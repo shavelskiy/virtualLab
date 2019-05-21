@@ -19,9 +19,11 @@ use Yii;
 class Lab extends \yii\db\ActiveRecord
 {
     const PICTURES_DIR = '/data/uploads/labs/';
+
     const SIGNAL_LINEAR = 1;
     const SIGNAL_SINUSOIDAL = 2;
     const SIGNAL_RECTANGLE = 3;
+
     const SIGNAL_NAMES = [
         self::SIGNAL_LINEAR => 'linear',
         self::SIGNAL_SINUSOIDAL => 'sinusoidal',

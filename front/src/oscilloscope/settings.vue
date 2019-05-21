@@ -64,31 +64,34 @@
 </template>
 
 <script>
-export default {
-  name: "settings",
 
-  data() {
-    return {
-      settings: {
-        active: true,
-        voltDiv: 5,
-        timeDiv: 1,
-        offsetX: 0,
-        offsetY: 0
+  import {bus} from "../bus.js";
+
+  export default {
+    name: "settings",
+
+    data() {
+      return {
+        settings: {
+          active: true,
+          voltDiv: 5,
+          timeDiv: 1,
+          offsetX: 0,
+          offsetY: 0
+        }
+      };
+    },
+
+    props: {
+      id: null
+    },
+
+    methods: {
+      changeSettings: function () {
+        bus.$emit("change-settings", {id: this.id, settings: this.settings});
       }
-    };
-  },
-
-  props: {
-    id: null
-  },
-
-  methods: {
-    changeSettings: function() {
-      this.$emit("changeSettings", { id: this.id, settings: this.settings });
     }
-  }
-};
+  };
 </script>
 
 <style scoped>

@@ -69,7 +69,7 @@ export default {
 
   created: function() {
     this.$http.get(this.description).then(function(response) {
-      this.tasks = JSON.parse(response.data);
+      this.tasks = response.data;
     });
   }
 };

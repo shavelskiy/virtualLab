@@ -41,6 +41,9 @@ class LabController extends Controller
         ];
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         if (Yii::$app->user->can('viewAdminPage')) {
@@ -54,6 +57,10 @@ class LabController extends Controller
         ]);
     }
 
+    /**
+     * @param $number
+     * @return string
+     */
     public function actionLab($number)
     {
         $session = Yii::$app->session;
@@ -65,7 +72,10 @@ class LabController extends Controller
         return $this->render('lab', ['lab' => Lab::findOne($number)]);
     }
 
-    // получить задание для работы
+    /**
+     * получить задание для работы
+     * @return array
+     */
     public function actionTask()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -77,11 +87,12 @@ class LabController extends Controller
             $result = LabItems::find()->tree($session->get('lab_number'));
         }
 
-        $result = json_encode($result);
-
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public function actionSignal()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -94,19 +105,18 @@ class LabController extends Controller
             $result = Lab::SIGNAL_NAMES[$lab->signal];
         }
 
-        $result = json_encode($result);
-
         return $result;
     }
 
+    /**
+     * @return array
+     */
     public function actionComponents()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $components = Component::find()->all();
         $result = ArrayHelper::map($components, 'id', 'name');
-
-        $result = json_encode($result);
 
         return $result;
     }

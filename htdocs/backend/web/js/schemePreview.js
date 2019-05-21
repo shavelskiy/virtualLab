@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 url: '/frontend/web/scheme/info',
                 success: function (info) {
                     context.clearRect(0, 0, canvas.width, canvas.height)
-                    data = JSON.parse(info)
+                    data = info
 
                     var key
                     // рисуем контур

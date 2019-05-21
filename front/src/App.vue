@@ -46,7 +46,7 @@ export default {
 
   created: function() {
     this.$http.get(this.signal_url).then(function(response) {
-      this.signal = JSON.parse(response.data);
+      this.signal = response.data;
 
       bus.$emit("signal-view", this.signal);
     });

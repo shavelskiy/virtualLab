@@ -26,7 +26,7 @@
             $.ajax({
                 url: '/frontend/web/lab/components/',
                 success: function (data) {
-                    var components = JSON.parse(data);
+                    var components = data;
                     var html = '<select class="form-control mt-2" name="task[{type}][{parentId}][items][new][{sort}][component]"><option></option>';
                     for (var key in components) {
                         html += '<option value="' + key + '">' + components[key] + '</option>';

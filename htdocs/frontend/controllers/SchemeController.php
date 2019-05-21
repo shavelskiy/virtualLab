@@ -14,7 +14,7 @@ class SchemeController extends Controller
 {
     /**
      * Отдать все схемы для лабораторной на фронт
-     * @return string
+     * @return array
      */
     public function actionGet()
     {
@@ -40,13 +40,13 @@ class SchemeController extends Controller
             }
         }
 
-        return Json::encode($result);
+        return $result;
     }
 
     /**
      * Получить для предосмотра в админке
      * @param $schemeId
-     * @return string
+     * @return array
      */
     public function actionInfo($schemeId)
     {
@@ -60,6 +60,6 @@ class SchemeController extends Controller
             'texts' => $scheme->getSchemeTextsArray()
         ];
 
-        return Json::encode($result);
+        return $result;
     }
 }

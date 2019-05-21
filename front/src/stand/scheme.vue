@@ -22,7 +22,7 @@
       <div class="col">
         <div class="form-horizontal">
           <div class="form-group" v-if="changeableR">
-            <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить R</label>
+            <label class="col-sm-3 control-label px-3">Изменить R</label>
             <div class="col-sm-5 px-0">
               <select class="form-control" v-model="changeableData.r" v-on:change="sendData">
                 <option value="50">50 Ом</option>
@@ -33,7 +33,7 @@
         </div>
         <div class="form-horizontal">
           <div class="form-group" v-if="changeableC">
-            <label for="choose-resistor" class="col-sm-3 control-label px-3">Изменить C</label>
+            <label class="col-sm-3 control-label px-3">Изменить C</label>
             <div class="col-sm-5 px-0">
               <select class="form-control" v-model="changeableData.c" v-on:change="sendData">
                 <option value="10">10 мкФ</option>
@@ -55,7 +55,7 @@ export default {
 
   data() {
     return {
-      schemesUrl: "/frontend/web/scheme/get",
+      schemesUrl: "/frontend/web/scheme/get/",
       schemeInfo: null,
       schemeCol: null,
       changeableData: {
@@ -79,7 +79,7 @@ export default {
 
   created() {
     this.$http.get(this.schemesUrl).then(function(response) {
-      this.schemeInfo = JSON.parse(response.data);
+      this.schemeInfo = response.data;
       this.schemeCol = Object.keys(this.schemeInfo).length;
       this.drawScheme();
     });
@@ -87,15 +87,15 @@ export default {
 
   methods: {
     drawScheme: function() {
-      var num = this.currentScheme;
-      var key, index;
+      let num = this.currentScheme;
+      let key, index;
 
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       for (key in this.schemeInfo[num].circuits) {
         this.context.beginPath();
         for (index in this.schemeInfo[num].circuits[key]) {
-          var element = this.schemeInfo[num].circuits[key][index];
+          let element = this.schemeInfo[num].circuits[key][index];
           if (index === 0) {
             this.context.moveTo(element.x, element.y);
           } else {
@@ -108,13 +108,13 @@ export default {
 
       this.context.font = "bold 16px sans-serif";
       for (key in this.schemeInfo[num].texts) {
-        var element = this.schemeInfo[num].texts[key];
+        let element = this.schemeInfo[num].texts[key];
         this.context.fillText(element.text, element.x, element.y);
       }
 
       this.context.font = "bold 10px sans-serif";
       for (key in this.schemeInfo[num].points) {
-        var element = this.schemeInfo[num].points[key];
+        let element = this.schemeInfo[num].points[key];
 
         this.context.beginPath();
         this.context.clearRect(element.x - 3, element.y - 3, 6, 6);
@@ -122,7 +122,7 @@ export default {
         this.context.stroke();
         this.context.closePath();
 
-        var offsetX, offsetY;
+        let offsetX, offsetY;
 
         if (element.vertical) {
           offsetX = -3;
@@ -141,7 +141,7 @@ export default {
 
       this.context.font = "bold 16px sans-serif";
       for (key in this.schemeInfo[num].elements) {
-        var element = this.schemeInfo[num].elements[key];
+        let element = this.schemeInfo[num].elements[key];
         this.drawElement(
           element.type,
           element.x,
@@ -176,7 +176,7 @@ export default {
 
     // резистор
     drawResistor: function(x, y, vertical, name) {
-      var width, height;
+      let width, height;
 
       if (vertical) {
         width = 20;
@@ -194,7 +194,7 @@ export default {
 
     // конденсатор
     drawCapacitor: function(x, y, vertical, name) {
-      var width, height;
+      let width, height;
 
       if (vertical) {
         width = 50;
@@ -225,7 +225,7 @@ export default {
 
     // катушка
     drawCoil: function(x, y, vertical, name) {
-      var width, height;
+      let width, height;
 
       if (vertical) {
         width = 20;
@@ -323,7 +323,7 @@ export default {
 
     // земля
     drawGng: function(x, y) {
-      var width = 20,
+      let width = 20,
         height = 10;
 
       this.context.clearRect(x - width / 2, y, width, height);

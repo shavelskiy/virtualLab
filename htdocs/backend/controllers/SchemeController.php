@@ -138,12 +138,15 @@ class SchemeController extends Controller
             $schemeData->point1 = $pointId1;
             $schemeData->point2 = $pointId2;
 
-            $schemeData->cur_u = (isset($values['cur_u'])) ? $values['cur_u'] : null;
-            $schemeData->cur_i = (isset($values['cur_i'])) ? $values['cur_i'] : null;
-            $schemeData->cur_r = (isset($values['cur_r'])) ? $values['cur_r'] : null;
+            $schemeData->cur_u = $values['cur_u'] ?? null;
+            $schemeData->cur_i = $values['cur_i'] ?? null;
+            $schemeData->cur_r = $values['cur_r'] ?? null;
 
-            $schemeData->re = (isset($values['re'])) ? $values['re'] : null;
-            $schemeData->im = (isset($values['im'])) ? $values['im'] : null;
+            $schemeData->re = $values['re'] ?? null;
+            $schemeData->im = $values['im'] ?? null;
+
+            $schemeData->first_front = $values['first_front'] ?? null;
+            $schemeData->second_front = $values['second_front'] ?? null;
 
             $schemeData->save();
         }

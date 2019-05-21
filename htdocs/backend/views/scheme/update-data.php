@@ -72,7 +72,16 @@ $this->params['breadcrumbs'][] = 'Изменение данных схем дл�
                                                                            value="<?= ($schemeData) ? $schemeData->im : '' ?>">
                                                                 </div>
                                                             <?php elseif ($scheme->lab->signal == \common\models\Lab::SIGNAL_RECTANGLE): ?>
-                                                                kek
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][first_front]"
+                                                                           class="form-control" placeholder="Передний фронт"
+                                                                           value="<?= ($schemeData) ? $schemeData->first_front : '' ?>">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="text" name="data[<?= $key ?>][second_front]"
+                                                                           class="form-control" placeholder="Задний фронт"
+                                                                           value="<?= ($schemeData) ? $schemeData->second_front : '' ?>">
+                                                                </div>
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
