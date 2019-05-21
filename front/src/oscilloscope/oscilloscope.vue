@@ -36,8 +36,8 @@
         context: null,
         signal: null,
         generator: {
-          amplitude: 5,
-          freq: 1000
+          amplitude: 0,
+          freq: 0
         },
         channels: {
           1: {
@@ -161,8 +161,8 @@
                 this.channels[i].amplitude = Math.sqrt(re * re + im * im);
                 this.channels[i].phase = (Math.atan(im / re) * 180) / Math.PI;
               } else if (this.signal == 'rectangular') {
-                this.channels[i].first_front = tmp.first_front;
-                this.channels[i].second_front = tmp.second_front;
+                this.channels[i].first_front = tmp.first_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
+                this.channels[i].second_front = tmp.second_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
               }
             } else {
               this.channels[i].amplitude = 0;
@@ -184,7 +184,7 @@
         for (let i = 1; i <= 2; i++) {
           if (this.settings[i].active) {
             this.context.strokeStyle = (i == 1) ? 'rgb(134, 222, 200)' : 'rgb(234, 222, 200)';
-            this.cacheValues[i] = drawSignal(i, this.channels[i], this.settings[i], this.generator.freq, this.canvas, this.context, this.signal, this.cacheValues[i]);
+            this.cacheValues[i] = drawSignal(i, this.channels[i], this.settings[i], this.generator, this.canvas, this.context, this.signal, this.cacheValues[i]);
           }
         }
 
@@ -235,12 +235,12 @@
           }
         }
 
-        function drawSignal(i, channel, settings, freq, canvas, context, signal, cache) {
+        function drawSignal(i, channel, settings, generator, canvas, context, signal, cache) {
           // параметры отрисовки
-          let step = (signal === 'sinusoidal') ? 0.01 : 1;
+          let step = 1;
 
           let curY, time;
-          let T = 1 / freq;
+          let T = 1 / generator.freq;
 
           let voltK = 100; // коэфициент, благодаря которому вольты корректно соотносятся с пикселями
 
@@ -296,14 +296,14 @@
           }
 
           function getSin(time) {
-            return (channel.amplitude * Math.sin(2 * Math.PI * freq * time * (channel.phase / 180) * Math.PI));
+            return (channel.amplitude * Math.sin(2 * Math.PI * generator.freq * time + (channel.phase / 180) * Math.PI));
           }
 
           function getRec(t) {
             let y = 0;
 
-            if (t > 1 / (2 * freq)) {
-              t -= 1 / (2 * freq);
+            if (t > 1 / (2 * generator.freq)) {
+              t -= 1 / (2 * generator.freq);
               try {
                 y = eval(channel.second_front);
                 y = (y) ? y : 0;
