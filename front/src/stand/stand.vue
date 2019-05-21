@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default">
+  <div class="panel panel-default device-color">
     <div class="panel-body p-4">
       <div class="row">
         <div class="col-2">

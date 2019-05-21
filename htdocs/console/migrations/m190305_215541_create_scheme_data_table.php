@@ -20,7 +20,9 @@ class m190305_215541_create_scheme_data_table extends Migration
             'cur_i' => $this->string(),
             'cur_r' => $this->string(),
             're' => $this->string(),
-            'im' => $this->string()
+            'im' => $this->string(),
+            'first_front' => $this->string(),
+            'second_front' => $this->string()
         ]);
 
         for ($i = 1; $i <= 2; $i++) {

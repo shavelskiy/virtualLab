@@ -63,5 +63,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+  .device-color {
+    background-color: #f0f8ff;
+  }
 </style>

@@ -134,3 +134,7 @@ a.desc:after {
     height: 0px;
     padding: 2px !important;
 }
+
+.body-color {
+    background-color: azure;
+}

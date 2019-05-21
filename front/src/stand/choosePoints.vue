@@ -8,7 +8,7 @@
         <div class="panel-heading">
           <label>Канал 1</label>
         </div>
-        <div class="panel-body p-0">
+        <div class="panel-body p-0 device-color">
           <div class="container-fluid p-0">
             <div class="row p-0 m-0">
               <div class="col m-0 pl-2 pr-1 pt-2 pb-2">
@@ -29,7 +29,7 @@
         <div class="panel-heading">
           <label>Канал 2</label>
         </div>
-        <div class="panel-body p-0">
+        <div class="panel-body p-0 device-color">
           <div class="container-fluid p-0">
             <div class="row p-0 m-0">
               <div class="col m-0 pl-2 pr-1 pt-2 pb-2">

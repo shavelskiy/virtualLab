@@ -1,6 +1,6 @@
 <template>
   <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body device-color">
       <div class="row">
         <div class="col-8">
           <canvas id="oscilloscope" width="700" height="400"></canvas>
