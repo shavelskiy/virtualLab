@@ -32,7 +32,7 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-fixed-top no-print',
         ],
     ]);
     $menuItemsLeft = [];
@@ -70,10 +70,9 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
+<footer class="footer no-print">
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

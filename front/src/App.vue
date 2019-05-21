@@ -1,10 +1,12 @@
 <template>
   <div>
     <task></task>
-    <gdm v-if="signal === 'linear' && !isHomeTraining"></gdm>
-    <oscilloscope v-if="needOscilloscope && !isHomeTraining"></oscilloscope>
-    <generator v-if="needOscilloscope && !isHomeTraining"></generator>
-    <stand v-if="!isHomeTraining"></stand>
+    <div class="no-print">
+      <gdm v-if="signal === 'linear' && !isHomeTraining"></gdm>
+      <oscilloscope v-if="needOscilloscope && !isHomeTraining"></oscilloscope>
+      <generator v-if="needOscilloscope && !isHomeTraining"></generator>
+      <stand v-if="!isHomeTraining"></stand>
+    </div>
   </div>
 </template>
 
