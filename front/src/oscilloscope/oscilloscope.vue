@@ -148,7 +148,7 @@
             }
 
             if (tmp) {
-              if (this.signal == 'sinusoidal') {
+              if (this.signal === 'sinusoidal') {
                 try {
                   re = eval(tmp.re);
                   im = eval(tmp.im);
@@ -160,7 +160,7 @@
                 }
                 this.channels[i].amplitude = Math.sqrt(re * re + im * im);
                 this.channels[i].phase = (Math.atan(im / re) * 180) / Math.PI;
-              } else if (this.signal == 'rectangular') {
+              } else if (this.signal === 'rectangular') {
                 this.channels[i].first_front = tmp.first_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
                 this.channels[i].second_front = tmp.second_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
               }

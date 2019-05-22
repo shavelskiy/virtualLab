@@ -148,7 +148,7 @@ a.desc:after {
         display: block !important;
     }
 
-    .task {
+    .task-item {
         page-break-inside: avoid;
     }
 }
