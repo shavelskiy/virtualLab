@@ -11,7 +11,7 @@
           </li>
         </ul>
         <hr class="no-print">
-        <div class="col text-center">
+        <div class="col text-center no-print">
           <button
             class="btn btn-primary"
             @click="changePage(Number(task.num) - 1)"
@@ -50,7 +50,16 @@
       return {
         description: "/frontend/web/lab/task/",
         page: 1,
-        tasks: null
+        tasks: null,
+        titlePdfOpt: {
+          margin: 10,
+          filename: 'title.pdf',
+        },
+        taskPdfOpt: {
+          margin: 10,
+          filename: 'lab.pdf',
+          html2canvas: {width: 1200},
+        }
       };
     },
 
@@ -62,15 +71,27 @@
       },
 
       finishLab: function () {
-        let element = window.document.querySelector('#task');
+        let titleHtml = window.document.querySelector('.title-page');
 
-        let opt = {
-          margin: 2,
-          filename: 'myfile.pdf',
-          html2canvas: {width: 1200},
-        };
+        titleHtml.setAttribute('style', 'display: block');
 
-        html2pdf().set(opt).from(element).save();
+        let taskHtml = window.document.querySelector('#task');
+
+        taskHtml.querySelectorAll('.to-print').forEach(function (curElement) {
+          curElement.setAttribute('style', 'display: block');
+        });
+
+        taskHtml.querySelectorAll('.no-print').forEach(function (curElement) {
+          curElement.setAttribute('style', 'display: none');
+        });
+
+        let titlePdf = html2pdf().set(this.titlePdfOpt).from(titleHtml);
+        let taskPdf = html2pdf().set(this.taskPdfOpt).from(taskHtml);
+
+        titlePdf.save();
+        taskPdf.save();
+
+
         // html2pdf().set(opt).from(element).outputPdf().then(function(pdf) {
           // выведет в консоль base64
           // console.log(btoa(pdf));
