@@ -51,7 +51,7 @@
 
     data() {
       return {
-        url: '/frontend/web/lab/title-info/',
+        url: '/api/title-info/',
         info: {
           number: 1,
           name: '',

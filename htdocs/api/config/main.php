@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'app-api',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -17,8 +17,8 @@ return [
             'baseUrl' => '/frontend/web'
         ],
         'request' => [
-            'csrfParam' => '_csrf-frontend',
-            'baseUrl' => ''
+            'csrfParam' => '_csrf-api',
+            'baseUrl' => '/api'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
