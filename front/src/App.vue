@@ -1,18 +1,18 @@
 <template>
   <div>
+      <preloader></preloader>
       <TitlePage></TitlePage>
       <task></task>
-    <div class="no-print">
       <gdm v-if="signal === 'linear' && !isHomeTraining"></gdm>
       <oscilloscope v-if="needOscilloscope && !isHomeTraining"></oscilloscope>
       <generator v-if="needOscilloscope && !isHomeTraining"></generator>
       <stand v-if="!isHomeTraining"></stand>
-    </div>
   </div>
 </template>
 
 <script>
   import {bus} from "./bus.js";
+  import preloader from "./preloader/preloader.vue";
   import oscilloscope from "./oscilloscope/oscilloscope.vue";
   import generator from "./generator/generator.vue";
   import gdm from "./gdm/gdm.vue";
@@ -41,6 +41,7 @@
     },
 
     components: {
+      preloader: preloader,
       TitlePage: title_page,
       Task: task,
       Oscilloscope: oscilloscope,

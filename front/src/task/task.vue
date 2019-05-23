@@ -72,6 +72,8 @@
       },
 
       finishLab: function () {
+        bus.$emit("show-preloader");
+
         let titleHtml = window.document.querySelector('.title-page');
 
         titleHtml.setAttribute('style', 'display: block');
@@ -97,7 +99,7 @@
             };
 
             Vue.http.post('/frontend/web/lab/result/', data).then((response) => {
-              console.log(response.data);
+              bus.$emit('lab-success', response.data);
             });
           });
         });
@@ -111,7 +113,6 @@
     },
 
     created: function () {
-      console.log(this.$http);
       this.$http.get(this.description).then(function (response) {
         this.tasks = response.data;
       });
