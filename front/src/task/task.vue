@@ -13,14 +13,14 @@
         <hr class="no-print">
         <div class="col text-center no-print">
           <button
-            class="btn btn-primary"
-            @click="changePage(Number(task.num) - 1)"
-            v-if="Number(task.num) !== 1"
+                  class="btn btn-primary"
+                  @click="changePage(Number(task.num) - 1)"
+                  v-if="Number(task.num) !== 1"
           >Назад</button>
           <button
-            class="btn btn-primary"
-            @click="changePage(Number(task.num) + 1)"
-            v-if="Number(task.num) !== maxPage"
+                  class="btn btn-primary"
+                  @click="changePage(Number(task.num) + 1)"
+                  v-if="Number(task.num) !== maxPage"
           >Далее</button>
           <button class="btn btn-primary" v-if="Number(task.num) === maxPage" v-on:click="finishLab">Закончить</button>
         </div>
@@ -32,6 +32,7 @@
 
 <script>
   import html2pdf from 'html2pdf.js';
+  import Vue from 'vue';
   import graphTable from "../lab_components/table_1.vue";
   import graph from "../lab_components/graph_1.vue";
   import transfer_functions from "../lab_components/transfer_functions_5_6";
@@ -88,14 +89,18 @@
         let titlePdf = html2pdf().set(this.titlePdfOpt).from(titleHtml);
         let taskPdf = html2pdf().set(this.taskPdfOpt).from(taskHtml);
 
-        titlePdf.save();
-        taskPdf.save();
+        titlePdf.outputPdf().then(function (pdf1) {
+          taskPdf.outputPdf().then(function (pdf2) {
+            let data = {
+              titlePdf: btoa(pdf1),
+              taskPdf: btoa(pdf2)
+            };
 
-
-        // html2pdf().set(opt).from(element).outputPdf().then(function(pdf) {
-          // выведет в консоль base64
-          // console.log(btoa(pdf));
-        // });
+            Vue.http.post('/frontend/web/lab/result/', data).then((response) => {
+              console.log(response.data);
+            });
+          });
+        });
       }
     },
 
@@ -106,6 +111,7 @@
     },
 
     created: function () {
+      console.log(this.$http);
       this.$http.get(this.description).then(function (response) {
         this.tasks = response.data;
       });
@@ -114,7 +120,7 @@
 </script>
 
 <style scoped>
-ul {
-  list-style: none;
-}
+  ul {
+    list-style: none;
+  }
 </style>
