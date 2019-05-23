@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid to-print title-page">
+    <div class="container-fluid to-print title-page" style="display: none">
         <div class="row">
             <p class="col text-center">
                 Национальный исследовательский университет «МЭИ»<br>
@@ -12,56 +12,89 @@
                 Кафедра вычислительных машин, систем и сетей
             </h5>
         </div>
-        <div class="space"></div>
+        <div class="middle-space"></div>
         <div class="row">
             <h3 class="col text-center">
-                Лабораторная работа № 1.
+                Лабораторная работа № {{info.number}}.
             </h3>
         </div>
         <div class="row">
-            <p class="col text-center">
-                Создание параллельной программы с использованием интерфейса MPI и проведение экспериментов с ней на
-                вычислительной системе.
-            </p>
+            <p class="col text-center">{{info.name}}</p>
         </div>
-        <div class="space"></div>
+        <div class="big-space"></div>
         <div class="row">
-            <p class="col-4 offset-8">
-                <b>Выполнил:</b>&nbsp;&nbsp;Шавельский В.А.<br>
-                <b>Группа:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;А-08-15<br>
-                <b>Вариант:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;№19<br>
-            </p>
+            <div class="col-4 offset-8">
+                <p>
+                    <b>Выполнил:</b>&nbsp;&nbsp;{{info.studentName}}<br>
+                    <b>Группа:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{info.studentGroup}}<br>
+                    <b>Вариант:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;№{{info.studentVariant}}<br>
+                </p>
+                <div class="min-space"></div>
+                <p>
+                    <b>Проверил:</b>&nbsp;&nbsp;{{info.teacherName}}<br>
+                    <b>Дата:</b><br>
+                    <b>Подпись:</b><br>
+                </p>
+            </div>
         </div>
         <div class="row title-footer">
-            <p class="col text-center">
-                Москва, 2019
+            <p class="col">
+                Москва, {{info.year}}
             </p>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "title-page"
+  export default {
+    name: "title-page",
+
+    data() {
+      return {
+        url: '/frontend/web/lab/title-info/',
+        info: {
+          number: 1,
+          name: '',
+          studentName: '',
+          studentGroup: '',
+          studentVariant: 1,
+          teacherName: '',
+          year: ''
+        }
+      }
+    },
+
+    created: function () {
+      this.$http.get(this.url).then(function (response) {
+        this.info = response.data;
+      });
     }
+  }
 </script>
 
 <style scoped>
     .title-page {
         position: relative;
         width: 21cm;
-        height: 47cm;
-
+        height: 27.5cm;
     }
 
-    .title-page .space {
+    .title-page .min-space {
+        height: 1cm;
+    }
+
+    .title-page .middle-space {
         height: 6cm;
+    }
+
+    .title-page .big-space {
+        height: 7cm;
     }
 
     .title-page .title-footer {
         position: absolute;
-        bottom: 5%;
-        left: 50%;
+        bottom: 0;
+        left: 47%;
         align-items: center;
     }
 </style>

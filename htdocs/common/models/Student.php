@@ -20,6 +20,8 @@ use Yii;
  * @property User $user
  * @property Teacher $teacher
  * @property StudentLabs $labs
+ * @property string $exportName
+ * @property int $variant
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -129,6 +131,25 @@ class Student extends \yii\db\ActiveRecord
     public function getTeacher()
     {
         return Teacher::getFullNameById($this->teacher_id);
+    }
+
+    public function getExportName()
+    {
+        return $this->last_name . ' ' .
+            mb_substr($this->name, 0, 1, 'UTF-8') . '.' .
+            mb_substr($this->middle_name, 0, 1, 'UTF-8') . '.';
+    }
+
+    public function getVariant()
+    {
+        $variant = 1;
+        foreach (Student::find()->andWhere(['group_id' => $this->group_id])->orderBy(['last_name' => SORT_ASC, 'name' => SORT_ASC])->all() as $student) {
+            if ($student->id == $this->id) {
+                return $variant;
+            }
+            $variant++;
+        }
+        return $variant;
     }
 
     public function afterDelete()

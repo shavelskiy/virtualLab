@@ -21,6 +21,8 @@ use Yii;
  *
  * @property Group[] $groups
  * @property Student[] $students
+ *
+ * @property string $shortName
  */
 class Teacher extends \yii\db\ActiveRecord
 {

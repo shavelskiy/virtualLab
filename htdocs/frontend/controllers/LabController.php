@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Component;
 use common\models\Lab;
 use common\models\LabItems;
+use common\models\Student;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -24,7 +25,7 @@ class LabController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'lab'],
+                        'actions' => ['index', 'lab', 'title-info'],
                         'allow' => true,
                         'roles' => ['student'],
                     ],
@@ -103,6 +104,31 @@ class LabController extends Controller
         if ($session->has('lab_number')) {
             $lab = Lab::findOne($session->get('lab_number'));
             $result = Lab::SIGNAL_NAMES[$lab->signal];
+        }
+
+        return $result;
+    }
+
+    public function actionTitleInfo()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $session = Yii::$app->session;
+        $result = [];
+
+        if ($session->has('lab_number')) {
+            $lab = Lab::findOne($session->get('lab_number'));
+            $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
+
+            $result = [
+                'number' => $lab->id,
+                'name' => $lab->name,
+                'studentName' => $student->exportName,
+                'studentGroup' => $student->group->name,
+                'studentVariant' => $student->variant,
+                'teacherName' => $student->teacher,
+                'year' => date('Y')
+            ];
         }
 
         return $result;

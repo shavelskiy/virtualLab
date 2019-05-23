@@ -52,7 +52,7 @@
         page: 1,
         tasks: null,
         titlePdfOpt: {
-          margin: 10,
+          margin: [10, 0, 10, 0],
           filename: 'title.pdf',
         },
         taskPdfOpt: {
