@@ -1,11 +1,16 @@
 <template>
     <div class="preloader" style="display: none">
         <div class="text">
-            <div v-if="success">
-                <h2>Лабораторная работа выполнена!</h2>
-                <a :href="data.file_path" target="_blank">Посмотреть отчет</a><br>
-                <b>Дата выполнения:</b>&nbsp;{{data.date}}<br>
-                <b>Количество попыток:</b>&nbsp;{{data.attempt}}<br>
+            <div v-if="finish">
+                <div v-if="error">
+                    <p>{{error}}</p><br>
+                </div>
+                <div v-else>
+                    <h2>Лабораторная работа выполнена!</h2>
+                    <a :href="data.file_path" target="_blank">Посмотреть отчет</a><br>
+                    <b>Дата выполнения:</b>&nbsp;{{data.date}}<br>
+                    <b>Количество попыток:</b>&nbsp;{{data.attempt}}<br>
+                </div>
                 <a href="/">Вернуться</a>
             </div>
             <div v-else>
@@ -23,7 +28,8 @@
 
     data() {
       return {
-        success: false,
+        finish: false,
+        error: null,
         data: {
           date: null,
           file_path: null,
@@ -38,8 +44,12 @@
       },
 
       labSuccess: function (data) {
-        this.success = true;
-        this.data = data;
+        this.finish = true;
+        if (data.error) {
+          this.error = data.error;
+        } else {
+          this.data = data;
+        }
       }
     },
 

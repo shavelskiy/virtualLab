@@ -100,6 +100,8 @@
 
             Vue.http.post('/frontend/web/lab/result/', data).then((response) => {
               bus.$emit('lab-success', response.data);
+            }).catch(e => {
+              bus.$emit('lab-success', e.data);
             });
           });
         });

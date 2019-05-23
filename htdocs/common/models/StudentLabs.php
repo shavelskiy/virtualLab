@@ -23,14 +23,14 @@ namespace common\models;
  **
  * @property Student $student
  *
- * @property LabBalls $lab1
- * @property LabBalls $lab2
- * @property LabBalls $lab3
- * @property LabBalls $lab4
- * @property LabBalls $lab5
- * @property LabBalls $lab6
- * @property LabBalls $lab7
- * @property LabBalls $lab8
+ * @property LabResults $lab1
+ * @property LabResults $lab2
+ * @property LabResults $lab3
+ * @property LabResults $lab4
+ * @property LabResults $lab5
+ * @property LabResults $lab6
+ * @property LabResults $lab7
+ * @property LabResults $lab8
  */
 class StudentLabs extends \yii\db\ActiveRecord
 {
@@ -44,47 +44,47 @@ class StudentLabs extends \yii\db\ActiveRecord
 
     public function getLab1()
     {
-        return LabBalls::findOne($this->lab1_id);
+        return LabResults::findOne($this->lab1_id);
     }
 
     public function getLab2()
     {
-        return LabBalls::findOne($this->lab2_id);
+        return LabResults::findOne($this->lab2_id);
     }
 
     public function getLab3()
     {
-        return LabBalls::findOne($this->lab3_id);
+        return LabResults::findOne($this->lab3_id);
     }
 
     public function getLab4()
     {
-        return LabBalls::findOne($this->lab4_id);
+        return LabResults::findOne($this->lab4_id);
     }
 
     public function getLab5()
     {
-        return LabBalls::findOne($this->lab5_id);
+        return LabResults::findOne($this->lab5_id);
     }
 
     public function getLab6()
     {
-        return LabBalls::findOne($this->lab6_id);
+        return LabResults::findOne($this->lab6_id);
     }
 
     public function getLab7()
     {
-        return LabBalls::findOne($this->lab7_id);
+        return LabResults::findOne($this->lab7_id);
     }
 
     public function getLab8()
     {
-        return LabBalls::findOne($this->lab8_id);
+        return LabResults::findOne($this->lab8_id);
     }
 
     public function afterDelete()
     {
-        $labs = LabBalls::findAll([$this->lab1_id, $this->lab2_id, $this->lab3_id, $this->lab4_id, $this->lab5_id, $this->lab6_id, $this->lab7_id, $this->lab8_id]);
+        $labs = LabResults::findAll([$this->lab1_id, $this->lab2_id, $this->lab3_id, $this->lab4_id, $this->lab5_id, $this->lab6_id, $this->lab7_id, $this->lab8_id]);
         foreach ($labs as $lab) {
             $lab->delete();
         }

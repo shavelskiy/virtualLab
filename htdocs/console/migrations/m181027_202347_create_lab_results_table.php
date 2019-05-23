@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `lab_balls`.
+ * Handles the creation of table `lab_results`.
  */
-class m181027_202347_create_lab_balls_table extends Migration
+class m181027_202347_create_lab_results_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -17,10 +17,12 @@ class m181027_202347_create_lab_balls_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('lab_balls', [
+        $this->createTable('lab_results', [
             'id' => $this->primaryKey(),
-            'balls' => $this->integer()->notNull(),
-            'created_at' => $this->integer()->notNull(),
+            'success' => $this->boolean()->notNull()->defaultValue(false),
+            'attempts' => $this->integer()->notNull(),
+            'created_at' => $this->integer(),
+            'file_path' => $this->string()
         ], $tableOptions);
     }
 
@@ -29,6 +31,6 @@ class m181027_202347_create_lab_balls_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('lab_balls');
+        $this->dropTable('lab_results');
     }
 }

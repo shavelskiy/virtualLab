@@ -51,49 +51,16 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         <tbody>
         <tr>
             <th style="width: 220px">Название</th>
-            <th style="width: 100px">Баллы</th>
             <th>Дата прохождения</th>
+            <th style="width: 100px">Отчет</th>
         </tr>
-        <tr>
-            <th>Лабораторная работа №1</th>
-            <th><?= $model->labs->lab1->balls ?? '' ?></th>
-            <th><?= $model->labs->lab1->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №2</th>
-            <th><?= $model->labs->lab2->balls ?? '' ?></th>
-            <th><?= $model->labs->lab2->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №3</th>
-            <th><?= $model->labs->lab3->balls ?? '' ?></th>
-            <th><?= $model->labs->lab3->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №4</th>
-            <th><?= $model->labs->lab4->balls ?? '' ?></th>
-            <th><?= $model->labs->lab4->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №5</th>
-            <th><?= $model->labs->lab5->balls ?? '' ?></th>
-            <th><?= $model->labs->lab5->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №6</th>
-            <th><?= $model->labs->lab6->balls ?? '' ?></th>
-            <th><?= $model->labs->lab6->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №7</th>
-            <th><?= $model->labs->lab7->balls ?? '' ?></th>
-            <th><?= $model->labs->lab7->createdAt ?? '' ?></th>
-        </tr>
-        <tr>
-            <th>Лабораторная работа №8</th>
-            <th><?= $model->labs->lab8->balls ?? '' ?></th>
-            <th><?= $model->labs->lab8->createdAt ?? '' ?></th>
-        </tr>
+        <?php for ($i = 1; $i <= 8; $i++): ?>
+            <tr>
+                <th>Лабораторная работа №<?= $i ?></th>
+                <th><?= $model->labs->{"lab$i"} ? date('m.d.Y i:H:s', $model->labs->{"lab$i"}->created_at) : '' ?></th>
+                <th><?= $model->labs->{"lab$i"} ? '<a href="' . $model->labs->{"lab$i"}->file_path . '" target="_blank">Отчет</a>' : '' ?></th>
+            </tr>
+        <?php endfor; ?>
         </tbody>
     </table>
 </div>

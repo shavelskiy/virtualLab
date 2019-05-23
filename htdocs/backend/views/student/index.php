@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => $group->name];
 
 <?php
 if (Yii::$app->user->can('deleteStudent')) {
-    $buttonsTemplate = '{view} {update} {delete}';
+    $buttonsTemplate = '{update} {delete}';
 } else {
     $buttonsTemplate = '{view} {update}';
 }
@@ -40,41 +40,51 @@ if (Yii::$app->user->can('deleteStudent')) {
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
+
             'last_name',
             'name',
             'middle_name',
 
             [
-                'attribute' => 'labs.lab1.balls',
-                'label' => 'Лаб. №1'
+                'attribute' => 'labs.lab1.result',
+                'label' => 'Лаб. №1',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab2.balls',
-                'label' => 'Лаб. №2'
+                'attribute' => 'labs.lab2.result',
+                'label' => 'Лаб. №2',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab3.balls',
-                'label' => 'Лаб. №3'
+                'attribute' => 'labs.lab3.result',
+                'label' => 'Лаб. №3',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab4.balls',
-                'label' => 'Лаб. №4'
+                'attribute' => 'labs.lab4.result',
+                'label' => 'Лаб. №4',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab5.balls',
-                'label' => 'Лаб. №5'
+                'attribute' => 'labs.lab5.result',
+                'label' => 'Лаб. №5',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab6.balls',
-                'label' => 'Лаб. №6'
+                'attribute' => 'labs.lab6.result',
+                'label' => 'Лаб. №6',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab7.balls',
-                'label' => 'Лаб. №7'
+                'attribute' => 'labs.lab7.result',
+                'label' => 'Лаб. №7',
+                'format' => 'html',
             ],
             [
-                'attribute' => 'labs.lab8.balls',
-                'label' => 'Лаб. №8'
+                'attribute' => 'labs.lab8.result',
+                'label' => 'Лаб. №8',
+                'format' => 'html',
             ],
             'teacher',
 
