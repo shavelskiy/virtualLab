@@ -55,7 +55,7 @@ export default {
 
   data() {
     return {
-      schemesUrl: "/api/scheme/get/",
+      schemesUrl: "/api/scheme/",
       schemeInfo: null,
       schemeCol: null,
       changeableData: {
