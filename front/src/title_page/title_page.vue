@@ -51,7 +51,7 @@
 
     data() {
       return {
-        url: '/api/title-info/',
+        url: '/api/task/title-info/',
         info: {
           number: 1,
           name: '',

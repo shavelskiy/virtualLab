@@ -55,7 +55,7 @@ class LabResults extends \yii\db\ActiveRecord
     public function getResult()
     {
         if ($this->success) {
-            $result = "Пройдено,<br>" . date('d.m.Y i:H', $this->created_at) . ',';
+            $result = "Пройдено,<br>" . date('d.m.Y H:i', $this->created_at) . ',';
         } else {
             $result = "Не пройдено,<br>";
         }

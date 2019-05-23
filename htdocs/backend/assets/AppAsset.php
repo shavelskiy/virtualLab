@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '/backend/web';
     public $css = [
         'css/site.css',
         'css/bootstrap.min.css',
@@ -21,6 +21,5 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-//        'yii\bootstrap\BootstrapAsset',
     ];
 }

@@ -7,30 +7,23 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-backend',
+    'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
-    'aliases' => [
-        '@dir' => '/backend/web/'
-    ],
+    'controllerNamespace' => 'api\controllers',
     'components' => [
-        'assetManager' => [
-            'baseUrl' => '/backend/web/assets'
-        ],
         'request' => [
-            'baseUrl' => '/admin',
-            'csrfParam' => '_csrf-backend',
+            'csrfParam' => '_csrf-api',
+            'baseUrl' => '/api'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            // this is the name of the session cookie used for login on the frontend
+            'name' => 'advanced-frontend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

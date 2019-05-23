@@ -98,7 +98,7 @@
               taskPdf: btoa(pdf2)
             };
 
-            Vue.http.post('/api/result/', data).then((response) => {
+            Vue.http.post('/api/lab/result/', data).then((response) => {
               bus.$emit('lab-success', response.data);
             }).catch(e => {
               bus.$emit('lab-success', e.data);

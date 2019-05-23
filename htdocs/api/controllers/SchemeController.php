@@ -1,22 +1,42 @@
 <?php
 
-namespace frontend\controllers;
+namespace api\controllers;
 
-use common\models\Scheme;
-use phpDocumentor\Reflection\DocBlock\Tags\Property;
-use yii\helpers\Json;
-use yii\web\Controller;
-use Yii;
-use yii\web\Response;
+use common\models\Component;
 use common\models\Lab;
+use common\models\Scheme;
+use Yii;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
+use yii\web\Controller;
+use yii\web\Response;
 
 class SchemeController extends Controller
 {
     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index', 'info', 'components'],
+                        'allow' => true,
+                        'roles' => ['student'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
      * Отдать все схемы для лабораторной на фронт
      * @return array
      */
-    public function actionGet()
+    public function actionIndex()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -59,6 +79,19 @@ class SchemeController extends Controller
             'points' => $scheme->getSchemePointsArray(),
             'texts' => $scheme->getSchemeTextsArray()
         ];
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    public function actionComponents()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $components = Component::find()->all();
+        $result = ArrayHelper::map($components, 'id', 'name');
 
         return $result;
     }

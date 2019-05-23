@@ -1,38 +1,39 @@
 <?php
 
-namespace frontend\controllers;
+namespace api\controllers;
 
-use common\models\Component;
 use common\models\Lab;
 use common\models\LabResults;
 use common\models\Student;
 use Jurosh\PDFMerge\PDFMerger;
-use common\models\LabItems;
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\Response;
 
 
-class ApiController extends Controller
+class LabController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
-     * получить задание для работы
-     * @return array
+     * {@inheritdoc}
      */
-    public function actionTask()
+    public function behaviors()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $session = Yii::$app->session;
-        $result = [];
-
-        if ($session->has('lab_number')) {
-            $result = LabItems::find()->tree($session->get('lab_number'));
-        }
-
-        return $result;
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['signal', 'result'],
+                        'allow' => true,
+                        'roles' => ['student'],
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -41,7 +42,6 @@ class ApiController extends Controller
     public function actionSignal()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-
         $session = Yii::$app->session;
         $result = [];
 
@@ -49,44 +49,6 @@ class ApiController extends Controller
             $lab = Lab::findOne($session->get('lab_number'));
             $result = Lab::SIGNAL_NAMES[$lab->signal];
         }
-
-        return $result;
-    }
-
-    public function actionTitleInfo()
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $session = Yii::$app->session;
-        $result = [];
-
-        if ($session->has('lab_number')) {
-            $lab = Lab::findOne($session->get('lab_number'));
-            $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
-
-            $result = [
-                'number' => $lab->id,
-                'name' => $lab->name,
-                'studentName' => $student->exportName,
-                'studentGroup' => $student->group->name,
-                'studentVariant' => $student->variant,
-                'teacherName' => $student->teacher,
-                'year' => date('Y')
-            ];
-        }
-
-        return $result;
-    }
-
-    /**
-     * @return array
-     */
-    public function actionComponents()
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $components = Component::find()->all();
-        $result = ArrayHelper::map($components, 'id', 'name');
 
         return $result;
     }
@@ -144,7 +106,7 @@ class ApiController extends Controller
                             if ($labResult->save()) {
                                 Yii::$app->response->statusCode = 200;
                                 return [
-                                    'date' => date('d.m.Y i:H', $labResult->created_at),
+                                    'date' => date('d.m.Y H:i', $labResult->created_at),
                                     'file_path' => $labResult->file_path,
                                     'attempt' => $labResult->attempts
                                 ];

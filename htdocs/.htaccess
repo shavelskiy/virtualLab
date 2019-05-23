@@ -1,23 +1,29 @@
 Options +FollowSymLinks
-IndexIgnore */*
+#IndexIgnore */*
 RewriteEngine on
+RewriteBase /
 
-# Если запрос начинается с /admin, то заменяем на /backend/web/
-RewriteCond %{REQUEST_URI} ^/back-office
-RewriteRule ^back-office/?(.*) /backend/web/$1
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteRule ^admin/?(.*) /backend/web/$1
 
-# Добавляем другой запрос /frontend/web/$1
-RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web|back-office)
+RewriteCond %{REQUEST_URI} ^/api
+RewriteCond %{REQUEST_URI} !^/api/web
+RewriteRule ^api/?(.*) /api/web/$1
+
+RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web|api/web|admin|api)
 RewriteRule (.*) /frontend/web/$1
 
-# Если frontend запрос
 RewriteCond %{REQUEST_URI} ^/frontend/web
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /frontend/web/index.php
 
-# Если backend запрос
 RewriteCond %{REQUEST_URI} ^/backend/web
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /backend/web/index.php
+
+RewriteCond %{REQUEST_URI} ^/api/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /api/web/index.php

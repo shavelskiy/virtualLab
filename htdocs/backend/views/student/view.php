@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         <?php for ($i = 1; $i <= 8; $i++): ?>
             <tr>
                 <th>Лабораторная работа №<?= $i ?></th>
-                <th><?= $model->labs->{"lab$i"} ? date('m.d.Y i:H:s', $model->labs->{"lab$i"}->created_at) : '' ?></th>
+                <th><?= $model->labs->{"lab$i"} ? date('m.d.Y H:i', $model->labs->{"lab$i"}->created_at) : '' ?></th>
                 <th><?= $model->labs->{"lab$i"} ? '<a href="' . $model->labs->{"lab$i"}->file_path . '" target="_blank">Отчет</a>' : '' ?></th>
             </tr>
         <?php endfor; ?>

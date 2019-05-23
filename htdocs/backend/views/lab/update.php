@@ -7,7 +7,7 @@ use \yii\helpers\Url;
  * @var $lab \common\models\Lab
  */
 
-$this->registerJsFile("@web/js/schemePreview.js");
+$this->registerJsFile("@dir/js/schemePreview.js");
 
 $this->title = 'ЛР №' . $lab->id . '. ' . $lab->name;
 $this->params['breadcrumbs'][] = ['label' => 'Лабораторные работы', 'url' => ['lab/index']];

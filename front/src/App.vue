@@ -25,7 +25,7 @@
 
     data: function () {
       return {
-        signal_url: "/api/signal/",
+        signal_url: "/api/lab/signal/",
         signal: null,
         isHomeTraining: true
       };

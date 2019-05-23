@@ -4,7 +4,7 @@
  * @var $scheme \common\models\Scheme
  */
 
-$this->registerJsFile("@web/js/scheme.js");
+$this->registerJsFile("@dir/js/scheme.js");
 
 $this->title = 'ЛР №' . $scheme->lab->id . '. ' . $scheme->lab->name;
 $this->params['breadcrumbs'][] = ['label' => 'Лабораторные работы', 'url' => ['lab/index']];
