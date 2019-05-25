@@ -41,9 +41,9 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-        $menuItemsLeft[] = ['label' => 'Преподаватели', 'url' => Yii::$app->urlManager->createUrl(["teacher/index"])];
         $menuItemsLeft[] = ['label' => 'Студенты', 'url' => Yii::$app->urlManager->createUrl(["group/index"])];
         $menuItemsLeft[] = ['label' => 'Лабораторные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
+        $menuItemsLeft[] = ['label' => 'Преподаватели', 'url' => Yii::$app->urlManager->createUrl(["teacher/index"])];
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

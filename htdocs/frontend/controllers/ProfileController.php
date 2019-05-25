@@ -6,10 +6,30 @@ use common\models\Lab;
 use common\models\LabResults;
 use common\models\Student;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\NotAcceptableHttpException;
 
 class ProfileController extends \yii\web\Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['student'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         if (Yii::$app->user->can('viewAdminPage')) {

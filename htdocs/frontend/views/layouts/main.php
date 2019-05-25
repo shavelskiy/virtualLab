@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -42,7 +43,10 @@ AppAsset::register($this);
     } else {
         $menuItemsLeft[] = ['label' => 'Доступные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
 
-        $menuItemsRight[] = ['label' => 'Личный кабинет', 'url' => Yii::$app->urlManager->createUrl(["profile/index"])];
+        if (! Yii::$app->user->can('viewAdminPage')) {
+            $menuItemsRight[] = ['label' => 'Личный кабинет', 'url' => Yii::$app->urlManager->createUrl(["profile/index"])];
+        }
+
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

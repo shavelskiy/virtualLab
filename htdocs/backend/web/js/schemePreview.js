@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $.ajax({
                 method: 'GET',
                 data: {'schemeId': Number($(this).attr('data-id'))},
-                url: '/frontend/web/scheme/info',
+                url: '/api/scheme/info',
                 success: function (info) {
                     context.clearRect(0, 0, canvas.width, canvas.height)
                     data = info

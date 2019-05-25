@@ -24,7 +24,7 @@
             var list = this;
 
             $.ajax({
-                url: '/frontend/web/lab/components/',
+                url: '/api/scheme/components/',
                 success: function (data) {
                     var components = data;
                     var html = '<select class="form-control mt-2" name="task[{type}][{parentId}][items][new][{sort}][component]"><option></option>';

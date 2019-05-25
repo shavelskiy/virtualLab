@@ -55,7 +55,7 @@
         description: "/api/task/",
         page: 1,
         tasks: null,
-        canFinish: false,
+        canFinish: true,
         titlePdfOpt: {
           margin: [10, 0, 10, 0],
           filename: 'title.pdf',

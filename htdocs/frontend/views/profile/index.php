@@ -16,6 +16,7 @@ $this->title = 'Личный кабинет'
 <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
+        'group.name',
         'last_name',
         'name',
         'middle_name',
