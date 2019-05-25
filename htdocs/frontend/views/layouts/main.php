@@ -41,6 +41,8 @@ AppAsset::register($this);
         $menuItemsRight[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
         $menuItemsLeft[] = ['label' => 'Доступные работы', 'url' => Yii::$app->urlManager->createUrl(["lab/index"])];
+
+        $menuItemsRight[] = ['label' => 'Личный кабинет', 'url' => Yii::$app->urlManager->createUrl(["profile/index"])];
         $menuItemsRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

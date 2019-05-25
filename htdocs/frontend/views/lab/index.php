@@ -1,6 +1,6 @@
 <?php $this->title = 'Доступные работы'; ?>
 
-<h2 class="text-center mb-5 mt-2">Доступные работы</h2>
+<h2 class="text-center mb-5 mt-2"><?= $this->title ?></h2>
 
 <?php if (!empty($activeLabs)): ?>
     <?php foreach ($activeLabs as $lab): ?>

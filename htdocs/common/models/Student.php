@@ -76,7 +76,7 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return StudentLabs|null
      */
     public function getLabs()
     {

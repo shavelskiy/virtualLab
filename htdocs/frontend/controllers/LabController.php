@@ -21,20 +21,12 @@ class LabController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['index', 'lab', 'title-info', 'result'],
                         'allow' => true,
                         'roles' => ['student'],
-                    ],
-                    [
-                        'actions' => [
-                            'task',
-                            'signal',
-                            'components'
-                        ],
-                        'allow' => true,
                     ],
                 ],
             ],

@@ -6,6 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
 /* @var $group common\models\Group */
+/* @var $studentLabs array */
 
 $this->title = $model->last_name . ' ' . $model->name . ' ' . $model->middle_name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['group/index']];
@@ -47,20 +48,24 @@ $this->params['breadcrumbs'][] = ['label' => $this->title]; ?>
         ],
     ]) ?>
 
-    <table id="w0" class="table table-striped table-bordered detail-view">
+    <table class="table table-striped table-bordered detail-view">
         <tbody>
         <tr>
-            <th style="width: 220px">Название</th>
-            <th>Дата прохождения</th>
-            <th style="width: 100px">Отчет</th>
+            <th class="text-center" style="width: 220px">Название</th>
+            <th class="text-center" style="width: 220px">Статус</th>
+            <th class="text-center" style="width: 220px">Дата прохождения</th>
+            <th class="text-center" style="width: 220px">Количество попыток</th>
+            <th class="text-center" style="width: 100px"></th>
         </tr>
-        <?php for ($i = 1; $i <= 8; $i++): ?>
+        <?php foreach ($studentLabs as $studentLab): ?>
             <tr>
-                <th>Лабораторная работа №<?= $i ?></th>
-                <th><?= $model->labs->{"lab$i"} ? date('m.d.Y H:i', $model->labs->{"lab$i"}->created_at) : '' ?></th>
-                <th><?= $model->labs->{"lab$i"} ? '<a href="' . $model->labs->{"lab$i"}->file_path . '" target="_blank">Отчет</a>' : '' ?></th>
+                <th class="text-center">Лабораторная работа №<?= $studentLab['lab_id'] ?></th>
+                <th class="text-center"><?= $studentLab['status'] ?></th>
+                <th class="text-center"><?= $studentLab['date_create'] ?? '-' ?></th>
+                <th class="text-center"><?= $studentLab['attempts'] ?></th>
+                <th class="text-center"><?= $studentLab['href'] ? '<a href="' . $studentLab['href'] . '" target="_blank">Отчет</a>' : '-' ?></th>
             </tr>
-        <?php endfor; ?>
+        <?php endforeach; ?>
         </tbody>
     </table>
 </div>

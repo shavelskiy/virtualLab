@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\models\Lab;
+use common\models\LabResults;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -62,9 +64,39 @@ class StudentController extends Controller
     public function actionView($id)
     {
         $model = $this->findStudent($id);
+
+        $studentLabs = [];
+
+        foreach (Lab::find()->all() as $lab) {
+            $finish = false;
+
+            /** @var LabResults $studentLab */
+            if ($studentLab = $model->labs->{'lab' . $lab->id}) {
+                $attempts = $studentLab->attempts;
+                if ($studentLab->success) {
+                    $finish = true;
+                    $status = 'Выполнено';
+                } else {
+                    $status = 'В процессе';
+                }
+            } else {
+                $status = 'Не начато';
+                $attempts = 0;
+            }
+
+            $studentLabs[] = [
+                'lab_id' => $lab->id,
+                'status' => $status,
+                'date_create' => $finish ? date('d.m.Y H:i', $studentLab->created_at) : null,
+                'href' => $finish ? $studentLab->file_path : null,
+                'attempts' => $attempts
+            ];
+        }
+
         return $this->render('view', [
             'model' => $model,
-            'group' => $model->group
+            'group' => $model->group,
+            'studentLabs' => $studentLabs
         ]);
     }
 
