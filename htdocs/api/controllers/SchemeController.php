@@ -84,6 +84,7 @@ class SchemeController extends Controller
     }
 
     /**
+     * Получить списко всех доступных компонентов
      * @return array
      */
     public function actionComponents()

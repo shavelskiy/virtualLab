@@ -37,6 +37,7 @@ class LabController extends Controller
     }
 
     /**
+     * возвращает тип сигнала в текущей работе
      * @return array
      */
     public function actionSignal()
@@ -53,6 +54,11 @@ class LabController extends Controller
         return $result;
     }
 
+    /**
+     * сохранить отчет по работе
+     * @return array|null
+     * @throws \Exception
+     */
     public function actionResult()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

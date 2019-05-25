@@ -1,5 +1,8 @@
 <template>
   <div id="task">
+    <div class="alert alert-primary" role="alert" v-if="!canFinish">
+      Режим просмотра работы. Отсутствует возможность отправить отчет!
+    </div>
     <div v-for="task in tasks" :key="task.id">
       <div class="container mb-5 to-print" v-show="task.num === page">
         <h3 v-html="task.num + '. ' + task.name"></h3>
@@ -22,7 +25,7 @@
                   @click="changePage(Number(task.num) + 1)"
                   v-if="Number(task.num) !== maxPage"
           >Далее</button>
-          <button class="btn btn-primary" v-if="Number(task.num) === maxPage" v-on:click="finishLab">Закончить</button>
+          <button class="btn btn-primary" v-if="(Number(task.num) === maxPage) && canFinish" v-on:click="finishLab">Закончить</button>
         </div>
         <hr>
       </div>
@@ -52,6 +55,7 @@
         description: "/api/task/",
         page: 1,
         tasks: null,
+        canFinish: false,
         titlePdfOpt: {
           margin: [10, 0, 10, 0],
           filename: 'title.pdf',
@@ -116,7 +120,8 @@
 
     created: function () {
       this.$http.get(this.description).then(function (response) {
-        this.tasks = response.data;
+        this.tasks = response.data.task;
+        this.canFinish = response.data.can_finish;
       });
     }
   };

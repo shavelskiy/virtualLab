@@ -42,18 +42,27 @@ class LabController extends Controller
     }
 
     /**
+     * Получить список доступных лабораторных работ
      * @return string
      */
     public function actionIndex()
     {
         if (Yii::$app->user->can('viewAdminPage')) {
-            $activeLabs = Lab::find()->all();
+            $labs = Lab::find()->all();
         } else {
-            $activeLabs = User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs;
+            $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
+
+            $labs = [];
+            /** @var Lab $activeLab */
+            foreach (User::findOne(Yii::$app->user->id)->student->group->labs->activeLabs as $activeLab) {
+                if (!(isset($student->labs->{'lab' . $activeLab->id})) || !($student->labs->{'lab' . $activeLab->id}->success)) {
+                    $labs[] = $activeLab;
+                }
+            }
         }
 
         return $this->render('index', [
-            'activeLabs' => $activeLabs
+            'activeLabs' => $labs
         ]);
     }
 
@@ -68,33 +77,35 @@ class LabController extends Controller
         if ($session->has('lab_number')) {
             $session->remove('lab_number');
         }
+        $session->set('lab_number', $number);
 
-        $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
+        if (!Yii::$app->user->can('viewAdminPage')) {
+            $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
 
-        if (!$student->group->labs->{"lab$number"}) {
-            throw new NotFoundHttpException('Лабораторная работа недоступна');
-        }
-
-        $studentLabs = $student->labs;
-
-        /** @var LabResults $labResult */
-        if ($labResult = $studentLabs->{"lab$number"}) {
-            if ($labResult->success) {
-                throw new NotFoundHttpException('Лабораторная работа уже выполнена');
+            if (!$student->group->labs->{"lab$number"}) {
+                throw new NotFoundHttpException('Лабораторная работа недоступна');
             }
 
-            $labResult->attempts = $labResult->attempts + 1;
-            $labResult->save();
-        } else {
-            $labResult = new LabResults();
-            $labResult->attempts = 1;
-            $labResult->success = false;
-            $labResult->save();
-            $studentLabs->{"lab$number" . "_id"} = $labResult->id;
-            $studentLabs->save();
+            $studentLabs = $student->labs;
+
+            /** @var LabResults $labResult */
+            if ($labResult = $studentLabs->{"lab$number"}) {
+                if ($labResult->success) {
+                    throw new NotFoundHttpException('Лабораторная работа уже выполнена');
+                }
+
+                $labResult->attempts = $labResult->attempts + 1;
+                $labResult->save();
+            } else {
+                $labResult = new LabResults();
+                $labResult->attempts = 1;
+                $labResult->success = false;
+                $labResult->save();
+                $studentLabs->{"lab$number" . "_id"} = $labResult->id;
+                $studentLabs->save();
+            }
         }
 
-        $session->set('lab_number', $number);
         return $this->render('lab', ['lab' => Lab::findOne($number)]);
     }
 }

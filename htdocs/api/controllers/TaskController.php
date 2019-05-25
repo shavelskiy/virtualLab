@@ -41,21 +41,29 @@ class TaskController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $session = Yii::$app->session;
-        $result = [];
+        $result = [
+            'task' => null,
+            'can_finish' => !Yii::$app->user->can('viewAdminPage')
+        ];
 
         if ($session->has('lab_number')) {
-            $result = LabItems::find()->tree($session->get('lab_number'));
+            $result['task'] = LabItems::find()->tree($session->get('lab_number'));
         }
 
         return $result;
     }
 
+    /**
+     * получить информацию для титольного листа
+     * @return array
+     */
     public function actionTitleInfo()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $session = Yii::$app->session;
         $result = [];
+        $isAdmin = Yii::$app->user->can('viewAdminPage');
 
         if ($session->has('lab_number')) {
             $lab = Lab::findOne($session->get('lab_number'));
@@ -64,10 +72,10 @@ class TaskController extends Controller
             $result = [
                 'number' => $lab->id,
                 'name' => $lab->name,
-                'studentName' => $student->exportName,
-                'studentGroup' => $student->group->name,
-                'studentVariant' => $student->variant,
-                'teacherName' => $student->teacher,
+                'studentName' => ($isAdmin) ? '' : $student->exportName,
+                'studentGroup' => ($isAdmin) ? '' : $student->group->name,
+                'studentVariant' => ($isAdmin) ? '' : $student->variant,
+                'teacherName' => ($isAdmin) ? '' : $student->teacher,
                 'year' => date('Y')
             ];
         }
