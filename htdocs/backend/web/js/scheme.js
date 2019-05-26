@@ -73,10 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 point.y = Number($(this).find('.circuit-y').val())
 
                 points.push(point)
-
-                if ($(this).attr('data-id')) {
-                    sort++
-                }
+                sort++
             })
 
             curCircuit.parentId = $(this).find('.circuit-remove').attr('data-parent-id')
