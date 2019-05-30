@@ -107,6 +107,18 @@ export default {
       }
 
       this.context.font = "bold 16px sans-serif";
+      for (key in this.schemeInfo[num].elements) {
+        let element = this.schemeInfo[num].elements[key];
+        this.drawElement(
+                element.type,
+                element.x,
+                element.y,
+                element.vertical,
+                element.name
+        );
+      }
+
+      this.context.font = "bold 16px sans-serif";
       for (key in this.schemeInfo[num].texts) {
         let element = this.schemeInfo[num].texts[key];
         this.context.fillText(element.text, element.x, element.y);
@@ -136,18 +148,6 @@ export default {
           element.text,
           element.x + offsetX,
           element.y + offsetY
-        );
-      }
-
-      this.context.font = "bold 16px sans-serif";
-      for (key in this.schemeInfo[num].elements) {
-        let element = this.schemeInfo[num].elements[key];
-        this.drawElement(
-          element.type,
-          element.x,
-          element.y,
-          element.vertical,
-          element.name
         );
       }
 
