@@ -13,8 +13,6 @@ class SiteController extends Controller
 {
     public function actionError()
     {
-        var_dump('test');
-        die;
         throw new NotFoundHttpException();
     }
 }
