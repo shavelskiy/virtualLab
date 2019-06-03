@@ -38,8 +38,6 @@ class SchemeController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $session = Yii::$app->session;
         $result = [];
 
@@ -70,8 +68,6 @@ class SchemeController extends Controller
      */
     public function actionInfo($schemeId)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $scheme = Scheme::findOne($schemeId);
         $result = [
             'circuits' => $scheme->getSchemeCircuitsArray(),
@@ -89,8 +85,6 @@ class SchemeController extends Controller
      */
     public function actionComponents()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $components = Component::find()->all();
         $result = ArrayHelper::map($components, 'id', 'name');
 

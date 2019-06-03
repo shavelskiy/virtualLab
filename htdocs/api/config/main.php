@@ -16,6 +16,9 @@ return [
             'csrfParam' => '_csrf-api',
             'baseUrl' => '/api'
         ],
+        'response' => [
+            'format' => \yii\web\Response::FORMAT_JSON,
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

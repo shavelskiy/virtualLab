@@ -42,7 +42,6 @@ class LabController extends Controller
      */
     public function actionSignal()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $session = Yii::$app->session;
         $result = [];
 
@@ -61,7 +60,6 @@ class LabController extends Controller
      */
     public function actionResult()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->response->statusCode = 400;
 
         $session = Yii::$app->session;

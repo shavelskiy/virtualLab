@@ -38,8 +38,6 @@ class TaskController extends Controller
      */
     public function actionIndex()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $session = Yii::$app->session;
         $result = [
             'task' => null,
@@ -59,8 +57,6 @@ class TaskController extends Controller
      */
     public function actionTitleInfo()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $session = Yii::$app->session;
         $result = [];
         $isAdmin = Yii::$app->user->can('viewAdminPage');
