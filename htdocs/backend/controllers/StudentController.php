@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Lab;
 use common\models\LabResults;
+use common\models\StudentLabs;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -116,7 +117,18 @@ class StudentController extends Controller
 
                 $student->user_id = $user->id;
                 $student->group_id = $groupId;
+
+                // Создаём лабораторные работы перед сохранение студента
+                $labs = new StudentLabs();
+                $labs->save();
+                $student->labs_id = $labs->id;
+
                 $student->save();
+
+                // После сохранения присваиваем роль студента
+                $auth = Yii::$app->authManager;
+                $studentRole = $auth->getRole('student');
+                $auth->assign($studentRole, $student->user_id);
 
                 return $this->redirect(['index', 'groupId' => $groupId]);
             }
