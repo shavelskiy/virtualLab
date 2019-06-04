@@ -288,6 +288,7 @@
 
             if (signal === 'sinusoidal') {
               y = getSin(time);
+              y = (y) ? y : 0;
             } else if (signal === 'rectangular') {
               y = getRec(time);
             }

@@ -6,32 +6,12 @@ use common\models\Lab;
 use common\models\Student;
 use common\models\LabItems;
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 
 
 class TaskController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'actions' => ['index', 'title-info'],
-                        'allow' => true,
-                        'roles' => ['student'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     /**
      * получить задание для работы
      * @return array
