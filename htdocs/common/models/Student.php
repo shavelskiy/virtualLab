@@ -84,33 +84,6 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
-     * Создаём лабораторные работы перед сохранение студента
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-        $labs = new StudentLabs();
-        $labs->save();
-        $this->labs_id = $labs->id;
-        return parent::beforeSave($insert);
-    }
-
-    /**
-     * После сохранения присваиваем роль студента
-     * @param bool $insert
-     * @param array $changedAttributes
-     * @throws \Exception
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        $auth = Yii::$app->authManager;
-        $studentRole = $auth->getRole('student');
-        $auth->assign($studentRole, $this->user_id);
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    /**
      *
      * @param $activity
      * @param $number
