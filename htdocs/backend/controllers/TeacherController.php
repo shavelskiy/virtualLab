@@ -2,15 +2,14 @@
 
 namespace backend\controllers;
 
-use Yii;
-use yii\data\ActiveDataProvider;
-use yii\helpers\VarDumper;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
+use backend\models\SignupForm;
 use common\models\Student;
 use common\models\Teacher;
-use backend\models\SignupForm;
+use Yii;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * TeacherController implements the CRUD actions for Teacher model.
@@ -93,6 +92,10 @@ class TeacherController extends Controller
                 $user = $signUpForm->signup();
                 $teacher->user_id = $user->id;
                 $teacher->save();
+
+                $auth = Yii::$app->authManager;
+                $teacherRole = $auth->getRole('teacher');
+                $auth->assign($teacherRole, $teacher->user_id);
 
                 return $this->redirect(['view', 'id' => $teacher->id]);
             }

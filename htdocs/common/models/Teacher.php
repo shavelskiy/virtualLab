@@ -79,9 +79,9 @@ class Teacher extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $auth = Yii::$app->authManager;
-        $teacherRole = $auth->getRole('teacher');
-        $auth->assign($teacherRole, $this->user_id);
+//        $auth = Yii::$app->authManager;
+//        $teacherRole = $auth->getRole('teacher');
+//        $auth->assign($teacherRole, $this->user_id);
         parent::afterSave($insert, $changedAttributes);
     }
 
