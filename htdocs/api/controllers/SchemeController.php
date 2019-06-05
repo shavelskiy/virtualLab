@@ -6,32 +6,12 @@ use common\models\Component;
 use common\models\Lab;
 use common\models\Scheme;
 use Yii;
-use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\Response;
 
 class SchemeController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'actions' => ['index', 'info', 'components'],
-                        'allow' => true,
-                        'roles' => ['student'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Отдать все схемы для лабораторной на фронт
      * @return array

@@ -7,7 +7,6 @@ use common\models\LabResults;
 use common\models\Student;
 use Jurosh\PDFMerge\PDFMerger;
 use Yii;
-use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\Response;
@@ -16,25 +15,6 @@ use yii\web\Response;
 class LabController extends Controller
 {
     public $enableCsrfValidation = false;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'actions' => ['signal', 'result'],
-                        'allow' => true,
-                        'roles' => ['student'],
-                    ],
-                ],
-            ],
-        ];
-    }
 
     /**
      * возвращает тип сигнала в текущей работе
