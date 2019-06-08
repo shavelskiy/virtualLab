@@ -33,8 +33,6 @@ use yii\widgets\ActiveForm;
         <?= $form->field($labs, 'lab6')->checkbox(['label' => 'Лабораторная работа №6']) ?>
 
         <?= $form->field($labs, 'lab7')->checkbox(['label' => 'Лабораторная работа №7']) ?>
-
-        <?= $form->field($labs, 'lab8')->checkbox(['label' => 'Лабораторная работа №8']) ?>
     <?php endif; ?>
 
     <hr>

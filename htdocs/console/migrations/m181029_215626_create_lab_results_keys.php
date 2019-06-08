@@ -74,15 +74,6 @@ class m181029_215626_create_lab_results_keys extends Migration
             'id',
             'CASCADE'
         );
-
-        $this->addForeignKey(
-            'fk-student_labs-lab8_id',
-            'student_labs',
-            'lab8_id',
-            'lab_results',
-            'id',
-            'CASCADE'
-        );
     }
 
     /**
@@ -122,11 +113,6 @@ class m181029_215626_create_lab_results_keys extends Migration
 
         $this->dropForeignKey(
             'fk-student_labs-lab7_id',
-            'student_labs'
-        );
-
-        $this->dropForeignKey(
-            'fk-student_labs-lab8_id',
             'student_labs'
         );
     }

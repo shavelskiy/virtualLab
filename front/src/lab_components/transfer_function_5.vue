@@ -124,9 +124,9 @@
             },
 
             drawGraph(canvas, context, func, offset, k, tableData) {
-                var f, isStart, x, y;
+                let f, w, isStart, x, y;
 
-                func = func.replace(/sqrt/g, 'Math.sqrt').replace(/atan/g, 'Math.atan').replace(/pi/g, 'Math.PI');
+                func = func.replace(/sqrt/g, 'Math.sqrt').replace(/pow/g, 'Math.pow').replace(/atan/g, 'Math.atan').replace(/pi/g, 'Math.PI');
 
                 isStart = true;
 
@@ -134,8 +134,9 @@
                 context.strokeStyle = 'rgb(255, 0, 0)';
                 context.beginPath();
 
-                for (f = 0; f <= 110; f++) {
-                    x = 50 + f * 2;
+                for (f = 0; f <= 1200; f++) {
+                    x = 50 + f / 4;
+                    w = 2 * Math.PI * f;
                     y = canvas.height - offset - eval(func) * k;
                     if (isStart) {
                         context.moveTo(x, y);
@@ -264,7 +265,7 @@
                 context.font = "bold 16px sans-serif";
                 context.fillText("0", 38, canvas.height - offset + 16);
                 context.fillText("f, кГц", canvas.width - 80, canvas.height - offset + 20);
-                context.fillText("100", canvas.width - 150, canvas.height - offset + 22);
+                context.fillText("1", canvas.width - 150, canvas.height - offset + 22);
 
                 if (offset > 100) {
                     context.fillText("P", 20, 65);

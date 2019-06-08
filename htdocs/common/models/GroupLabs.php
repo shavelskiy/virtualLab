@@ -19,7 +19,6 @@ namespace common\models;
  * @property boolean $lab5
  * @property boolean $lab6
  * @property boolean $lab7
- * @property boolean $lab8
  **
  * @property Group $group
  *
@@ -41,7 +40,7 @@ class GroupLabs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8'], 'required'],
+            [['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7'], 'required'],
         ];
     }
 
@@ -55,7 +54,6 @@ class GroupLabs extends \yii\db\ActiveRecord
         $this->lab5 = false;
         $this->lab6 = false;
         $this->lab7 = false;
-        $this->lab8 = false;
     }
 
     public function getLab1Active()
@@ -93,11 +91,6 @@ class GroupLabs extends \yii\db\ActiveRecord
         return ($this->lab7) ? 'Да' : 'Нет';
     }
 
-    public function getLab8Active()
-    {
-        return ($this->lab8) ? 'Да' : 'Нет';
-    }
-
     public function getActiveLabs()
     {
         $labs = [];
@@ -121,9 +114,6 @@ class GroupLabs extends \yii\db\ActiveRecord
         }
         if ($this->lab7) {
             $labs[7] = Lab::findOne(7);
-        }
-        if ($this->lab8) {
-            $labs[8] = Lab::findOne(8);
         }
 
         return $labs;

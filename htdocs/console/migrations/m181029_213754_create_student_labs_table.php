@@ -26,7 +26,6 @@ class m181029_213754_create_student_labs_table extends Migration
             'lab5_id' => $this->integer(),
             'lab6_id' => $this->integer(),
             'lab7_id' => $this->integer(),
-            'lab8_id' => $this->integer()
         ], $tableOptions);
     }
 

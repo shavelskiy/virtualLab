@@ -26,7 +26,6 @@ class m181029_213742_create_group_labs_table extends Migration
             'lab5' => $this->boolean()->notNull(),
             'lab6' => $this->boolean()->notNull(),
             'lab7' => $this->boolean()->notNull(),
-            'lab8' => $this->boolean()->notNull(),
         ], $tableOptions);
     }
 

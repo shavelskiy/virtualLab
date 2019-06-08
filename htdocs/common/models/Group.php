@@ -90,9 +90,9 @@ class Group extends \yii\db\ActiveRecord
      */
     public function getTeachers()
     {
-        $names =  $this->teacher1;
+        $names = $this->teacher1;
         if ($this->teacher2_id) {
-            $names = $names . '<br>' . $this->teacher2;
+            $names .= $names . '<br>' . $this->teacher2;
         }
         return $names;
     }

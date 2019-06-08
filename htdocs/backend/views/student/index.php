@@ -81,11 +81,6 @@ if (Yii::$app->user->can('deleteStudent')) {
                 'label' => 'Лаб. №7',
                 'format' => 'html',
             ],
-            [
-                'attribute' => 'labs.lab8.result',
-                'label' => 'Лаб. №8',
-                'format' => 'html',
-            ],
             'teacher',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => $buttonsTemplate],

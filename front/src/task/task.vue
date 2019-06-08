@@ -38,7 +38,8 @@
   import Vue from 'vue';
   import graphTable from "../lab_components/table_1.vue";
   import graph from "../lab_components/graph_1.vue";
-  import transfer_functions from "../lab_components/transfer_functions_5_6";
+  import transfer_function_4 from "../lab_components/transfer_function_4";
+  import transfer_function_5 from "../lab_components/transfer_function_5";
   import {bus} from "../bus.js";
 
   export default {
@@ -47,7 +48,8 @@
     components: {
       graphTable: graphTable,
       graph: graph,
-      transfer_functions: transfer_functions
+      transfer_function_4: transfer_function_4,
+      transfer_function_5: transfer_function_5
     },
 
     data() {

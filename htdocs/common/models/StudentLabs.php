@@ -19,7 +19,6 @@ namespace common\models;
  * @property int $lab5_id
  * @property int $lab6_id
  * @property int $lab7_id
- * @property int $lab8_id
  **
  * @property Student $student
  *
@@ -30,7 +29,6 @@ namespace common\models;
  * @property LabResults $lab5
  * @property LabResults $lab6
  * @property LabResults $lab7
- * @property LabResults $lab8
  */
 class StudentLabs extends \yii\db\ActiveRecord
 {
@@ -75,18 +73,5 @@ class StudentLabs extends \yii\db\ActiveRecord
     public function getLab7()
     {
         return LabResults::findOne($this->lab7_id);
-    }
-
-    public function getLab8()
-    {
-        return LabResults::findOne($this->lab8_id);
-    }
-
-    public function afterDelete()
-    {
-        $labs = LabResults::findAll([$this->lab1_id, $this->lab2_id, $this->lab3_id, $this->lab4_id, $this->lab5_id, $this->lab6_id, $this->lab7_id, $this->lab8_id]);
-        foreach ($labs as $lab) {
-            $lab->delete();
-        }
     }
 }
