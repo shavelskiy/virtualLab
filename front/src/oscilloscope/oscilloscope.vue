@@ -150,8 +150,8 @@
             if (tmp) {
               if (this.signal === 'sinusoidal') {
                 try {
-                  re = eval(tmp.re);
-                  im = eval(tmp.im);
+                  re = eval(tmp.re.replace(/pow/g, 'Math.pow'));
+                  im = eval(tmp.im.replace(/pow/g, 'Math.pow'));
                   re = (re) ? re : 0;
                   im = (im) ? im : 0;
                 } catch (e) {
@@ -161,8 +161,8 @@
                 this.channels[i].amplitude = Math.sqrt(re * re + im * im);
                 this.channels[i].phase = (Math.atan(im / re) * 180) / Math.PI;
               } else if (this.signal === 'rectangular') {
-                this.channels[i].first_front = tmp.first_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
-                this.channels[i].second_front = tmp.second_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude');
+                this.channels[i].first_front = tmp.first_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude').replace(/pow/g, 'Math.pow');
+                this.channels[i].second_front = tmp.second_front.replace(/exp/g, 'Math.exp').replace(/A/g, 'generator.amplitude').replace(/pow/g, 'Math.pow');
               }
             } else {
               this.channels[i].amplitude = 0;
