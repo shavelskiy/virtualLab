@@ -10,7 +10,6 @@ use Yii;
  * @property int $id
  * @property int $lab_id
  * @property boolean $changeable_r
- * @property boolean $changeable_c
  *
  * @property SchemeCircuit[] $schemeCircuits
  * @property SchemeItem[] $schemeItems
@@ -212,7 +211,6 @@ class Scheme extends \yii\db\ActiveRecord
     {
         $scheme = Scheme::findOne($id);
         $scheme->changeable_r = $data['r'];
-        $scheme->changeable_c = $data['c'];
         $scheme->save();
 
         return true;

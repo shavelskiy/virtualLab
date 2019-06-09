@@ -1,0 +1,1654 @@
+1,1,1,1,2,1,"Ознакомиться с составом стенда, техническими характеристиками и правилами эксплуатации измерительных приборов.(см. Приложение)
+",,
+2,1,2,1,10,1,"Измерение внешней вольт-амперной характеристики (ВАХ)<br>реального источника постоянного напряжения",,
+3,1,3,1,14,1,"Определение эквивалентного сопротивления.",,
+4,1,4,1,8,1,"Определение эквивалентного сопротивления.",,
+5,1,4,2,3,2,"В схеме рис. 1.4 рассчитать с помощью законов Кирхгофа эквивалентное сопротивление относительно реального источника (активного двухполюсника) и<br>       определить его, используя омметр. (При этом реальный источник отключить от схемы).","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab1/1.4.png"" height=""150px"">
+        <p>Рис. 1.4 – Расчетная схема</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        E= 10 В<br>
+        r<sub>вн</sub> = 60 Ом<br>
+        R<sub>1</sub> = 1 кОм<br>
+        R<sub>2</sub> = 2 кОм<br>
+        R<sub>3</sub> = 10 кОм<br>
+        R<sub>4</sub> = 100 Ом<br>
+        R = 200 Ом
+    </div>
+</div>",
+6,1,4,4,5,2,"Определить эквивалентное сопротивление R<sub>экв</sub> относительно реального источника с помощью вольтметра.<br>       Измерить напряжение U и напряжение на резисторе R<sub>4</sub> в схеме рис. 1.4 для определения тока I.<br>       Сравнить полученное сопротивление R<sub>экв</sub> с рассчитанным по схеме и измеренным омметром (таблица 1.3).","<table class=""table table-bordered ml-5 table-p3-2"">
+            <thead>
+            <tr>
+                <td></td>
+                <td>Расчитанное R<sub>экв</sub></td>
+                <td>Измеренное R<sub>экв</sub> (п. 3.2)</td>
+                <td>Измеренное R<sub>экв</sub>В (п.3.1)</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>R<sub>экв</sub></td>
+                    <td class=""input volts""><input type=""text"" class=""form-control"" id=""lab1-p3.2-1""></td>
+                    <td class=""input volts""><input type=""text"" class=""form-control"" id=""lab1-p3.2-2""></td>
+                    <td class=""input volts""><input type=""text"" class=""form-control"" id=""lab1-p3.2-3""></td>
+            </tr>
+            </tbody>
+        </table>",
+7,1,4,6,7,2,"Записать законы Кирхгофа для данной схемы, обозначив на схеме направление токов в ветвях.",,
+8,1,2,2,3,2,"Выбрать электрическую цепь – рис. 1.1","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab1/1.1.png"">
+        <p>Рис. 1.1 – Схема для измерения внешней ВАХ реального источника</p>
+    </div>
+</div>",
+9,1,2,4,5,2," С помощью вольтметра измерить напряжение на зажимах источника, устанавливая величину сопротивления нагрузки от 50 до 900 Ом, а также<br>        напряжение на разомкнутых зажимах источника (режим холостого хода, R → ∞). По данным измерений рассчитать ток.<br>        Результаты измерений и расчетов свести в таблицу 1.1.","<p class=""text-right"">Таблица 1.1</p>",1
+10,1,2,6,7,2,"Построить измеренную внешнюю вольт-амперную характеристику реального источника. По полученной характеристике определить внутреннее<br>       сопротивление источника r<sub>вн</sub>.",,2
+11,1,2,8,9,2,"Нарисовать последовательную и параллельную схемы замещения реального источника,<br>       рассчитать их параметры U<sub>р</sub>,  I<sub>к</sub>, r<sub>вн</sub>, g<sub>вн</sub>.","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>р</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>к</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                r<sub>вн</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">Ом</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                g<sub>вн</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">См</label>
+        </div>
+    </div>
+</div>",
+12,1,3,2,3,2,"Согласно варианту аналитически рассчитать коэффициент деления резистивного делителя напряжения – рис. 1.2 (K<sup>V</sup> = U<sub>2</sub>/U<sub>1</sub> ).","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label ml-5"">
+                K<sup>V</sup> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+13,1,3,4,5,2,"Нарисовать схему рис.1.2 с источником постоянного напряжения и необходимыми приборами, для измерения напряжений и необходимыми приборами,<br>       для измерения напряжений U<sub>1</sub> и U<sub>2</sub>.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab1/1.2.png"">
+        <p>Рис. 1.4 – Схема резистивного делителя напряжения</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R<sub>1</sub> = 1 кОм<br>
+        R<sub>2</sub> = 800 Ом<br>
+    </div>
+</div>",
+14,1,3,6,7,2,"Выбрать схему рис.1.2. На входе схемы включить источник постоянного напряжения. Измерить напряжения U<sub>1</sub> и U<sub>2</sub>.<br>       Рассчитать коэффициент деления напряжения –  K<sup>V</sup> = U<sub>2</sub>/U<sub>1</sub> и сравнить с аналитически вычисленным значением в п. 3.1.","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                K<sup>V</sup> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+15,1,3,8,9,2,"Выбрать схему рис 1.3 с источник постоянного напряжения на входе.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab1/1.3.png"">
+        <p>Рис. 1.4 – Схема резистивного делителя токов</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R<sub>1</sub> = 1 кОм<br>
+        R<sub>2</sub> = 2 кОм<br>
+        R = 200 Ом<br>
+    </div>
+</div>",
+16,1,3,10,11,2,"Измерить напряжения U<sub>1</sub>, U<sub>2</sub>, U. По показаниям вольтметров определить токи I<sub>1</sub>, I<sub>2</sub>, I.","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+17,1,3,12,13,2,"Используя вторую формулу разброса, проверить полученный результат.","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+18,2,18,1,16,1,"Расчет разветвленной цепи постоянного тока.",,
+19,2,18,2,3,2,"Рассчитать указанный ток I<sub>x</sub>, применяя теорему об активном двухполюснике.","<div class=""row"">
+    <div class=""col-5 ml-5"">
+        <img src=""/data/uploads/lab2/2.1.png"" width=""400px"">
+        <p>Рис. 2.1 – Расчетные схема</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        E = 10 В<br>
+        r<sub>вн</sub> = 60 Ом<br>
+        R<sub>1</sub> = 1 кОм<br>
+        R<sub>2</sub> = 2 кОм<br>
+        R<sub>3</sub> = 10 кОм<br>
+        R<sub>4</sub> = 100 Ом<br>
+        R = 200 Ом<br>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>x</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+20,2,18,4,5,2,"Определение тока I<sub>x</sub> методом активного двухполюсника.","<div class=""row"">
+    <div class=""col-12 ml-5"">
+        <img src=""/data/uploads/lab2/2.2.png"">
+        <p>Рис. 2.2 - Схема для расчета токa I<sub>x</sub> методом активного двухполюсника.</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>x</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+21,2,18,6,7,2,"Определение R<sub>вх</sub>. Записать формулу для определение R<sub>вх</sub> в общем виде. Рассчитать R<sub>вх</sub>.","<div class=""row"">
+    <div class=""col-12 ml-5"">
+        <img src=""/data/uploads/lab2/2.3.png"">
+        <p>Рис. 2.3 - Схемы для расчета R<sub>вх</sub>.</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                R<sub>вх</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">Ом</label>
+        </div>
+    </div>
+</div>",
+22,2,18,8,9,2,"Определение U<sub>р</sub>. Записать формулу для определения U<sub>р</sub> в общем виде. Рассчитать U<sub>р</sub>. для своего варианта.","<div class=""row"">
+    <div class=""col-12 ml-5"">
+        <img src=""/data/uploads/lab2/2.4.png"">
+        <p>Рис. 2.4 - Схемы для расчета U<sub>р</sub>.</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>р</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+23,2,18,10,11,2,"Определить ток I<sub>х</sub> = E<sub>р</sub> / (R<sub>вх</sub> + R<sub>х</sub>)","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>x</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+24,2,18,12,13,2,"В схеме рис. 2.1 с известным током I<sub>х</sub> используя закон Ома и законы Кирхгофа.","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>3</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>4</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+25,2,18,14,15,2,"По найденным значениям токов ветвей определить потенциалы узлов φ<sub>1</sub>, φ<sub>2</sub> в схеме рис.2.1.
+","<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                φ<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div><div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                φ<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+26,2,26,1,12,1,"Экспериментальное определение параметров активного двухполюсника.",,
+27,2,26,2,3,2,"Выбрать схему для измерения напряжения холостого хода (разрыва), отобразив включение вольтметра. Провести измерения напряжения разрыва.","<div class=""row"">
+    <div class=""col-12 ml-5"">
+        <img src=""/data/uploads/lab2/2.5.png"">
+        <p>Рис. 2.5 - Схема для экспериментального определения U<sub>р</sub>.</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>р</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+28,2,26,4,5,2,"Выбрать схему для измерения тока короткого замыкания. Провести измерения тока короткого замыкания.","<div class=""row"">
+    <div class=""col-12 ml-5"">
+        <img src=""/data/uploads/lab2/2.6.png"">
+        <p>Рис. 2.6 - Схемы для экспериментального определения I<sub>кз</sub>.</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>кз</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+29,2,26,6,7,2,"По результатам измерений определить входное сопротивление цепи, относительно узлов присоединения ветви с искомым током.<br>      Сравнить полученную величину с данными теоретического расчета (п. 1.3).","<div class=""row ml-5"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-5 control-label px-3"">
+                R<sub>вх</sub> = U<sub>р</sub> / I<sub>кз</sub> = 
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">Ом</label>
+        </div>
+    </div>
+</div>",
+30,2,26,8,9,2,"По результатам измерений определить искомый ток I<sub>х</sub>. Сравнить полученную величину с данными теоретического расчета (п. 1.5).","<div class=""row ml-5"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-5 control-label px-3"">
+                I<sub>х</sub> = E<sub>р</sub> / (R<sub>вх</sub> + R<sub>х</sub>) = 
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>
+<p class=""text-right"">Таблица 2.2</p>
+<table class=""table table-bordered ml-5"">
+    <thead>
+        <tr>
+            <td>Результат</td>
+            <td>U<sub>р</sub></td>
+            <td>I<sub>кз</sub></td>
+            <td>R<sub>вх</sub></td>
+            <td>I<sub>х</sub></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>теория</td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td>эксперемент</td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+    </tbody>
+</table>",
+31,2,26,10,11,2,"Нарисовать схему, отобразив вольтметр для измерения потенциалов узлов. Провести измерения φ<sub>1</sub>, φ<sub>2</sub>.<br>
+       Определить ток I<sub>2</sub>.","<div class=""row ml-5"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                φ<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div><div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                φ<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>
+<div class=""row ml-5"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                I<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мА</label>
+        </div>
+    </div>
+</div>",
+32,3,32,1,8,1,"Расчет электрических цепей переменного тока символическим методом.",,
+33,3,32,2,3,2,"Для схемы рис. 3.1, полагая известным комплексные значения тока i (начальную фазу тока принять нулевой), записать в общем виде комплексные<br>       значения напряжения U<sub>вх</sub> и напряжения U<sub>R</sub> .","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab3/3.1.png"" width=""200px"">
+        <p>Рис. 3.1 – Последовательная цепь переменного тока</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1 кОм<br>
+        C = 5.6 нф
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>вх</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>R</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+34,3,34,1,10,1,"Измерение гармонических токов и напряжений в последовательной электрической цепи.",,
+35,3,34,2,3,2,"Выбрать электрическую цепь рис. 3.1, предусмотрев в качестве источника ЭДС генератор синусоидального напряжения с амплитудой 2В<br>       и частотой 10 кГц.",,
+36,3,32,4,5,2,"Для трех значений частот: 5, 10, 15 кГц рассчитать сопротивления реактивных элементов. В соответствии с выражениями, полученными в п. 1.1,<br>       определить модуль напряжения на резисторе, если действующее значение входного напряжения U<sub>вх</sub>=10 В.","<h6 class=""text-right"">Таблица 3.1</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center""><b>f, кГц</b></td>
+            <td class=""text-center""><b>5</b></td>
+            <td class=""text-center""><b>10</b></td>
+            <td class=""text-center""><b>30</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center""><b>X<sub>c</sub>, кОм</b></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+        </tr>
+        <tr>
+            <td class=""text-center""><b>U<sub>R</sub>, В</b></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+        </tr>
+    </tbody>
+</table>",
+37,3,32,6,7,2,"В последовательной RLC цепи – рис. 3.2 , считая известным действующее значение входного напряжения U<sub>вх</sub> = 10 В, записать в общем виде.<br>       Рассчитать ток цепи i (начальную фазу тока принять нулевой) и напряжения на всех элементах (таблицу 3.2).<br>       Записать мгновенные значения тока и напряжений цепи.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab3/3.2.png"" width=""300px"">
+        <p>Рис. 3.2 – Последовательная RLC цепь</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1 кОм<br>
+        L = 31 мГн<br>
+        C = 5.6 нф<br>
+        f = 5 кГц
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-6 control-label px-3"">
+                X<sub>C</sub> = 1 / (2 * π * f * C) =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-6 control-label px-3"">
+                X<sub>L</sub> = 2πf * L =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>
+<h6 class=""text-right"">Таблица 3.2</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center col-md-4""><b>Комплексные
+                    действующие значения тока и напряжений цепи при U<sub>вх</sub> = 10 В</b></td>
+            <td class=""text-center col-md-4""><b>Мгновенные значения тока и напряжений цепи</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-2 control-label px-3"">
+                        i<sub>R</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        i(t) =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-2 control-label px-3"">
+                        U<sub>R</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>R</sub>(t) =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-2 control-label px-3"">
+                        U<sub>C</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>C</sub>(t) =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-2 control-label px-3"">
+                        U<sub>L</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>L</sub>(t) =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-2 control-label px-3"">
+                        U =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U(t) =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>",
+38,3,34,4,5,2,"Подключить к цепи осциллограф для измерения входного напряжения (второй канал) и напряжения на резисторе (первый канал).<br>       Измерить амплитуды напряжений и сдвиг фаз между ними, приняв начальную фазу напряжения на резисторе равной нулю (Таблица 3.3).","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab3/3.3.png"" width=""200px"">
+    </div>
+</div>
+<h6 class=""text-right"">Таблица 3.3</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center col-md-4""><b>Напряжение [В]</b></td>
+            <td class=""text-center col-md-4""><b>Задержка [мкс]</b></td>
+            <td class=""text-center col-md-4""><b>Фазовый сдвиг [град]</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-4 control-label px-3"">
+                        U<sub>1</sub> = U<sub>вх</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-4 control-label px-3"">
+                        Δ t<sub>1 - 2</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        Φ<sub>1</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-4 control-label px-3"">
+                        U<sub>2</sub> = U<sub>R</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-4 control-label px-3"">
+                        Δ t<sub>2 - 2</sub> = 0
+                    </label>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        Φ<sub>2</sub> = 0
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p class=""ml-5"">где Φ =  Δ t° / T</p>",
+39,3,34,6,7,2,"По измерениям записать комплексные значения тока и входного напряжения. Рассчитать комплексное напряжение на реактивном элементе. ","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>вх</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                i<sub>вх</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>C</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+40,3,34,8,9,2,"По полученным данным определить сопротивление реактивного элемента, сопоставить его с теоретической величиной (таблица 3.1).","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                X<sub>C</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+41,3,41,1,10,1,"Исследование последовательной RLC цепи при воздействии синусоидального источника напряжения",,
+42,3,41,2,3,2,"Выбрать электрическую цепь рис. 3.2. В качестве источника напряжения включить генератор синусоидальных колебаний с амплитудой 2 В<br>       и указанной на рисунке частотой.",,
+43,3,41,4,5,2,"Подключить к цепи осциллограф для измерения амплитуд потенциалов в точках 1, 2, 3 и сдвига фаз между ними,<br>       приняв начальную фазу
+напряжения U<sub>R</sub> равной нулю. Записать результаты измерений комплексных значений потенциалов.","<h6 class=""text-right"">Таблица 3.4</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center col-md-3""><b>Напряжение [В]</b></td>
+            <td class=""text-center col-md-3""><b>Задержка [мкс]</b></td>
+            <td class=""text-center col-md-3""><b>Фазовый сдвиг [град]</b></td>
+            <td class=""text-center col-md-3""><b>Комплексные напряжения на элементах [В]</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        U<sub>1</sub> = U<sub>вх</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        Δ t<sub>1 - 3</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        Φ<sub>1</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>R</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        U<sub>2</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        Δ t<sub>2 - 3</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        Φ<sub>2</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>C</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        U<sub>3</sub> = U<sub>R</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-5 control-label px-3"">
+                        Δ t<sub>3 - 3</sub> = 0
+                    </label>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        Φ<sub>2</sub> = 0
+                    </label>
+                </div>
+            </td>
+            <td class=""text-center"">
+                <div class=""form-group"">
+                    <label class=""col-sm-3 control-label px-3"">
+                        U<sub>L</sub> =
+                    </label>
+                    <div class=""col-sm-5 px-0"">
+                        <input type=""text"" class=""form-control"">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>",
+44,3,41,6,7,2,"Определить комплексное входное сопротивление цепи на заданной частоте.","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                Z<sub>вх</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+45,3,41,8,9,2,"Изменяя частоту генератора добиться режима, при котором сдвиг фаз между напряжением на входе и током цепи равен нулю (Φ<sub>1 -3</sub> = 0).<br>       Записать значение этой частоты.","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                f =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+46,4,46,1,6,1,"Частотные характеристики RL, RC цепей",,
+47,4,46,2,3,2,"Для схемы четырехполюсника рис. 4.1 получить аналитические выражения комплексных передаточных функций.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab4/4.1.png"" width=""200px"">
+        <p>Рис. 4.1 – Схема четырехполюсников первого порядка.</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1100 Ом<br>
+        C = 5.6 нф
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                K<sub>U</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                A =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                Φ =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>
+<p>Рассчитать и построить АЧХ и ФЧХ схем. Отметить на полученных характеристиках граничную частоту четырехполюсника, как
+    фильтра. Определить тип фильтра.</p>
+<div class=""row ml-5"">
+    <div class=""form-group"">
+        <label class=""col-sm-3 control-label px-3"">
+            f =
+        </label>
+        <div class=""col-sm-5 px-0"">
+            <input type=""text"" class=""form-control"">
+        </div>
+    </div>
+</div>
+<div class=""row ml-5"">
+    <div class=""form-group"">
+        <label></label>Тип фильтра</label>
+        <select class=""form-control"">
+            <option>фильтр нижних частот</option>
+            <option>фильтр верхних частот</option>
+            <option>полосно-пропускающий фильтр</option>
+            <option>полосно-задерживающий фильтр</option>
+        </select>
+    </div>
+</div>",
+48,4,46,4,5,2,"К четырехполюснику рис. 4.1 подключить нагрузку . Рассчитать АЧХ и ФЧХ схемы.","<div class=""row"">
+    <div class=""col-5 ml-5"">
+        <img src=""/data/uploads/lab4/4.2.png"" width=""300px"">
+        <p>Рис. 4.2 – Схема четырехполюсника первого порядка с нагрузкой.</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1100 Ом<br>
+        C = 5.6 нф<br>
+        R<sub>Н</sub> = 2 кОм
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                A =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                Φ =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+49,4,49,1,10,1,"Экспериментальное определение частотных характеристик цепей первого порядка",,
+50,4,49,2,3,2,"Выбрать электрическую цепь рис. 4.1, подключив к входу фильтра генератор синусоидального напряжения с амплитудой 5 В.<br>       Подключить к цепи осциллограф для измерения входного напряжения (первый канал) и выходного напряжения (второй канал).",,
+51,4,49,4,5,2,"Изменяя частоту генератора, измерить амплитуды напряжений и сдвиг фаз между ними, приняв начальную фазу входного напряжения<br>       равной нулю. Результаты представить в виде таблицы 4.1 (f<sub>0</sub> – теоретически полученное значение граничной частоты).<br>       Нанести экспериментально полученные точки АЧХ и ФЧХ на теоретически построенные зависимости.","<h6 class=""text-right"">Таблица 4.1</h6>",3
+52,4,49,6,7,2,"Выбрать электрическую цепь рис. 4.2 (в соответствии с вариантом), подключив к входу фильтра генератор синусоидального<br>       напряжения с амплитудой 5 В.",,
+53,4,49,8,9,2,"Произвести необходимые измерения для получения экспериментальной АЧХ и ФЧХ фильтра. Данные представить в таблице 4.2.<br>       Нанести результат на теоретически полученную характеристику.",,3
+54,5,54,1,6,1,"Подготовка к работе",,
+55,5,54,2,3,2,"Получить аналитическое выражение для комплексной передаточной функции RLC цепи – рис. 5.1.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab5/5.1.png"" width=""300px"">
+        <p>Рис. 5.1 – Схема фильтра второго порядка.</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1100 Ом<br>
+        C = 5.6 нф<br>
+        L<sub>K</sub> = 31 мГн<br>
+        R<sub>K</sub> = 110 Ом
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                K<sub>U</sub> =
+            </label>
+            <div class=""col-sm-9 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+</div>",
+56,5,54,4,5,2,"Определить резонансную линейную частоту и добротность контура","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                ω<sub>0</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                f<sub>0</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                Q =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+57,5,57,1,12,1,"Экспериментальное определение частотных характеристик цепей
+второго порядка",,
+58,5,57,2,3,2,"Выбрать электрическую цепь рис. 5.1 при заданном R (см.п.1.1). К входу фильтра подсоединить генератор синусоидального напряжения<br>       с амплитудой 5 В. Подключить к цепи осциллограф для измерения входного напряжения U1 (первый канал) и выходного напряжения U2 (второй канал).",,
+59,5,57,4,5,2,"Экспериментально определить резонансную частоту фильтра f<sub>0</sub> (сдвиг фаз между U<sub>2</sub> (током цепи) и напряжением U<sub>1</sub> на входе равен нулю). <br>       Измерить амплитуды входного и выходного напряжений на этой частоте.",,
+60,5,57,6,7,2,"Произвести необходимые измерения для получения АЧХ- H(f) и ФЧХ- φ(f) ,заполнив таблицу 5.3.","<h6 class=""text-right"">Таблица 5.3</h6>",4
+61,5,57,8,9,2,"Экспериментально определить граничные частоты фильтра f<sub>1</sub>, f<sub>2</sub> используя соотношения H( f<sub>1</sub>) = H( f<sub>2</sub>) = H(f<sub>0</sub>) / √2 (при постоянном напряжении на входе).","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                f<sub>1</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                f<sub>2</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+62,5,57,10,11,2,"По полученным данным п.2.2-2.4 определить добротность контура.","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                Q =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+63,6,63,1,10,1,"Временные характеристики цепей первого порядка",,
+64,6,63,2,3,2,"Для схемы рис. 6.2 получить зависимости изменения напряжения U<sub>2</sub>(t) в интервалах импульса и паузы для входного напряжения U<sub>1</sub>(t)<br>       прямоугольной формы – рис. 6.1.","<div class=""row"">
+    <div class=""col-5 ml-5"">
+        <img src=""/data/uploads/lab6/6.1.png"" width=""200px"">
+        <p>Рис. 6.1 – Форма входного напряжения</p>
+    </div>
+</div>
+<div class=""row"">
+    <div class=""col-5 ml-5"">
+        <img src=""/data/uploads/lab6/6.2.png"" width=""200px"">
+        <p>Рис. 6.2 – Схема цепей первого порядка</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1100 Ом<br>
+        C = 5.6 нФ
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>и</sub>(t) =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>п</sub>(t) =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+65,6,65,1,14,1,"Экспериментальное определение переходной функции цепи",,
+66,6,65,2,3,2,"Выбрать электрическую цепь рис. 6.2, подключив к входу цепи генератор напряжения прямоугольной формы рис. 6.1 (t<sub>и</sub> = t<sub>п</sub> = 0.5T) с амплитудой U<sub>1m</sub>= 1В<br>       и периодом T = 0.1 мс.",,
+67,6,63,4,5,2,"Определить постоянную времени цепи рис. 6.2 и рассчитать её значение.","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                τ =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мкс</label>
+        </div>
+    </div>
+</div>",
+68,6,63,6,7,2,"Подключить к цепи п.1.1 сопротивление нагрузки, как показано на рис.6.3. Получить зависимости напряжения U<sub>2</sub>(t) в интервалах импульса<br>       и паузы для входного напряжения U<sub>1</sub>(t) прямоугольной формы – рис. 6.1","<div class=""row"">
+    <div class=""col-5 ml-5"">
+        <img src=""/data/uploads/lab6/6.3.png"" width=""300px"">
+        <p>Рис. 6.3 – Схема цепей первого порядка</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R = 1100 Ом<br>
+        C = 5.6 нФ<br>
+        R<sub>н</sub> = 2 кОм
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>и</sub>(t) =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                U<sub>п</sub>(t) =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+69,6,63,8,9,2,"Рассчитать значение постоянной времени цепи рис. 6.3 . Определить установившееся значение выходного напряжения u<sub>2уст</sub><br>       в интервалах импульса и паузы.","<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                τ =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">мкс</label>
+        </div>
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                u<sub>2уст</sub> =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">В</label>
+        </div>
+    </div>
+</div>",
+70,6,65,4,5,2,"Подключить к цепи осциллограф для измерения входного напряжения (первый канал) и выходного напряжения (второй канал).<br>       Получить экспериментальные кривые напряжения U<sub>2</sub>(t) и напряжения [U<sub>2</sub>(t) - U<sub>1</sub>(t)] Совместить на экране осциллографа кривые этих напряжений<br>       с кривой входного напряжения.",,
+71,6,65,6,7,2,"По полученным данным определить установившееся значение выходного напряжения U<sub>2уст</sub> и постоянную времени τ	 в интервалах импульса и паузы.<br>       Результаты свести в таблицу 6.1.","<h6 class=""ml-5"">Таблица 6.1</h6>
+<table class=""table table-bordered ml-5"" style=""width: 500px"">
+    <thead>
+        <tr>
+            <td class=""text-center"">Параметр</td>
+            <td class=""text-center"">U<sub>2уст</sub>, В</td>
+            <td class=""text-center"">τ, мкс</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center"" rowspan=""2"">Расчет</td>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Импульс -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Пауза -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""text-center"" rowspan=""2"">Эксперемент</td>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Импульс -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Пауза -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+    </tbody>
+</table>",
+72,6,65,8,9,2,"Выбрать электрическую цепь рис. 6.3, подключив к входу цепи генератор напряжения прямоугольной формы рис. 6.1 (t<sub>и</sub> = t<sub>п</sub> = 0.5T) с амплитудой U<sub>1m</sub> = 1В<br>       и периодом T = 0.1 мс.",,
+73,6,65,10,11,2,"Подключить к цепи осциллограф для измерения входного напряжения (первый канал) и выходного напряжения (второй канал).<br>       Получить экспериментальные кривые напряжения U<sub>2</sub>(t)",,
+74,6,65,12,13,2,"По полученным кривым определить установившееся значение выходного напряжения U<sub>2уст</sub> и постоянную времени τ в интервалах импульса и паузы.<br>       Результаты свести в таблицу 6.2.","<h6 class=""ml-5"">Таблица 6.2</h6>
+<table class=""table table-bordered ml-5"" style=""width: 500px"">
+    <thead>
+        <tr>
+            <td class=""text-center"">Параметр</td>
+            <td class=""text-center"">U<sub>2уст</sub>, В</td>
+            <td class=""text-center"">τ, мкс</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center"" rowspan=""2"">Расчет</td>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Импульс -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Пауза -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""text-center"" rowspan=""2"">Эксперемент</td>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Импульс -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+        <tr>
+            <td class=""input"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-5 control-label px-3"">
+                                Пауза -
+                            </label>
+                            <div class=""col-sm-5 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class=""input""><input type=""text"" class=""form-control value-input""></td>
+        </tr>
+    </tbody>
+</table>",
+75,7,75,1,8,1,"Временные характеристики RLC цепей",,
+76,7,75,2,3,2,"Для последовательной RLC цепи (рис. 8.1) получить характеристическое
+уравнение.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab7/7.1.png"" width=""400px"">
+        <p>Рис. 7.1 – Схема последовательного RLC контура</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        R<sub>к</sub> = 110 Ом<br>
+        C = 5.6 нф<br>
+        L<sub>к</sub> = 31 мГн<br>
+        R = 1100 Ом
+    </div>
+</div>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-4 control-label px-3"">
+                Z (p) =
+            </label>
+            <div class=""col-sm-8 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+        </div>
+    </div>
+</div>",
+77,7,75,4,5,2,"Показать, при каком соотношении параметров цепи переходной процесс имеет апериодический или колебательный характер.<br>       Вывести формулы для расчета коэффициента затухания и частоты свободных колебаний через параметры элементов цепи.<br>       Результаты представить в виде таблицы 8.2.","<h6 class=""text-right"">Таблица 7.1</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center""><b>Характеристическое уравнение</b></td>
+            <td class=""text-center""></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center""><b>Апериодический процесс</b></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+        </tr>
+        <tr>
+            <td class=""text-center""><b>Колебательный процесс</b></td>
+            <td class=""text-center input volts""><input type=""text"" class=""form-control""></td>
+        </tr>
+    </tbody>
+</table>",
+78,7,75,6,7,2,"Рассчитать корни характеристического уравнения цепи рис. 8.1 при R = 1100 Ом, записать соответствующие виды<br>       решений дифференциального уравнения.","<h6 class=""text-right"">Таблица 7.2</h6>
+<table class=""table table-bordered ml-5 table-p3-2"">
+    <thead>
+        <tr>
+            <td class=""text-center""><b>Корни</b></td>
+            <td class=""text-center""><b>Вид решения (в общем виде)</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""text-center input volts"" rowspan=""2"">
+                <input type=""text"" class=""form-control"" style=""height: 100%"">
+            </td>
+            <td class=""text-center input volts"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal col-md-12"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-2 control-label px-3"">
+                                Импульс -
+                            </label>
+                            <div class=""col-sm-9 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class=""text-center input volts"">
+                <div class=""row ml-4"">
+                    <div class=""form-horizontal col-md-12"">
+                        <div class=""form-group mb-0"">
+                            <label class=""col-sm-2 control-label px-3"">
+                                Пауза -
+                            </label>
+                            <div class=""col-sm-9 px-0"">
+                                <input type=""text"" class=""form-control"">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>",
+79,7,79,1,10,1,"Экспериментальное исследование переходных процессов в RLC цепи",,
+80,7,79,2,3,2,"Выбрать электрическую цепь рис. 7.1, предусмотрев в качестве источника генератор напряжения прямоугольной формы<br>       с амплитудой U<sub>1m</sub> =2 В. Установить частоту генератора такую, чтобы переходной процесс за время успевал завершиться.","<p class=""ml-5"">t<sub>и</sub> = t<sub>п</sub> = 0.5 T</p>
+<div class=""row ml-4"">
+    <div class=""form-horizontal"">
+        <div class=""form-group"">
+            <label class=""col-sm-3 control-label px-3"">
+                T =
+            </label>
+            <div class=""col-sm-5 px-0"">
+                <input type=""text"" class=""form-control"">
+            </div>
+            <label class=""col-sm-2 control-label pl-1"">с</label>
+        </div>
+    </div>
+</div>
+<div class=""row ml-4"">
+        <div class=""form-horizontal"">
+            <div class=""form-group"">
+                <label class=""col-sm-4 control-label px-3"">
+                    f = 1/T = 
+                </label>
+                <div class=""col-sm-5 px-0"">
+                    <input type=""text"" class=""form-control"">
+                </div>
+                <label class=""col-sm-2 control-label pl-1"">с</label>
+            </div>
+        </div>
+    </div>",
+81,7,79,4,5,2,"Подключить к цепи осциллограф для измерения входного напряжения (первый канал) и выходного напряжения (второй канал).<br>       Получить экспериментальные кривые напряжений.",,
+82,7,79,6,7,2,"Выбрать цепь рис.7.2. Установить параметры генератора как в п. 7.1.","<div class=""row"">
+    <div class=""col-4 ml-5"">
+        <img src=""/data/uploads/lab7/7.2.png"" width=""380px"">
+        <p>Рис. 7.2 – Схема RLC контура</p>
+    </div>
+    <div class=""col-5 mt-3 ml-5"">
+        L<sub>к</sub> = 31 мГн<br>
+        R<sub>к</sub> = 110 Ом<br>
+        C = 5.6 нф<br>
+        R = 1100 Ом
+    </div>
+</div>",
+83,7,79,8,9,2,"Подключить к цепи осциллограф для измерения входного напряжения (первый канал) и выходного напряжения (второй канал).<br>       Получить экспериментальные кривые напряжений.",,

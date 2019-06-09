@@ -31,17 +31,6 @@
             </div>
           </div>
         </div>
-        <div class="form-horizontal">
-          <div class="form-group" v-if="changeableC">
-            <label class="col-sm-3 control-label px-3">Изменить C</label>
-            <div class="col-sm-5 px-0">
-              <select class="form-control" v-model="changeableData.c" v-on:change="sendData">
-                <option value="10">10 мкФ</option>
-                <option value="20">20 мкФ</option>
-              </select>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -60,7 +49,6 @@ export default {
       schemeCol: null,
       changeableData: {
         r: 50,
-        c: 10
       },
       currentScheme: 0,
       canvas: null,
@@ -347,17 +335,6 @@ export default {
     changeableR: function() {
       if (this.schemeInfo) {
         if (this.schemeInfo[this.currentScheme]["changeable_r"]) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    },
-    changeableC: function() {
-      if (this.schemeInfo) {
-        if (this.schemeInfo[this.currentScheme]["changeable_c"]) {
           return true;
         } else {
           return false;

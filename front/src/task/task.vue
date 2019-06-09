@@ -94,6 +94,22 @@
           curElement.setAttribute('style', 'display: none');
         });
 
+        taskHtml.querySelectorAll('.print-100').forEach(function (curElement) {
+          curElement.setAttribute('style', 'margin-bottom: 100px');
+        });
+
+        taskHtml.querySelectorAll('.print-150').forEach(function (curElement) {
+          curElement.setAttribute('style', 'margin-bottom: 150px');
+        });
+
+        taskHtml.querySelectorAll('.print-200').forEach(function (curElement) {
+          curElement.setAttribute('style', 'margin-bottom: 200px');
+        });
+
+        taskHtml.querySelectorAll('.print-300').forEach(function (curElement) {
+          curElement.setAttribute('style', 'margin-bottom: 300px');
+        });
+
         let titlePdf = html2pdf().set(this.titlePdfOpt).from(titleHtml);
         let taskPdf = html2pdf().set(this.taskPdfOpt).from(taskHtml);
 
@@ -132,5 +148,21 @@
 <style scoped>
   ul {
     list-style: none;
+  }
+
+  .print-100 {
+    margin-bottom: 100px;
+  }
+
+  .print-150 {
+    margin-bottom: 100px;
+  }
+
+  .print-200 {
+    margin-bottom: 100px;
+  }
+
+  .print-300 {
+    margin-bottom: 100px;
   }
 </style>

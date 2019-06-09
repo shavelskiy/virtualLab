@@ -20,7 +20,6 @@ class m190108_102719_create_schemes_table extends Migration
         $this->createTable('schemes', [
             'id' => $this->primaryKey(),
             'lab_id' => $this->integer()->notNull(),
-            'changeable_c' => $this->boolean(),
             'changeable_r' => $this->boolean()
         ], $tableOptions);
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="table table-bordered ml-5">
+        <table class="table table-bordered ml-5 print-200">
             <thead>
             <tr>
                 <td class="col-md-1 text-center"><b>k * f</b></td>

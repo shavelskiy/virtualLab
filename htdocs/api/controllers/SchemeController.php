@@ -8,7 +8,6 @@ use common\models\Scheme;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
-use yii\web\Response;
 
 class SchemeController extends Controller
 {
@@ -29,7 +28,6 @@ class SchemeController extends Controller
                     'circuits' => $scheme->getSchemeCircuitsArray(),
                     'elements' => $scheme->getSchemeItemsArray(),
                     'changeable_r' => $scheme->changeable_r,
-                    'changeable_c' => $scheme->changeable_c,
                     'points' => $scheme->getSchemePointsArray(),
                     'texts' => $scheme->getSchemeTextsArray(),
                     'data' => $scheme->getSchemeDataArray(),

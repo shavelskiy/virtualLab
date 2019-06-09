@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="print-100">
         <table class="table table-bordered ml-5">
             <thead>
             <tr>

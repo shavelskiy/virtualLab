@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 'changeable': {
                     'r': $('#changeable_r').is(':checked'),
-                    'c': $('#changeable_c').is(':checked')
                 }
             }),
             success: function () {
