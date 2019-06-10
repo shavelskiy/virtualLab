@@ -27,6 +27,16 @@
               <select class="form-control" v-model="changeableData.r" v-on:change="sendData">
                 <option value="50">50 Ом</option>
                 <option value="100">100 Ом</option>
+                <option value="150">150 Ом</option>
+                <option value="200">200 Ом</option>
+                <option value="250">250 Ом</option>
+                <option value="300">300 Ом</option>
+                <option value="400">400 Ом</option>
+                <option value="500">500 Ом</option>
+                <option value="600">600 Ом</option>
+                <option value="700">700 Ом</option>
+                <option value="800">800 Ом</option>
+                <option value="900">900 Ом</option>
               </select>
             </div>
           </div>

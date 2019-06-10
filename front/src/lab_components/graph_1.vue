@@ -178,7 +178,7 @@ export default {
           y0 - 5 * data.data.ampers[0]
         );
 
-        for (var i = 1; i < 13; i++) {
+        for (var i = 1; i < 12; i++) {
           this.context.lineTo(
             x0 + 100 * data.data.volts[i],
             y0 - 5 * data.data.ampers[i]

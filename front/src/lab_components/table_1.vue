@@ -15,19 +15,18 @@
             <td>700</td>
             <td>800</td>
             <td>900</td>
-            <td>∞</td>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>U, В</td>
-            <td class="input" v-for="i in 13">
+            <td class="input" v-for="i in 12">
                 <input type="text" class="form-control value-input" v-model="volts[i -1]">
             </td>
         </tr>
         <tr>
             <td>I, мА</td>
-            <td class="input" v-for="i in 13">
+            <td class="input" v-for="i in 12">
                 <input type="text" class="form-control value-input" v-model="ampers[i - 1]">
             </td>
         </tr>
