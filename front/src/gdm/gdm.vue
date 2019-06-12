@@ -69,20 +69,19 @@ export default {
 
       if (this.values[this.point1 + "." + this.point2]) {
         tmp = this.values[this.point1 + "." + this.point2];
-      } else if (this.values[this.point1 + "." + this.point2]) {
+      } else if (this.values[this.point2 + "." + this.point1]) {
         k = -1;
         tmp = this.values[this.point2 + "." + this.point1];
       }
 
+
       this.curValues["cur_u"] = tmp
-        ? (k * Math.round(eval(tmp["cur_u"]) * 100)) / 100
+        ? (k * Math.round(eval(tmp["cur_u"])))
         : 0;
       this.curValues["cur_i"] = tmp
-        ? (k * Math.round(eval(tmp["cur_i"]) * 100)) / 100
+        ? (k * Math.round(eval(tmp["cur_i"])))
         : 0;
-      this.curValues["cur_r"] = tmp
-        ? (k * Math.round(eval(tmp["cur_r"]) * 100)) / 100
-        : 0;
+      this.curValues["cur_r"] = tmp ? (Math.round(eval(tmp["cur_r"]))) : 0;
     },
 
     acceptPoints: function(data) {
