@@ -158,10 +158,7 @@
                   re = 0;
                   im = 0;
                 }
-                console.log(tmp)
-                console.log(A, w)
-                console.log(tmp.re.replace(/pow/g, 'Math.pow'))
-                console.log(im)
+
                 this.channels[i].amplitude = Math.sqrt(re * re + im * im);
                 this.channels[i].phase = (Math.atan(im / re) * 180) / Math.PI;
               } else if (this.signal === 'rectangular') {

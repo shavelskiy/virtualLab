@@ -5,8 +5,10 @@ namespace frontend\controllers;
 use common\models\Lab;
 use common\models\LabResults;
 use common\models\Student;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotAcceptableHttpException;
 
 class ProfileController extends \yii\web\Controller
@@ -33,7 +35,7 @@ class ProfileController extends \yii\web\Controller
     public function actionIndex()
     {
         if (Yii::$app->user->can('viewAdminPage')) {
-            throw new NotAcceptableHttpException('У вас нет доступа к этой странице');
+            throw new ForbiddenHttpException('У вас нет доступа к этой странице');
         }
 
         $student = Student::find()->andWhere(['user_id' => Yii::$app->user->id])->one();
